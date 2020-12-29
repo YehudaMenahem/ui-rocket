@@ -1,0 +1,161 @@
+/*********/
+/* select Field Component */
+/*********/
+   
+.select-wrapper{
+    .select{
+        @include pointer;
+        position: relative;
+        z-index: 1;
+        min-width: 150px;
+    
+        .field{
+            @include flex(flex,initial,initial);
+            @include pd-t(16px);
+            @include border(none);
+            @include bg($grayscale-level-2);
+            position: relative;
+            flex-direction: column;
+            height: 50px;
+            border-bottom: 1px solid var(--main-color);
+            text-indent: 7px;
+    
+            .label{
+                position: absolute;
+                transition: font-size .3s, transform .3s;
+
+                //dark mode
+                .dark & {
+                    @include c($grayscale-level-6);
+                }
+            }
+    
+            .selected{
+                position: relative;
+                top: 7px;
+
+                //dark mode
+                .dark &{
+                    @include c($grayscale-level-7);
+                }
+            }
+    
+            .toggle-icon{
+                @include flex(flex,initial,initial);
+                top: 50%;
+                @include trans(translateY(-50%));
+                width: 15px;
+                height: 12px;
+                right: 7px;
+    
+                &.icon{
+                    #arrow{ 
+                        width: 100%;
+                        height: 100%;
+                        transition: transform .3s;
+    
+                        .path{
+                            fill:none;
+                            stroke: $mainColor;
+                            stroke-width:2;
+                            stroke-linecap:round;
+                            stroke-linejoin:round;
+                            stroke-miterlimit:10;
+                        }
+                    }
+                }
+            }
+    
+            .dropdown{
+                @include bg($accentColor);
+                @include c($grayscale-level-1);
+                @include mr(0);
+                @include pd(15px 0);
+                @include pointer();
+                @include transition(transform .2s);
+                @include trans(scaleY(0));
+                position: absolute;
+                width: 100%;
+                top: calc(100% + 1px);
+                list-style-type: none;
+                transform-origin: top;
+    
+                .option{
+                    @include pd(10px 15px);
+                    @include transition(background .4s ease-in);
+    
+                    &:hover{
+                        @include bg($accentColorDark)
+                    }
+                }
+            }
+    
+            &.open{
+    
+                .toggle-icon{
+    
+                    &.icon{
+                        #arrow{ 
+                            transform: rotate(180deg);
+                            .path{
+    
+                            }
+                        }
+                    }
+                }
+    
+                .dropdown{
+                    @include trans(scaleY(1));
+                }
+            }
+    
+            &.with-value{
+                .label{
+                    @include fs($fXxs);
+                    @include trans(translate(1px, -10px));
+                }
+            } 
+    
+            &:focus{
+                outline: none
+            }   
+    
+            .toggle-icon{
+                position: absolute;
+                right: 0;
+                @include mr-r(12px);
+                @include fs($fMd);
+    
+                &.icon{
+                    &:before{
+                        @include db();
+                        @include transition(transform .2s);
+                        transform-origin: 50% 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/*********/
+/* media query */
+/*********/
+
+
+// special break point
+@media screen and (min-width: 550px) {
+    .select-wrapper .select-mobile{
+        @include hide();
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .select-wrapper .select{ /* select desktop */
+        @include hidden();
+        height: 0;
+        width: 0;
+    }
+}
+

@@ -1,0 +1,71 @@
+/**************/
+/** radio page */
+/**************/
+
+.radio-page{
+    .container{
+        .content{
+            @include flex(flex,initial,initial);
+
+            .settings{
+                @include mr-l(auto);
+                @include pd-l(15px);
+                min-width: 250px;
+                border-left: 1px solid $mainColor;
+            }
+        }
+    }
+}
+
+
+/*********/
+/* media query */
+/*********/
+
+/* specific break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+    .radio-page{
+        .container{
+            
+            .content{
+                flex-direction: column;
+
+                .grid{
+                    @include mr-b(25px);
+                }
+
+                .settings{
+                    @include mr-l(0);
+                    @include pd-t(25px);
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and(max-width: 500px){
+    .radio-page{
+        .container{
+            .content{
+                flex-direction: column;
+
+                .grid{
+                    @include mr-b(25px);
+                }
+
+                .settings{
+                    @include mr-l(0);
+                    @include pd-t(25px);
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,82 @@
+/*********/
+/* toggle button */
+/*********/
+
+.toggle-button{
+    @include flex(flex,initial,center);
+    @include pointer();
+
+    .label{
+        @include mr-r(10px);
+        order: 0;
+    }
+
+    + .toogle-button{
+        @include mr-r(10px);
+    }
+
+    .switch{
+        @include flex(flex,initial,initial);
+        @include transition(border .3s);
+        position: relative;
+        min-width: 45px;
+        width: 45px;
+        height: 18px;
+        order: 1;
+
+        input{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            @include pointer();
+        }
+
+        .circle{
+            @include bg($grayscale-level-4);
+            @include radius(50%);
+            @include trans(translate(-2px, -2px));
+            left: 0;
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            transition: transform .25s, background-color .3s
+        }
+
+        .circle-bg{
+            width: 100%;
+            @include radius(50%);
+            @include radius(25px);
+            @include bg($grayscale-level-2);
+        }
+    }
+
+    &.checked{
+        .switch{
+
+            .circle{
+                @include bg($mainColor);
+                @include trans(translate(25px, -2px));
+            }
+
+            .circle-bg{
+                @include bg($grayscale-level-2);
+            }
+        }
+    }
+
+    &.label-from-right{
+        .label{
+            @include mr-r(0);
+            @include mr-l(10px);
+            order: 1;
+        }
+        .switch{
+            order: 0;
+        }
+    }
+}
+ 
+/*********/
+/* media query */
+/*********/

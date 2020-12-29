@@ -1,0 +1,109 @@
+/*********/
+/* input Field component */
+/*********/
+
+.input-field {
+
+    .field{
+        @include flex(flex,center,initial);
+        position: relative;
+        flex-direction: column;
+
+        .label {
+            position: absolute;
+            left: 8px;
+            transition: font-size .3s, transform .3s;
+
+            //dark mode
+            .dark & {
+                @include c($grayscale-level-6);
+            }
+
+            .astrix{
+                @include fs(18px);
+                @include c($error);
+            }
+        }
+
+        input{
+            height: 50px;
+            @include pd-t(16px);
+            @include border(none);
+            @include bg($grayscale-level-2);
+            @include c($grayscale-level-7);
+            border-bottom: 1px solid var(--main-color);
+            text-indent: 7px;
+
+            &:focus{
+                outline: none;
+                
+                + .label{
+                    @include fs($fXxs);
+                    @include trans(translate(1px, -10px));
+                }
+            }
+        }
+    }
+
+    &.placeholder{
+        .field{
+            input{
+                +.label{
+                    @include fs($fXxs);
+                    @include trans(translate(1px, -10px));
+                }
+            }
+        }
+    }
+
+    &.with-value{
+        .field{
+            input{
+                +.label{
+                    @include fs($fXxs);
+                    @include trans(translate(1px, -10px));
+
+                    .astrix{
+                        @include fs(16px);
+                    }
+                }
+            }
+        }
+    }
+
+    .helpers{
+        @include flex(flex,initial,initial);
+
+        .error{
+            @include fs($fXxs);
+            @include c($error);
+        }
+
+        .note{
+            @include fs($fXxs);
+            @include c($mainColor);
+        }
+
+        .char-num{
+            @include fs($fXxs);
+            @include mr-l(auto);
+        }
+    }
+}
+
+/* remove default arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  @include mr(0);
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*********/
+/* media query */
+/*********/

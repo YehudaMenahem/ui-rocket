@@ -1,0 +1,174 @@
+/*******************/
+/* tabs */
+/*******************/
+
+.toaster{
+    @include flex(flex,initial,center);
+    @include pd(25px 25px 12px 12px);
+    @include radius(5px);
+    @include shadow(1px 1px 5px rgba(0,0,0,0.3));
+    position: fixed;
+    min-width: 280px;
+    max-width: 350px;
+    z-index: 1;
+    animation: notice-pop-in .3s forwards;
+
+    &.close{
+        animation: notice-pop-out .3s forwards;
+    }
+
+    .icon.close{
+        @include pointer();
+        position:absolute;
+        top:10px;
+        right:10px;
+    }
+
+    &.info{
+        @include bg($info);
+    }
+
+    // types
+    &.success{
+        @include bg($success);
+    }
+
+    &.error{
+        @include bg($error);
+    }
+
+    &.warning{
+        @include bg($warning);
+    }
+
+
+
+    // positions
+    &.top-right{
+        top: 20px;
+        right: 20px;
+    }
+
+    &.top-left{
+        top: 20px;
+        left: 20px;
+    }
+
+    &.bottom-right{
+        bottom: 20px;
+        right: 20px;
+    }
+
+    &.bottom-left{
+        bottom: 20px;
+        left: 20px;
+    }
+
+
+    .icon-type{
+        @include pd-t(5px);
+        align-self: flex-start;
+
+        .icon{
+            @include c($grayscale-level-1);
+            @include fs($fLr);
+        }
+    }
+
+    .content{
+        @include pd(0);
+        @include bg(transparent);
+
+        //dark mode
+        .dark &{
+            @include border(none);
+        }
+        
+        .title{
+            @include mr-b(0);
+            @include c($grayscale-level-1);
+        }
+
+        .running-text{
+            @include c($grayscale-level-1);
+            @include fs($fXs);
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+@media screen and(max-width: 500px){
+    .toaster{
+        min-width: 210px;
+
+        &.close{
+        }
+    
+        .icon.close{
+
+        }
+    
+        &.info{
+        }
+    
+        // types
+        &.success{
+        }
+    
+        &.error{
+        }
+    
+        &.warning{
+        }
+    
+    
+    
+        // positions
+        &.top-right{
+            top: 95px;
+        }
+    
+        &.top-left{
+            top: 95px;
+        }
+    
+        &.bottom-right{
+        }
+    
+        &.bottom-left{
+        }
+    
+    
+        .icon-type{
+    
+            .icon{
+            }
+        }
+    
+        .content{
+            
+            .title{
+            }
+    
+            .running-text{
+            }
+        }
+    }
+}
+
+/*********/
+/* animations */
+/*********/
+
+@keyframes notice-pop-in{
+    from{opacity:0; transform:translateY(12px)}
+    to{opacity:1; transform:translateY(0)}
+}
+
+@keyframes notice-pop-out{
+    from{opacity:1; transform:translateY(0)}
+    to{opacity:0; transform:translateY(12px)}
+}

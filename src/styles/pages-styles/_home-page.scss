@@ -1,0 +1,120 @@
+/**************/
+/** App page */
+/**************/
+
+.home-page{
+    .mobile-header{
+        @include hide();
+    }
+
+    .components-info{
+        @include pd-t(75px);
+    }
+
+    .toggle-theme{
+        @include flex(flex,initial,center);
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+
+        &.toggle-button{
+            .switch{
+                .circle{
+                    @include bg($mainColor);
+                }
+            }
+        }
+    }
+
+    //dark mode
+    .dark & {
+        @include bg($grayscale-level-9);
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+@media screen and(max-width: 500px){
+    .home-page{
+        .mobile-header{
+            @include flex(flex,initial,center);
+            @include pd(25px);
+            @include c($accentColor);
+            @include bg($grayscale-level-7);
+            position: fixed;
+            width: 100%;
+            border-bottom: 1px solid var(--grayscale-200);
+            z-index: 3;
+
+            //dark mode
+            .dark & {
+                @include bg($grayscale-level-9);
+            }
+    
+            h3{
+                @include mr-b(0);
+                @include c($accentColor);
+
+                .icon-wrapper{
+                    i{
+                        @include fs(18px);
+                        @include c($accentColor);
+                        @include trans(translateY(2px) rotate(-45deg));
+                    }
+                }
+            }
+
+            .close-icon{
+                @include flex(flex,space-between,initial);
+                @include pointer();
+                flex-direction: column;
+                height: 15px;
+                margin-left: auto;
+    
+                .strip{
+                    @include radius(10px);
+                    @include bg($grayscale-level-2);
+                    width: 22px;
+                    height: 3px;
+                    transition: transform .2s, color .4s;
+    
+                    &:first-child{
+                        @include trans(translateY(6px));
+                    }
+    
+                    &:nth-child(2){
+                        @include bg($accentColor);
+                        z-index: 1;
+                    }
+    
+                    &:last-child{
+                        @include trans(translateY(-6px));
+                    }
+                }
+            }
+    
+            &.close{
+                .close-icon{
+                    .strip{
+                        &:first-child{
+                            @include trans(translateY(0));
+                        }
+    
+                        &:nth-child(2){
+                            @include bg($grayscale-level-2);
+                        }
+    
+                        &:last-child{
+                            @include trans(translateY(0));
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

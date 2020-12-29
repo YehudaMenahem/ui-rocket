@@ -1,0 +1,57 @@
+
+/**************/
+/** Input Field Page */
+/**************/
+
+.input-field-page{
+    .content{
+        @include flex(flex,initial,initial);
+    
+        .grid{
+            flex: 1;
+            @include mr-r(auto);
+        }
+    
+        .settings{
+            border-left: 1px solid $mainColor;
+            min-width: 250px;
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+
+    .input-field-page{
+        .tabs{
+            .tab{
+                @include pd(0);
+                @include pd-t(10px);
+
+                &:last-child{
+                    @include hide();
+                }
+            }
+        }
+        .content{
+            flex-direction: column;
+            @include pd-t(45px);
+
+            .settings{
+                @include pd-t(20px);
+                @include pd-l(0);
+                border-top: 1px solid var(--main-color);
+                border-left: none;
+            }
+        }
+    }
+}
+
+//mobile
+@media screen and(max-width: 500px){
+
+}

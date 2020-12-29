@@ -1,0 +1,68 @@
+/**************/
+/** toggle button page */
+/**************/
+
+.toggle-button-page{
+    .container{
+        .content{
+            .grid{
+                @include flex(flex,auto,auto);
+                
+                .component{
+                    flex: 1;
+                }
+
+                .settings{
+                    min-width: 250px;
+                    border-left: 1px solid $mainColor;
+                }
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* spesific break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+    .toggle-button-page{
+        .container{
+            .content{
+                .grid{
+                    flex-direction: column;
+
+                    .component{
+                        @include pd-b(25px);
+                    }
+
+                    .settings{
+                        @include pd-t(25px);
+                        border-top: 1px solid $mainColor;
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// mobile
+@media screen and(max-width: 500px){
+    .toggle-button-page{
+        .container{
+            .content{
+                .grid{
+                    flex-direction: column;
+
+                    .settings{
+                        border-top: 1px solid $mainColor;
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+}

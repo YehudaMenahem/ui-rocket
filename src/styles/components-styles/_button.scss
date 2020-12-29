@@ -1,0 +1,274 @@
+/********************/
+/* button */
+/********************/
+
+.button{
+    position: relative;
+    @include flex(flex,center,stretch);
+    @include mr-b(10px);
+    @include pd(0 10px);
+    @include radius(10px);
+    @include bg($mainColor);
+    @include pointer();
+    border: none;
+    overflow: hidden;
+
+    &.text{
+      .icon-wrapper{
+        @include pd-r(0);
+
+        .icon{
+          &:before{
+            @include c($mainColor);
+          }
+        }
+
+        +.label{
+          @include pd-l(10px);
+        }
+      }
+    }
+
+    &.small {
+        .label{
+          height: 30px;
+          @include fs(14px);
+        }
+    }
+
+    &.medium{
+      .label{
+        height: 40px;
+        @include fs(16px);
+      }
+    }
+
+    &.large{
+      .label{
+        height: 45px;
+        @include fs(18px);
+      }
+    }
+
+    &.loading{
+      .loading-bg{
+          @include flex(flex);
+          @include bg(rgba(0,0,0,0.8));
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+
+          /**
+          * ==============================================
+          * Dot Shuttle
+          * ==============================================
+          */
+
+          .stage {
+            @include flex(flex,center,center);
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+
+            /**
+            * ==============================================
+            * Dot Pulse
+            * ==============================================
+            */
+              .dot-pulse {
+                position: relative;
+                left: -9999px;
+                width: 10px;
+                height: 10px;
+                @include radius(5px);
+                @include bg($mainColor);
+                @include c($mainColor);
+                @include shadow(9999px 0 0 -5px $mainColor);
+                animation: dotPulse 1.5s infinite linear;
+                animation-delay: .25s;
+
+                &:before{
+                  content: '';
+                  display: inline-block;
+                  position: absolute;
+                  top: 0;
+                  width: 10px;
+                  height: 10px;
+                  @include radius(5px);
+                  @include bg($mainColor);
+                  @include c($mainColor);
+                  @include shadow(9984px 0 0 -5px $mainColor);
+                  @include mr-l(-4px);
+                  animation: dotPulseBefore 1.5s infinite linear;
+                  animation-delay: 0s;
+                }
+
+                &:after{
+                  content: '';
+                  display: inline-block;
+                  position: absolute;
+                  top: 0;
+                  width: 10px;
+                  height: 10px;
+                  @include radius(5px);
+                  @include bg($mainColor);
+                  @include c($mainColor);
+                  @include shadow(10014px 0 0 -5px $mainColor);
+                  @include mr-l(-4px);
+                  animation: dotPulseAfter 1.5s infinite linear;
+                  animation-delay: .5s
+                }
+              }
+          }
+      }
+    }
+
+    &.solid{
+      .label{
+        @include c($grayscale-level-1);
+      }
+      .icon-wrapper i:before{
+        @include c($grayscale-level-1);
+      }
+    }
+
+    &.ghost{
+      @include border(1px solid $mainColor);
+      @include bg(transparent);
+
+      .label{
+        @include c($mainColor);
+      }
+
+      .icon-wrapper{ 
+        border-right: 1px solid var(--main-color);
+
+        i{
+          &:before{
+            @include c($mainColor);
+          }
+        }
+      }
+    }
+
+    &.text{
+      @include border(none);
+      @include bg(transparent);
+
+      .label{
+        @include c($mainColor);
+      }
+    }
+
+    &:disabled{
+      @include bg($grayscale-level-3);
+      @include border(1px solid $grayscale-level-3);
+      cursor: not-allowed;
+
+      span.label{
+        @include c($grayscale-level-5);
+      }
+    }
+
+    &:focus{
+      outline: none
+    }
+
+    .icon-wrapper{
+      @include flex(flex,initial,center); 
+      @include pd-r(10px); 
+      border-right: 1px solid rgba(255,255,255,0.3);
+
+      i{
+        @include mr(0); 
+      }
+
+      +.label{
+        @include pd(0 5px 0 15px); 
+      }
+
+    }
+
+    .label{
+      @include flex(flex,initial,center);
+      @include pd(0 12px 0 12px); 
+      @include transition(box-shadow .2s)
+    }
+
+    &.bottom-right{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
+    }
+
+    &.bottom-left{
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
+    }
+
+    &.bottom-center{
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
+    }
+
+}
+
+
+
+/********/
+/* bouncing dots */
+/*********/
+  
+  /* animations - specific to button comp */
+
+  @keyframes dotPulseBefore {
+    0% {
+      @include shadow(9984px 0 0 -5px $mainColor);
+    }
+    30% {
+      @include shadow(9984px 0 0 2px $mainColor);
+    }
+    60%,
+    100% {
+      @include shadow(9984px 0 0 -5px $mainColor);
+    }
+  }
+  
+  @keyframes dotPulse {
+    0% {
+      @include shadow(9999px 0 0 -5px $mainColor);
+    }
+    30% {
+      @include shadow(9999px 0 0 2px $mainColor);
+    }
+    60%,
+    100% {
+      @include shadow(9999px 0 0 -5px $mainColor);
+    }
+  }
+  
+  @keyframes dotPulseAfter {
+    0% {
+      @include shadow(10014px 0 0 -5px $mainColor);
+    }
+    30% {
+      @include shadow(10014px 0 0 2px $mainColor);
+    }
+    60%,
+    100% {
+      @include shadow(10014px 0 0 -5px $mainColor);
+    }
+  }
+
+
+/*********/
+/* media query */
+/*********/

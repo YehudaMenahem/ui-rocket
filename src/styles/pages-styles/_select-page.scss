@@ -1,0 +1,57 @@
+/**************/
+/** radio page */
+/**************/
+
+.select-page{
+    .container{
+        .content{
+            .grid{
+                @include flex(flex,initial,initial);
+
+                .component{
+
+                }
+
+                .settings{
+                    @include mr-l(auto);
+                    @include pd-l(15px);
+                    min-width: 300px;
+                    border-left: 1px solid $mainColor;
+                }
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet breakpoint */
+@media (max-width: 975px ) and (min-width: 500px ){
+    .select-page{
+        .container{
+            .content{
+                .grid{
+                    flex-direction: column;
+
+                    .component{
+                        @include pd-b(10px);
+                    }
+    
+                    .settings{
+                        @include mr-l(0);
+                        @include pd(25px 10px 0 10px);
+                        border-left: 0;
+                        border-top: 1px solid $mainColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and(max-width: 500px){
+
+}

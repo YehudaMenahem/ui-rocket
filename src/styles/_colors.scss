@@ -1,0 +1,68 @@
+/************/
+/*** Colors ***/
+/************/
+
+/* scheme 1  primary  in the page   https://www.pinterest.com/pin/83457399332523588/*/
+/* #f7444e */
+/* #f7f8f3 */
+/* #78bcc4 */
+/* #002c3e */
+/* scheme 1 accent */
+
+/* scheme 1 neutral colors */
+
+/* scheme 1 feedback colors */
+$error: #c64344;
+$success: #4ba255;
+$warning: #df954c;  
+$info: #3daac6;
+
+/* neturals */
+$grayscale-level-1: #f8f9fa;
+$grayscale-level-2: #e9ecef;
+$grayscale-level-3: #dee2e6;
+$grayscale-level-4: #ced4da;
+$grayscale-level-5: #adb5bd;
+$grayscale-level-6: #6c757d;   
+$grayscale-level-7: #495057;
+$grayscale-level-8: #343a40;
+$grayscale-level-9: #141619;
+
+/* primary */
+$mainColor: #78bcc4;
+$secondaryColor: #002c3e;  
+$accentColor: #f7444e;  
+
+// shades
+$accentColorDark: #c93f45; //20% more black
+
+// :export {
+//     $mainColor: #78bcc4;
+//     $secondaryColor: #002c3e;  
+//     $accentColor: #f7444e;
+// }
+
+:root {
+    /* primary */
+    --main-color: #78bcc4;  /* last one: Pink: e64e89 */
+    --secondary-color: #002c3e;  
+
+    --accent-color: #f7444e;  
+    /* --shades: #f7f8f3;   */
+
+    /* neturals */
+    --grayscale-100: #f8f9fa;
+    --grayscale-200: #e9ecef;
+    --grayscale-300: #dee2e6;
+    --grayscale-400: #ced4da;
+    --grayscale-500: #adb5bd;
+    --grayscale-600: #6c757d;   
+    --grayscale-700: #495057;
+    --grayscale-800: #343a40;
+    --grayscale-900: #212529;
+
+
+}
+
+
+

@@ -1,0 +1,140 @@
+/*******************/
+/* side bar */
+/*******************/
+
+.side-bar{
+    @include flex-b(250px);
+    min-width: 250px; /* ofd - only for dev*/
+    border-right: 1px solid var(--grayscale-200);
+
+    .side-bar-header{
+        @include pd(25px);
+        @include c($accentColor);
+        border-bottom: 1px solid var(--grayscale-200);
+
+        .title{
+            @include c($accentColor);
+        }
+
+        .icon-wrapper{
+            i{
+                @include fs(18px);
+                @include c($accentColor);
+                @include transition(transform 1s);
+                @include trans(translateY(2px) rotate(-45deg));
+            }
+        }
+
+        &:hover{
+            .icon-wrapper{
+                i{
+                    @include trans(translateY(2px) rotate(315deg));
+                }
+            }
+        }
+    }
+
+    .components-list{
+        list-style-type: none;
+        @include mr(0);
+        @include pd(25px);
+
+        .item{
+            @include transition(transform .3s);
+            @include trans(translateX(0));
+            @include pd-b(17px);
+            @include pointer();
+
+            &:hover{
+                @include trans(translateX(3px));
+
+                a{
+                    @include trans(translateX(5px));    
+                    @include c($accentColor);
+                }
+
+
+                //dark mode
+                .dark & {
+                    a{
+                        @include c($accentColor);
+                    }
+                }
+            }
+
+            &.active{
+                a{
+                    @include trans(translateX(5px));
+                    @include c($accentColor);
+                }
+
+                //dark mode
+                .dark & {
+                    a{
+                        @include c($accentColor);
+                    }
+                }
+            }
+
+            a{
+                @include fs(15px);
+                @include pointer();
+                @include c($grayscale-level-6);
+
+                //dark mode
+                .dark & {
+                    @include c($grayscale-level-2);
+                }
+            }
+        }
+
+        .separator-vertical{
+            @include mr(0);
+            @include bg($accentColor);
+            height: 1px;
+            border-width: 0;
+                
+            +.item{
+                @include pd-t(17px);
+            }
+        }
+    }
+} 
+
+/*********/
+/* media query */
+/*********/
+
+@media screen and(max-width: 500px){
+
+    .side-bar{
+        @include bg($grayscale-level-4);
+        @include transition(transform .4s);
+        position: fixed;
+        z-index: 2;
+        width: 100%;
+        height: 100vh;
+
+        &.close{
+            @include trans(translateX(-100%));
+        }
+
+        .side-bar-header{
+            @include hide();
+        }
+
+        .components-list{
+            @include mr-t(75px);
+
+            //dark mode
+            .dark & {
+                @include bg($grayscale-level-9);
+            }
+        }
+
+        .icon-wrapper{
+            @include db();
+            @include mr-l(auto);
+        }
+    }
+ }

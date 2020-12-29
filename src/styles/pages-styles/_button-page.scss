@@ -1,0 +1,60 @@
+/**************/
+/** Button page */
+/**************/
+
+.button-page{
+    .content{
+        @include flex(flex,initial,initial);
+    
+        .grid{
+            @include mr-r(auto);
+            flex: 1;
+        }
+    
+        .settings{
+            border-left: 1px solid var(--main-color);
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+//tablet - between desktop and mobile
+@media (max-width: 975px ) and (min-width: 500px ){
+    .button-page{
+        .content{
+            .btn{
+                min-width: 150px;
+            }
+            .btn-backTop{
+                min-width: 150px;
+            }
+            .grid{
+
+            }
+        
+            .settings{
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and(max-width: 500px){
+
+    .button-page{
+        .content{
+            flex-direction: column;
+            @include pd-t(45px);
+
+            .settings{
+                @include pd-t(20px);
+                @include pd-l(0);
+                border-top: 1px solid var(--main-color);
+                border-left: none;
+            }
+        }
+    }
+}

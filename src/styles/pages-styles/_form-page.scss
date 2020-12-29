@@ -1,0 +1,54 @@
+
+/**************/
+/** Form page */
+/**************/
+
+.form-page{
+
+    .grid{
+        .container{
+            .form{
+                h5{
+                    @include mr-t(10px);
+                    @include mr-b(5px);
+                }
+
+                .textbox{
+                    @include mr-t(50px);
+                    textarea{
+                        resize:none;
+                    }
+                }
+
+                .form-child{
+                    @include mr-b(25px);
+                }
+                .btn-wrapper{
+                    @include mr-t(65px);
+
+                    .button{
+                        transition: background-color .4s, color .4s;
+                        &.success{
+                            @include bg($success);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+
+}
+
+//mobile
+@media screen and(max-width: 500px){
+
+}
+

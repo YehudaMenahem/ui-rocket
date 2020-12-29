@@ -1,0 +1,71 @@
+/**************/
+/** Checkbox page */
+/**************/
+
+.checkbox-page{
+    .container{
+        .content{
+            @include flex(flex,initial,initial);
+
+            .checkboxes{
+                flex: 1;
+
+                .align-start{
+                    align-self: flex-start;
+                }
+            }
+            .settings{
+                @include pd-l(15px);
+                border-left: 1px solid $mainColor;
+                min-width: 250px;
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+    .checkbox-page{
+        .container{
+            .content{
+                flex-direction: column;
+                .checkboxes{
+                    @include mr-b(25px);
+                    align-self: flex-start;
+                }
+                .settings{
+                    @include pd-t(25px);
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+//mobile
+@media screen and(max-width: 500px){
+    .checkbox-page{
+        .container{
+            .content{
+                flex-direction: column;
+
+                .checkboxes{
+                    @include mr-b(25px);
+                    align-self: flex-start;
+                }
+                .settings{
+                    @include pd-t(25px);
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}

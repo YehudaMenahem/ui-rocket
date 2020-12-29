@@ -1,0 +1,42 @@
+/******************/
+/*** Typography ***/
+/******************/
+
+/* import fonts from google fonts */
+@import url(https://fonts.googleapis.com/css?family=Rajdhani:Bold700,Medium500,Regular400,Light300);
+@import url(https://fonts.googleapis.com/css?family=Kanit:Thin100,Extra-light200,Medium500,Semi-bold600);
+
+
+/* font size */
+
+.f-xxs{
+    @include fs(12px);
+}
+
+.f-xs{
+    @include fs(14px);
+}
+
+.f-sm{
+    @include fs(16px);
+}
+
+.f-md{
+    @include fs(20px);
+}
+
+.f-lr{
+    @include fs(28px);
+}
+
+.f-xl{
+    @include fs(36px);
+}
+
+.f-xxl{
+    @include fs(44px);
+}
+
+
+
+

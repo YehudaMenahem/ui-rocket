@@ -1,0 +1,62 @@
+/*******************/
+/* tabs */
+/*******************/
+
+.tabs{
+    @include flex(flex,initial,initial);
+    @include mr(0);
+    @include pd(0);
+    @include bg($grayscale-level-1);
+    list-style: none;
+
+    .tab{
+        position: relative;
+        @include pd(15px);
+        @include trans(border .3s);
+        @include pointer();
+        border-bottom: 2px solid transparent;
+
+        .button{
+            @include mr-b(0);
+            @include pointer();
+
+            &.text{
+                .label{
+                    @include c($accentColor);
+                }
+            }
+        }   
+
+        &:before{
+            @include bg(none repeat scroll 0 0 transparent);
+            @include db();
+            @include bg($accentColor);
+            top: 0;
+            content: "";
+            height: 2px;
+            position: absolute;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            left: 50%;
+            width: 0;
+        }
+
+        &.active{
+            &:before{
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+@media screen and(max-width: 500px){
+    .tabs{    
+        .tab{
+            flex: 1;
+        }
+    }
+}

@@ -1,0 +1,130 @@
+/************/
+/** mixin **/
+/************/
+
+@mixin bg-prop($prop,$val){
+    background-#{$prop}: $val
+}
+
+@mixin trans($property) {
+    -webkit-transform: $property;
+    transform: $property;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+    transition: $property;
+}
+
+@mixin flex($flex:flex, $justify-content:flex-start, $align-items:stretch) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: $flex;
+    -webkit-box-pack: $justify-content;
+        -ms-flex-pack: $justify-content;
+            justify-content: $justify-content;
+    -webkit-box-align: $align-items;
+        -ms-flex-align: $align-items;
+            align-items: $align-items;
+}
+
+@mixin flex-b($property){
+    flex-basis: $property
+}
+
+@mixin resetList(){
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+@mixin center(){
+    text-align: center
+}
+
+@mixin pointer(){
+    cursor: pointer
+}
+
+@mixin pd($property){
+    padding: $property
+}
+
+@mixin pd-t($property){
+    padding-top: $property
+}
+
+@mixin pd-r($property){
+    padding-right: $property
+}
+
+@mixin pd-b($property){
+    padding-bottom: $property
+}
+
+@mixin pd-l($property){
+    padding-left: $property
+}
+
+@mixin mr($property){
+    margin: $property
+}
+
+@mixin mr-t($property){
+    margin-top: $property
+}
+
+@mixin mr-r($property){
+    margin-right: $property
+}
+
+@mixin mr-b($property){
+    margin-bottom: $property
+}
+
+@mixin mr-l($property){
+    margin-left: $property
+}
+
+@mixin radius($property){
+    border-radius: $property
+}
+
+@mixin c($property){
+    color: $property
+}
+
+@mixin fill($property){
+    fill: $property
+}
+
+@mixin bg($property){
+    background: $property
+}
+
+@mixin fs($property){
+    font-size: $property
+}
+
+@mixin shadow($property){
+    box-shadow: $property
+}
+
+@mixin border($property){
+    border: $property
+}
+
+@mixin hide(){
+    display: none
+}
+
+@mixin hidden(){
+    visibility: hidden;
+}
+
+@mixin db(){
+    display: block
+}
+
+
+

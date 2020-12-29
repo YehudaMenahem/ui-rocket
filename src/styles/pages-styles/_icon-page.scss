@@ -1,0 +1,179 @@
+/**************/
+/** icons page */
+/**************/
+
+
+.icon-page{
+
+    .content{
+        @include flex(flex,initial,initial);
+
+        .icons{
+
+            &.grid{
+                display: grid;
+                grid-template-columns: repeat(8, 1fr);
+                grid-template-rows: repeat(4, 70px);
+                justify-items: stretch;
+                align-items: stretch;
+                gap: 18px 10px;
+        
+                .grid-item{
+                    @include flex(flex,auto,auto);
+                    flex-direction: column;
+    
+                    .icon-pres{
+                        @include flex(flex,center,center);
+                        @include border(1px solid $mainColor);
+                        @include radius(5px);
+                        @include pointer();
+                        flex: 1;
+                    }
+        
+                    .icon{
+                        @include trans(1);
+                        @include transition(transform .2s);
+                    }
+        
+                    &:hover{
+                        .icon{
+                            @include trans(scale(1.8));
+                        }
+                    }
+                }
+    
+                .icon-class{
+                    @include center();
+                    height: 20px;
+                    line-height: 1.1;
+                }
+            }
+        }
+    
+        .settings{
+            min-width: 250px;
+            border-top: none;
+            border-left: 1px solid $mainColor;
+            @include mr-l(auto);
+        }
+    }
+
+    
+
+    .icon{
+        &.icon-size-xl{
+            @include fs($xl);
+            &:before{
+                @include fs($xl);
+            }
+        }
+    }
+
+    .link{
+        &:hover{
+            @include c($accentColor);
+        }
+    }
+
+    .icons-list-content{
+        +.settings{
+            @include hide();
+        }
+    }
+
+
+}
+
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet break point */
+@media (max-width: 975px) and (min-width: 500px){
+    .icon-page{
+        .content{
+
+            .icons{
+
+                &.grid{
+                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-rows: repeat(6, 80px);
+                    gap: 35px 20px;
+            
+                    .grid-item{   
+                        .icon-pres{
+                        }
+            
+                        .icon{
+                        }
+            
+                        &:hover{
+                            .icon{
+                            }
+                        }
+                    }
+        
+                    .icon-class{
+                    }
+                }
+            }
+
+
+
+            .settings{
+            }
+        }
+    }
+}
+
+
+/* mobile */
+@media screen and(max-width: 500px){
+
+    .icon-page{
+        .content{
+            @include pd(45px 25px 30px);
+            flex-direction: column;
+
+            .icons{
+
+                &.grid{
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(3, 80px);
+                    gap: 35px 20px;
+            
+                    .grid-item{   
+                        .icon-pres{
+                            min-height: 60px;     
+                        }
+            
+                        .icon{
+                        }
+            
+                        &:hover{
+                            .icon{
+                            }
+                        }
+                    }
+        
+                    .icon-class{
+                    }
+                }
+            }
+
+
+
+            .settings{
+                @include pd-t(20px);
+                @include pd-l(0);
+                @include mr-l(0);
+                border-top: 1px solid var(--main-color);
+                border-left: none;
+            }
+        }
+    }
+}
+
+
+

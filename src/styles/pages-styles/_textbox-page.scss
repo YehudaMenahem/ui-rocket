@@ -1,0 +1,79 @@
+/**************/
+/** home page */
+/**************/
+
+.textbox-page{
+    .container{
+        .content{
+            @include flex(flex,initial,initial);
+            flex-wrap: wrap;
+
+            .textbox{
+                .textarea{
+                    max-width: 350px;
+                }
+            }
+
+            .grid{
+                flex: 1;
+            }
+            .settings{
+                border-left: 1px solid $mainColor;
+                min-width: 250px;
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* spesific break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+    .textbox-page{
+        .container{
+            .content{
+                flex-direction: column;
+                .grid{
+                    .component{
+                        @include pd-b(25px);
+                    }
+
+                    .settings-row{
+                        @include mr-l(0);
+                    }
+                }
+                .settings{
+                    @include pd-t(25px);
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+// mobile
+@media screen and(max-width: 500px){
+
+    .textbox-page{
+        .container{
+            .content{
+                flex-direction: column;
+
+                .grid{
+
+                }
+
+                .settings{
+                    @include pd-l(0);
+                    border-top: 1px solid $mainColor;
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+

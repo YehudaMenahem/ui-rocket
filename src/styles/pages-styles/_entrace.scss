@@ -1,0 +1,62 @@
+/**************/
+/** entrace */
+/**************/
+
+.entrace{
+    .main-img{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50vw;
+        z-index: 0;
+    }
+
+    .sparkling-stars{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 50vw;
+        z-index: -1;  
+
+        #stars{
+            .star{
+                animation: sparkling .5s forwards;
+            }
+        }
+    }
+
+    .title{
+        .hey-sign{
+            @include fs(40px);
+            @include trans(rotate(0));
+            display: inline-block;
+            transform-origin: center center;
+            transition: transform .4s;
+        }
+
+        &:hover{
+            .hey-sign{
+                transform: rotate(55deg);
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* spesific break point */
+@media (max-width: 975px) and (min-width: 500px){
+    .entrace{
+        .main-img{
+            @include hide();
+        }
+
+        .sparkling-stars{
+            @include hide();
+        }
+    }
+}
+
+/* specific animations */

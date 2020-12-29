@@ -1,0 +1,103 @@
+/********************/
+/* general settings */
+/********************/
+
+html{
+    height: auto
+}
+
+#root,
+.home-page{
+    height: 100%
+}
+
+body{
+    @include c($grayscale-level-1);
+}
+
+
+
+h1{
+    @include fs(48px);
+    @include c($grayscale-level-8);
+    font-weight: 400;
+    font-family: 'Rajdhani';
+    font-weight: 700;
+
+    //dark mode
+    .dark & {
+        @include c($grayscale-level-1);
+    }
+}
+
+h2{
+    @include fs($fXl);
+    @include c($grayscale-level-7);
+    font-weight: 100;
+    font-family: 'Rajdhani';
+    font-weight: 500;
+
+    //dark mode
+    .dark & {
+        @include c($grayscale-level-2);
+    }
+}
+
+h3,h4,h5,h6{
+    @include c($grayscale-level-6);
+
+    //dark mode
+    .dark & {
+        @include c($grayscale-level-2);
+    }
+}
+
+p,span,a{
+    @include fs($fXs);
+    @include c($grayscale-level-6);
+    font-family: 'Kanit';
+    font-weight: 200;
+
+    //dark mode
+    .dark & {
+        @include c($grayscale-level-3);
+    }
+}
+
+a:hover{
+    @include c(unset);
+}
+
+ul{
+    @include resetList()
+}
+
+.line-break {
+    white-space: pre-line;
+}
+
+.home-page{
+    @include flex(flex,initial,initial);
+}
+
+
+//scroll bar
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $mainColor; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    
+  }
