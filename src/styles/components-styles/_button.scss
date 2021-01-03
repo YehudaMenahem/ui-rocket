@@ -16,6 +16,8 @@
     &.text{
       .icon-wrapper{
         @include pd-r(0);
+        @include pd-b(5px);
+        border-right: 1px solid transparent;
 
         .icon{
           &:before{
@@ -27,6 +29,20 @@
           @include pd-l(10px);
         }
       }
+
+      &:disabled{
+        @include bg(transparent);
+        @include border(1px solid transparent);
+  
+        .icon-wrapper{
+          border-right: 1px solid transparent;
+          .icon{
+            &:before{
+            }
+          }
+        }
+      }
+
     }
 
     &.small {
@@ -151,6 +167,19 @@
           }
         }
       }
+
+      &:disabled{
+        @include bg(transparent);
+        @include border(1px solid $grayscale-level-5);
+  
+        .icon-wrapper{
+          border-right: 1px solid $grayscale-level-5;
+          .icon{
+            &:before{
+            }
+          }
+        }
+      }
     }
 
     &.text{
@@ -169,6 +198,15 @@
 
       span.label{
         @include c($grayscale-level-5);
+      }
+
+      .icon-wrapper{
+        border-right: 1px solid $grayscale-level-4;
+        .icon{
+          &:before{
+            @include c($grayscale-level-5);
+          }
+        }
       }
     }
 

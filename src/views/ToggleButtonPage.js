@@ -103,6 +103,7 @@ class ToggleButtonPage extends React.Component{
 
                                             {this.renderToggleButtons()}
                                             <div className="settings pd-l-xl mobile-pd-t-xl">
+                                                <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                                 <ul className="mr-b-xl"> 
                                                     <li className="mr-b-md"><span>Label Position:</span></li>
                                                     <li> 
@@ -127,16 +128,16 @@ class ToggleButtonPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Select Fields props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label:</span> The text that will be written aside the Textbox | string</p>
                             <p><span className="bold prop">name:</span> This value is for form submit purpse | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
+                            <p><span className="bold prop">value:</span> The value that will be transfer as the user selection when click on this option | string </p>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">isChecked:</span> Set the radio button state - chosen ir not | boolean</p>
-                            <p><span className="bold prop">change:</span> A function from parent that will occur when the radio button has been choosen | function </p>
                             <p><span className="bold prop">disabled:</span> Option of disable the Textbox | boolean</p>
                             <p><span className="bold prop">required:</span> Option of required for form validation | boolean</p>
+                            <p><span className="bold prop">labelPosition:</span> Determine the position of the label. from-right / from-left | string</p>
                         </div>
                     </div>
 
@@ -171,15 +172,15 @@ class ToggleButtonPage extends React.Component{
                                     <span className="props">
                                         <span className="component">{'ToggleButton'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'label='}<span className="props-value">{'"User Name"'}</span><br></br>
-                                            &nbsp; {'isChecked='}<span className="element">{'{true}'}</span><br></br>
-                                            &nbsp; {'name='}<span className="props-value">{'"name-for-submit"'}</span><br></br>
-                                            &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
+                                            &nbsp; {'label='}<span className="props-value">{'"Did you get the vaccine"'}</span><br></br>
+                                            &nbsp; {'name='}<span className="props-value">{'"common-questions"'}</span><br></br>
+                                            &nbsp; {'value='}<span className="props-value">{'"vaccined"'}</span><br></br>
                                             &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                            &nbsp; {'change='}<span className="element">{'{this.'}<span className="function">{'onChangeEvent'}</span>{'}'}</span> <br></br>
+                                            &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
+                                            &nbsp; {'isChecked='}<span className="element">{'{true}'}</span><br></br>
                                             &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
-                                            &nbsp; {'required='}<span className="element">{'{true}'}</span>
+                                            &nbsp; {'required='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'labelPosition='}<span className="element">{'"from-right"'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>

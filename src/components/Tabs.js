@@ -9,7 +9,6 @@ class Tabs extends React.Component{
     state = {
         tabs: this.props.tabs,
         activeTab: this.props.activeTab,
-        theme: this.props.theme,
         classes: this.props.classes,
         id: this.props.id
     };
@@ -18,7 +17,6 @@ class Tabs extends React.Component{
         return {
             tabs: props.tabs,
             activeTab: props.activeTab,
-            theme: props.theme,
             classes: props.classes,
             id: props.id
         }
@@ -79,7 +77,6 @@ class Tabs extends React.Component{
 Tabs.defaultProps = {
     tabs: [],
     activeTab: 0,
-    theme: 'primary',
     classes: 'props.classes',
     id: undefined
 }

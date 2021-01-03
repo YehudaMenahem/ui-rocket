@@ -18,7 +18,7 @@ class ButtonPage extends React.Component{
         images:[], 
         imageList:null,
         currentTab:'solidButtonTab',
-        tabs:['Solid Button','Back To Top Button'],
+        tabs:['Btn','Back To Top Btn'],
         activeTab:0,
         loading: false,
         buttonSize: 'small',
@@ -71,8 +71,8 @@ class ButtonPage extends React.Component{
                         </div>
                     </div>
                 </div>
-                <div className="settings pd-l-xl" style={{minWidth:'250px'}}>
-                    <h3>Settings:</h3>
+                <div className="settings pd-l-xl">
+                    <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                     <ul className="mr-b-xl"> 
                         <li> 
                             <SelectField label={"button position"} options={this.state.buttonBackToTopOptions} id={"button-positions"} name={"button-positions"} change={(e) => this.changeButtonPosition(e)}></SelectField>
@@ -95,7 +95,6 @@ class ButtonPage extends React.Component{
                                 label={this.state.buttonLabel} 
                                 theme="primary" 
                                 classes="specific-cssclass"
-                                click={() => this.startLoading()} 
                                 disabled={this.state.buttonDisable}
                                 loading={this.state.loading}
                                 >
@@ -112,7 +111,7 @@ class ButtonPage extends React.Component{
                     </div>
                 </div>  
                 <div className="settings pd-l-xl" style={{minWidth:'250px'}}>
-                    <h3>Settings:</h3>
+                    <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                     <ul className="mr-b-xl"> 
                         <li> 
                             <InputField type="text" label={'Button Label'} value={this.state.buttonLabel} change={e => this.changeInput(e)} maxlength={15}></InputField>
@@ -251,17 +250,20 @@ class ButtonPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Buttons props options </h2>
-                            <p><span className="bold prop">type:</span> One of three types of button: solid / ghost / text | string </p>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label:</span> The text that will be written inside the button | string</p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third | string (lowercase)</p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">styleBtn:</span> One of three types of button: solid / ghost / text | string </p>
+                            <p><span className="bold prop">size:</span> Determine btn size - Small / Medium / Large | string (lowercase)</p>
                             <p><span className="bold prop">click:</span> A function from parent that will fired on click of the button | function </p>
-                            <p><span className="bold prop">disabled:</span> Option of disable the button | boolean</p>
+                            <p><span className="bold prop">loading:</span> An option to show to user that a process that needs to be done is happening in the background | boolean</p>
+                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">theme:</span> Primary / Secondary / third | string (lowercase)</p>
+                            <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
                             <p><span className="bold prop">rounded:</span> Rounded button angles - done</p>
                             <p><span className="bold prop">shadow:</span> Adding shadow to button | boolean</p>
-                            <p><span className="bold prop">icon:</span> Adding an icon to button label | component inside as a child</p>
-                            <p><span className="bold prop">loading:</span> an option to show to user that a process that needs to be done is happening in the background</p>
+                            <p><span className="bold prop">disabled:</span> Option of disable the button | boolean</p>
+                            <p><span className="bold prop">scrollToTop:</span> Makes specific functionality of the btn - bring user to top of the page  | boolean</p>
+                            <p><span className="bold prop">position:</span> Only in the scrollToTop true option, can be use to position the btn - bottom-left / bottom-center / bottom-right | string</p>
                         </div>
                     </div>
 
@@ -298,13 +300,19 @@ class ButtonPage extends React.Component{
                                     <span className="props">
                                         <span className="component">{'Button'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'type='}<span className="props-value">{'"solid"'}</span><br></br>
-                                            &nbsp; {'label='}<span className="props-value">{'"My Button"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
+                                            &nbsp; {'label='}<span className="props-value">{'"2021 Button"'}</span><br></br>
+                                            &nbsp; {'styleBtn='}<span className="props-value">{'"ghost"'}</span><br></br>
+                                            &nbsp; {'size='}<span className="props-value">{'"medium"'}</span><br></br>
                                             &nbsp; {'click='}<span className="element">{'{this.'}<span className="function">{'onclick'}</span>{'}'}</span> <br></br>
-                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
                                             &nbsp; {'loading='}<span className="element">{'{false}'} </span>
+                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
+                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
+                                            &nbsp; {'id='}<span className="props-value">{'"new-year"'}</span><br></br>
+                                            &nbsp; {'rounded='}<span className="props-value">{'3px'}</span><br></br>
+                                            &nbsp; {'shadow='}<span className="props-value">{'{true}'}</span><br></br>
+                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'scrollToTop='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'position='}<span className="element">{'"bottom-center"'}</span>
                                             <span  className="brackets">{">"}</span><br></br>
                                         </span>
                                     </span>
@@ -313,7 +321,7 @@ class ButtonPage extends React.Component{
                                     &nbsp; <span className="brackets">{"<"}</span>
                                             <span>
                                                 <span className="component">{'Icon'} </span>
-                                                <span className="props">{'classes='}</span><span className="props-value">{'"icon-class"'}</span></span>
+                                                <span className="props">{'classes='}</span><span className="props-value">{'"eye"'}</span></span>
                                             <span className="brackets">{"/>"}</span><br></br>
 
                                     {/* Button closing tag */}

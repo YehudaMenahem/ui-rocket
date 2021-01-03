@@ -8,7 +8,6 @@ class Form extends React.Component {
         id:this.props.id,
         children:this.props.children,
         classes:this.props.classes,
-        theme:this.props.theme,
         novalidate:this.props.novalidate,
         error: false
     };
@@ -19,7 +18,6 @@ class Form extends React.Component {
             id:props.id,
             children:props.children,
             classes:props.classes,
-            theme:props.theme,
             novalidate:props.novalidate
         }
     }
@@ -92,7 +90,6 @@ Form.defaultProps = {
     title:'',
     id: undefined,
     classes:'',
-    theme:'',
     children: null,
     novalidate: false
 }

@@ -80,7 +80,7 @@ class App extends React.Component  {
         //get time
         let day = new Date();
         let hourInDay = day.getHours();
-        let theme = hourInDay > 17 ? 'dark' : 'light';
+        let theme =  hourInDay > 17 || hourInDay <= 4 ? 'dark' : 'light';
         theme === 'dark' ? this.setState({darkTheme: true}) : this.setState({darkTheme: false});
         html.classList.add(theme);
 

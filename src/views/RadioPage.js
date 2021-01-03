@@ -12,16 +12,16 @@ class RadioPage extends React.Component{
     state ={
         // selectedOption: 'Yes',
         // selectedPressOption: 'Volleyball',
-        tabs: ['Radio','Press Buttons'],
+        tabs: ['Radio','Press Btns'],
         activeTab: 0,
         radioSettings: {
-            firstOption: 'Yes',
-            secondOption: 'No',
-            thirdOption: 'Maybe',
+            firstOption: 'Pizza by Philippe',
+            secondOption: 'Beyond burger by Goodness',
+            thirdOption: 'Amsterdam Full Inclusive by Ams Cookies',
         },
         radioSettingsCheck: {
-            firstOptionChecked: true,
-            secondOptionChecked: false,
+            firstOptionChecked: false,
+            secondOptionChecked: true,
             thirdOptionChecked: false
         },
         radioPressSettings: {
@@ -54,8 +54,6 @@ class RadioPage extends React.Component{
         this.setState({
             selectedPressOption: e.target.value
             
-        }, () => {
-            debugger;
         });
     }
 
@@ -66,9 +64,10 @@ class RadioPage extends React.Component{
 
             case 1:
                 view =
-                    <div className="grid mr-b-xl">
+                    <div className="grid mr-b-xl with-press-buttons">
                         <div className="row">
                             <div className="col-7">
+                                <h4>{'Favorite sport in summer:'}</h4>
                                 <div className="press-buttons">
                                     <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.firstOption.toLowerCase()} label={this.state.radioPressSettings.firstOption} id={this.state.radioPressSettings.firstOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.firstOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','firstOptionChecked')}/> 
                                     <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.secondOption.toLowerCase()} label={this.state.radioPressSettings.secondOption} id={this.state.radioPressSettings.secondOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.secondOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','secondOptionChecked')} /> 
@@ -84,7 +83,8 @@ class RadioPage extends React.Component{
                 view =
                     <div className="grid mr-b-xl">
                         <div className="row">
-                            <div className="col-7">
+                            <div className="col-1">
+                                <h4>{'Prefered Wolt order:'}</h4>
                                 <div className="radio-buttons">
                                     <RadioButton classes="mr-b-md" name="radio" val={this.state.radioSettings.firstOption.toLowerCase()} label={this.state.radioSettings.firstOption} id={this.state.radioSettings.firstOption.toLowerCase()} isSelected={this.state.radioSettingsCheck.firstOptionChecked} change={(e) => this.onChangeRadio(e,'radioSettingsCheck','firstOptionChecked')}/> 
                                     <RadioButton classes="mr-b-md" name="radio" val={this.state.radioSettings.secondOption.toLowerCase()} label={this.state.radioSettings.secondOption} id={this.state.radioSettings.secondOption.toLowerCase()} isSelected={this.state.radioSettingsCheck.secondOptionChecked} change={(e) => this.onChangeRadio(e,'radioSettingsCheck','secondOptionChecked')} /> 
@@ -147,6 +147,7 @@ class RadioPage extends React.Component{
                                 <div className="content">
                                     {this.renderRadio()}
                                     <div className="settings pd-t-xl">
+                                        <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                         <ul className="mr-b-xl"> 
                                             <li> 
                                                 <InputField type="text" label={'First Radio'} value={this.state.radioSettings.firstOption} change={e => this.changeRadioTextOption(e,0)} maxlength={15}></InputField>
@@ -167,15 +168,15 @@ class RadioPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Radio Button props options </h2>
+                            <h2>Component props </h2>
                             <p><span className="bold prop">label:</span> The text that will be written aside the radio button | string</p>
-                            <p><span className="bold prop">checked:</span> Set the radio button state - chosen ir not | boolean</p>
-                            <p><span className="bold prop">value:</span> The value that will be transfer as the user selection when click on this option | string </p>
                             <p><span className="bold prop">name:</span> This value is for all the radio buttons belongs to the same group | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
+                            <p><span className="bold prop">val:</span> The value that will be transfer as the user selection when click on this option | string </p>
+                            <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
-                            <p><span className="bold prop">change:</span> A function from parent that will occur when the radio button has been choosen | function </p>
-                            <p><span className="bold prop">disabled:</span> Option of disable the radio button | boolean</p>
+                            <p><span className="bold prop">disabled:</span> Option of disable the button | boolean</p>
+                            <p><span className="bold prop">isSelected:</span> Set the radio button state - chosen ir not | boolean</p>
+                            <p><span className="bold prop">type:</span> Determine if the type of button will look as press button - pressButton | string </p>
                         </div>
                     </div>
 
@@ -208,13 +209,14 @@ class RadioPage extends React.Component{
                                 <span className="props">
                                     <span className="component">{'RadioButton'}</span><br></br>
                                     <span className="indent-code">
-                                        &nbsp; {'label='}<span className="props-value">{'"option one - yes"'}</span><br></br>
-                                        &nbsp; {'checked='}<span className="element">{'{true}'}</span><br></br>
-                                        &nbsp; {'value='}<span className="props-value">{'"allow-cookies"'}</span><br></br>
-                                        &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
+                                        &nbsp; {'label='}<span className="props-value">{'"Radio goo goo"'}</span><br></br>
+                                        &nbsp; {'isSelected='}<span className="element">{'{true}'}</span><br></br>
+                                        &nbsp; {'name='}<span className="props-value">{'"queen-songs"'}</span><br></br>
+                                        &nbsp; {'val='}<span className="props-value">{'"allow-cookies"'}</span><br></br>
+                                        &nbsp; {'id='}<span className="props-value">{'"new-year"'}</span><br></br>
                                         &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                        &nbsp; {'change='}<span className="element">{'{this.'}<span className="function">{'onChangeEvent'}</span>{'}'}</span> <br></br>
                                         &nbsp; {'disabled='}<span className="element">{'{true}'}</span>
+                                        &nbsp; {'type='}<span className="element">{'"pressButton"'}</span>
                                         <span  className="brackets">{" />"}</span><br></br>
                                     </span>
                                 </span>

@@ -10,6 +10,12 @@
         .grid{
             flex: 1;
             @include mr-r(auto);
+
+            .row{
+                [class^="col"]{
+                    align-self: flex-start;
+                }
+            }
         }
     
         .settings{

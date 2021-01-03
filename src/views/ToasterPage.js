@@ -84,14 +84,13 @@ class ToasterPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Select Fields props options </h2>
+                            <h2>Component props </h2>
                             <p><span className="bold prop">type:</span> The type of the toaster notice - success,error,info,warning | string</p>
+                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">position:</span> The corner which in it the toaster will pop | string</p>
                             <p><span className="bold prop">title:</span> The title of the toaster | string</p>
                             <p><span className="bold prop">runningText:</span> the subtitle / runing text of the message for user | string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
-                            <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">show:</span> A prop coming from the parent to manage the toaster toggle state | boolean </p>
                         </div>
                     </div>
 
@@ -125,12 +124,11 @@ class ToasterPage extends React.Component{
                                         <span className="component">{'Toaster'}</span><br></br>
                                         <span className="indent-code">
                                             &nbsp; {'type='}<span className="props-value">{'"success"'}</span><br></br>
-                                            &nbsp; {'title='}<span className="props-value">{'"Congrats"'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"toast"'}</span> <br></br>
+                                            &nbsp; {'id='}<span className="props-value">{'"french-toast"'}</span>
                                             &nbsp; {'position='}<span className="props-value">{'"top-right"'}</span><br></br>
-                                            &nbsp; {'runningText='}<span className="props-value">{'"So happy to have you here"'}</span><br></br>
-                                            &nbsp; {'show='}<span className="props-value">{'false'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                            &nbsp; {'id='}<span className="props-value">{'"awesome-toast"'}</span>
+                                            &nbsp; {'title='}<span className="props-value">{'"Bon Apetit"'}</span><br></br>
+                                            &nbsp; {'runningText='}<span className="props-value">{'"Can I bring anything else?"'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>

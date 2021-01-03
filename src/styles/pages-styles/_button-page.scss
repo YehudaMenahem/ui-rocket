@@ -52,6 +52,7 @@
             .settings{
                 @include pd-t(20px);
                 @include pd-l(0);
+                min-width: 250px;
                 border-top: 1px solid var(--main-color);
                 border-left: none;
             }

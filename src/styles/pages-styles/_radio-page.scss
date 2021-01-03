@@ -7,10 +7,18 @@
         .content{
             @include flex(flex,initial,initial);
 
+            .grid{
+                &.with-press-buttons{
+                    ~.settings{
+                        @include hide();
+                    }
+                }
+            }
+
             .settings{
                 @include mr-l(auto);
                 @include pd-l(15px);
-                min-width: 250px;
+                min-width: 350px;
                 border-left: 1px solid $mainColor;
             }
         }

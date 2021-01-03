@@ -7,7 +7,6 @@ class Checkbox extends React.Component {
         label:this.props.label,
         name:this.props.name,
         value:this.props.value,
-        theme:this.props.theme,
         classes:this.props.classes,
         id:this.props.id,
         isChecked:this.props.checked,
@@ -21,7 +20,6 @@ class Checkbox extends React.Component {
             label:props.label,
             name:props.name,
             value:props.value,
-            theme:props.theme,
             classes:props.classes,
             id:props.id,
             isChecked:props.checked,
@@ -57,7 +55,7 @@ class Checkbox extends React.Component {
 
     render(){
         return (
-            <label className={`checkbox ${this.state.theme} ${this.state.classes} ${this.state.disabled ? 'disabled' : ''}`}>
+            <label className={`checkbox ${this.state.classes} ${this.state.disabled ? 'disabled' : ''}`}>
                 <span className="checkmark">
                     <input 
                         type="checkbox" 

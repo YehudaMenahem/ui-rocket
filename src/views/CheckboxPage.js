@@ -14,8 +14,8 @@ class CheckboxPage extends React.Component{
         tabs: ['Checkbox'],
         activeTab: 0,
         checkboxOptions: {
-            firstOption: 'love',
-            secondOption: 'liveAboard',
+            firstOption: 'Love',
+            secondOption: 'Live aboard for a while',
             thirdOption: 'happiness',
         },
         checkboxesState: {
@@ -84,6 +84,7 @@ class CheckboxPage extends React.Component{
                 view = 
                     <div className="row checkboxes">
                         <div className="col-1 align-start">
+                            <h4>{'Goals in life:'}</h4>
                             <ul className="vertical-list">
                                 <li><Checkbox iconType={this.state.checkboxesType} label={this.state.checkboxOptions.firstOption} name={this.state.checkboxOptions.firstOption.toLowerCase()} id={this.state.checkboxOptions.firstOption.toLowerCase()} checked={this.state.checkboxesState.checkboxFirstOpt} change={(e) => this.change(e,'checkboxFirstOpt')} disabled={false} required={true} /></li>
                                 <li><Checkbox iconType={this.state.checkboxesType} label={this.state.checkboxOptions.secondOption} name={this.state.checkboxOptions.secondOption.toLowerCase()} id={this.state.checkboxOptions.secondOption.toLowerCase()} checked={this.state.checkboxesState.checkboxSecondOpt} change={(e) => this.change(e,'checkboxSecondOpt')} disabled={false} required={true}/></li>
@@ -136,6 +137,7 @@ class CheckboxPage extends React.Component{
                                 <div className="content grid">
                                     {this.renderCheckboxes()}
                                     <div className="settings pd-t-xl">
+                                        <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                         <ul className="mr-b-xl"> 
                                             <li> 
                                                 <InputField type="text" label={'First Checkbox'} value={this.state.checkboxOptions.firstOption} change={e => this.changeCheckboxText(e,0)} maxlength={15}></InputField>
@@ -161,16 +163,16 @@ class CheckboxPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Checkbox props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label:</span> The text that will be written aside the radio button | string</p>
-                            <p><span className="bold prop">isChecked:</span> Set the radio button state - chosen ir not | boolean</p>
                             <p><span className="bold prop">name:</span> This value is for checkbox value for submit | string </p>
-                            <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
+                            <p><span className="bold prop">value:</span> The value that will be transfer as the user selection when click on this option | string </p>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
-                            <p><span className="bold prop">change:</span> A function from parent that will occur when the radio button has been choosen | function </p>
+                            <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
+                            <p><span className="bold prop">isChecked:</span> Set the radio button state - chosen ir not | boolean</p>
                             <p><span className="bold prop">disabled:</span> Option of disable the radio button | boolean</p>
                             <p><span className="bold prop">required:</span> Option of required for form validation | boolean</p>
+                            <p><span className="bold prop">iconType:</span> The shape inside the box. check / heart / star | string </p>
                         </div>
                     </div>
 
@@ -206,15 +208,15 @@ class CheckboxPage extends React.Component{
                                     <span className="props">
                                         <span className="component">{'Checkbox'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'label='}<span className="props-value">{'"option one - yes"'}</span><br></br>
-                                            &nbsp; {'checked='}<span className="element">{'{true}'}</span><br></br>
-                                            &nbsp; {'name='}<span className="props-value">{'"name-for-submit"'}</span><br></br>
+                                            &nbsp; {'label='}<span className="props-value">{'"I accept to all $#@₪!!"'}</span><br></br>
+                                            &nbsp; {'name='}<span className="props-value">{'"confirmation"'}</span><br></br>
+                                            &nbsp; {'value='}<span className="props-value">{'"accept-terms"'}</span><br></br>
                                             &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                            &nbsp; {'change='}<span className="element">{'{this.'}<span className="function">{'onChangeEvent'}</span>{'}'}</span> <br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"unfair-terms"'}</span> <br></br>
+                                            &nbsp; {'isChecked='}<span className="element">{'{true}'}</span><br></br>
                                             &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
-                                            &nbsp; {'required='}<span className="element">{'{true}'}</span>
+                                            &nbsp; {'required='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'iconType='}<span className="element">{'"star"'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>
@@ -222,7 +224,6 @@ class CheckboxPage extends React.Component{
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         );

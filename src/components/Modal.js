@@ -8,26 +8,22 @@ import Img from './Img';
 class Modal extends React.Component {
 
     state = {
-        headerTitle:this.props.headerTitle,
+        modalTitle:this.props.modalTitle,
+        heroImage:this.props.heroImage,
         closeButton:this.props.closeButton,
         classes:this.props.classes,
-        theme:this.props.theme,
-        modalTitle:this.props.modalTitle,
-        show:this.props.show,
-        heroImage:this.props.heroImage
+        show:this.props.show
     }
     
     modalRef = React.createRef();
 
     static getDerivedStateFromProps(props) {
         return {
-            headerTitle:props.headerTitle,
+            modalTitle:props.modalTitle,
+            heroImage:props.heroImage,
             closeButton:props.closeButton,
             classes:props.classes,
-            theme:props.theme,
-            modalTitle:props.modalTitle,
-            show:props.show,
-            heroImage:props.heroImage
+            show:props.show
         }
     }
 
@@ -79,10 +75,8 @@ class Modal extends React.Component {
 }
 
 Modal.defaultProps = {
-    headerTitle:'',
     closeButton:'',
     classes:'',
-    theme:'primary',
     modalTitle:'Modal',
     show:true
 }

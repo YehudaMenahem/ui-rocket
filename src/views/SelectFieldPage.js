@@ -44,7 +44,8 @@ class SelectFieldPage extends React.Component {
                             <SelectField label="Label" id="cars" name="cars" disabled={false} required={true} change={this.change} options={this.state.selectCompOptions}/> <br></br>
                         </div>
                     </div>
-                    <div className="settings pd-t-xl">
+                    <div className="settings">
+                        <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                         <ul className="mr-b-xl"> 
                             <li> 
                                 <InputField type="text" pattern={'^[a-zA-Z0-9, ]*$'} label={'Select Options'} value={this.state.selectSettingsOptions} change={e => this.changeSelectOptions(e)} maxlength={50}></InputField>
@@ -123,14 +124,14 @@ class SelectFieldPage extends React.Component {
                         <div className="col-1 props-keys">
 
                             {/* props options */}
-                            <h2>Select Fields props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label:</span> The text that will be written aside the Input field | string</p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">name:</span> This value is for all the radio buttons belongs to the same group | string </p>
+                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">disabled:</span> Option of disable the radio button | boolean</p>
                             <p><span className="bold prop">required:</span> Option of required for form validation | boolean</p>
+                            <p><span className="bold prop">options:</span> The options of the select element | array</p>
                         </div>  
                     </div>
 
@@ -162,14 +163,13 @@ class SelectFieldPage extends React.Component {
                                     <span className="props">
                                         <span className="component">{'SelectField'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'label='}<span className="props-value">{'"User Name"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                            &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                            &nbsp; {'name='}<span className="props-value">{'"name-for-submit"'}</span><br></br>
-                                            &nbsp; {'change='}<span className="element">{'{this.'}<span className="function">{'onChangeEvent'}</span>{'}'}</span> <br></br>
-                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
-                                            &nbsp; {'required='}<span className="element">{'{true}'}</span>
+                                            &nbsp; {'label='}<span className="props-value">{'"Your Favorite Bands"'}</span><br></br>
+                                            &nbsp; {'id='}<span className="props-value">{'"bands"'}</span><br></br>
+                                            &nbsp; {'name='}<span className="props-value">{'"bands"'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"music"'}</span> <br></br>
+                                            &nbsp; {'disabled='}<span className="element">{'{false}'}</span><br></br>
+                                            &nbsp; {'required='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'options='}<span className="element">{'[Years&Years, London Grammer, Roxette]'}</span>
                                         <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>

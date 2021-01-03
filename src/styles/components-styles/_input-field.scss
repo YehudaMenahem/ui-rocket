@@ -56,6 +56,10 @@
         }
     }
 
+    ::placeholder{
+        @include c($grayscale-level-5)
+    }
+
     &.with-value{
         .field{
             input{

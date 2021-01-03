@@ -14,7 +14,7 @@ class InputFieldPage extends React.Component{
         email: "",
         password: "",
         tel: "",
-        tabs:["Input Text","Input Number","Input Email","Input Password","Input Tel"],
+        tabs:["Text Field","Number Field","Email Field","Password Field","Phone Field"],
         activeTab:0,
         textFieldSettings:{
             label: "Name",
@@ -36,7 +36,7 @@ class InputFieldPage extends React.Component{
         },
         passwordFieldSettings:{
             label: "password",
-            note: "???@???.???",
+            note: "At least one emoji",
             showError: false,
             value: ''
         },
@@ -46,60 +46,6 @@ class InputFieldPage extends React.Component{
             showError: false,
             value: ''
         }
-    }
-
-    //text field
-    onChangeInputText = (value,keyIndex) =>{
-        let updateObj = {...this.state.textFieldSettings};
-        let keyToUpdate = Object.keys(updateObj)[keyIndex];
-        updateObj[keyToUpdate] = value;
-        this.setState({
-            textFieldSettings: updateObj
-       });
-    }
-
-    //number field
-    onChangeInputNumber = (value,keyIndex) =>{
-        let updateObj = {...this.state.numberFieldSettings};
-        let keyToUpdate = Object.keys(updateObj)[keyIndex];
-        updateObj[keyToUpdate] = value;
-
-        this.setState({
-            numberFieldSettings: updateObj
-       });
-    }
-
-    //email field
-    onChangeInputEmail = (value,keyIndex) =>{
-        let updateObj = {...this.state.emailFieldSettings};
-        let keyToUpdate = Object.keys(updateObj)[keyIndex];
-        updateObj[keyToUpdate] = value;
-
-        this.setState({
-            emailFieldSettings: updateObj
-       });
-    }
-
-    //password field
-    onChangeInputPassword = (value,keyIndex) =>{         
-        let updateObj = {...this.state.passwordFieldSettings};
-        let keyToUpdate = Object.keys(updateObj)[keyIndex];
-        updateObj[keyToUpdate] = value;
-
-        this.setState({
-            passwordFieldSettings: updateObj
-       });
-    }
-
-    //tel field
-    onChangeInputTel = (value,keyIndex) =>{         
-        let updateObj = {...this.state.telFieldSettings};
-        let keyToUpdate = Object.keys(updateObj)[keyIndex];
-        updateObj[keyToUpdate] = value;
-
-        this.setState({
-            telFieldSettings: updateObj
-       });
     }
 
     renderInputs(){
@@ -112,11 +58,12 @@ class InputFieldPage extends React.Component{
                     <div className="row">
                         <div className="col-4 tablet-col-1 mobile-col-1">
                             <div>
-                                <InputField type="number" min="5" max="20" label={this.state.numberFieldSettings.label} alt="ID" id="postal-code-id" name="postal-code" value={this.state.numberFieldSettings.value} change={(e) => this.onChangeInputNumber(e,3)}/>
+                                <InputField type="number" min="5" max="20" label={this.state.numberFieldSettings.label} showError={this.state.numberFieldSettings.showError} error={'error for user'} note={this.state.numberFieldSettings.note} alt="ID" id="postal-code-id" name="postal-code" value={this.state.numberFieldSettings.value} change={(e) => this.onChangeInputNumber(e,3)}/>
                             </div>
                         </div>
                         <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
                             <div className="settings pd-l-xl">
+                                <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                 <ul className="mr-b-xl"> 
                                     <li> 
                                         <InputField type="text" label={'Label for field'} value={this.state.numberFieldSettings.label} change={e => this.changeNumberFieldLabel(e,0)} maxlength={15}></InputField>
@@ -138,11 +85,12 @@ class InputFieldPage extends React.Component{
                     <div className="row">
                         <div className="col-4 tablet-col-1 mobile-col-1">
                             <div>
-                                <InputField type="email" label={this.state.emailFieldSettings.label} alt="Email" id="mail-id" name="mail" placeholder="Like: judale@kofim.co.il" value={this.state.emailFieldSettings.value} change={(e) => this.onChangeInputEmail(e,3)}/>
+                                <InputField type="email" label={this.state.emailFieldSettings.label} error={'error for user'} showError={this.state.emailFieldSettings.showError} note={this.state.emailFieldSettings.note} alt="Email" id="mail-id" name="mail" placeholder="Like: judale@kofim.co.il" value={this.state.emailFieldSettings.value} change={(e) => this.onChangeInputEmail(e,3)} required={true}/>
                             </div>
                         </div>
                         <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
                                 <div className="settings pd-l-xl">
+                                    <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                     <ul className="mr-b-xl"> 
                                         <li> 
                                             <InputField type="text" label={'Label for field'} value={this.state.emailFieldSettings.label} change={e => this.changeEmailFieldLabel(e,0)} maxlength={15}></InputField>
@@ -166,11 +114,12 @@ class InputFieldPage extends React.Component{
                     <div className="row">
                         <div className="col-4 tablet-col-1 mobile-col-1">
                             <div>
-                                <InputField type="password" note={this.state.passwordFieldSettings.note} label={this.state.passwordFieldSettings.label} alt="Password" value={this.state.passwordFieldSettings.value} d="pass-id" name="pass" change ={(e) => this.onChangeInputPassword(e,3)}/>
+                                <InputField type="password" maxlength={10} note={this.state.passwordFieldSettings.note} showError={this.state.passwordFieldSettings.showError} error={'error for user'} label={this.state.passwordFieldSettings.label} alt="Password" value={this.state.passwordFieldSettings.value} id="pass-id" name="pass" change ={(e) => this.onChangeInputPassword(e,3)} required={true}/>
                             </div>
                         </div>
                         <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
                             <div className="settings pd-l-xl">
+                                <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                 <ul className="mr-b-xl"> 
                                     <li> 
                                         <InputField type="text" label={'Label for field'} value={this.state.passwordFieldSettings.label} change={e => this.changePasswordFieldLabel(e,0)} maxlength={15}></InputField>
@@ -199,6 +148,7 @@ class InputFieldPage extends React.Component{
                         </div>
                         <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
                             <div className="settings pd-l-xl">
+                                <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                 <ul className="mr-b-xl"> 
                                     <li> 
                                         <InputField type="text" label={'Label for field'} value={this.state.telFieldSettings.label} change={e => this.changeTelFieldLabel(e,0)} maxlength={15}></InputField>
@@ -227,6 +177,7 @@ class InputFieldPage extends React.Component{
                             </div>
                             <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
                                 <div className="settings pd-l-xl">
+                                    <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                     <ul className="mr-b-xl"> 
                                         <li> 
                                             <InputField type="text" label={'Label for field'} value={this.state.textFieldSettings.label} change={e => this.changeTextFieldLabel(e,0)} maxlength={15}></InputField>
@@ -256,6 +207,15 @@ class InputFieldPage extends React.Component{
     }
 
     //controllers for fields - text
+    onChangeInputText = (value,keyIndex) =>{
+        let updateObj = {...this.state.textFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = value;
+        this.setState({
+            textFieldSettings: updateObj
+        });
+    }
+
     changeTextFieldLabel(value,keyIndex){
         let updateObj = {...this.state.textFieldSettings};
         let keyToUpdate = Object.keys(updateObj)[keyIndex];
@@ -287,6 +247,16 @@ class InputFieldPage extends React.Component{
     }
 
     //controllers for fields - number
+    onChangeInputNumber = (value,keyIndex) =>{
+        let updateObj = {...this.state.numberFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = value;
+
+        this.setState({
+            numberFieldSettings: updateObj
+        });
+    }
+
     changeNumberFieldLabel(value,keyIndex){
         let updateObj = {...this.state.numberFieldSettings};
         let keyToUpdate = Object.keys(updateObj)[keyIndex];
@@ -308,6 +278,16 @@ class InputFieldPage extends React.Component{
     }
 
     //controllers for fields - email
+    onChangeInputEmail = (value,keyIndex) =>{
+        let updateObj = {...this.state.emailFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = value;
+
+        this.setState({
+            emailFieldSettings: updateObj
+        });
+    }
+
     changeEmailFieldLabel(value,keyIndex){
         let updateObj = {...this.state.emailFieldSettings};
         let keyToUpdate = Object.keys(updateObj)[keyIndex];
@@ -328,7 +308,27 @@ class InputFieldPage extends React.Component{
         });
     }
 
+    changeEmailFieldError(checkState,keyIndex){
+        let updateObj = {...this.state.emailFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = checkState;
+
+        this.setState({
+            emailFieldSettings: updateObj
+       });
+    }
+
     //controllers for fields - password
+    onChangeInputPassword = (value,keyIndex) =>{         
+        let updateObj = {...this.state.passwordFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = value;
+
+        this.setState({
+            passwordFieldSettings: updateObj
+        });
+    }
+
     changePasswordFieldLabel(value,keyIndex){
         let updateObj = {...this.state.passwordFieldSettings};
         let keyToUpdate = Object.keys(updateObj)[keyIndex];
@@ -349,7 +349,27 @@ class InputFieldPage extends React.Component{
         });
     }
 
+    changePasswordFieldError(checkState,keyIndex){
+        let updateObj = {...this.state.passwordFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = checkState;
+
+        this.setState({
+            passwordFieldSettings: updateObj
+       });
+    }
+
     //controllers for fields - tel
+    onChangeInputTel = (value,keyIndex) =>{         
+        let updateObj = {...this.state.telFieldSettings};
+        let keyToUpdate = Object.keys(updateObj)[keyIndex];
+        updateObj[keyToUpdate] = value;
+
+        this.setState({
+            telFieldSettings: updateObj
+        });
+    }
+
     changeTelFieldLabel(value,keyIndex){
         let updateObj = {...this.state.telFieldSettings};
         let keyToUpdate = Object.keys(updateObj)[keyIndex];
@@ -423,13 +443,11 @@ class InputFieldPage extends React.Component{
                         <div className="col-1 props-keys">             
                 
                             {/* props options */}
-                            <h2>Input Fields props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label: </span>The text that will be written aside the Input field | string</p>
                             <p><span className="bold prop">type: </span>Options of input types - Text, Number, Email, Password, Telephone | string</p>
-                            <p><span className="bold prop">theme: </span>Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
-                            <p><span className="bold prop">classes: </span>costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">alt: </span>Altrnative text in some case the element doesn't load to page | string </p>
+                            <p><span className="bold prop">classes: </span>costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">name: </span>This value is for all the radio buttons belongs to the same group | string </p>
                             <p><span className="bold prop">min: </span>for input with numbers type. set the minimum value for the user input | number / string</p>
                             <p><span className="bold prop">max: </span>for input with numbers type. set the maximum value for the user input | number / string</p>
@@ -437,10 +455,13 @@ class InputFieldPage extends React.Component{
                             <p><span className="bold prop">maxlength: </span>for input with characters type. limit the maximum characters for the user input | number / string</p>
                             <p><span className="bold prop">pattern: </span>a regex that determine specific input pattern that the user can enter | string </p>
                             <p><span className="bold prop">autocomplete: </span>an option to use the brow sectionser memory for old values that the user put. default set is without | "on" / "off" </p>
-                            <p><span className="bold prop">placeholder: </span>a placeholder that will shown as default value in input. | string </p>
-                            <p><span className="bold prop">blur (focusout): </span>A function from parent that will occur when the user blur from the input | function </p>
-                            <p><span className="bold prop">disabled: </span>Option of disable the radio button | boolean</p>
                             <p><span className="bold prop">required: </span>Option of required for form validation | boolean</p>                        
+                            <p><span className="bold prop">disabled: </span>Option of disable the radio button | boolean</p>
+                            <p><span className="bold prop">value:</span> The value that will be transfer as the user selection when click on this option | string </p>
+                            <p><span className="bold prop">error:</span> The error message that appears when there is an error | string </p>
+                            <p><span className="bold prop">note:</span> The note that that appears to give a direction for user| string </p>                            
+                            <p><span className="bold prop">placeholder: </span> A placeholder that will shown as default value in input. | string </p>
+                            <p><span className="bold prop">showError: </span> Determine if the error message will appear  | boolean </p>
                         </div>
                     </div>
                 
@@ -484,23 +505,24 @@ class InputFieldPage extends React.Component{
                                     <span className="props">
                                         <span className="component">{'InputField'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'label='}<span className="props-value">{'"User Name"'}</span><br></br>
+                                            &nbsp; {'label='}<span className="props-value">{'"Hero name"'}</span><br></br>
                                             &nbsp; {'type='}<span className="props-value">{'"text"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
                                             &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                            &nbsp; {'alt='}<span className="props-value">{'"user name field"'}</span><br></br>
-                                            &nbsp; {'name='}<span className="props-value">{'"name-for-submit"'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"superpower"'}</span> <br></br>
+                                            &nbsp; {'name='}<span className="props-value">{'"avengers"'}</span><br></br>
                                             &nbsp; {'min='}<span className="props-value">{'"0"'}</span><br></br>
                                             &nbsp; {'max='}<span className="props-value">{'"100"'}</span><br></br>
                                             &nbsp; {'minlength='}<span className="props-value">{'"0"'}</span><br></br>
                                             &nbsp; {'maxlength='}<span className="props-value">{'"20"'}</span><br></br>
                                             &nbsp; {'pattern='}<span className="props-value">{'"[A-Za-z0-9]+"'}</span><br></br>
                                             &nbsp; {'autocomplete='}<span className="props-value">{'"yes"'}</span><br></br>
-                                            &nbsp; {'placeholder='}<span className="props-value">{'"John Doe"'}</span><br></br>
-                                            &nbsp; {'blur='}<span className="element">{'{this.'}<span className="function">{'onBlurEvent'}</span>{'}'}</span> <br></br>
-                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
                                             &nbsp; {'required='}<span className="element">{'{true}'}</span>
+                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'value='}<span className="props-value">{'"accept-terms"'}</span><br></br>
+                                            &nbsp; {'error='}<span className="props-value">{'"oh man...I need you to fill it"'}</span><br></br>
+                                            &nbsp; {'note='}<span className="props-value">{'"own that box, hero!"'}</span><br></br>
+                                            &nbsp; {'placeholder='}<span className="props-value">{'"Ice-man"'}</span><br></br>
+                                            &nbsp; {'showError='}<span className="props-value">{'{false}'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>

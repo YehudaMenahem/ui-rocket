@@ -41,10 +41,6 @@ class RadioButton extends React.Component {
 
     change = (e) =>{
 
-        // this.setState({
-        //     isSelected: true
-        // })
-
         if(this.props.change){
 
             //for press buttons 

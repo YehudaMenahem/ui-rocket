@@ -115,11 +115,11 @@ class ModalPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Modal props options </h2>
-                            <p><span className="bold prop">headerTitle:</span> The header title of the Modal | string</p>
-                            <p><span className="bold prop">closeButton:</span> Choosing if will be an option to close the modal | boolean </p>
+                            <h2>Component props</h2>
+                            <p><span className="bold prop">modalTitle:</span> The header title of the modal | string</p>
+                            <p><span className="bold prop">heroImage:</span> Makes the modal header with hero image | string (of the src)</p>
+                            <p><span className="bold prop">closeButton:</span> An option to create a modal without close option | boolean </p>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
                         </div>
                     </div>
 
@@ -153,10 +153,10 @@ class ModalPage extends React.Component{
                                     <span className="props">
                                         <span className="component">{'Modal'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'headerTitle='}<span className="props-value">{'"Modal Title"'}</span><br></br>
-                                            &nbsp; {'closeButton='}<span className="props-value">{'{false}'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span>
+                                            &nbsp; {'modalTitle='}<span className="props-value">{'"Welcome"'}</span><br></br>
+                                            &nbsp; {'heroImage='}<span className="props-value">{'"http://www.cartoonbucket.com/wp-content/uploads/2016/01/Smily-Image-Of-Stanley-SquarePants-And-Spongybob-df45605.jpg"'}</span><br></br>
+                                            &nbsp; {'closeButton='}<span className="props-value">{'{true}'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"sponge-welc"'}</span>
                                             <span  className="brackets">{" >"}</span><br></br>
                                         </span>
                                     </span>

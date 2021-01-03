@@ -8,32 +8,8 @@ import Icon from './../components/Icon';
 class TabsPage extends React.Component{
 
     state = {
-        tabs: ['Tabs','Tabs Vertical'],
+        tabs: ['First Tab','Second Tab','Third Tab'],
         activeTab: 0
-    }
-
-    renderView(){
-        let view;
-
-        switch(Number.parseInt(this.state.activeTab)){
-            case 1:
-                view = 
-                <div className="row">
-                    <div className="col-3">
-                    </div>
-                </div>
-            break;
-
-            default:
-                view = 
-                <div className="row">
-                    <div className="col-3">
-                    </div>
-                </div>
-        }
-
-        return view
-
     }
 
     setActiveTab(currentTabId){
@@ -71,9 +47,6 @@ class TabsPage extends React.Component{
                     <div className="col-1">
                         <div className="container">   
                             <Tabs tabs={this.state.tabs} activeTab={this.state.activeTab} setActiveTab={(e) => this.setActiveTab(e)}/>  
-                            <div className="content">
-                                {this.renderView()}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -81,10 +54,9 @@ class TabsPage extends React.Component{
                 <div className="row section">
                     <div className="col-1 props-keys">
                         {/* props options */}
-                        <h2>Tabs props options </h2>
+                        <h2>Component props</h2>
                         <p><span className="bold prop">tabs:</span> the names of the tabs | array </p>
                         <p><span className="bold prop">activeTabs:</span> the index number of the tabs(from the arrat) that should be active on load | number</p>
-                        <p><span className="bold prop">theme:</span> Primary, Secondary, third | string (lowercase)</p>
                         <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                         <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                     </div>
@@ -117,11 +89,10 @@ class TabsPage extends React.Component{
                                 <span className="props">
                                     <span className="component">{'Tabs'}</span><br></br>
                                     <span className="indent-code">
-                                        &nbsp; {'tabs='}<span className="props-value">{'["firstTab","secondTab","thirdTab"]'}</span><br></br>
+                                        &nbsp; {'tabs='}<span className="props-value">{'["Majestic Tab","Awesome Tab","Fierce Tab"]'}</span><br></br>
                                         &nbsp; {'activeTab='}<span className="props-value">{'0'}</span><br></br>
-                                        &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                        &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                        &nbsp; {'id='}<span className="props-value">{'"id"'}</span>
+                                        &nbsp; {'classes='}<span className="props-value">{'"tabs"'}</span> <br></br>
+                                        &nbsp; {'id='}<span className="props-value">{'"tabs"'}</span>
                                         <span  className="brackets">{" />"}</span><br></br>
                                     </span>
                                 </span>

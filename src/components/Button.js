@@ -43,7 +43,6 @@ class Button extends React.Component {
 
     //calling parent function
     click = (event) => {
-        
         if(this.state.scrollToTop){
             this.scrollTop();
             return;

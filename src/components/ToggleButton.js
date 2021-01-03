@@ -7,7 +7,6 @@ class ToggleButton extends React.Component{
         label:this.props.label,
         name:this.props.name,
         value:this.props.value,
-        theme:this.props.theme,
         classes:this.props.classes,
         id:this.props.id,
         isChecked:this.props.checked,
@@ -21,7 +20,6 @@ class ToggleButton extends React.Component{
             label:props.label,
             name:props.name,
             value:props.value,
-            theme:props.theme,
             classes:props.classes,
             id:props.id,
             isChecked:props.checked,
@@ -44,7 +42,7 @@ class ToggleButton extends React.Component{
     render(){
         return(
             <label 
-                className={`toggle-button ${this.state.theme} ${this.state.classes} ${this.state.labelPosition} ${this.state.isChecked ? 'checked' : ''}`}>
+                className={`toggle-button ${this.state.classes} ${this.state.labelPosition} ${this.state.isChecked ? 'checked' : ''}`}>
                 <span className={`label`}>{this.state.label}</span>
                 <span className="switch">
                     <input 
@@ -68,7 +66,6 @@ ToggleButton.defaultProps = {
     label:'',
     name:undefined,
     value:undefined,
-    theme:'',
     classes:'',
     id:undefined,
     isChecked:false,

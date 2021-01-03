@@ -231,12 +231,13 @@ class FormPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Form props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">title:</span> The title of the form | string</p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">onSubmit:</span> A function from parent that will occur when the form submit | function </p>
+                            <p><span className="bold prop">novalidate:</span> Determine if the form will be validate | boolean </p>
+                            <p><span className="bold prop">error:</span> A general error in case of an invalid field value | string </p>
                         </div>
                     </div>                        
                 </div>
@@ -275,9 +276,11 @@ class FormPage extends React.Component{
                                     <span className="indent-code">
                                         &nbsp; {'title='}<span className="props-value">{'"Form super-form"'}</span><br></br>
                                         &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                        &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
                                         &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
                                         &nbsp; {'onSubmit='}<span className="element">{'{this.'}<span className="function">{'onSubmitEvent'}</span>{'}'}</span>
+                                        &nbsp; {'novalidate='}<span className="props-value">{'"false"'}</span> <br></br>
+                                        &nbsp; {'error='}<span className="props-value">{'"mmm...name field needs a fix"'}</span>
+
                                         <span  className="brackets">{" >"}</span><br></br>
                                     </span>
                                 </span>

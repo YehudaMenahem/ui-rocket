@@ -133,6 +133,7 @@ class TextboxPage extends React.Component{
                                 <div className="content">
                                     {this.renderView()}
                                     <div className="settings pd-l-xl mobile-pd-t-xl">
+                                        <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
                                         <ul className="mr-b-xl"> 
                                             <li> 
                                                 <InputField type="text" label={'Label for field'} value={this.state.textboxSettings.label} change={e => this.changeTextboxLabel(e,0)} maxlength={15}></InputField>
@@ -153,17 +154,20 @@ class TextboxPage extends React.Component{
                     <div className="row section">
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Select Fields props options </h2>
+                            <h2>Component props</h2>
                             <p><span className="bold prop">label:</span> The text that will be written aside the Textbox | string</p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third. will color the radio circle in the theme colors | string (lowercase)</p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
-                            <p><span className="bold prop">cols:</span> Set the number of visual cols of the Textbox | number / string </p>
-                            <p><span className="bold prop">rows:</span> Set the number of visual rows of the Textbox | number / string </p>
-                            <p><span className="bold prop">maxlength:</span> Set the maximum characters that user can insert | number / string </p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">name:</span> This value is for form submit purpse | string </p>
-                            <p><span className="bold prop">disabled:</span> Option of disable the Textbox | boolean</p>
+                            <p><span className="bold prop">rows:</span> Set the number of visual rows of the Textbox | number / string </p>
+                            <p><span className="bold prop">cols:</span> Set the number of visual cols of the Textbox | number / string </p>
+                            <p><span className="bold prop">maxlength:</span> Set the maximum characters that user can insert | number / string </p>
+                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">placeholder: </span> A placeholder that will shown as default value in input. | string </p>
+                            <p><span className="bold prop">error:</span> The error message that appears when there is an error | string </p>
+                            <p><span className="bold prop">note:</span> The note that that appears to give a direction for user| string </p>                            
+                            <p><span className="bold prop">showError: </span> Determine if the error message will appear  | boolean </p>
                             <p><span className="bold prop">required:</span> Option of required for form validation | boolean</p>
+                            <p><span className="bold prop">disabled:</span> Option of disable the Textbox | boolean</p>
                         </div>
                     </div>
 
@@ -200,16 +204,19 @@ class TextboxPage extends React.Component{
                                         
                                         <span className="component">{'Textbox'}</span><br></br>
                                         <span className="indent-code">
-                                            &nbsp; {'label='}<span className="props-value">{'"User Name"'}</span><br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                            &nbsp; {'cols='}<span className="props-value">{'"5"'}</span><br></br>
+                                            &nbsp; {'label='}<span className="props-value">{'"Notes for self future"'}</span><br></br>
+                                            &nbsp; {'id='}<span className="props-value">{'"notes"'}</span><br></br>
+                                            &nbsp; {'name='}<span className="props-value">{'"notes"'}</span><br></br>
                                             &nbsp; {'rows='}<span className="props-value">{'"10"'}</span><br></br>
+                                            &nbsp; {'cols='}<span className="props-value">{'"5"'}</span><br></br>
                                             &nbsp; {'maxlength='}<span className="props-value">{'"650"'}</span><br></br>
-                                            &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                            &nbsp; {'name='}<span className="props-value">{'"name-for-submit"'}</span><br></br>
-                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"emphasize"'}</span> <br></br>
+                                            &nbsp; {'placeholder='}<span className="props-value">{'"Marty, whatever happens, dont go back to 2020"'}</span><br></br>
+                                            &nbsp; {'error='}<span className="props-value">{'"oh man...just fill it already"'}</span><br></br>
+                                            &nbsp; {'note='}<span className="props-value">{'"you! make a different"'}</span><br></br>
+                                            &nbsp; {'showError='}<span className="props-value">{'{false}'}</span>
                                             &nbsp; {'required='}<span className="element">{'{true}'}</span>
+                                            &nbsp; {'disabled='}<span className="element">{'{true}'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>
                                     </span>

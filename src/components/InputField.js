@@ -7,7 +7,6 @@ class InputField extends React.Component{
         label:this.props.label,
         type:this.props.type,
         id:this.props.id,
-        theme:this.props.theme,
         classes:this.props.classes,
         name:this.props.name,
         min:this.props.min,
@@ -31,7 +30,6 @@ class InputField extends React.Component{
             label: props.label,
             type: props.type,
             id: props.id,
-            theme: props.theme,
             classes: props.classes,
             name: props.name,
             min: props.min,
@@ -79,7 +77,6 @@ class InputField extends React.Component{
                     <input 
                         type={this.state.type} 
                         id={this.state.id}
-                        theme={this.state.theme}
                         classes={this.state.classes}
                         name={this.state.name} 
                         min={this.state.min}
@@ -126,7 +123,6 @@ InputField.defaultProps = {
     label:'',
     type:'text',
     id:undefined,
-    theme:'primary',
     classes:'',
     name:'',
     min:undefined,

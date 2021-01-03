@@ -56,7 +56,6 @@ class ImgPage extends React.Component{
                         alt="faker" 
                         width="auto"
                         height="200px"  
-                        click={this.clickImg} 
                     />                
                 </div>
             </div>  
@@ -69,10 +68,6 @@ class ImgPage extends React.Component{
         this.setState({
             activeTab: currentTab
         })
-    }
-
-    clickImg(elem){
-        alert(` You clicked on a very cool image - ${elem}`)
     }
 
     //copy code to clipboard
@@ -118,12 +113,12 @@ class ImgPage extends React.Component{
                     <div className="row section">                    
                         <div className="col-1 props-keys">
                             {/* props options */}
-                            <h2>Img props options </h2>
+                            <h2>Img props</h2>
                             <p><span className="bold prop">src:</span> The src of the image - a web page adress (endpoint) | string</p>
                             <p><span className="bold prop">alt:</span> Altrnative text in some case the element doesn't load to page | string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">width:</span> Width size of the image in the page | string </p>
                             <p><span className="bold prop">height:</span> Height size of the image in the page | string </p>
+                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">click:</span> A function from parent that will occur when the user click on the image | function </p>
                         </div>                    
                     </div>
@@ -161,9 +156,9 @@ class ImgPage extends React.Component{
                                         <span className="indent-code">
                                             &nbsp; {'src='}<span className="props-value">{'"imageSrc"'}</span><br></br>
                                             &nbsp; {'alt='}<span className="props-value">{'"User Avatar"'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
                                             &nbsp; {'width='}<span className="props-value">{'"200px"'}</span><br></br>
                                             &nbsp; {'height='}<span className="props-value">{'"auto"'}</span><br></br>
+                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
                                             &nbsp; {'click='}<span className="element">{'{this.'}<span className="function">{'onClickEvent'}</span>{'}'}</span>
                                             <span className="brackets">{" />"}</span><br></br>
                                         </span>
