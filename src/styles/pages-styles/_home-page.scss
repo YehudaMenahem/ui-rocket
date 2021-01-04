@@ -41,11 +41,11 @@
 @media screen and(max-width: 500px){
     .home-page{
         .mobile-header{
+            position: absolute;
             @include flex(flex,initial,center);
             @include pd(25px);
             @include c($accentColor);
             @include bg($grayscale-level-7);
-            position: fixed;
             width: 100%;
             border-bottom: 1px solid var(--grayscale-200);
             z-index: 3;

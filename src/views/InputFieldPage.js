@@ -143,7 +143,7 @@ class InputFieldPage extends React.Component{
                     <div className="row">
                         <div className="col-4 tablet-col-1 mobile-col-1">
                             <div>
-                                <InputField type="tel" pattern={"[0-9]"} label={this.state.telFieldSettings.label} value={this.state.telFieldSettings.value} note={this.state.telFieldSettings.note} showError={this.state.telFieldSettings.showError} alt="Tel" id="tel-id" name="tel" placeholder="0545XXXXXX" change={(e) => this.onChangeInputTel(e,3)}/>
+                                <InputField type="tel" pattern={"[0-9]{0,}"} label={this.state.telFieldSettings.label} value={this.state.telFieldSettings.value} note={this.state.telFieldSettings.note} showError={this.state.telFieldSettings.showError} alt="Tel" id="tel-id" name="tel" placeholder="0545XXXXXX" change={(e) => this.onChangeInputTel(e,3)}/>
                             </div>
                         </div>
                         <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
@@ -172,7 +172,7 @@ class InputFieldPage extends React.Component{
                         <div className="row">
                             <div className="col-4 tablet-col-1 mobile-col-1">
                                 <div>
-                                    <InputField type="text" pattern="[A-Za-z0-9]+" showError={this.state.textFieldSettings.showError} error={'error for user'} note={this.state.textFieldSettings.note} minlength="2" maxlength="15" label={this.state.textFieldSettings.label} alt="Label" auto="on" id="name-id" name="name" required={true} placeholder="John" value={this.state.textFieldSettings.value} change={(e) => this.onChangeInputText(e,3)}/> <br></br>
+                                    <InputField type="text" showError={this.state.textFieldSettings.showError} error={'error for user'} note={this.state.textFieldSettings.note} maxlength="15" label={this.state.textFieldSettings.label} alt="Label" auto="on" id="name-id" name="name" required={true} placeholder="Bob sponge" value={this.state.textFieldSettings.value} change={(e) => this.onChangeInputText(e,3)}/> <br></br>
                                 </div>
                             </div>
                             <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">

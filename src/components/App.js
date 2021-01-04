@@ -47,6 +47,8 @@ class App extends React.Component  {
 
     closeSideBar = () => {
         let toggleState = this.state.toggleSideBar;
+        let html = document.querySelector('html');
+        toggleState ? html.classList.add('no-scroll') : html.classList.remove('no-scroll');
         this.setState({
             toggleSideBar: !toggleState
         })
@@ -69,14 +71,17 @@ class App extends React.Component  {
     }
 
     componentDidMount(){
+        let html = document.querySelector('html');
+
+        //at the begining the side bar is open and the html cannot be scrolled
+        html.classList.add('no-scroll');
+
         window.navigator.geolocation.getCurrentPosition(
             position => this.setState({lat: position.coords.latitude}),
             err => this.setState({errMessage: err.message})
         );
         this.setState({title:'clickof'});
 
-        //set theme according to time 
-        let html = document.querySelector('html');
         //get time
         let day = new Date();
         let hourInDay = day.getHours();

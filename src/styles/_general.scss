@@ -3,7 +3,11 @@
 /********************/
 
 html{
-    height: auto
+    height: auto;
+
+    &.no-scroll{
+        overflow: hidden;
+    }
 }
 
 #root,
@@ -13,6 +17,8 @@ html{
 
 body{
     @include c($grayscale-level-1);
+
+
 }
 
 
@@ -101,3 +107,25 @@ ul{
   ::-webkit-scrollbar-thumb:hover {
     
   }
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet break point */
+@media (max-width: 975px ) and (min-width: 500px ){
+
+
+}
+
+//mobile
+@media screen and(max-width: 500px){
+    .ui{
+        &.container {
+            @include pd(25px);
+            width: initial !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+    }
+}
