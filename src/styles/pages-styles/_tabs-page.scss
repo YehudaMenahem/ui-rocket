@@ -1,0 +1,47 @@
+/**************/
+/** tabs page */
+/**************/
+
+.tabs-page{
+    .container{
+        .content{
+            .grid{
+
+                .container{
+                    .tabs{
+                        .tab{
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
+/* tablet breakpoint */
+@media (max-width: 975px ) and (min-width: 500px ){
+    
+}
+
+// mobile
+@media screen and(max-width: 500px){
+    .tabs-page{
+        &.container{
+            .grid{
+                .container{
+                    .tabs{
+                        .tab{
+                            @include pd(8px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

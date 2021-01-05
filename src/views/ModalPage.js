@@ -154,9 +154,9 @@ class ModalPage extends React.Component{
                                         <span className="component">{'Modal'}</span><br></br>
                                         <span className="indent-code">
                                             &nbsp; {'modalTitle='}<span className="props-value">{'"Welcome"'}</span><br></br>
-                                            &nbsp; {'heroImage='}<span className="props-value">{'"http://www.cartoonbucket.com/wp-content/uploads/2016/01/Smily-Image-Of-Stanley-SquarePants-And-Spongybob-df45605.jpg"'}</span><br></br>
+                                            &nbsp; {'heroImage='}<span className="props-value">{'"http://www.bobsponge.com"'}</span><br></br>
                                             &nbsp; {'closeButton='}<span className="props-value">{'{true}'}</span><br></br>
-                                            &nbsp; {'classes='}<span className="props-value">{'"sponge-welc"'}</span>
+                                            &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span>
                                             <span  className="brackets">{" >"}</span><br></br>
                                         </span>
                                     </span>

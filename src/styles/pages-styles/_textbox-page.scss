@@ -71,6 +71,7 @@
                     @include pd-l(0);
                     border-top: 1px solid $mainColor;
                     border-left: none;
+                    min-width: 0;
                 }
             }
         }

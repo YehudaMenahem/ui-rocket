@@ -53,5 +53,25 @@
 
 // mobile
 @media screen and(max-width: 500px){
+    .select-page{
+        .container{
+            .content{
+                .grid{
+                    flex-direction: column;
 
+                    .component{
+                        @include pd-b(10px);
+                    }
+    
+                    .settings{
+                        @include mr-l(0);
+                        @include pd(25px 10px 0 10px);
+                        border-left: 0;
+                        border-top: 1px solid $mainColor;
+                        min-width: 0;
+                    }
+                }
+            }
+        }
+    }
 }

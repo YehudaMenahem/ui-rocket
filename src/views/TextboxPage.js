@@ -46,14 +46,13 @@ class TextboxPage extends React.Component{
                 view =
                 <div className="grid">
                     <div className="row">
-                        <div className="col-3 component mobile-col-1 mobile-mr-b-xl">
+                        <div className="col-2 component mobile-col-1 mobile-mr-b-xl">
                             <Textbox 
                                 label={this.state.textboxSettings.label} 
                                 id="textush" 
                                 name="textush" 
                                 classes={"textarea"}
                                 rows="5" 
-                                cols="40" 
                                 maxlength="100" 
                                 required={true} 
                                 disabled={false}

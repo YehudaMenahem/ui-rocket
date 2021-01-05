@@ -74,3 +74,32 @@
     from{transform: translateY(0)}
     to{transform: translateY(100%)}
 }
+
+
+/*********/
+/* media query */
+/*********/
+
+/* mobile */
+@media screen and(max-width: 500px){
+
+    /* loader */
+    .welcome-window{
+
+        .top-half{
+
+            .rocket{
+            }
+        }
+
+        .bottom-half{
+
+            .title{
+                left: 0;
+                @include center();
+                @include fs(70px);
+                animation: none;
+            }
+        }
+    }
+}

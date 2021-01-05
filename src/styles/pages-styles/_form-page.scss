@@ -49,6 +49,37 @@
 
 //mobile
 @media screen and(max-width: 500px){
+    .form-page{
 
+        .grid{
+            .container{
+                .form{
+
+                    h5{
+                    }
+    
+                    .press-buttons{
+                        :nth-child(2){
+                            @include hide();
+                        }
+                    }
+                    .textbox{
+                        textarea{
+                        }
+                    }
+    
+                    .form-child{
+                    }
+                    .btn-wrapper{
+    
+                        .button{
+                            &.success{
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 

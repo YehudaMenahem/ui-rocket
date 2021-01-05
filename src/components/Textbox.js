@@ -108,7 +108,7 @@ class Textbox extends React.Component  {
 Textbox.defaultProps = {
     label:"",
     rows:1,
-    cols:50,
+    cols:"100%",
     required:false,
     placeholder:null,
     disabled:false,

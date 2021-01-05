@@ -63,6 +63,18 @@
 
                 .grid{
                     @include mr-b(25px);
+
+                    &.with-press-buttons{
+                        .radio-button{
+                            &:nth-child(3){
+                                @include hide();
+                            }
+
+                            .radio{
+                                @include pd(15px);
+                            }
+                        }
+                    }
                 }
 
                 .settings{
@@ -71,6 +83,7 @@
                     @include pd-l(0);
                     border-top: 1px solid $mainColor;
                     border-left: none;
+                    min-width: auto;
                 }
             }
         }

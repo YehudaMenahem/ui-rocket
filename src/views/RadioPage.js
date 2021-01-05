@@ -215,9 +215,9 @@ class RadioPage extends React.Component{
                                         &nbsp; {'val='}<span className="props-value">{'"allow-cookies"'}</span><br></br>
                                         &nbsp; {'id='}<span className="props-value">{'"new-year"'}</span><br></br>
                                         &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                        &nbsp; {'disabled='}<span className="element">{'{true}'}</span>
+                                        &nbsp; {'disabled='}<span className="element">{'{true}'}</span><br></br>
                                         &nbsp; {'type='}<span className="element">{'"pressButton"'}</span>
-                                        <span  className="brackets">{" />"}</span><br></br>
+                                        <span  className="brackets">{" />"}</span>
                                     </span>
                                 </span>
                             </code>

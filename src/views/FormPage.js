@@ -172,7 +172,7 @@ class FormPage extends React.Component{
                                     <RadioButton type={"pressButtons"} name="rating" val="great" label="Great" id="great" isSelected={this.state.selectedOption === "great"} change={this.onChangeRadio} /> 
                                 </div>
                                 <div className={"form-child textbox"}>
-                                    <Textbox label="Comments" cols="40" rows="10" name="comments" id="textboxos" value={this.state.textboxVal} required={true} showError={this.state.textboxShowError} change={(e) => this.changeTextBox(e)}></Textbox>
+                                    <Textbox label="Comments" rows="10" name="comments" id="textboxos" value={this.state.textboxVal} required={true} showError={this.state.textboxShowError} change={(e) => this.changeTextBox(e)}></Textbox>
                                 </div>
                                 <div className={"btn-wrapper"}>
                                     <Button type="submit" styleBtn="solid" label={this.state.submitButtonTitle} classes={`full-width ${this.state.submitSuccess ? "success" : ""}`} loading={this.state.submitButtonState}></Button>
@@ -274,12 +274,12 @@ class FormPage extends React.Component{
                                 <span className="props">
                                     <span className="component">{'Form'}</span><br></br>
                                     <span className="indent-code">
-                                        &nbsp; {'title='}<span className="props-value">{'"Form super-form"'}</span><br></br>
-                                        &nbsp; {'id='}<span className="props-value">{'"id"'}</span><br></br>
-                                        &nbsp; {'classes='}<span className="props-value">{'"your-class"'}</span> <br></br>
-                                        &nbsp; {'onSubmit='}<span className="element">{'{this.'}<span className="function">{'onSubmitEvent'}</span>{'}'}</span>
+                                        &nbsp; {'title='}<span className="props-value">{'"We want to hear from you"'}</span><br></br>
+                                        &nbsp; {'id='}<span className="props-value">{'"form"'}</span><br></br>
+                                        &nbsp; {'classes='}<span className="props-value">{'"unformal"'}</span> <br></br>
+                                        &nbsp; {'onSubmit='}<span className="element">{'{this.'}<span className="function">{'onSubmitEvent'}</span>{'}'}</span> <br></br>
                                         &nbsp; {'novalidate='}<span className="props-value">{'"false"'}</span> <br></br>
-                                        &nbsp; {'error='}<span className="props-value">{'"mmm...name field needs a fix"'}</span>
+                                        &nbsp; {'error='}<span className="props-value">{'"so close...name field needs a fix"'}</span>
 
                                         <span  className="brackets">{" >"}</span><br></br>
                                     </span>
@@ -287,10 +287,18 @@ class FormPage extends React.Component{
 
                                 {/* children */}
                                 &nbsp; <span className="brackets">{"<"}</span>
-                                        <span className=""><span className="component">{'Input'} </span><span className="props">{'type='}</span><span className="props-value">{'"text"'}</span></span>
+                                        <span className="">
+                                            <span className="component">{'Input'} </span>
+                                        <span className="props">{'type='}</span>
+                                        <span className="props-value">{'"text"'}</span>
+                                        </span>
                                         <span className="brackets">{"/>"}</span><br></br>
                                 &nbsp; <span className="brackets">{"<"}</span>
-                                        <span className=""><span className="component">{'Input'} </span><span className="props">{'type='}</span><span className="props-value">{'"number"'}</span></span>
+                                        <span className="">
+                                            <span className="component">{'Input'} </span>
+                                            <span className="props">{'type='}</span>
+                                            <span className="props-value">{'"number"'}</span>
+                                        </span>
                                         <span className="brackets">{"/>"}</span><br></br>
 
                                 {/* Form closing tag */}

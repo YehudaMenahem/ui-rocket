@@ -71,10 +71,13 @@ class App extends React.Component  {
     }
 
     componentDidMount(){
+        //detect if desktop or mobile
+        let mobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? true : false;
         let html = document.querySelector('html');
 
         //at the begining the side bar is open and the html cannot be scrolled
-        html.classList.add('no-scroll');
+        if(mobile)
+            html.classList.add('no-scroll');
 
         window.navigator.geolocation.getCurrentPosition(
             position => this.setState({lat: position.coords.latitude}),

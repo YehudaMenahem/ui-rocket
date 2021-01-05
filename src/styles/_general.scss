@@ -120,12 +120,14 @@ ul{
 
 //mobile
 @media screen and(max-width: 500px){
-    .ui{
-        &.container {
-            @include pd(25px);
-            width: initial !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
+    .components-info{
+        .ui{
+            &.container {
+                @include pd(25px);
+                width: initial !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
         }
     }
 }

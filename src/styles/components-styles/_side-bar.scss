@@ -125,6 +125,7 @@
 
         .components-list{
             @include mr-t(75px);
+            height: 100vh;
 
             //dark mode
             .dark & {

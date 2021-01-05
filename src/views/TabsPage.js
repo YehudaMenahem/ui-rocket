@@ -27,7 +27,7 @@ class TabsPage extends React.Component{
 
     render(){
         return (
-            <div className="ui container">
+            <div className="ui container tabs-page">
                 <div className="grid">
 
                 <div className="row section">

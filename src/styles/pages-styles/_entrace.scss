@@ -59,4 +59,16 @@
     }
 }
 
-/* specific animations */
+/* mobile */
+@media screen and(max-width: 500px){
+    .entrace{
+        height: 100vh;
+            
+        .main-img{
+            
+        }
+
+        .sparkling-stars{
+        }
+    }
+}

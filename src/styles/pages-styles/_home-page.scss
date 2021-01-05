@@ -40,6 +40,8 @@
 
 @media screen and(max-width: 500px){
     .home-page{
+        overflow-x: hidden;
+        
         .mobile-header{
             position: absolute;
             @include flex(flex,initial,center);
