@@ -172,7 +172,7 @@ class InputFieldPage extends React.Component{
                         <div className="row">
                             <div className="col-4 tablet-col-1 mobile-col-1">
                                 <div>
-                                    <InputField type="text" showError={this.state.textFieldSettings.showError} error={'error for user'} note={this.state.textFieldSettings.note} maxlength="15" label={this.state.textFieldSettings.label} alt="Label" auto="on" id="name-id" name="name" required={true} placeholder="Bob sponge" value={this.state.textFieldSettings.value} change={(e) => this.onChangeInputText(e,3)}/> <br></br>
+                                    <InputField type="text" showError={this.state.textFieldSettings.showError} error={'error for user'} note={this.state.textFieldSettings.note} maxlength="15" label={this.state.textFieldSettings.label} alt="Label" auto="on" id="name-id" name="name" required={true} placeholder="Bob sponge" value={this.state.textFieldSettings.value} change={(e) => this.onChangeInputText(e,3)}/>
                                 </div>
                             </div>
                             <div className="col-5 tablet-col-1 mobile-col-1 mr-l-auto">
