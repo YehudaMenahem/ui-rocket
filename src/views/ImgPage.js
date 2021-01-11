@@ -37,15 +37,6 @@ class ImgPage extends React.Component{
         let view;
 
         switch(Number.parseInt(this.state.activeTab)){
-            case 1:
-                view = 
-                <div className="row">
-                    <div className="col-4">
-                        <button onClick={this.fetchData}>Fetch Data</button>
-                        <div><Img src={this.state.imageFromAjax} alt={"some some"} /></div>
-                    </div>
-                </div>
-                break;
 
             default: //case 0
             view = 
@@ -53,7 +44,7 @@ class ImgPage extends React.Component{
                 <div className="col-4">
                     <Img 
                         src={'https://source.unsplash.com/random'} 
-                        alt="faker" 
+                        alt="unsplash random image" 
                         width="auto"
                         height="200px"  
                     />                

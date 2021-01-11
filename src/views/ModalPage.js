@@ -30,23 +30,6 @@ class ModalPage extends React.Component{
         let view;
 
         switch(Number.parseInt(this.state.activeTab)){
-            case 1:
-                view =
-                    <div className="row">
-                        <div className="col-4">
-                            <p>This is a fun content</p>
-                        </div>
-                    </div>
-                break;
-
-            case 2:
-                view =
-                <div className="row">
-                    <div className="col-4">
-                        <p>This is a nice content, wait got to take a call</p>
-                    </div>
-                </div>    
-                break;
 
             default: 
                 view =
@@ -55,7 +38,7 @@ class ModalPage extends React.Component{
                         <Button
                             size="medium"
                             label="Open Modal"
-                            click={(e) => {this.openModal()}}
+                            click={(e)=>this.openModal(e)}
                         />
                     </div>
                 </div>  

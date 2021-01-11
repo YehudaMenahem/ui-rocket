@@ -59,13 +59,13 @@ class Tabs extends React.Component{
                 {this.state.tabs.map(function(name,index){
                     return (
                         <li key={index} className={`tab` + (self.state.activeTab === index ? " active" : "")} onClick={(e)=>self.clickTab(e)}>
-                            {<Button 
+                            <Button 
                                 styleBtn="text" 
                                 id={name.replace(" ","-").toLowerCase()} 
                                 index={index} 
                                 label={name} 
-                                click={e => e.preventDefault()}
-                            ></Button>}
+                                // click={e => e.preventDefault()}
+                            ></Button>
                         </li>
                     );
                 })}

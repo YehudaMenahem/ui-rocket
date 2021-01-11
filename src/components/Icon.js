@@ -1,44 +1,53 @@
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
 
 
-class Icon extends React.Component {
+// class Icon extends React.Component {
+const Icon = (props) => {
 
-    state = {
-        classes:this.props.classes,
-        iconClass:this.props.iconClass,
-        theme:this.props.theme,
-        click: this.props.click
-    }
+    const [classes, setClasses] = useState(props.classes);
+    const [iconClass, setIconClass] = useState(props.iconClass);
 
-    static getDerivedStateFromProps(props){
-        return { 
-            classes: props.classes,
-            iconClass: props.iconClass,
-            theme: props.theme,
-            click: props.click
-        }
-    }
+    useEffect(() => {
+        let classes = props.classes;
+        setClasses(classes,classes);
+    },[props.classes]);
 
-    click = (event) =>{
-        if(this.props.click){
-            this.props.click(event.target);
-        }
-    }
+    useEffect(() => {
+        let iconClass = props.iconClass;
+        setIconClass(iconClass,iconClass);
+    },[props.iconClass]);
 
-    render(){
-        return (
-            <span className={`icon-wrapper ${this.state.classes} ${this.state.theme}`}>
-                <i className={`icon ${this.state.iconClass}`} onClick={this.click}></i>
-            </span>
-        );
-    }
+    // state = {
+    //     classes:this.props.classes,
+    //     iconClass:this.props.iconClass,
+    //     click: this.props.click
+    // }
+
+    // static getDerivedStateFromProps(props){
+    //     return { 
+    //         classes: props.classes,
+    //         iconClass: props.iconClass,
+    //         click: props.click
+    //     }
+    // }
+
+    // click = (event) =>{
+    //     if(props.click){
+    //         props.click(event.target);
+    //     }
+    // }
+
+    return (
+        <span className={`icon-wrapper ${classes}`}>
+            <i className={`icon ${iconClass}`} onClick={props.click}></i>
+        </span>
+    );
 };
 
-Icon.defaultProps = {
-    theme: 'primary',
-    classes: '',
-    iconClass: '',
+// Icon.defaultProps = {
+//     classes: '',
+//     iconClass: '',
 
-}
+// }
 
 export default Icon; 

@@ -1,109 +1,143 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 
 
-class Button extends React.Component {
+const Button = (props) => {
 
-    state = {
-        label:this.props.label, 
-        styleBtn:this.props.styleBtn, 
-        size:this.props.size,
-        click:this.props.click, 
-        loading:this.props.loading, 
-        classes:this.props.classes, 
-        theme:this.props.theme,
-        id:this.props.id,
-        rounded: this.props.rounded === true ? "rounded" : "",
-        shadow: this.props.shadow === true ? "shadow" : "", 
-        disabled:this.props.disabled,   
-        children:this.props.children,
-        index:this.props.index,
-        scrollToTop: this.props.scrollToTop,
-        position: this.props.position
-    }       
+    const [label,setLabel] = useState(props.label);
+    const [styleBtn,setStyleBtn] = useState(props.styleBtn);
+    const [size,setSize] = useState(props.size);
+    // const [click,setClick] = useState(props.click);
+    const [loading,setLoading] = useState(props.loading);
+    const [classes,setClasses] = useState(props.classes);
+    const [id,setId] = useState(props.id);
+    const [rounded,setRounded] = useState(props.rounded);
+    const [shadow,setShadow] = useState(props.shadow);
+    const [disabled,setDisabled] = useState(props.disabled);
+    const [children,setChildren] = useState(props.children);
+    const [index,setIndex] = useState(props.index);
+    const [scrollToTop,setScrollToTop] = useState(props.scrollToTop);
+    const [position,setPosition] = useState(props.position);
+    const [type,setType] = useState(props.type);
 
-    static getDerivedStateFromProps(props) {
-        return {
-            styleBtn: props.styleBtn,
-            label: props.label,
-            size: props.size,
-            id: props.id,
-            loading: props.loading, 
-            classes: props.classes, 
-            theme: props.theme,
-            rounded:  props.rounded === true ? "rounded" : "",
-            shadow:  props.shadow === true ? "shadow" : "", 
-            click: props.click, 
-            disabled: props.disabled,   
-            children: props.children,
-            index: props.index,
-            scrollToTop: props.scrollToTop,
-            position: props.position
-        }
-    }
+    useEffect(() => {
+        let label = props.label;
+        setLabel(label,label);
+    },[props.label]);
+
+    useEffect(() => {
+        let styleBtn = props.styleBtn ? props.styleBtn : "solid";
+        setStyleBtn(styleBtn,styleBtn);
+    },[props.styleBtn]);
+
+    useEffect(() => {
+        let size = props.size ? props.size : "medium";
+        setSize(size,size);
+    },[props.size]);
+
+    // useEffect(() => {
+    //     let click = props.click;
+    //     setClick(click,click);
+    // },[props.click]);
+
+    useEffect(() => {
+        let loading = props.loading ? props.loading : false;
+        setLoading(loading,loading);
+    },[props.loading]);
+
+    useEffect(() => {
+        let classes = props.classes;
+        setClasses(classes,classes);
+    },[props.classes]);
+
+    useEffect(() => {
+        let id = props.id;
+        setId(id,id);
+    },[props.id]);
+
+    useEffect(() => {
+        let rounded = props.rounded ? props.rounded : true;
+        setRounded(rounded,rounded);
+    },[props.rounded]);
+
+    useEffect(() => {
+        let shadow = props.shadow;
+        setShadow(shadow,shadow);
+    },[props.shadow]);
+
+    useEffect(() => {
+        let disabled = props.disabled;
+        setDisabled(disabled,disabled);
+    },[props.disabled]);
+
+    useEffect(() => {
+        let children = props.children ? props.children : null;
+        setChildren(children,children);
+    },[props.children]);
+
+    useEffect(() => {
+        let index = props.index;
+        setIndex(index,index);
+    },[props.index]);
+
+    useEffect(() => {
+        let scrollToTop = props.scrollToTop;
+        setScrollToTop(scrollToTop,scrollToTop);
+    },[props.scrollToTop]);
+
+    useEffect(() => {
+        let position = props.position;
+        setPosition(position,position);
+    },[props.position]);
+
+    useEffect(() => {
+        let type = props.type ? props.type : 'button';
+        setType(type,type);
+    },[props.type]);
 
     //calling parent function
-    click = (event) => {
-        if(this.state.scrollToTop){
-            this.scrollTop();
+    const clickButton = (event) => {
+        if(scrollToTop){
+            scrollTop();
             return;
         }
 
-        if(this.props.click){
-            this.props.click(event);
-            return;
+        if(props.click){
+            props.click(event);
         }
     }
 
-    scrollTop(){
+    const scrollTop = () => {
         window.scroll({ 
             top: 0, 
             behavior: 'smooth' 
         });
     }
 
-    render(){
-        return (
-            <button 
-                key={this.state.key} 
-                id={this.state.id} 
-                type={this.state.type}
-                index={this.state.index} 
-                className={`button ${this.state.loading ? 'loading' : ''} ${this.state.theme} ${this.state.styleBtn} ${this.state.size} ${this.state.rounded} ${this.state.shadow} ${this.state.classes}
-                            ${this.state.scrollToTop && this.state.position ? this.state.position : ""}`} 
-                onClick={(e)=>this.click(e)} 
-                disabled={this.state.disabled}
-                >
-                {this.state.children}
-                {this.state.loading
-                    ? 
-                    <div className="loading-bg">
-                        <div className="stage">
-                            <div className="dot-pulse"></div>
-                        </div>
+    return (
+        <button 
+            key={props.key} 
+            id={id} 
+            type={type}
+            index={index} 
+            className={`button ${loading ? 'loading' : ''} ${styleBtn} ${size} ${rounded ? "rounded" : ""} ${shadow ? "shadow" : ""} ${classes}
+                        ${scrollToTop && position ? position : ""}`} 
+            onClick={(e)=>clickButton(e)} 
+            disabled={disabled}
+            >
+            {children}
+            {loading
+                ? 
+                <div className="loading-bg">
+                    <div className="stage">
+                        <div className="dot-pulse"></div>
                     </div>
-                    :
-                    ""
-                }
-                <span className="label">{this.state.label}</span>
-            </button>
-        );
-    }
-}
-
-Button.defaultProps = {
-    label:'', 
-    type: 'button',
-    styleBtn: 'solid', 
-    size: 'medium',
-    loading: false, 
-    classes: '', 
-    theme: 'primary',
-    id: undefined,
-    rounded: true,
-    shadow: false, 
-    disabled: false,   
-    children: null,
-    index: undefined
+                </div>
+                :
+                ""
+            }
+            <span className="label">{label}</span>
+        </button>
+    );
 }
 
 export default Button;

@@ -1,84 +1,82 @@
-import React from 'react';
+import React,{ useState, useEffect, createRef} from 'react';
 
 //import components
 import Button from './Button';
 import Img from './Img';
 
 
-class Modal extends React.Component {
+const Modal = (props) => {
 
-    state = {
-        modalTitle:this.props.modalTitle,
-        heroImage:this.props.heroImage,
-        closeButton:this.props.closeButton,
-        classes:this.props.classes,
-        show:this.props.show
-    }
+    const [modalTitle,setModalTitle] = useState(props.modalTitle);
+    const [heroImage,setHeroImage] = useState(props.heroImage);
+    const [classes,setClasses] = useState(props.classes);
+    const [show,setShow] = useState(props.show);
     
-    modalRef = React.createRef();
+    const modalRef = createRef();
 
-    static getDerivedStateFromProps(props) {
-        return {
-            modalTitle:props.modalTitle,
-            heroImage:props.heroImage,
-            closeButton:props.closeButton,
-            classes:props.classes,
-            show:props.show
-        }
-    }
+    useEffect(() => {
+        let modalTitle = props.modalTitle;
+        setModalTitle(modalTitle,modalTitle);
+    },[props.modalTitle])
 
-    closeModal = e => {
-        let modal = this.modalRef;
+    useEffect(() => {
+        let heroImage = props.heroImage;
+        setHeroImage(heroImage,heroImage);
+    },[props.heroImage])
+
+    useEffect(() => {
+        let classes = props.classes;
+        setClasses(classes,classes);
+    },[props.classes])
+
+    useEffect(() => {
+        let show = props.show ? props.show : false;
+        setShow(show,show);
+    },[props.show])
+
+    const closeModal = (e) => {
+        let modal = modalRef;
         modal.current.classList.add('close');
         setTimeout(() =>{
-            this.props.closeModal && this.props.closeModal(e);
+            props.closeModal && props.closeModal(e);
         },300) //time for the closing animation to happen
     };
 
-    render(){
-        if(!this.props.show){
-            return null;
-        }   
-        return (
-            <div ref={this.modalRef} className={`modal ${this.state.heroImage ? "hero-image" : ""}`} onClick={e => {this.closeModal(e)}}>
-                <div className="box" onClick={e => {e.stopPropagation()}}>
-                    {this.state.heroImage
-                        ?
-                        <div className="header">
-                            <Img classes={"hero"} src={require('./../assets/images/forgot_password.svg')}></Img>
-                            <i className="close-sign close icon" onClick={e => {this.closeModal(e)}}></i>
-                        </div>
-                        :
-                        <div className="header">
-                            <h3>{this.state.modalTitle}</h3>
-                            <i className="close-sign close icon" onClick={e => {this.closeModal(e)}}></i>
-                        </div>
-                    }
-                    <div className="body grid">
-                        {this.props.children}
+    if(!show){
+        return null;
+    }   
+    return (
+        <div ref={modalRef} className={`modal ${classes} ${heroImage ? "hero-image" : ""}`} onClick={e => {closeModal(e)}}>
+            <div className="box" onClick={e => {e.stopPropagation()}}>
+                {heroImage
+                    ?
+                    <div className="header">
+                        <Img classes={"hero"} src={require('./../assets/images/forgot_password.svg')}></Img>
+                        <i className="close-sign close icon" onClick={e => {closeModal(e)}}></i>
                     </div>
-                    <div className="footer grid">
-                        <div className="row">
-                            <div className="col-1">
-                                <Button     
-                                    size="medium"
-                                    label="Close Modal"
-                                    click={e => {this.closeModal(e);}}>
-                                </Button>
-                            </div>
+                    :
+                    <div className="header">
+                        <h3>{modalTitle}</h3>
+                        <i className="close-sign close icon" onClick={e => {closeModal(e)}}></i>
+                    </div>
+                }
+                <div className="body grid">
+                    {props.children}
+                </div>
+                <div className="footer grid">
+                    <div className="row">
+                        <div className="col-1">
+                            <Button     
+                                size="medium"
+                                label="Close Modal"
+                                click={e => {closeModal(e);}}>
+                            </Button>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
-
-Modal.defaultProps = {
-    closeButton:'',
-    classes:'',
-    modalTitle:'Modal',
-    show:true
+        </div>
+    );
 }
 
 export default Modal;

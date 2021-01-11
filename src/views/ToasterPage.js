@@ -38,7 +38,7 @@ class ToasterPage extends React.Component{
             <Button 
                 label={'make me a toast'} 
                 click={(e) => {this.openToaster(true)}}
-            ></Button>
+            />
         )
     }
 

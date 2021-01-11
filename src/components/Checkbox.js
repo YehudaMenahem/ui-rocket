@@ -1,44 +1,73 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 
 
-class Checkbox extends React.Component {
+const Checkbox = (props) => {
 
-    state = {
-        label:this.props.label,
-        name:this.props.name,
-        value:this.props.value,
-        classes:this.props.classes,
-        id:this.props.id,
-        isChecked:this.props.checked,
-        disabled:this.props.disabled,
-        required:this.props.required,
-        iconType:this.props.iconType
+    const [label,setLabel] = useState(props.label);
+    const [name,setName] = useState(props.name);
+    const [value,setValue] = useState(props.value);
+    const [classes,setClasses] = useState(props.classes);
+    const [id,setId] = useState(props.id);
+    const [isChecked,setIsChecked] = useState(props.checked);
+    const [disabled,setDisabled] = useState(props.disabled);
+    const [required,setRequired] = useState(props.required);
+    const [iconType,setIconType] = useState(props.iconType);
+
+    useEffect(() =>{
+        let label = props.label ?  props.label : '';
+        setLabel(label,label);
+    },[props.label]);
+
+    useEffect(() =>{
+        let name = props.name ? props.name : '';
+        setName(name,name);
+    },[props.name]);
+
+    useEffect(() =>{
+        let value = props.value ? props.value : false;
+        setValue(value,value);
+    },[props.value]);
+
+    useEffect(() =>{
+        let classes = props.classes ? props.classes : '';
+        setClasses(classes,classes);
+    },[props.classes]);
+
+    useEffect(() =>{
+        let id = props.id;
+        setId(id,id);
+    },[props.id]);
+
+    useEffect(() =>{
+        let isChecked = props.checked ? props.checked : false;
+        setIsChecked(isChecked,isChecked);
+    },[props.checked]);
+
+    useEffect(() =>{
+        let disabled = props.disabled ? props.disabled : false;
+        setDisabled(disabled,disabled);
+    },[props.disabled]);
+
+    useEffect(() =>{
+        let required = props.required ? props.required : false;
+        setRequired(required,required);
+    },[props.required]);
+
+    useEffect(() =>{
+        let iconType = props.iconType ? props.iconType : false;
+        setIconType(iconType,iconType);
+    },[props.iconType]);
+
+    const handleChange = (event) => {
+        if(props.change && event.target){
+            props.change(event.target);
+        }
     };
 
-    static getDerivedStateFromProps(props) {
-        return {
-            label:props.label,
-            name:props.name,
-            value:props.value,
-            classes:props.classes,
-            id:props.id,
-            isChecked:props.checked,
-            disabled:props.disabled,
-            required:props.required,
-            iconType:props.iconType
-        }
-    }
-
-    change = (event) => {
-        if(this.props.change){
-            this.props.change(event.target);
-        }
-    };
-
-    renderIcon = () =>{
+    const renderIcon = () =>{
         let icon;
 
-        switch(this.state.iconType){
+        switch(iconType){
             case 'heart':
                 icon =  <svg id="check-sign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" style={{enableBackground:"new 0 0 30 30"}}><path className="check" d="M21,4.2c4,0,7.2,3.2,7.2,7.2c0,7.2-13.2,14.4-13.2,14.4S1.8,18.5,1.8,11.4c0-4,3.2-7.2,7.2-7.2l0,0c2.4,0,4.7,1.2,6,3.2C16.3,5.4,18.6,4.2,21,4.2z"/></svg>
                 break
@@ -53,38 +82,25 @@ class Checkbox extends React.Component {
         return icon;
     }
 
-    render(){
-        return (
-            <label className={`checkbox ${this.state.classes} ${this.state.disabled ? 'disabled' : ''}`}>
-                <span className="checkmark">
-                    <input 
-                        type="checkbox" 
-                        name={this.props.name} 
-                        value={this.props.value}
-                        defaultChecked={this.state.isChecked} 
-                        onChange={this.change} 
-                        required={this.state.required} 
-                        disabled={this.state.disabled}/>
-                        <span className={`icon`}>
-                            {this.renderIcon()}
-                        </span>
-                </span>
-                <span className={"label mr-l-md"}>{this.state.label}</span>
-            </label>
-        );
-    }
-}
-
-Checkbox.defaultProps = {
-    label:"",
-    name:"",
-    value:"",
-    theme:"primary",
-    classes:"",
-    id: undefined,
-    isChecked:false,
-    disabled:false,
-    required:false
+    return (
+        <label className={`checkbox ${classes} ${disabled ? 'disabled' : ''}`}>
+            <div className="checkmark">
+                <input 
+                    type="checkbox" 
+                    id={id}
+                    name={name} 
+                    value={value}
+                    defaultChecked={isChecked} 
+                    onChange={handleChange} 
+                    required={required} 
+                    disabled={disabled}/>
+                    <span className={`icon`}>
+                        {renderIcon()}
+                    </span>
+            </div>
+            <span className={"label mr-l-md"}>{label}</span>
+        </label>
+    );
 }
 
 export default Checkbox;

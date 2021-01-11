@@ -16,7 +16,7 @@
     &.text{
       .icon-wrapper{
         @include pd-r(0);
-        @include pd-b(5px);
+        @include pd-b(2px);
         border-right: 1px solid transparent;
 
         .icon{

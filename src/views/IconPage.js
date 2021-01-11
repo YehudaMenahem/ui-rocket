@@ -57,7 +57,7 @@ class IconPage extends React.Component{
                 <div className="grid">
                     <div className="row">
                         <div className="col-1 mr-l-lr mr-b-xl">
-                            <Icon iconClass={`${this.state.iconSettings.iconClass} icon-size-xl`} theme="primary"></Icon><span></span>
+                            <Icon iconClass={`${this.state.iconSettings.iconClass} icon-size-xl`}></Icon><span></span>
                         </div>
                     </div>
                 </div>;
@@ -148,7 +148,7 @@ class IconPage extends React.Component{
                                 <div className="content">
                                     {this.renderView()}
                                     <div className="settings pd-l-xl">
-                                        <h3><Icon iconClass={'setting'}></Icon>Customization</h3>
+                                        <h3><Icon iconClass={'setting'} ></Icon>Customization</h3>
                                         <ul className="mr-b-xl"> 
                                             <li> 
                                                 <InputField type="text" label={'Icon Class/es'} value={this.state.iconSettings.iconClass} change={e => this.changeIconClass(e)} maxlength={20}></InputField>
@@ -166,7 +166,6 @@ class IconPage extends React.Component{
                             <h2>Component props </h2>
                             <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
                             <p><span className="bold prop">icon-class:</span> class from <a href="https://semantic-ui.com/elements/icon.html" target="_blank" rel="noopener noreferrer" className="link emphasis emphasis-color">ui-semantic</a> that 'create' the desired icon | string </p>
-                            <p><span className="bold prop">theme:</span> Primary, Secondary, third | string (lowercase)</p>
                             <p><span className="bold prop">click:</span> A function from parent that will fired on click of the icon | arrow function </p>
                         </div>
                     </div>
@@ -181,8 +180,8 @@ class IconPage extends React.Component{
                                     ref={(textarea) => this.textArea = textarea}
                                     value={`
 <Icon
-    theme="primary"
-    classes="your-class"
+    classes="chess"
+    iconClass="pawn"
     click={this.click} />
                                     `}
                                     readOnly={true}
@@ -198,7 +197,6 @@ class IconPage extends React.Component{
                                         <span className="indent-code">
                                             &nbsp; {'classes='}<span className="props-value">{'"classic-class"'}</span> <br></br>
                                             &nbsp; {'icon-class='}<span className="props-value">{'"heart"'}</span> <br></br>
-                                            &nbsp; {'theme='}<span className="props-value">{'"primary"'}</span><br></br>
                                             &nbsp; {'click='}<span className="element">{'{this.'}<span className="function">{'click'}</span>{'}'}</span>
                                             <span  className="brackets">{" />"}</span><br></br>
                                         </span>

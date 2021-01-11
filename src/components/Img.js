@@ -1,52 +1,49 @@
-import React from 'react';
+import React,{ useState,useEffect } from 'react';
 
 
-class Img extends React.Component {
+const Img = (props) => {
 
-    state = {
-        src:this.props.src,
-        alt:this.props.alt,
-        width:this.props.width,
-        height:this.props.height,
-        classes:this.props.classes
-    }
+    const [src,setSrc] = useState(props.src);
+    const [alt,setAlt] = useState(props.alt);
+    const [width,setWidth] = useState(props.width);
+    const [height,setHeight] = useState(props.height);
+    const [classes,setClasses] = useState(props.classes);
 
-    static getDerivedStateFromProps(props){
-        return {
-            src:props.src,
-            alt:props.alt,
-            width:props.width,
-            height:props.height,
-            classes:props.classes
-        }
-    }
+    useEffect(() => {
+        let src = props.src;
+        setSrc(src,src);
+    },[props.src])
 
-    click = (e) => {
-        if(this.props.click){
-            this.props.click(e.target)
-        }
-    }
+    useEffect(() => {
+        let alt = props.alt ? props.alt : "image"; //default value
+        setAlt(alt,alt);
+    },[props.alt])
 
-    render(){
-        return (
-            <img 
-                src={this.state.src} 
-                alt={this.state.alt} 
-                className={this.state.classes}
-                onClick={this.click} 
-                width={this.state.width} 
-                height={this.state.height}  
-            />
-        );
-    }   
-}
+    useEffect(() => {
+        let width = props.width ? props.width : "auto"; //default value
+        setWidth(width,width);
+    },[props.width])
 
-Img.defaultProps = {
-    src:undefined,
-    alt:'image',
-    width:'auto',
-    height:'auto',
-    classes:''
+    useEffect(() => {
+        let height = props.height ? props.height : "auto"; //default value
+        setHeight(height,height);
+    },[props.height])
+
+    useEffect(() => {
+        let classes = props.classes;
+        setClasses(classes,classes);
+    },[props.classes])
+
+    return (
+        <img 
+            src={src} 
+            alt={alt} 
+            className={classes}
+            onClick={props.click} 
+            width={width} 
+            height={height}  
+        />
+    );
 }
 
 export default Img; 

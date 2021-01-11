@@ -46,9 +46,13 @@ class App extends React.Component  {
     openerRef = React.createRef();
 
     closeSideBar = () => {
-        let toggleState = this.state.toggleSideBar;
+        //detect if desktop or mobile
+        let mobile = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? true : false;
         let html = document.querySelector('html');
-        toggleState ? html.classList.add('no-scroll') : html.classList.remove('no-scroll');
+        let toggleState = this.state.toggleSideBar;
+        if(mobile){
+            toggleState ? html.classList.add('no-scroll') : html.classList.remove('no-scroll');
+        }
         this.setState({
             toggleSideBar: !toggleState
         })
@@ -88,7 +92,7 @@ class App extends React.Component  {
         //get time
         let day = new Date();
         let hourInDay = day.getHours();
-        let theme =  hourInDay > 17 || hourInDay <= 4 ? 'dark' : 'light';
+        let theme =  hourInDay >= 17 || hourInDay <= 4 ? 'dark' : 'light';
         theme === 'dark' ? this.setState({darkTheme: true}) : this.setState({darkTheme: false});
         html.classList.add(theme);
 

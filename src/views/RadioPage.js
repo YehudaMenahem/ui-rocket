@@ -13,7 +13,7 @@ class RadioPage extends React.Component{
         // selectedOption: 'Yes',
         // selectedPressOption: 'Volleyball',
         tabs: ['Radio','Press Btns'],
-        activeTab: 0,
+        activeTab: 1,
         radioSettings: {
             firstOption: 'Pizza by Philippe',
             secondOption: 'Beyond burger by Goodness',
@@ -33,7 +33,8 @@ class RadioPage extends React.Component{
         radioPressSettingsCheck: {
             firstOptionChecked: true,
             secondOptionChecked: false,
-            thirdOptionChecked: false
+            thirdOptionChecked: false,
+            fourthOptionChecked: false
         }
     }
 
@@ -69,10 +70,10 @@ class RadioPage extends React.Component{
                             <div className="col-7">
                                 <h4>{'Favorite sport in summer:'}</h4>
                                 <div className="press-buttons">
-                                    <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.firstOption.toLowerCase()} label={this.state.radioPressSettings.firstOption} id={this.state.radioPressSettings.firstOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.firstOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','firstOptionChecked')}/> 
-                                    <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.secondOption.toLowerCase()} label={this.state.radioPressSettings.secondOption} id={this.state.radioPressSettings.secondOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.secondOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','secondOptionChecked')} /> 
-                                    <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.thirdOption.toLowerCase()} label={this.state.radioPressSettings.thirdOption} id={this.state.radioPressSettings.thirdOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.thirdOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','thirdOptionChecked')} /> 
-                                    <RadioButton type="pressButton" classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.fourthOption.toLowerCase()} label={this.state.radioPressSettings.fourthOption} id={this.state.radioPressSettings.fourthOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.fourthOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','fourthOptionChecked')} /> 
+                                    <RadioButton classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.firstOption.toLowerCase()} label={this.state.radioPressSettings.firstOption} id={this.state.radioPressSettings.firstOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.firstOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','firstOptionChecked')}/> 
+                                    <RadioButton classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.secondOption.toLowerCase()} label={this.state.radioPressSettings.secondOption} id={this.state.radioPressSettings.secondOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.secondOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','secondOptionChecked')} /> 
+                                    <RadioButton classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.thirdOption.toLowerCase()} label={this.state.radioPressSettings.thirdOption} id={this.state.radioPressSettings.thirdOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.thirdOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','thirdOptionChecked')} /> 
+                                    <RadioButton classes="mr-b-md" name="press-button" val={this.state.radioPressSettings.fourthOption.toLowerCase()} label={this.state.radioPressSettings.fourthOption} id={this.state.radioPressSettings.fourthOption.toLowerCase()} isSelected={this.state.radioPressSettingsCheck.fourthOptionChecked} change={(e) => this.onChangeRadio(e,'radioPressSettingsCheck','fourthOptionChecked')} /> 
                                 </div>
                             </div>
                         </div>
