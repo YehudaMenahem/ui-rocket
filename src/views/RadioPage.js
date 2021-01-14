@@ -13,7 +13,7 @@ class RadioPage extends React.Component{
         // selectedOption: 'Yes',
         // selectedPressOption: 'Volleyball',
         tabs: ['Radio','Press Btns'],
-        activeTab: 1,
+        activeTab: 0,
         radioSettings: {
             firstOption: 'Pizza by Philippe',
             secondOption: 'Beyond burger by Goodness',

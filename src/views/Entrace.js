@@ -17,7 +17,7 @@ const Entrace = (props) =>{
                 <div className="row mr-b-md">
                     <div className="col-2 mobile-col-1">
                         <p className={"line-break"}>{`Ui Rocket is a components library project made with react.
-                                The components are class based and function based (functional components)
+                                The components are functional components with hooks and class based.
                                 Every page presents component and gives a brief of 
                                 interactive demonstration, props explanation and code snippet example.
                                 Ui Rocket is browsers friendly and mobile friendly, has a theme mode at

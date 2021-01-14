@@ -2,6 +2,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+//redux
+import { connect } from 'react-redux';
+import { setModal, setToaster } from './../actions';
+
 // Import routes components
 import Entrace from './../views/Entrace';
 import IconPage from './../views/IconPage';
@@ -36,8 +40,6 @@ class App extends React.Component  {
     state = {
         lat:null, 
         errMessage:null, 
-        showModal:false,
-        showToaster:false,
         openerState:undefined,
         toggleSideBar:false,
         darkTheme:false
@@ -58,20 +60,12 @@ class App extends React.Component  {
         })
     }
 
-    showModal = (e) =>{
-        this.setState({
-            showModal: !this.state.showModal
-        });
+    closeModal = () =>{
+        this.props.setModal({showModal:false});
     }
 
-    showToaster = (fromTrigger) =>{
-        let toastState = this.state.showToaster;
-        if(fromTrigger && toastState){
-            return
-        }
-        this.setState({
-            showToaster: !toastState
-        });
+    closeToaster = () =>{
+        this.props.setToaster({showToaster:false});
     }
 
     componentDidMount(){
@@ -82,12 +76,6 @@ class App extends React.Component  {
         //at the begining the side bar is open and the html cannot be scrolled
         if(mobile)
             html.classList.add('no-scroll');
-
-        window.navigator.geolocation.getCurrentPosition(
-            position => this.setState({lat: position.coords.latitude}),
-            err => this.setState({errMessage: err.message})
-        );
-        this.setState({title:'clickof'});
 
         //get time
         let day = new Date();
@@ -146,28 +134,31 @@ class App extends React.Component  {
             <Router>
                 {/*modal at the top of the app for anyone to call*/}
                 <Modal 
-                    show={this.state.showModal} 
-                    closeModal={this.showModal} 
-                    modalTitle={'Modal Header'}
+                    show={this.props.modalSettings.showModal} 
+                    closeModal={this.closeModal} 
+                    modalTitle={this.props.modalSettings.headerTitle}
                     heroImage={require('./../assets/images/forgot_password.svg')}
                     >
                     <div className="row">
                         <div className="col-1">
-                            <h2>Forgot Password?</h2>
-                            <p className="line-break">{`Don't worry, it happens. 
-                                We will send you a reminder right away.`}</p>
+                            <h2>{this.props.modalSettings.contentTitle}</h2>
+                            <p className="line-break">{this.props.modalSettings.contentRunningText}</p>
                         </div>
                     </div>
                 </Modal>
 
                 {/* toaster component */}
                 <Toaster 
-                    show={this.state.showToaster}
-                    closeToaster={this.showToaster}
-                    type={"success"}
-                    title={"Bon appetit"}
-                    position={"top-right"}
-                    runningText={"Your toast is ready"}
+                    show={this.props.toasterSettings.showToaster}
+                    closeToaster={this.closeToaster}
+                    type={this.props.toasterSettings.type}
+                    title={this.props.toasterSettings.title}
+                    position={this.props.toasterSettings.position}
+                    runningText={this.props.toasterSettings.runningText}
+                    // type={"success"}
+                    // title={"Bon appetit"}
+                    // position={"top-right"}
+                    // runningText={"Your toast is ready"}
                 />
 
                 <div className="home-page">  
@@ -183,10 +174,7 @@ class App extends React.Component  {
 
                     {/* header for mobile */}
                     <div className={`mobile-header ${this.state.toggleSideBar ? "close" : "open"}`}>
-                        {/* <Link to="/" onClick={(e) => this.changeRoute(e)}> */}
-                            <h3><Icon classes={"mr-r-md"} iconClass={"rocket"}></Icon>Rocket UI</h3>
-                        {/* </Link> */}
-                        {/* <Icon classes={"close close-button"} click={this.closeSideBar} /> */}
+                        <h3><Icon classes={"mr-r-md"} iconClass={"rocket"}></Icon>Rocket UI</h3>
                         <i className={"close-icon mr-l-auto"} onClick={this.closeSideBar}>
                             <span className={"strip"}></span>
                             <span className={"strip"}></span>
@@ -214,18 +202,8 @@ class App extends React.Component  {
                         <Route path="/FormPage" component={FormPage}></Route>
                         <Route path="/TextboxPage" component={TextboxPage}></Route>
                         <Route path="/TabsPage" component={TabsPage}></Route>
-                        <Route path="/ModalPage"   
-                            render={(props) => (
-                                <ModalPage {...props} modalStatus={this.state.showModal} showModal={this.showModal}/>
-                            )}
-                        >
-                        </Route>
-                        <Route path="/ToasterPage"   
-                            render={(props) => (
-                                <ToasterPage {...props} toasterStatus={this.state.showToaster} showToaster={this.showToaster}/>
-                            )}
-                        >
-                        </Route>
+                        <Route path="/ModalPage" component={ModalPage}></Route>
+                        <Route path="/ToasterPage" component={ToasterPage}></Route>
                     </div>                
                 </div>
             </Router>
@@ -233,5 +211,12 @@ class App extends React.Component  {
     }
 };
 
+const mapStateToProps = (state) =>{
+    return {
+        modalSettings: state.modalSettings,
+        toasterSettings: state.toasterSettings
+    }
+}
 
-export default App;
+
+export default connect(mapStateToProps,{setModal,setToaster})(App);

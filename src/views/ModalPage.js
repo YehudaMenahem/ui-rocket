@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setModal } from './../actions';
 
 //import components
 import Button from './../components/Button';
 import Tabs from './../components/Tabs';
 import Icon from './../components/Icon';
+
 
 
 class ModalPage extends React.Component{
@@ -13,10 +16,19 @@ class ModalPage extends React.Component{
         showModal: this.props.showModal,
         tabs: ['Modal'],
         activeTab: 0
+        //getting from redux - toggleModal function (as prop)
+        //getting from redux - showModal prop
     }
 
     openModal = (e) =>{
-        this.props.showModal(e)
+        // debugger;
+        this.props.setModal({
+            showModal:true,
+            headerTitle:'Forgot your password?',
+            contentTitle:'Forgot Password?',
+            contentRunningText:`Don't worry, it happens. 
+            We will send you a reminder right away.`
+        });
     }
 
     static getDerivedStateFromProps(props) {
@@ -58,7 +70,7 @@ class ModalPage extends React.Component{
         const textarea = this.textArea;
         textarea.select();
         document.execCommand('copy');
-    }          
+    }      
 
     render(){
         return (
@@ -169,4 +181,8 @@ class ModalPage extends React.Component{
     }
 }
 
-export default ModalPage;
+const mapStateToProps = (state) =>{
+    return { modalSettings: state.modalSettings }
+}
+
+export default connect(mapStateToProps, {setModal})(ModalPage);

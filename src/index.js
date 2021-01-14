@@ -1,6 +1,9 @@
 // Import the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
 
 // Import Sass
 import './styles/app.scss';
@@ -9,4 +12,7 @@ import './styles/app.scss';
 import App from  './components/App';
 
 // Take the react component and show it on the screen
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(
+<Provider store={createStore(reducers)}>
+<App />
+</Provider>, document.querySelector('#root'));

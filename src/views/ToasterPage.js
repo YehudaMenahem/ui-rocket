@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setToaster } from './../actions';
 
 //import components
 import Tabs from './../components/Tabs';
@@ -23,7 +25,13 @@ class ToasterPage extends React.Component{
     }
 
     openToaster = (fromOpener) =>{
-        this.props.showToaster(fromOpener)
+        this.props.setToaster({
+            showToaster: true,
+            type: 'success',
+            title: 'Bon appetit',
+            runningText: 'Your toast is ready',
+            position: 'top-right'
+        })
     }
 
     setActiveTab(currentTab){
@@ -143,4 +151,8 @@ class ToasterPage extends React.Component{
     }
 }
 
-export default ToasterPage;
+const mapStateToProps = (state) =>{
+    return {setToaster: state.setToaster}
+}
+
+export default connect(mapStateToProps,{setToaster})(ToasterPage);
