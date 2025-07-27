@@ -447,7 +447,7 @@ class InputFieldPage extends React.Component{
                             <p><span className="bold prop">label: </span>The text that will be written aside the Input field | string</p>
                             <p><span className="bold prop">type: </span>Options of input types - Text, Number, Email, Password, Telephone | string</p>
                             <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">classes: </span>costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes: </span>custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">name: </span>This value is for all the radio buttons belongs to the same group | string </p>
                             <p><span className="bold prop">min: </span>for input with numbers type. set the minimum value for the user input | number / string</p>
                             <p><span className="bold prop">max: </span>for input with numbers type. set the maximum value for the user input | number / string</p>

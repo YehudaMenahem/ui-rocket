@@ -109,7 +109,7 @@ class ImgPage extends React.Component{
                             <p><span className="bold prop">alt:</span> Altrnative text in some case the element doesn't load to page | string </p>
                             <p><span className="bold prop">width:</span> Width size of the image in the page | string </p>
                             <p><span className="bold prop">height:</span> Height size of the image in the page | string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">click:</span> A function from parent that will occur when the user click on the image | function </p>
                         </div>                    
                     </div>

@@ -256,7 +256,7 @@ class ButtonPage extends React.Component{
                             <p><span className="bold prop">size:</span> Determine btn size - Small / Medium / Large | string (lowercase)</p>
                             <p><span className="bold prop">click:</span> A function from parent that will fired on click of the button | function </p>
                             <p><span className="bold prop">loading:</span> An option to show to user that a process that needs to be done is happening in the background | boolean</p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">theme:</span> Primary / Secondary / third | string (lowercase)</p>
                             <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
                             <p><span className="bold prop">rounded:</span> Rounded button angles - done</p>
