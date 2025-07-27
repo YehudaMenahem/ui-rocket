@@ -114,7 +114,7 @@ class ModalPage extends React.Component{
                             <p><span className="bold prop">modalTitle:</span> The header title of the modal | string</p>
                             <p><span className="bold prop">heroImage:</span> Makes the modal header with hero image | string (of the src)</p>
                             <p><span className="bold prop">closeButton:</span> An option to create a modal without close option | boolean </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                         </div>
                     </div>
 

@@ -164,7 +164,7 @@ class IconPage extends React.Component{
                         <div className="col-1 props-keys">
                             {/* props options */}
                             <h2>Component props </h2>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">icon-class:</span> class from <a href="https://semantic-ui.com/elements/icon.html" target="_blank" rel="noopener noreferrer" className="link emphasis emphasis-color">ui-semantic</a> that 'create' the desired icon | string </p>
                             <p><span className="bold prop">click:</span> A function from parent that will fired on click of the icon | arrow function </p>
                         </div>
