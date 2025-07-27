@@ -21,8 +21,8 @@ const SelectField = (props) => {
     useEffect(() => { 
         //detect if desktop or mobile
         let checkDesktop = (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ? false : true;
-        //set desktop property accordingly 
-        setDesktop(desktop,checkDesktop);
+        //set desktop property accordingly
+        setDesktop(checkDesktop);
     },[desktop])
 
     const choseOption = (e) =>{
