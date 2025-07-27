@@ -131,7 +131,7 @@ InputField.defaultProps = {
     maxlength:30,
     pattern:undefined,
     autocomplete:'off',
-    requierd:false,
+    required:false,
     disabled:false,
     placeholder:undefined,
     error:'This field is required',

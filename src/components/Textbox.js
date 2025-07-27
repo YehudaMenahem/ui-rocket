@@ -10,7 +10,7 @@ class Textbox extends React.Component  {
         rows:this.props.rows,
         cols:this.props.cols,
         maxlength:this.props.maxlength,
-        calsses:this.props.classes,
+        classes:this.props.classes,
         required:this.props.required,
         placeholder:this.props.placeholder,
         disabled:this.props.disabled,
@@ -28,7 +28,7 @@ class Textbox extends React.Component  {
             rows: props.rows,
             cols: props.cols,
             maxlength: props.maxlength,
-            calsses: props.classes,
+            classes: props.classes,
             required: props.required,
             placeholder: props.placeholder,
             disabled: props.disabled,
@@ -73,7 +73,7 @@ class Textbox extends React.Component  {
                         cols={this.state.cols} 
                         placeholder={this.state.placeholder} 
                         maxLength={this.state.maxlength}
-                        className={this.state.calsses}
+                        className={this.state.classes}
                         required={this.state.required} 
                         disabled={this.state.disabled}
                         id={this.state.id} 
@@ -112,11 +112,11 @@ Textbox.defaultProps = {
     required:false,
     placeholder:null,
     disabled:false,
-    maxLength: 135,
+    maxlength: 135,
     note:undefined,
     id:undefined,
     name:'',
-    calsses:'',
+    classes:'',
     error: 'This is a required field'
 }
 
