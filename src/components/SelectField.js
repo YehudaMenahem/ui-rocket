@@ -2,56 +2,13 @@ import React, { useState, useEffect, createRef } from 'react';
 
 
 const SelectField = (props) => {
-
-    const [label,setLabel] = useState(props.label);
-    const [id,setId] = useState(props.id);
-    const [name,setName] = useState(props.name);
-    const [classes,setClasses] = useState(props.classes);
-    const [disabled,setDisabled] = useState(props.disabled);
-    const [multiple,setMultiple] = useState(props.multiple);
-    const [required,setRequired] = useState(props.required);
-    const [options,setOptions] = useState(props.options);
-    const [desktop,setDesktop] = useState(true);
-    const [selectOption,setSelectOption] = useState('');
-    const [isOpen,setIsOpen] = useState(false);
-
+    const {label, id, name, classes, disabled, multiple, required} = props
+    const [desktop, setDesktop] = useState()
+    const [options, setOptions] = useState(props.options)
+    const [selectOption, setSelectOption] = useState(props.selectOption)
+    const [isOpen, setIsOpen] = useState(props.isOpen)
     const selectMobileRef = createRef(); 
     const liRef = createRef(); 
-
-    useEffect(() => { 
-        let label = props.label;
-        setLabel(label,label);
-    },[props.label])
-
-    useEffect(() => { 
-        let id = props.id;
-        setId(id,id);
-    },[props.id])
-
-    useEffect(() => { 
-        let name = props.name;
-        setName(name,name);
-    },[props.name])
-
-    useEffect(() => { 
-        let classes = props.classes;
-        setClasses(classes,classes);
-    },[props.classes])
-
-    useEffect(() => { 
-        let disabled = props.disabled;
-        setDisabled(disabled,disabled);
-    },[props.disabled])
-
-    useEffect(() => { 
-        let multiple = props.multiple;
-        setMultiple(multiple,multiple);
-    },[props.multiple])
-
-    useEffect(() => { 
-        let required = props.required;
-        setRequired(required,required);
-    },[props.required])
 
     useEffect(() => { 
         let options = props.options;
@@ -67,9 +24,6 @@ const SelectField = (props) => {
         //set desktop property accordingly 
         setDesktop(desktop,checkDesktop);
     },[desktop])
-
-
-    
 
     const choseOption = (e) =>{
         let selectedOption = e.target;
@@ -120,7 +74,7 @@ const SelectField = (props) => {
                         <span className="label">{label}</span>
                         <span className="selected">{selectOption}</span>
                         <i className={"icon toggle-icon"}>
-                            <svg id="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 12" style={{enableBackground:"new 0 0 20 12"}}><path className="path" d="M18.2,1.9L10,10.1L1.8,1.9"/></svg>
+                            <svg id="arrow" viewBox="0 0 20 12" style={{enableBackground:"new 0 0 20 12"}}><path className="path" d="M18.2,1.9L10,10.1L1.8,1.9"/></svg>
                         </i>
                         <ul className={`dropdown`}>
                             {options.map((key,index) => {
@@ -155,5 +109,11 @@ const SelectField = (props) => {
     );
 }   
 
+SelectField.defaultProps = {
+    disabled: false,
+    required: false,
+    desktop: true,
+    multiple: false,
+}
 
 export default SelectField;

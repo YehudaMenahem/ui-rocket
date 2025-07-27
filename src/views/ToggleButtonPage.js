@@ -45,7 +45,8 @@ class ToggleButtonPage extends React.Component{
                             label={'Are you sure? (no pressure at all...)'} 
                             name="toggle" 
                             id="toggle"
-                            checked={this.state.toggleState}
+                            classes="classes"
+                            isChecked={this.state.toggleState}
                             change={this.onToggle}
                             labelPosition={this.state.toggleOptions.labelPosition}
                         />

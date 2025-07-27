@@ -14,5 +14,5 @@ import App from  './components/App';
 // Take the react component and show it on the screen
 ReactDOM.render(
 <Provider store={createStore(reducers)}>
-<App />
+    <App />
 </Provider>, document.querySelector('#root'));

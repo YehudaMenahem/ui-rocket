@@ -1,87 +1,29 @@
-import React,{ useState,useEffect } from 'react';
-
+import React,{ useState } from 'react';
+import PropTypes from 'prop-types'
 
 const ToggleButton = (props) => {
 
-    const [label,setLabel] = useState(props.label);
-    const [name,setName] = useState(props.name);
-    const [value,setValue] = useState(props.value);
-    const [classes,setClasses] = useState(props.classes);
-    const [id,setId] = useState(props.id);
-    const [isChecked,setIsChecked] = useState(props.checked);
-    const [disabled,setDisabled] = useState(props.disabled);
-    const [required,setRequired] = useState(props.required);
-    const [labelPosition,setLabelPosition] = useState(props.labelPosition);
+    const { label, name, change, classes, id, isChecked, disabled, required, labelPosition } = props
+    const [toggle, setToggle] = useState(isChecked);
 
-    useEffect(() =>{
-        let label = props.label ? props.label : '';
-        setLabel(label,label);
-    },[props.label])
-
-    useEffect(() =>{
-        let name = props.name ? props.name : '';
-        setName(name,name);
-    },[props.name])
-
-    useEffect(() =>{
-        let value = props.value ? props.value : '';
-        setValue(value,value);
-    },[props.value])
-
-    useEffect(() =>{
-        let classes = props.classes ? props.classes : '';
-        setClasses(classes,classes);
-    },[props.classes])
-
-    useEffect(() =>{
-        let id = props.id;
-        setId(id,id);
-    },[props.id])
-
-    useEffect(() =>{
-        let name = props.name ? props.name : '';
-        setName(name,name);
-    },[props.name])
-
-    useEffect(() =>{
-        let isChecked = props.checked ? props.checked : false;
-        setIsChecked(isChecked,isChecked);
-    },[props.checked])
-
-    useEffect(() =>{
-        let disabled = props.disabled ? props.disabled : false;
-        setDisabled(disabled,disabled);
-    },[props.disabled])
-
-    useEffect(() =>{
-        let required = props.required ? props.required : false;
-        setRequired(required,required);
-    },[props.required])
-
-    useEffect(() =>{
-        let labelPosition = props.labelPosition ? props.labelPosition : 'default';
-        setLabelPosition(labelPosition,labelPosition);
-    },[props.labelPosition])
-
-    const handleChange = (e) => {
-        setIsChecked(isChecked, e.target.checked);
-        if(props.change){
-            let checked = e.target.checked;
-            props.change(checked)
+    const handleChange = () => {
+        setToggle(!toggle);
+        if(change){
+            let checked = !toggle;
+            change(checked)
         }
     }
     
     return(
         <label 
-            className={`toggle-button ${classes} ${labelPosition} ${isChecked ? 'checked' : ''}`}>
+            className={`toggle-button ${classes} ${labelPosition} ${toggle ? 'checked' : 'unchecked'}`}>
             <span className={`label`}>{label}</span>
             <span className="switch">
                 <input 
                     type="checkbox" 
                     id={id}
                     name={name} 
-                    value={value}
-                    defaultChecked={isChecked} 
+                    defaultChecked={toggle} 
                     onChange={handleChange} 
                     required={required} 
                     disabled={disabled}/>
@@ -93,5 +35,25 @@ const ToggleButton = (props) => {
 
 }
 
+ToggleButton.propTypes = {
+    label: PropTypes.string, 
+    name: PropTypes.string, 
+    change: PropTypes.func, 
+    classes: PropTypes.string, 
+    id: PropTypes.string, 
+    isChecked: PropTypes.bool, 
+    disabled: PropTypes.bool, 
+    required: PropTypes.bool, 
+    labelPosition: PropTypes.string,
+}
+
+ToggleButton.defaultProps = {
+    isChecked: false, 
+    disabled: false, 
+    required: false, 
+    labelPosition: 'label-from-left',
+}
+
 export default ToggleButton;
+
 

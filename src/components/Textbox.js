@@ -50,17 +50,6 @@ class Textbox extends React.Component  {
         if(this.props.change){
             this.props.change(e.target.value)
         }
-
-        // if(e.target.value.replace(/\s/g, '') === ''){
-        //     this.setState({
-        //         showError: true
-        //     })
-        // } else {
-        //     this.setState({
-        //         showError: false
-        //     })
-        // }
-        
     }
 
     render(){

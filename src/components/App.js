@@ -1,5 +1,5 @@
 // Import the React and ReactDOM libraries
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 //redux
@@ -15,7 +15,6 @@ import CheckboxPage from './../views/CheckboxPage';
 import InputFieldPage from './../views/InputFieldPage';
 import SelectFieldPage from './../views/SelectFieldPage';
 import ImgPage from './../views/ImgPage';
-import FormPage from './../views/FormPage';
 import TextboxPage from './../views/TextboxPage';
 import ModalPage from './../views/ModalPage';
 import TabsPage from './../views/TabsPage';
@@ -29,10 +28,10 @@ import Img from './Img';
 import Icon from './Icon';
 import Toaster from './Toaster';
 import ToggleButton from './ToggleButton';
+import ErrorBoundary from './ErrorBoundary'
 
-//Import styles
-//imported from scss in index.js file
-
+//dynamic import (lazy loading)
+const DynamicFormPage = lazy(()=>import('./../views/FormPage'))
 
 // Create a react component
 class App extends React.Component  {
@@ -137,7 +136,7 @@ class App extends React.Component  {
                     show={this.props.modalSettings.showModal} 
                     closeModal={this.closeModal} 
                     modalTitle={this.props.modalSettings.headerTitle}
-                    heroImage={require('./../assets/images/forgot_password.svg')}
+                    heroImage={this.props.modalSettings.heroImage}
                     >
                     <div className="row">
                         <div className="col-1">
@@ -155,14 +154,17 @@ class App extends React.Component  {
                     title={this.props.toasterSettings.title}
                     position={this.props.toasterSettings.position}
                     runningText={this.props.toasterSettings.runningText}
-                    // type={"success"}
-                    // title={"Bon appetit"}
-                    // position={"top-right"}
-                    // runningText={"Your toast is ready"}
                 />
 
                 <div className="home-page">  
-                        <ToggleButton classes={'toggle-theme'} label="Mode: Light/Dark" name="theme" id="theme" checked={this.state.darkTheme} change={(e) => this.changeTheme(e)} />
+                        <ToggleButton 
+                            classes={'toggle-theme'} 
+                            label="Mode: Light/Dark" 
+                            name="theme" 
+                            id="theme" 
+                            isChecked={this.state.darkTheme} 
+                            change={(e) => this.changeTheme(e)} 
+                        />
 
                     {
                         (this.state.openerState)
@@ -199,7 +201,13 @@ class App extends React.Component  {
                         <Route path="/InputFieldPage" component={InputFieldPage}></Route>
                         <Route path="/SelectFieldPage" component={SelectFieldPage}></Route>
                         <Route path="/ImgPage" component={ImgPage}></Route>
-                        <Route path="/FormPage" component={FormPage}></Route>
+                        <ErrorBoundary>
+                            <Suspense fallback={<h2>Loading...</h2>}>
+                                <Route path="/FormPage" 
+                                        component={DynamicFormPage}>    
+                                </Route>
+                            </Suspense>
+                        </ErrorBoundary>
                         <Route path="/TextboxPage" component={TextboxPage}></Route>
                         <Route path="/TabsPage" component={TabsPage}></Route>
                         <Route path="/ModalPage" component={ModalPage}></Route>

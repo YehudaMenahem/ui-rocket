@@ -1,66 +1,13 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 
 
 const Checkbox = (props) => {
 
-    const [label,setLabel] = useState(props.label);
-    const [name,setName] = useState(props.name);
-    const [value,setValue] = useState(props.value);
-    const [classes,setClasses] = useState(props.classes);
-    const [id,setId] = useState(props.id);
-    const [isChecked,setIsChecked] = useState(props.checked);
-    const [disabled,setDisabled] = useState(props.disabled);
-    const [required,setRequired] = useState(props.required);
-    const [iconType,setIconType] = useState(props.iconType);
-
-    useEffect(() =>{
-        let label = props.label ?  props.label : '';
-        setLabel(label,label);
-    },[props.label]);
-
-    useEffect(() =>{
-        let name = props.name ? props.name : '';
-        setName(name,name);
-    },[props.name]);
-
-    useEffect(() =>{
-        let value = props.value ? props.value : false;
-        setValue(value,value);
-    },[props.value]);
-
-    useEffect(() =>{
-        let classes = props.classes ? props.classes : '';
-        setClasses(classes,classes);
-    },[props.classes]);
-
-    useEffect(() =>{
-        let id = props.id;
-        setId(id,id);
-    },[props.id]);
-
-    useEffect(() =>{
-        let isChecked = props.checked ? props.checked : false;
-        setIsChecked(isChecked,isChecked);
-    },[props.checked]);
-
-    useEffect(() =>{
-        let disabled = props.disabled ? props.disabled : false;
-        setDisabled(disabled,disabled);
-    },[props.disabled]);
-
-    useEffect(() =>{
-        let required = props.required ? props.required : false;
-        setRequired(required,required);
-    },[props.required]);
-
-    useEffect(() =>{
-        let iconType = props.iconType ? props.iconType : false;
-        setIconType(iconType,iconType);
-    },[props.iconType]);
+    const {label, name, value, classes, id, checked, disabled, required, iconType, change} = props
 
     const handleChange = (event) => {
-        if(props.change && event.target){
-            props.change(event.target);
+        if(change && event.target){
+            change(event.target);
         }
     };
 
@@ -90,11 +37,11 @@ const Checkbox = (props) => {
                     id={id}
                     name={name} 
                     value={value}
-                    defaultChecked={isChecked} 
+                    defaultChecked={checked} 
                     onChange={handleChange} 
                     required={required} 
                     disabled={disabled}/>
-                    <span className={`icon`}>
+                    <span className="icon">
                         {renderIcon()}
                     </span>
             </div>

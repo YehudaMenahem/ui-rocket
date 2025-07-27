@@ -21,11 +21,11 @@ class ModalPage extends React.Component{
     }
 
     openModal = (e) =>{
-        // debugger;
         this.props.setModal({
             showModal:true,
             headerTitle:'Forgot your password?',
             contentTitle:'Forgot Password?',
+            heroImage: require('./../assets/images/forgot_password.svg'),
             contentRunningText:`Don't worry, it happens. 
             We will send you a reminder right away.`
         });

@@ -54,7 +54,7 @@
         .circle{
             /* Tooltip text */
             .tooltiptext {
-                animation: longBlink 4s forwards;
+                animation: longBlink 2s forwards;
             }
         }
     }
@@ -533,7 +533,7 @@ code {
 /*** Gap sizes mobile ***/
 /************/
 
-@media screen and(max-width: 500px){
+@media screen and (max-width: 500px){
 
 
     /* margin */

@@ -1,54 +1,13 @@
-import React,{ useState,useEffect } from 'react';
-
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const RadioButton = (props) => {
 
-    const [name,setName] = useState(props.name);
-    const [val,setVal] = useState(props.val);
-    const [id,setId] = useState(props.id);
-    const [classes,setClasses] = useState(props.classes);
-    const [label,setLabel] = useState(props.label);
-    const [disabled,setDisabled] = useState(props.disabled);
-    const [isSelected,setIsSelected] = useState(props.isSelected);
-
-    useEffect(()=> {
-        let name = props.name || '';
-        setName(name,name);
-    },[props.name])
-
-    useEffect(()=> {
-        let val = props.val || '';
-        setVal(val,val);
-    },[props.val])
-
-    useEffect(()=> {
-        let id = props.id;
-        setId(id,id);
-    },[props.id])
-
-    useEffect(()=> {
-        let classes = props.classes;
-        setClasses(classes,classes);
-    },[props.classes])
-
-    useEffect(()=> {
-        let label = props.label;
-        setLabel(label,label);
-    },[props.label])
-
-    useEffect(()=> {
-        let disabled = props.disabled;
-        setDisabled(disabled,disabled);
-    },[props.disabled])
-
-    useEffect(()=> {
-        let isSelected = props.isSelected ? props.isSelected : false;
-        setIsSelected(isSelected,isSelected);
-    },[props.isSelected])
+    const { name, val, id, classes, label, disabled, isSelected } = props
 
     const change = (e) =>{
         if(props.change){
-            props.change(e);
+            props.change(e)
         }
     }
 
@@ -56,7 +15,7 @@ const RadioButton = (props) => {
         <label htmlFor={id} className={`radio-button ${classes} ${isSelected ? "selected" : ""}`}>
             <span className="radio">
                 <input 
-                    type={"radio"} 
+                    type="radio" 
                     id={id} 
                     name={name} 
                     value={val} 
@@ -75,7 +34,22 @@ const RadioButton = (props) => {
                 </span>
             </span>
         </label>
-    );
+    )
+}
+
+RadioButton.propTypes = {
+    name: PropTypes.string, 
+    val: PropTypes.string, 
+    id: PropTypes.string, 
+    classes: PropTypes.string, 
+    label: PropTypes.string, 
+    disabled: PropTypes.bool, 
+    isSelected: PropTypes.bool,
+}
+
+RadioButton.defaultProps = {
+    disabled: false, 
+    isSelected: false,
 }
 
 export default RadioButton;

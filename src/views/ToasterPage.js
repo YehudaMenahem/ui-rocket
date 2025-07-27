@@ -44,8 +44,10 @@ class ToasterPage extends React.Component{
     renderView = () =>{
         return (
             <Button 
-                label={'make me a toast'} 
+                label="make me a toast" 
                 click={(e) => {this.openToaster(true)}}
+                styleBtn="solid"
+                size="medium"
             />
         )
     }
@@ -57,7 +59,6 @@ class ToasterPage extends React.Component{
         document.execCommand('copy');
     }          
 
-    //view
     render(){
         return (
             <div className="ui container toaster-page">
