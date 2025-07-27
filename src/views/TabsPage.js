@@ -57,7 +57,7 @@ class TabsPage extends React.Component{
                         <h2>Component props</h2>
                         <p><span className="bold prop">tabs:</span> the names of the tabs | array </p>
                         <p><span className="bold prop">activeTabs:</span> the index number of the tabs(from the arrat) that should be active on load | number</p>
-                        <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                        <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                         <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                     </div>
                 </div>

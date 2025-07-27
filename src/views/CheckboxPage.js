@@ -167,7 +167,7 @@ class CheckboxPage extends React.Component{
                             <p><span className="bold prop">label:</span> The text that will be written aside the radio button | string</p>
                             <p><span className="bold prop">name:</span> This value is for checkbox value for submit | string </p>
                             <p><span className="bold prop">value:</span> The value that will be transfer as the user selection when click on this option | string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">isChecked:</span> Set the radio button state - chosen ir not | boolean</p>
                             <p><span className="bold prop">disabled:</span> Option of disable the radio button | boolean</p>
