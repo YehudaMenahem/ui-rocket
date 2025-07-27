@@ -95,7 +95,7 @@ class ToasterPage extends React.Component{
                             {/* props options */}
                             <h2>Component props </h2>
                             <p><span className="bold prop">type:</span> The type of the toaster notice - success,error,info,warning | string</p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">id:</span> Special id for element cathing with js | string </p>
                             <p><span className="bold prop">position:</span> The corner which in it the toaster will pop | string</p>
                             <p><span className="bold prop">title:</span> The title of the toaster | string</p>

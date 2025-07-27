@@ -174,7 +174,7 @@ class RadioPage extends React.Component{
                             <p><span className="bold prop">name:</span> This value is for all the radio buttons belongs to the same group | string </p>
                             <p><span className="bold prop">val:</span> The value that will be transfer as the user selection when click on this option | string </p>
                             <p><span className="bold prop">id: </span>Special id for element cathing with js | string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">disabled:</span> Option of disable the button | boolean</p>
                             <p><span className="bold prop">isSelected:</span> Set the radio button state - chosen ir not | boolean</p>
                             <p><span className="bold prop">type:</span> Determine if the type of button will look as press button - pressButton | string </p>

@@ -160,7 +160,7 @@ class TextboxPage extends React.Component{
                             <p><span className="bold prop">rows:</span> Set the number of visual rows of the Textbox | number / string </p>
                             <p><span className="bold prop">cols:</span> Set the number of visual cols of the Textbox | number / string </p>
                             <p><span className="bold prop">maxlength:</span> Set the maximum characters that user can insert | number / string </p>
-                            <p><span className="bold prop">classes:</span> costum classes that can be added to the component | string </p>
+                            <p><span className="bold prop">classes:</span> custom classes that can be added to the component | string </p>
                             <p><span className="bold prop">placeholder: </span> A placeholder that will shown as default value in input. | string </p>
                             <p><span className="bold prop">error:</span> The error message that appears when there is an error | string </p>
                             <p><span className="bold prop">note:</span> The note that that appears to give a direction for user| string </p>                            
