@@ -13,14 +13,14 @@ class ToasterPage extends React.Component{
         tabs: ['toaster'],
         activeTab: 0,
         toasterStatus: false,
-        showToaster: this.props.showToaster,
+        showToaster: this.props.toasterSettings.showToaster,
     }
 
     //functions
     static getDerivedStateFromProps(props) {
         return {
-            toasterStatus:props.toasterStatus,
-            showToaster:props.showToaster
+            toasterStatus: props.toasterSettings.toasterStatus,
+            showToaster: props.toasterSettings.showToaster
         }
     }
 
@@ -153,7 +153,7 @@ class ToasterPage extends React.Component{
 }
 
 const mapStateToProps = (state) =>{
-    return {setToaster: state.setToaster}
+    return { toasterSettings: state.toasterSettings }
 }
 
 export default connect(mapStateToProps,{setToaster})(ToasterPage);
