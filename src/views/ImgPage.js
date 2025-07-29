@@ -6,7 +6,7 @@ import Tabs from './../components/Tabs'
 import Icon from './../components/Icon'
 
 //import services
-import axios from 'axios';
+import unsplash from '../api/unsplash';
 
 class ImgPage extends React.Component{
 
@@ -17,13 +17,10 @@ class ImgPage extends React.Component{
     }
 
     fetchData = async() => {
-        const res = await 
-        axios.get(`https://api.unsplash.com/search/photos`, {
+        const res = await
+        unsplash.get('/search/photos', {
             params:{
                 query: 'men'
-            },
-            headers:{
-                Authorization: `Client-ID 8FibsqpD0ez8M6KFoI2yDmrn2zxdiAMZeJaDtD_evgY`
             }
         });
 
