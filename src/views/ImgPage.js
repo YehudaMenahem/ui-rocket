@@ -1,5 +1,7 @@
 import React from 'react';
 
+import placeholderImg from '../assets/images/rocket.svg';
+
 //import components
 import Img from './../components/Img';
 import Tabs from './../components/Tabs'
@@ -16,18 +18,26 @@ class ImgPage extends React.Component{
         imageFromAjax: null
     }
 
-    fetchData = async() => {
-        const res = await
-        unsplash.get('/search/photos', {
-            params:{
-                query: 'men'
-            }
-        });
+    componentDidMount(){
+        this.fetchData();
+    }
 
-        this.setState({
-            imageFromAjax: res.data.results[0].urls.small
-        })
+    fetchData = async () => {
+        try {
+            const res = await unsplash.get('/search/photos', {
+                params: {
+                    query: 'men',
+                },
+            });
 
+            this.setState({
+                imageFromAjax: res.data.results[0].urls.small,
+            });
+        } catch (e) {
+            this.setState({
+                imageFromAjax: placeholderImg,
+            });
+        }
     }
 
     renderView(){
@@ -36,17 +46,17 @@ class ImgPage extends React.Component{
         switch(Number.parseInt(this.state.activeTab)){
 
             default: //case 0
-            view = 
+            view =
             <div className="row">
                 <div className="col-4">
-                    <Img 
-                        src={'https://source.unsplash.com/random'} 
-                        alt="unsplash random image" 
+                    <Img
+                        src={this.state.imageFromAjax || placeholderImg}
+                        alt="unsplash random image"
                         width="auto"
-                        height="200px"  
-                    />                
+                        height="200px"
+                    />
                 </div>
-            </div>  
+            </div>
         }
 
         return view;
