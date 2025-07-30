@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { setModal, setToaster } from './../actions';
 
 // Import routes components
-import Entrace from './../views/Entrace';
+import Entrance from './../views/Entrance';
 import IconPage from './../views/IconPage';
 import ButtonPage from './../views/ButtonPage';
 import RadioPage from './../views/RadioPage';
@@ -83,10 +83,10 @@ class App extends React.Component  {
         theme === 'dark' ? this.setState({darkTheme: true}) : this.setState({darkTheme: false});
         html.classList.add(theme);
 
-        //opener only appears on entrace page
+        // opener only appears on entrance page
         let location = window.location.href;
-        let onEntracePage = location.indexOf('Page') === -1 ? true : false;
-        if(onEntracePage){this.setState({openerState:true})};
+        let onEntrancePage = location.indexOf('Page') === -1 ? true : false;
+        if(onEntrancePage){this.setState({openerState:true})};
     }
 
     opener = () => {
@@ -188,9 +188,9 @@ class App extends React.Component  {
 
                     {/*Components explanations area*/}
                     <div className="components-info">
-                        <Route path="/" exact 
+                        <Route path="/" exact
                             render={(props) => (
-                                <Entrace {...props} theme={this.state.darkTheme}/>
+                                <Entrance {...props} theme={this.state.darkTheme}/>
                             )}
                         ></Route>
                         <Route path="/ButtonPage" component={ButtonPage}></Route>

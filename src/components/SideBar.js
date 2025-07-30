@@ -57,7 +57,7 @@ class SideBar extends React.Component{
                     </div>
                 </Link>
                 <ul className="components-list" ref={this.tabsList}>
-                    <li className="item active"><Link to="/" onClick={(e) => this.changeRoute(e)}>Entrace</Link></li>
+                    <li className="item active"><Link to="/" onClick={(e) => this.changeRoute(e)}>Entrance</Link></li>
                     <hr className={"separator-vertical"}></hr>
                     <li className="item"><Link to="/ButtonPage" onClick={(e) => this.changeRoute(e)}>Button</Link></li>
                     <li className="item"><Link to="/IconPage" onClick={(e) => this.changeRoute(e)}>Icon</Link></li>

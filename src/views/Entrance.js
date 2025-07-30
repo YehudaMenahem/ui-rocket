@@ -3,9 +3,9 @@ import React from 'react';
 //import components
 import Img from '../components/Img';
 
-const Entrace = (props) =>{
+const Entrance = (props) =>{
     return (
-        <div className="ui container entrace">
+        <div className="ui container entrance">
             <div className="grid">
 
                 <div className="row mr-b-md">
@@ -43,4 +43,4 @@ const Entrace = (props) =>{
     );
 };
 
-export default Entrace;
+export default Entrance;
