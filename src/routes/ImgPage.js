@@ -16,6 +16,10 @@ class ImgPage extends React.Component{
         imageFromAjax: null
     }
 
+    componentDidMount(){
+        this.fetchData();
+    }
+
     fetchData = async() => {
         const res = await
         unsplash.get('/search/photos', {
@@ -36,17 +40,17 @@ class ImgPage extends React.Component{
         switch(Number.parseInt(this.state.activeTab)){
 
             default: //case 0
-            view = 
+            view =
             <div className="row">
                 <div className="col-4">
-                    <Img 
-                        src={'https://source.unsplash.com/random'} 
-                        alt="unsplash random image" 
+                    <Img
+                        src={this.state.imageFromAjax || 'https://source.unsplash.com/random'}
+                        alt="unsplash random image"
                         width="auto"
-                        height="200px"  
-                    />                
+                        height="200px"
+                    />
                 </div>
-            </div>  
+            </div>
         }
 
         return view;
