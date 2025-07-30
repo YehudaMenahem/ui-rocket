@@ -1,8 +1,9 @@
+
 /**************/
-/** entrace */
+/** entrance */
 /**************/
 
-.entrace{
+.entrance{
     .main-img{
         position: absolute;
         right: 0;
@@ -48,7 +49,7 @@
 
 /* spesific break point */
 @media (max-width: 975px) and (min-width: 500px){
-    .entrace{
+    .entrance{
         .main-img{
             @include hide();
         }
@@ -61,7 +62,7 @@
 
 /* mobile */
 @media screen and (max-width: 500px){
-    .entrace{
+    .entrance{
         height: 100vh;
             
         .main-img{

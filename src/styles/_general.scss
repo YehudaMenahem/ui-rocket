@@ -3,7 +3,7 @@
 /********************/
 
 html{
-    height: auto;
+    height: 100%;
 
     &.no-scroll{
         overflow: hidden;
@@ -17,8 +17,13 @@ html{
 
 body{
     @include c($grayscale-level-1);
+    @include bg($grayscale-level-1);
+    height: 100%;
 
-
+    // dark mode
+    .dark & {
+        @include bg($grayscale-level-9);
+    }
 }
 
 
