@@ -1,6 +1,6 @@
 # Rocket UI
 
-This project is a small component library showcase built with [Create React App](https://github.com/facebook/create-react-app). You can explore various UI components such as buttons, inputs, modals and more. The demo pages live under `src/views` and show how each component works.
+This project is a small component library showcase built with [Create React App](https://github.com/facebook/create-react-app). You can explore various UI components such as buttons, inputs, modals and more. The demo pages live under `src/routes` and show how each component works.
 
 ## Project Structure
 
@@ -13,12 +13,12 @@ This project is a small component library showcase built with [Create React App]
   components          # Reusable React components (Button, Modal, etc.)
   reducers            # Redux reducers for modal and toaster settings
   styles              # SCSS sources and global styles
-  views               # Example pages demonstrating the components
+  routes               # Example pages demonstrating the components
 index.js              # Application entry point
 firebase.json         # Firebase hosting configuration
 ```
 
-`src/index.js` sets up the Redux store and renders the main `App` component. Routing is defined in `App.js` where each page under `src/views` is registered. Styling is handled with SCSS from `src/styles` and can be toggled between light and dark themes. An Unsplash helper in `src/api/unsplash.js` fetches demo images.
+`src/index.js` sets up the Redux store and renders the main `App` component. Routing is defined in `App.js` where each page under `src/routes` is registered. Styling is handled with SCSS from `src/styles` and can be toggled between light and dark themes. An Unsplash helper in `src/api/unsplash.js` fetches demo images.
 
 ## Available Scripts
 
@@ -46,7 +46,7 @@ Builds the app for production into the `build` folder. It correctly bundles Reac
 
 ## Next Steps
 
-1. Review the example pages in `src/views` to learn how each component is used.
+1. Review the example pages in `src/routes` to learn how each component is used.
 2. Explore the SCSS files under `src/styles` for variables and mixins.
 3. Add more components or integrate additional APIs to extend the demo.
 4. Consider adding more tests with Jest and React Testing Library.
