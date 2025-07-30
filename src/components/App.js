@@ -7,19 +7,19 @@ import { connect } from 'react-redux';
 import { setModal, setToaster } from './../actions';
 
 // Import routes components
-import Entrance from './../views/Entrance';
-import IconPage from './../views/IconPage';
-import ButtonPage from './../views/ButtonPage';
-import RadioPage from './../views/RadioPage';
-import CheckboxPage from './../views/CheckboxPage';
-import InputFieldPage from './../views/InputFieldPage';
-import SelectFieldPage from './../views/SelectFieldPage';
-import ImgPage from './../views/ImgPage';
-import TextboxPage from './../views/TextboxPage';
-import ModalPage from './../views/ModalPage';
-import TabsPage from './../views/TabsPage';
-import ToggleButtonPage from './../views/ToggleButtonPage';
-import ToasterPage from '../views/ToasterPage'; 
+import Entrance from './../routes/Entrance';
+import IconPage from './../routes/IconPage';
+import ButtonPage from './../routes/ButtonPage';
+import RadioPage from './../routes/RadioPage';
+import CheckboxPage from './../routes/CheckboxPage';
+import InputFieldPage from './../routes/InputFieldPage';
+import SelectFieldPage from './../routes/SelectFieldPage';
+import ImgPage from './../routes/ImgPage';
+import TextboxPage from './../routes/TextboxPage';
+import ModalPage from './../routes/ModalPage';
+import TabsPage from './../routes/TabsPage';
+import ToggleButtonPage from './../routes/ToggleButtonPage';
+import ToasterPage from '../routes/ToasterPage'; 
 
 // Import components
 import SideBar from './SideBar';
@@ -31,7 +31,7 @@ import ToggleButton from './ToggleButton';
 import ErrorBoundary from './ErrorBoundary'
 
 //dynamic import (lazy loading)
-const DynamicFormPage = lazy(()=>import('./../views/FormPage'))
+const DynamicFormPage = lazy(()=>import('./../routes/FormPage'))
 
 // Create a react component
 class App extends React.Component  {
