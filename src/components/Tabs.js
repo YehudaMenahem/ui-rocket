@@ -22,28 +22,7 @@ class Tabs extends React.Component{
         }
     }
 
-    clickTab(e){
-        let elem = e.target;
-        
-        //in case of clicking the li tag
-        if(elem.tagName.toLowerCase() === "li"){
-            elem = elem.querySelector('span');
-        }
-        
-        let button = elem.closest('button'); //getting to the button tag and not the span label
-        let li = button.parentElement; //button parent
-        let ul = li.parentElement; //holds all the button parent which we need to remove active class from
-        let index = button.getAttribute('index');
-        
-        //remove li active class
-        ul.childNodes.forEach(function(elem){
-            if(elem.classList.contains('active')){
-                elem.classList.remove('active')
-            }
-        })
-
-        li.classList.add('active');
-
+    clickTab(index){
         this.setState({
             activeTab: index
         });
@@ -58,12 +37,15 @@ class Tabs extends React.Component{
             <ul className={`tabs`} active-tab={this.state.activeTab}>
                 {this.state.tabs.map(function(name,index){
                     return (
-                        <li key={index} className={`tab` + (self.state.activeTab === index ? " active" : "")} onClick={(e)=>self.clickTab(e)}>
-                            <Button 
-                                styleBtn="text" 
-                                id={name.replace(" ","-").toLowerCase()} 
-                                index={index} 
-                                label={name} 
+                        <li
+                            key={index}
+                            className={`tab` + (self.state.activeTab === index ? " active" : "")}
+                            onClick={() => self.clickTab(index)}
+                        >
+                            <Button
+                                styleBtn="text"
+                                id={name.replace(" ","-").toLowerCase()}
+                                label={name}
                                 // click={e => e.preventDefault()}
                             ></Button>
                         </li>
