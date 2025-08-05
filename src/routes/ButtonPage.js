@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Profiler } from 'react';
+
  
 // Import components
 import Button from './../components/Button';
@@ -61,6 +62,12 @@ class ButtonPage extends React.Component{
                 <div className="grid">
                     <div className="row mr-b-xl">
                         <div className="col-1 mobile-col-1 btn-backTop">
+                            <Profiler
+                                id="Button"
+                                onRender={(id, phase, actualDuration) => {
+                                    console.log(`[Profiler] ${id} - rendered in phase: ${actualDuration}ms ${phase}`);
+                                }}
+                            >
                             <Button 
                                 label={'Rocket To Top'} 
                                 styleBtn="solid" 
@@ -68,6 +75,7 @@ class ButtonPage extends React.Component{
                                 scrollToTop={true}
                                 position={this.state.buttonBackToTopPosition}
                                 />
+                            </Profiler>
                         </div>
                     </div>
                 </div>
@@ -277,18 +285,6 @@ class ButtonPage extends React.Component{
                                 <textarea
                                     className={'snippet'}
                                     ref={(textarea) => this.textArea = textarea}
-                                    value={`
-<Button
-    type="solid"
-    label="My Button"
-    theme="primary"
-    classes="your-class"
-    click={this.onclick}
-    disabled={true}
-    loading={false} >
-    <Icon classes="icon-class"/>
-</Button>
-                                    `}
                                 readOnly={true}
                                 />
                                 <div className={"circle"}>
