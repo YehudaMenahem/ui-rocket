@@ -3,6 +3,7 @@ import React,{createRef} from 'react';
 //import components
 import Button from './Button';
 import Img from './Img';
+import forgotPassword from './../assets/images/forgot_password.svg';
 
 
 const Modal = (props) => {
@@ -24,7 +25,7 @@ const Modal = (props) => {
                     {heroImage
                         ?
                         <div className="header">
-                            <Img classes={"hero"} src={require('./../assets/images/forgot_password.svg')}></Img>
+                            <Img classes={"hero"} src={forgotPassword}></Img>
                             <i className="close-sign close icon" onClick={e => {closeModal(e)}}></i>
                         </div>
                         :
