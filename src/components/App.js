@@ -29,6 +29,7 @@ import Icon from './Icon';
 import Toaster from './Toaster';
 import ToggleButton from './ToggleButton';
 import ErrorBoundary from './ErrorBoundary'
+import rocket from './../assets/images/rocket.svg';
 
 //dynamic import (lazy loading)
 const DynamicFormPage = lazy(()=>import('./../routes/FormPage'))
@@ -93,7 +94,7 @@ class App extends React.Component  {
         let loaderJsx =  
             <div className="welcome-window">
                 <div className="top-half">
-                    <Img classes="rocket" src={require("./../assets/images/rocket.svg")} width='200px' height='200px'/>
+                    <Img classes="rocket" src={rocket} width='200px' height='200px'/>
                 </div>
                 <div className="bottom-half">
                     <h2 className="title">Rocket UI</h2>

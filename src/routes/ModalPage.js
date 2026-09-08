@@ -6,6 +6,7 @@ import { setModal } from './../actions';
 import Button from './../components/Button';
 import Tabs from './../components/Tabs';
 import Icon from './../components/Icon';
+import forgotPassword from './../assets/images/forgot_password.svg';
 
 
 
@@ -25,7 +26,7 @@ class ModalPage extends React.Component{
             showModal:true,
             headerTitle:'Forgot your password?',
             contentTitle:'Forgot Password?',
-            heroImage: require('./../assets/images/forgot_password.svg'),
+            heroImage: forgotPassword,
             contentRunningText:`Don't worry, it happens. 
             We will send you a reminder right away.`
         });

@@ -2,6 +2,8 @@ import React from 'react';
 
 //import components
 import Img from '../components/Img';
+import rocketDark from './../assets/images/rocket_BW_illustration_dark_mode.svg';
+import rocketLight from './../assets/images/rocket_BW_illustration.svg';
 
 const Entrance = (props) =>{
     return (
@@ -34,9 +36,9 @@ const Entrance = (props) =>{
 
             </div>
             {props.theme ?
-                <Img src={require('./../assets/images/rocket_BW_illustration_dark_mode.svg')} classes="main-img"></Img>
+                <Img src={rocketDark} classes="main-img"></Img>
                 :
-                <Img src={require('./../assets/images/rocket_BW_illustration.svg')} classes="main-img"></Img>
+                <Img src={rocketLight} classes="main-img"></Img>
 
             }
         </div>
