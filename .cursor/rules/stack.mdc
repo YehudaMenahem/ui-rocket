@@ -1,0 +1,22 @@
+---
+description: ui-rocket stack, package manager, and decisions already made
+alwaysApply: true
+---
+
+# Stack
+
+- React 16 — class and function components both exist. Do not convert classes to hooks unless asked.
+- Vite 6.4.3 (pinned via `package.json` `resolutions`). Do not reintroduce webpack/`react-scripts`, and do not bump Vite to 7+ without a Node upgrade.
+- Production `outDir` is `build/` (Firebase hosting). Do not switch it to `dist`.
+- SCSS (`sass`) for styling. No CSS-in-JS.
+- Classic Redux (not Toolkit) for modal/toast global state only. Do not replace with Context/Zustand unless asked.
+- React Router v5.
+- Yarn only — never `npm install` / `npm run`; use yarn equivalents.
+- Vitest (not Jest). `jest.fn()` works via `vitest.setup.js` aliasing `jest` to `vi`.
+- No `require()` for images; use ESM default imports (Vite has no `require()`).
+
+# Constraints
+
+- `.env` is gitignored; `.env.example` documents `VITE_UNSPLASH_KEY`. Never commit real `.env` values. Env vars use `import.meta.env.VITE_*`, not `process.env.REACT_APP_*`.
+- This project is plain JS. Do not add `.ts`/`.tsx` unless explicitly asked to start a TypeScript migration.
+- Out of scope unless requested: React 18, Router v6, Redux Toolkit, ESLint from scratch, deleting unused files such as `src/views/Entrance.js`.

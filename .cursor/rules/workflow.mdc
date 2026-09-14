@@ -1,0 +1,24 @@
+---
+description: How the agent should work, commit, and verify in ui-rocket
+alwaysApply: true
+---
+
+# Ways of working
+
+- Explain each terminal command in one sentence before running it.
+- Prefer small, targeted edits. Never rewrite a file wholesale when a patch will do.
+- Prefer small diffs; do not stop mid-task unless the user asked to pause.
+- Flag before running anything that rewrites git history, touches more than 5 files at once, or changes deployment/build config.
+
+# Commits
+
+- Keep Cursor's default Co-authored-by attribution trailer on commits.
+- Only commit when the user asks.
+
+# Verification
+
+After changes to build tooling or config, confirm:
+
+- `yarn start` (or `yarn dev`) runs
+- `yarn test --run` passes
+- `yarn build` completes and writes to `build/`
