@@ -1,0 +1,46 @@
+// Segfault Design System Index
+// This file uses @import internally to gather all styles,
+// then app.scss uses @use to include this file without deprecation warnings
+
+@import './tokens';
+@import './fonts';
+@import './colors';
+@import './units';
+@import './mixins';
+@import './general';
+@import './grid';
+@import './helpers';
+@import './animations';
+@import './typography';
+@import './main';
+
+// Components
+@import './components-styles/side-bar';
+@import './components-styles/button';
+@import './components-styles/checkbox';
+@import './components-styles/form';
+@import './components-styles/icon';
+@import './components-styles/input-field';
+@import './components-styles/modal';
+@import './components-styles/radio-button';
+@import './components-styles/select-field';
+@import './components-styles/tabs';
+@import './components-styles/textbox';
+@import './components-styles/toggle-button';
+@import './components-styles/toaster';
+@import './components-styles/dos-window';
+
+// Pages
+@import './pages-styles/home-page';
+@import './pages-styles/entrance';
+@import './pages-styles/not-found';
+@import './pages-styles/button-page';
+@import './pages-styles/icon-page';
+@import './pages-styles/checkbox-page';
+@import './pages-styles/toggle-button-page';
+@import './pages-styles/input-field-page';
+@import './pages-styles/radio-page';
+@import './pages-styles/textbox-page';
+@import './pages-styles/select-page';
+@import './pages-styles/form-page';
+@import './pages-styles/tabs-page';

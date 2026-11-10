@@ -1,50 +1,81 @@
-import { Img } from '@ui-rocket/rocket';
-import rocketDark from '../assets/images/rocket_BW_illustration_dark_mode.svg';
-import rocketLight from '../assets/images/rocket_BW_illustration.svg';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-interface EntranceProps {
-  theme: boolean;
-}
+export function Entrance() {
+  const navigate = useNavigate();
+  const [blinkCursor, setBlinkCursor] = useState(true);
 
-export function Entrance({ theme }: EntranceProps) {
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    if (!prefersReducedMotion) {
+      const interval = setInterval(() => {
+        setBlinkCursor((prev) => !prev);
+      }, 530);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
+  const handleStart = () => {
+    navigate('/ButtonPage');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleStart();
+    }
+  };
+
   return (
-    <div className="ui container entrace">
-      <div className="grid">
-        <div className="row mr-b-md">
-          <div className="col">
-            <h1 className="title">
-              Hey There <br /> & Welcome{' '}
-              <span role="img" className="wavemoji">
-                <span className="hey-sign" role="img" aria-label="hey sign">
-                  👋
-                </span>
-              </span>
-            </h1>
-          </div>
+    <div className="entrance-screen">
+      <div className="title-screen">
+        <div className="game-title">
+          <h1 className="title-main">UI ROCKET</h1>
+          <p className="title-subtitle">Component Library v1.0</p>
         </div>
 
-        <div className="row mr-b-md">
-          <div className="col-2 mobile-col-1">
-            <p className="line-break">
-              {`Ui Rocket is a components library project made with React.
-The components are functional components built with TypeScript.
-Every page presents a component and gives a brief interactive demonstration,
-props explanation and code snippet example.
-Ui Rocket is browser friendly and mobile friendly, has a theme mode at
-top which you can toggle by your preferences.
+        <div className="ascii-art">
+          <pre>{`
+    ╔═══════════════════════════════════╗
+    ║                                   ║
+    ║           /\\                      ║
+    ║          /  \\                     ║
+    ║         / /\\ \\                    ║
+    ║        / /  \\ \\                   ║
+    ║       /_/____\\_\\                  ║
+    ║      |  ROCKET  |                 ║
+    ║      |    UI    |                 ║
+    ║      |__________|                 ║
+    ║         |  |                      ║
+    ║        /|  |\\                     ║
+    ║       / |  | \\                    ║
+    ║         |  |                      ║
+    ║        /    \\                     ║
+    ║                                   ║
+    ╚═══════════════════════════════════╝
+          `}</pre>
+        </div>
 
-I really hope you'll enjoy my little project.
-Happy coding & Have a great and successful day
-Yehuda`}
-            </p>
-          </div>
+        <div className="start-prompt">
+          <button
+            className="start-button"
+            onClick={handleStart}
+            onKeyDown={handleKeyDown}
+            autoFocus
+          >
+            PRESS ANY KEY TO START
+            {blinkCursor && <span className="cursor">▮</span>}
+          </button>
+        </div>
+
+        <div className="credits">
+          <p>© 2026 SEGFAULT DESIGN SYSTEM</p>
+          <p className="version">BUILD 19901110</p>
         </div>
       </div>
-      {theme ? (
-        <Img src={rocketDark} classes="main-img" alt="Rocket Dark" />
-      ) : (
-        <Img src={rocketLight} classes="main-img" alt="Rocket Light" />
-      )}
     </div>
   );
 }

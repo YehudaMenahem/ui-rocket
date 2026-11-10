@@ -4,6 +4,7 @@ import { ToggleButton, Modal, Toaster } from '@ui-rocket/rocket';
 import { SideBar } from './components/SideBar';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Entrance } from './routes/Entrance';
+import { NotFound } from './routes/NotFound';
 import { ButtonPage } from './routes/ButtonPage';
 import { IconPage } from './routes/IconPage';
 import { RadioPage } from './routes/RadioPage';
@@ -159,7 +160,7 @@ export function App() {
 
         <div className="components-info">
           <Routes>
-            <Route path="/" element={<Entrance theme={darkTheme} />} />
+            <Route path="/" element={<Entrance />} />
             <Route path="/ButtonPage" element={<ButtonPage />} />
             <Route path="/IconPage" element={<IconPage />} />
             <Route path="/RadioPage" element={<RadioPage />} />
@@ -180,6 +181,7 @@ export function App() {
             <Route path="/TabsPage" element={<TabsPage />} />
             <Route path="/ModalPage" element={<ModalPage />} />
             <Route path="/ToasterPage" element={<ToasterPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </div>

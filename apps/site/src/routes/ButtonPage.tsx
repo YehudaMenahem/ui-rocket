@@ -9,6 +9,7 @@ import {
   ToggleButton,
   SelectField,
 } from '@ui-rocket/rocket';
+import { DOSWindow } from '../components/DOSWindow';
 
 export function ButtonPage() {
   const [activeTab, setActiveTab] = useState(0);
@@ -209,16 +210,17 @@ export function ButtonPage() {
 
   return (
     <div className="ui container button-page">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Buttons</h1>
+      <DOSWindow title="BUTTON.EXE">
+        <div className="grid">
+          <div className="row section">
+            <div className="col-1">
+              <h1>Buttons</h1>
+            </div>
+            <br />
+            <div className="col-1">
+              <p>Buttons allow users to take action with a single tap.</p>
+            </div>
           </div>
-          <br />
-          <div className="col-1">
-            <p>Buttons allow users to take action with a single tap.</p>
-          </div>
-        </div>
 
         <div className="row section">
           <div className="col-1 mr-b-lr">
@@ -261,7 +263,8 @@ export function ButtonPage() {
             </p>
           </div>
         </div>
-      </div>
+        </div>
+      </DOSWindow>
     </div>
   );
 }

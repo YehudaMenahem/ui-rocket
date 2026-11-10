@@ -1,75 +1,129 @@
+// Segfault Entrance Screen
+// DOS-style title screen with blinking cursor
 
-/**************/
-/** entrance */
-/**************/
-
-.entrance{
-    .main-img{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 50vw;
-        z-index: 0;
-    }
-
-    .sparkling-stars{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 50vw;
-        z-index: -1;  
-
-        #stars{
-            .star{
-                animation: sparkling .5s forwards;
-            }
-        }
-    }
-
-    .title{
-        .hey-sign{
-            @include fs(40px);
-            @include trans(rotate(0));
-            display: inline-block;
-            transform-origin: center center;
-            transition: transform .4s;
-        }
-
-        &:hover{
-            .hey-sign{
-                transform: rotate(55deg);
-            }
-        }
-    }
+.entrance-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--bg);
+  padding: var(--space-4);
+  color: var(--ink);
 }
 
-/*********/
-/* media query */
-/*********/
-
-/* spesific break point */
-@media (max-width: 975px) and (min-width: 500px){
-    .entrance{
-        .main-img{
-            @include hide();
-        }
-
-        .sparkling-stars{
-            @include hide();
-        }
-    }
+.title-screen {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
 }
 
-/* mobile */
-@media screen and (max-width: 500px){
-    .entrance{
-        height: 100vh;
-            
-        .main-img{
-            
-        }
+.game-title {
+  margin-bottom: var(--space-8);
 
-        .sparkling-stars{
-        }
+  .title-main {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1.1;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin: 0 0 var(--space-2) 0;
+    text-shadow: var(--space-1) var(--space-1) 0 var(--hard-shadow);
+
+    @media (max-width: 768px) {
+      font-size: 48px;
     }
+  }
+
+  .title-subtitle {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    color: var(--ink-muted);
+    margin: 0;
+    text-transform: uppercase;
+  }
+}
+
+.ascii-art {
+  margin: var(--space-8) 0;
+
+  pre {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--brand-text);
+    margin: 0;
+    overflow-x: auto;
+
+    @media (max-width: 768px) {
+      font-size: 10px;
+    }
+  }
+}
+
+.start-prompt {
+  margin: var(--space-8) 0;
+
+  .start-button {
+    background-color: transparent;
+    border: none;
+    font-family: var(--font-display);
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--highlight);
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: var(--space-4);
+    transition: none;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+    }
+
+    &:hover {
+      color: var(--brand);
+    }
+
+    &:focus-visible {
+      outline: var(--border-focus) dotted var(--focus);
+      outline-offset: var(--focus-offset);
+    }
+
+    .cursor {
+      display: inline-block;
+      margin-left: var(--space-2);
+      animation: blink 1.06s steps(1) infinite;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.credits {
+  margin-top: var(--space-12);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-body-sm);
+  color: var(--ink-muted);
+
+  p {
+    margin: var(--space-1) 0;
+  }
+
+  .version {
+    color: var(--line);
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
