@@ -1,20 +1,15 @@
-// Segfault Design System Index
-// This file uses @import internally to gather all styles,
-// then app.scss uses @use to include this file without deprecation warnings
+// Segfault Design System - Clean Index
+// Only Segfault tokens and components, no legacy styles
 
+// Core tokens
 @import './tokens';
 @import './fonts';
-@import './colors';
-@import './units';
-@import './mixins';
-@import './general';
-@import './grid';
-@import './helpers';
-@import './animations';
-@import './typography';
-@import './main';
 
-// Components
+// Base styles (rewritten for Segfault)
+@import './typography';
+@import './animations';
+
+// Components (Segfault styled)
 @import './components-styles/side-bar';
 @import './components-styles/button';
 @import './components-styles/checkbox';
@@ -30,17 +25,6 @@
 @import './components-styles/toaster';
 @import './components-styles/dos-window';
 
-// Pages
-@import './pages-styles/home-page';
+// Pages (Segfault styled)
 @import './pages-styles/entrance';
 @import './pages-styles/not-found';
-@import './pages-styles/button-page';
-@import './pages-styles/icon-page';
-@import './pages-styles/checkbox-page';
-@import './pages-styles/toggle-button-page';
-@import './pages-styles/input-field-page';
-@import './pages-styles/radio-page';
-@import './pages-styles/textbox-page';
-@import './pages-styles/select-page';
-@import './pages-styles/form-page';
-@import './pages-styles/tabs-page';
