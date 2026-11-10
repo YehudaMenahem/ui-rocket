@@ -1,0 +1,92 @@
+/************/
+/* textbox / textarea **/
+/************/
+
+.textbox {
+
+    .field{
+        @include flex(flex,initial,initial);
+        position: relative;
+        flex-direction: column;
+
+        .label {
+            position: absolute;
+            top: 10px;
+            left: 8px;
+            transition: font-size .3s, transform .3s;
+
+            //dark mode
+            .dark &{
+                @include c($grayscale-level-7);
+            }
+
+            .astrix{
+                @include fs(18px);
+                @include c($error);
+            }
+        }        
+
+        textarea{
+            @include pd-t(30px);
+            @include border(none);
+            @include bg($grayscale-level-2);
+            min-height: 90px;
+            max-width: 100%;
+            border-bottom: 1px solid var(--main-color);
+            text-indent: 7px;
+
+            &:focus{
+                outline: none;
+
+                +.label{
+                    @include trans(translateY(-5px));
+                    @include fs($fXxs);
+                }
+            }
+        }
+    }
+
+    &.placeholder{
+        .field{
+            textarea{
+                +.label{
+                    @include fs($fXxs);
+                }
+            }
+        }
+    }
+
+    &.with-value{
+        .field{
+            textarea{
+                +.label{
+                    @include fs($fXxs);
+                }
+            }
+        }
+    }
+
+    .helpers{
+        display: flex;
+
+        .error{
+            @include fs($fXxs);
+            @include c($error);
+        }
+
+        .note{
+            @include fs($fXxs);
+            @include c($mainColor);
+        }
+
+        .char-num{
+            @include fs($fXxs);
+            @include mr-l(auto);
+        }
+    }
+}
+
+
+/*********/
+/* media query */
+/*********/

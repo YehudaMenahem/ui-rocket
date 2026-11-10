@@ -1,0 +1,45 @@
+/****************/
+/* Sizes */
+/****************/
+
+$xs: 3px;
+$sm: 5px;
+$md: 10px;
+$lr: 15px;
+$xl: 25px;
+
+
+// font-sizes
+
+$fXxs: 12px;
+$fXs: 14px;
+$fSm: 16px;
+$fMd: 20px;
+$fLr: 28px;
+$fXl: 36px;
+$fXxl: 40px;
+
+
+.f-xs{
+    font-size: 14px
+}
+
+.f-sm{
+    font-size: 16px
+}
+
+.f-md{
+    font-size: 20px
+}
+
+.f-lr{
+    font-size: 28px
+}
+
+.f-xl{
+    font-size: 36px
+}
+
+.f-xxl{
+    font-size: 44px
+}
