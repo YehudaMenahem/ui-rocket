@@ -1,174 +1,166 @@
-/*******************/
-/* tabs */
-/*******************/
+// Segfault Toaster Component
+// DOS-style notifications with hard shadows
 
-.toaster{
-    @include flex(flex,initial,center);
-    @include pd(25px 25px 12px 12px);
-    @include radius(5px);
-    @include shadow(1px 1px 5px rgba(0,0,0,0.3));
-    position: fixed;
-    min-width: 280px;
-    max-width: 350px;
-    z-index: 1;
-    animation: notice-pop-in .3s forwards;
+.toaster {
+  position: fixed;
+  z-index: 200;
+  min-width: 300px;
+  max-width: 400px;
+  background-color: var(--surface);
+  border: var(--border-pixel) solid var(--line-strong);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-window);
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
 
-    &.close{
-        animation: notice-pop-out .3s forwards;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
+  &.close {
+    animation: slideOut 0.3s ease-in forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      display: none;
+    }
+  }
+
+  // Position variants
+  &.top-right {
+    top: var(--space-4);
+    right: var(--space-4);
+  }
+
+  &.top-left {
+    top: var(--space-4);
+    left: var(--space-4);
+  }
+
+  &.bottom-right {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+
+  &.bottom-left {
+    bottom: var(--space-4);
+    left: var(--space-4);
+  }
+
+  // Header with type indicator
+  .header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--surface-raised);
+    border-bottom: var(--border-pixel) solid var(--line-strong);
+    box-shadow: var(--shadow-bevel);
+
+    .type-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--radius-none);
+      flex-shrink: 0;
     }
 
-    .icon.close{
-        @include pointer();
-        position:absolute;
-        top:10px;
-        right:10px;
+    .title {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-label);
+      font-weight: var(--font-weight-label);
+      text-transform: uppercase;
+      color: var(--ink-on-gray);
+      margin: 0;
+      flex: 1;
     }
 
-    &.info{
-        @include bg($info);
+    .close-button {
+      background-color: transparent;
+      border: none;
+      color: var(--ink-on-gray);
+      font-family: var(--font-mono);
+      font-size: 20px;
+      line-height: 1;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+
+      &:hover {
+        color: var(--danger);
+      }
+
+      &:focus-visible {
+        outline: var(--border-focus) dotted var(--focus);
+        outline-offset: var(--focus-offset);
+      }
     }
+  }
 
-    // types
-    &.success{
-        @include bg($success);
+  .body {
+    padding: var(--space-4);
+    color: var(--ink);
+
+    p {
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body-sm);
+      line-height: var(--line-height-body-sm);
+      color: var(--ink-muted);
+      margin: 0;
     }
+  }
 
-    &.error{
-        @include bg($error);
-    }
+  // Type variants
+  &.info .header .type-indicator {
+    background-color: var(--brand);
+  }
 
-    &.warning{
-        @include bg($warning);
-    }
+  &.success .header .type-indicator {
+    background-color: var(--success);
+  }
 
+  &.warning .header .type-indicator {
+    background-color: var(--warning);
+  }
 
-
-    // positions
-    &.top-right{
-        top: 20px;
-        right: 20px;
-    }
-
-    &.top-left{
-        top: 20px;
-        left: 20px;
-    }
-
-    &.bottom-right{
-        bottom: 20px;
-        right: 20px;
-    }
-
-    &.bottom-left{
-        bottom: 20px;
-        left: 20px;
-    }
-
-
-    .icon-type{
-        @include pd-t(5px);
-        align-self: flex-start;
-
-        .icon{
-            @include c($grayscale-level-1);
-            @include fs($fLr);
-        }
-    }
-
-    .content{
-        @include pd(0);
-        @include bg(transparent);
-
-        //dark mode
-        .dark &{
-            @include border(none);
-        }
-        
-        .title{
-            @include mr-b(0);
-            @include c($grayscale-level-1);
-        }
-
-        .running-text{
-            @include c($grayscale-level-1);
-            @include fs($fXs);
-        }
-    }
+  &.error .header .type-indicator {
+    background-color: var(--danger);
+  }
 }
 
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .toaster{
-        min-width: 210px;
-
-        &.close{
-        }
-    
-        .icon.close{
-
-        }
-    
-        &.info{
-        }
-    
-        // types
-        &.success{
-        }
-    
-        &.error{
-        }
-    
-        &.warning{
-        }
-    
-    
-    
-        // positions
-        &.top-right{
-            top: 95px;
-        }
-    
-        &.top-left{
-            top: 95px;
-        }
-    
-        &.bottom-right{
-        }
-    
-        &.bottom-left{
-        }
-    
-    
-        .icon-type{
-    
-            .icon{
-            }
-        }
-    
-        .content{
-            
-            .title{
-            }
-    
-            .running-text{
-            }
-        }
-    }
+// Animations
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
-/*********/
-/* animations */
-/*********/
-
-@keyframes notice-pop-in{
-    from{opacity:0; transform:translateY(12px)}
-    to{opacity:1; transform:translateY(0)}
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
-@keyframes notice-pop-out{
-    from{opacity:1; transform:translateY(0)}
-    to{opacity:0; transform:translateY(12px)}
+// Media queries
+@media screen and (max-width: 500px) {
+  .toaster {
+    min-width: auto;
+    max-width: calc(100vw - var(--space-8));
+    left: var(--space-2) !important;
+    right: var(--space-2) !important;
+  }
 }

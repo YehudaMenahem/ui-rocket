@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd ../.. && pnpm install && pnpm --filter @ui-rocket/rocket build && pnpm --filter @ui-rocket/site build",
+  "installCommand": "echo 'Skipping default install, using buildCommand'",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

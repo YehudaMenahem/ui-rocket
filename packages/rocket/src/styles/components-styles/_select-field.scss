@@ -1,161 +1,66 @@
-/*********/
-/* select Field Component */
-/*********/
-   
-.select-wrapper{
-    .select{
-        @include pointer;
-        position: relative;
-        z-index: 1;
-        min-width: 150px;
-    
-        .field{
-            @include flex(flex,initial,initial);
-            @include pd-t(16px);
-            @include border(none);
-            @include bg($grayscale-level-2);
-            position: relative;
-            flex-direction: column;
-            height: 50px;
-            border-bottom: 1px solid var(--main-color);
-            text-indent: 7px;
-    
-            .label{
-                position: absolute;
-                transition: font-size .3s, transform .3s;
+// Segfault SelectField Component
+// DOS-style select dropdown
 
-                //dark mode
-                .dark & {
-                    @include c($grayscale-level-6);
-                }
-            }
-    
-            .selected{
-                position: relative;
-                top: 7px;
+.select-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
 
-                //dark mode
-                .dark &{
-                    @include c($grayscale-level-7);
-                }
-            }
-    
-            .toggle-icon{
-                @include flex(flex,initial,initial);
-                top: 50%;
-                @include trans(translateY(-50%));
-                width: 15px;
-                height: 12px;
-                right: 7px;
-    
-                &.icon{
-                    #arrow{ 
-                        width: 100%;
-                        height: 100%;
-                        transition: transform .3s;
-    
-                        .path{
-                            fill:none;
-                            stroke: $mainColor;
-                            stroke-width:2;
-                            stroke-linecap:round;
-                            stroke-linejoin:round;
-                            stroke-miterlimit:10;
-                        }
-                    }
-                }
-            }
-    
-            .dropdown{
-                @include bg($accentColor);
-                @include c($grayscale-level-1);
-                @include mr(0);
-                @include pd(15px 0);
-                @include pointer();
-                @include transition(transform .2s);
-                @include trans(scaleY(0));
-                position: absolute;
-                width: 100%;
-                top: calc(100% + 1px);
-                list-style-type: none;
-                transform-origin: top;
-    
-                .option{
-                    @include pd(10px 15px);
-                    @include transition(background .4s ease-in);
-    
-                    &:hover{
-                        @include bg($accentColorDark)
-                    }
-                }
-            }
-    
-            &.open{
-    
-                .toggle-icon{
-    
-                    &.icon{
-                        #arrow{ 
-                            transform: rotate(180deg);
-                            .path{
-    
-                            }
-                        }
-                    }
-                }
-    
-                .dropdown{
-                    @include trans(scaleY(1));
-                }
-            }
-    
-            &.with-value{
-                .label{
-                    @include fs($fXxs);
-                    @include trans(translate(1px, -10px));
-                }
-            } 
-    
-            &:focus{
-                outline: none
-            }   
-    
-            .toggle-icon{
-                position: absolute;
-                right: 0;
-                @include mr-r(12px);
-                @include fs($fMd);
-    
-                &.icon{
-                    &:before{
-                        @include db();
-                        @include transition(transform .2s);
-                        transform-origin: 50% 50%;
-                    }
-                }
-            }
-        }
+  .label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    text-transform: uppercase;
+    color: var(--ink);
+    display: block;
+  }
+
+  .select-wrapper {
+    position: relative;
+
+    select {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      padding-right: calc(var(--space-4) * 2);
+      border: var(--border-pixel) solid var(--line-strong);
+      border-radius: var(--radius-none);
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+      box-shadow: inset var(--border-pixel) var(--border-pixel) 0
+        rgba(0, 0, 0, 0.3);
+      appearance: none;
+      cursor: pointer;
+
+      &:focus {
+        outline: var(--border-focus) dotted var(--focus);
+        outline-offset: var(--focus-offset);
+        border-color: var(--brand);
+      }
+
+      &:disabled {
+        background-color: var(--line);
+        color: var(--ink-muted);
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
     }
-}
 
-
-/*********/
-/* media query */
-/*********/
-
-
-// special break point
-@media screen and (min-width: 550px) {
-    .select-wrapper .select-mobile{
-        @include hide();
+    .arrow {
+      position: absolute;
+      right: var(--space-3);
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--ink-muted);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid currentColor;
     }
+  }
 }
-
-@media screen and (max-width: 550px) {
-    .select-wrapper .select{ /* select desktop */
-        @include hidden();
-        height: 0;
-        width: 0;
-    }
-}
-

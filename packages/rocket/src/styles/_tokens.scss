@@ -1,0 +1,191 @@
+// Segfault Design Tokens
+// 16-color EGA palette with dark (default) and light (paper) themes
+
+:root {
+  // Dark theme (default)
+  --theme: 'dark';
+  
+  // Colors - Dark
+  --bg: #000000;
+  --surface: #0000aa;
+  --surface-raised: #aaaaaa;
+  --ink-on-gray: #000000;
+  --line: #555555;
+  --line-strong: #aaaaaa;
+  --ink: #ffffff;
+  --ink-muted: #aaaaaa;
+  --bevel-hi: #ffffff;
+  --bevel-lo: #555555;
+  --brand: #55ffff;
+  --brand-text: #55ffff;
+  --accent: #ff55ff;
+  --accent-text: #ff55ff;
+  --highlight: #ffff55;
+  --ega-blue: #0000aa;
+  --success: #55ff55;
+  --warning: #ffff55;
+  --danger: #ff8080;
+  --focus: #ffff55;
+  --hard-shadow: #555555;
+  
+  // Syntax highlighting - Dark
+  --syntax-keyword: #ff55ff;
+  --syntax-string: #ffff55;
+  --syntax-fn: #55ffff;
+  --syntax-comment: #aaaaaa;
+  
+  // Space (4px grid)
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  
+  // Border
+  --border-pixel: 4px;
+  --border-focus: 2px;
+  --focus-offset: 2px;
+  
+  // Radius
+  --radius-none: 0;
+  
+  // Shadows
+  --shadow-window: var(--space-2) var(--space-2) 0 var(--hard-shadow);
+  --shadow-bevel: 
+    inset var(--border-pixel) var(--border-pixel) 0 var(--bevel-hi),
+    inset calc(-1 * var(--border-pixel)) calc(-1 * var(--border-pixel)) 0 var(--bevel-lo);
+  --shadow-bevel-pressed:
+    inset var(--border-pixel) var(--border-pixel) 0 var(--bevel-lo),
+    inset calc(-1 * var(--border-pixel)) calc(-1 * var(--border-pixel)) 0 var(--bevel-hi);
+  
+  // Typography
+  --font-display: 'VT323', monospace;
+  --font-heading: 'Pixelify Sans', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Mono', monospace;
+  --font-mono: 'VT323', monospace;
+  
+  --font-size-display-xl: 48px;
+  --line-height-display-xl: 1.1;
+  --font-weight-display-xl: 400;
+  
+  --font-size-display: 24px;
+  --line-height-display: 1.25;
+  --font-weight-display: 400;
+  
+  --font-size-h1: 32px;
+  --line-height-h1: 40px;
+  --font-weight-h1: 700;
+  
+  --font-size-h2: 24px;
+  --line-height-h2: 32px;
+  --font-weight-h2: 600;
+  
+  --font-size-body: 15px;
+  --line-height-body: 24px;
+  --font-weight-body: 400;
+  
+  --font-size-body-sm: 13px;
+  --line-height-body-sm: 20px;
+  --font-weight-body-sm: 400;
+  
+  --font-size-label: 20px;
+  --line-height-label: 20px;
+  --font-weight-label: 400;
+  
+  --font-size-code: 20px;
+  --line-height-code: 24px;
+  --font-weight-code: 400;
+}
+
+// Light theme (paper)
+:root[data-theme='light'] {
+  --theme: 'light';
+  
+  // Colors - Light
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-raised: #aaaaaa;
+  --ink-on-gray: #000000;
+  --line: #aaaaaa;
+  --line-strong: #000000;
+  --ink: #000000;
+  --ink-muted: #555555;
+  --bevel-hi: #ffffff;
+  --bevel-lo: #555555;
+  --brand: #55ffff;
+  --brand-text: #006e6e;
+  --accent: #ff55ff;
+  --accent-text: #aa00aa;
+  --highlight: #ffff55;
+  --ega-blue: #0000aa;
+  --success: #007700;
+  --warning: #aa5500;
+  --danger: #aa0000;
+  --focus: #0000aa;
+  --hard-shadow: #000000;
+  
+  // Syntax highlighting - Light
+  --syntax-keyword: #aa00aa;
+  --syntax-string: #aa5500;
+  --syntax-fn: #0000aa;
+  --syntax-comment: #555555;
+}
+
+// Prefers color scheme support
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --theme: 'light';
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-raised: #aaaaaa;
+    --ink-on-gray: #000000;
+    --line: #aaaaaa;
+    --line-strong: #000000;
+    --ink: #000000;
+    --ink-muted: #555555;
+    --bevel-hi: #ffffff;
+    --bevel-lo: #555555;
+    --brand: #55ffff;
+    --brand-text: #006e6e;
+    --accent: #ff55ff;
+    --accent-text: #aa00aa;
+    --highlight: #ffff55;
+    --ega-blue: #0000aa;
+    --success: #007700;
+    --warning: #aa5500;
+    --danger: #aa0000;
+    --focus: #0000aa;
+    --hard-shadow: #000000;
+    --syntax-keyword: #aa00aa;
+    --syntax-string: #aa5500;
+    --syntax-fn: #0000aa;
+    --syntax-comment: #555555;
+  }
+}
+
+// Export tokens for TypeScript (optional, for type safety)
+:export {
+  bg: var(--bg);
+  surface: var(--surface);
+  surfaceRaised: var(--surface-raised);
+  inkOnGray: var(--ink-on-gray);
+  line: var(--line);
+  lineStrong: var(--line-strong);
+  ink: var(--ink);
+  inkMuted: var(--ink-muted);
+  bevelHi: var(--bevel-hi);
+  bevelLo: var(--bevel-lo);
+  brand: var(--brand);
+  brandText: var(--brand-text);
+  accent: var(--accent);
+  accentText: var(--accent-text);
+  highlight: var(--highlight);
+  egaBlue: var(--ega-blue);
+  success: var(--success);
+  warning: var(--warning);
+  danger: var(--danger);
+  focus: var(--focus);
+  hardShadow: var(--hard-shadow);
+}

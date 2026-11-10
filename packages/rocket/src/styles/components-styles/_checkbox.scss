@@ -1,80 +1,113 @@
-/**********************/
-/* checkbox component */
-/**********************/
+// Segfault Checkbox Component
+// DOS-style checkbox with pixel-perfect check icon
 
-.checkbox{
-    @include flex(inline-flex,initial,initial);
-    @include pointer();
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
 
-    + .checkbox{
-        @include mr-l(10px);
-    }
+  + .checkbox {
+    margin-left: var(--space-4);
+  }
 
-    .checkmark{
-        @include flex(flex,initial,initial);
-        position: relative; 
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--main-color);
-        @include radius(3px);
-        @include mr-r($xs);
+  .checkmark {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border: var(--border-pixel) solid var(--line-strong);
+    border-radius: var(--radius-none);
+    background-color: var(--bg);
+    box-shadow: inset var(--border-pixel) var(--border-pixel) 0
+      rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
 
-        .icon{
-            #check-sign{
-                width: 16px;
-                height: 16px;
-        
-                .check{
-                    @include fill($mainColor);
-                    transform-origin: center center;
-                    @include transition(transform 0.2s);
-                    @include trans(scale(0));
-                }
-            }
+    input {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      margin: 0;
+
+      &:checked + .icon {
+        #check-sign {
+          .check {
+            transform: scale(1);
+            fill: var(--brand);
+          }
         }
+      }
 
-        input{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            @include pointer();
-
-            &[checked]{
-                +.icon{
-                    #check-sign{
-                        .check{
-                            @include trans(scale(0.9));
-                            @include fill($mainColor);
-                        }
-                    }
-                }
-            }
+      &:focus-visible {
+        + .icon {
+          outline: var(--border-focus) dotted var(--focus);
+          outline-offset: var(--focus-offset);
         }
-    }
+      }
 
-    &.disabled{
+      &:disabled {
         cursor: not-allowed;
-        .checkmark{
-            border-color: var(--grayscale-500);
 
-            input{
-                &[disabled]{
-                    cursor: not-allowed;
-                    +.icon{
-                        #check-sign{
-                            .check{
-                                @include fill($grayscale-level-5);
-                            }
-                        }
-                    }
-                }
+        + .icon {
+          opacity: 0.5;
+
+          #check-sign {
+            .check {
+              fill: var(--ink-muted);
             }
+          }
         }
+      }
     }
+
+    .icon {
+      position: relative;
+      pointer-events: none;
+
+      #check-sign {
+        width: 16px;
+        height: 16px;
+
+        .check {
+          fill: var(--brand);
+          transform: scale(0);
+          transform-origin: center center;
+          transition: transform 0.15s ease-out;
+
+          @media (prefers-reduced-motion: reduce) {
+            transition: none;
+          }
+        }
+      }
+    }
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    color: var(--ink);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .checkmark {
+      border-color: var(--line);
+      background-color: var(--line);
+
+      input {
+        cursor: not-allowed;
+      }
+    }
+
+    .label {
+      color: var(--ink-muted);
+    }
+  }
 }
-
-/*********/
-/* media query */
-/*********/
-

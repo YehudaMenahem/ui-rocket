@@ -1,42 +1,89 @@
-/******************/
-/*** Typography ***/
-/******************/
+// Segfault Typography
+// DOS-era fonts with proper hierarchy
 
-/* import fonts from google fonts */
-@import url(https://fonts.googleapis.com/css?family=Rajdhani:Bold700,Medium500,Regular400,Light300);
-@import url(https://fonts.googleapis.com/css?family=Kanit:Thin100,Extra-light200,Medium500,Semi-bold600);
-
-
-/* font size */
-
-.f-xxs{
-    @include fs(12px);
+// Base typography
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  color: var(--ink);
+  background-color: var(--bg);
 }
 
-.f-xs{
-    @include fs(14px);
+// Display text (pixel fonts at specific sizes for crispness)
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display-xl);
+  line-height: var(--line-height-display-xl);
+  font-weight: var(--font-weight-display-xl);
+  text-transform: uppercase;
 }
 
-.f-sm{
-    @include fs(16px);
+.display {
+  font-family: var(--font-display);
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-display);
+  font-weight: var(--font-weight-display);
+  text-transform: uppercase;
 }
 
-.f-md{
-    @include fs(20px);
+// Headings
+h1, .h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-h1);
+  margin: 0;
 }
 
-.f-lr{
-    @include fs(28px);
+h2, .h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-h2);
+  margin: 0;
 }
 
-.f-xl{
-    @include fs(36px);
+// Body text
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
 }
 
-.f-xxl{
-    @include fs(44px);
+.body-sm {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  font-weight: var(--font-weight-body-sm);
 }
 
+// Labels (uppercase, pixel font)
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+}
 
+// Code
+code, pre, .code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-code);
+  line-height: var(--line-height-code);
+  font-weight: var(--font-weight-code);
+}
+
+// Legacy utility classes (mapped to new system)
+.f-xxs { font-size: 12px; }
+.f-xs { font-size: 14px; }
+.f-sm { font-size: var(--font-size-body); }
+.f-md { font-size: var(--font-size-label); }
+.f-lr { font-size: 28px; }
+.f-xl { font-size: var(--font-size-h1); }
+.f-xxl { font-size: 44px; }
 
 

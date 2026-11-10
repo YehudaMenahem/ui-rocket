@@ -1,62 +1,55 @@
-/*******************/
-/* tabs */
-/*******************/
+// Segfault Tabs Component
+// DOS-style tabbed navigation
 
-.tabs{
-    @include flex(flex,initial,initial);
-    @include mr(0);
-    @include pd(0);
-    @include bg($grayscale-level-1);
-    list-style: none;
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 
-    .tab{
-        position: relative;
-        @include pd(15px);
-        @include trans(border .3s);
-        @include pointer();
-        border-bottom: 2px solid transparent;
+  .tab-list {
+    display: flex;
+    gap: 0;
+    border-bottom: var(--border-pixel) solid var(--line-strong);
+    background-color: var(--bg);
 
-        .button{
-            @include mr-b(0);
-            @include pointer();
+    .tab {
+      padding: var(--space-3) var(--space-4);
+      background-color: var(--bg);
+      border: var(--border-pixel) solid var(--line-strong);
+      border-bottom: none;
+      border-radius: var(--radius-none);
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-label);
+      font-weight: var(--font-weight-label);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: none;
+      margin-bottom: calc(-1 * var(--border-pixel));
 
-            &.text{
-                .label{
-                    @include c($accentColor);
-                }
-            }
-        }   
+      &:hover:not(.active) {
+        background-color: var(--surface);
+      }
 
-        &:before{
-            @include bg(none repeat scroll 0 0 transparent);
-            @include db();
-            @include bg($accentColor);
-            top: 0;
-            content: "";
-            height: 2px;
-            position: absolute;
-            transition: width 0.3s ease 0s, left 0.3s ease 0s;
-            left: 50%;
-            width: 0;
-        }
+      &.active {
+        background-color: var(--surface);
+        color: var(--ink);
+        border-bottom-color: var(--surface);
+        box-shadow: var(--shadow-bevel);
+      }
 
-        &.active{
-            &:before{
-                left: 0;
-                width: 100%;
-            }
-        }
+      &:focus-visible {
+        outline: var(--border-focus) dotted var(--focus);
+        outline-offset: var(--focus-offset);
+      }
     }
-}
+  }
 
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .tabs{    
-        .tab{
-            flex: 1;
-        }
-    }
+  .tab-content {
+    padding: var(--space-6);
+    background-color: var(--surface);
+    border: var(--border-pixel) solid var(--line-strong);
+    border-top: none;
+    color: var(--ink);
+  }
 }

@@ -1,7 +1,62 @@
-/*********/
-/* icons */
-/*********/
+// Segfault Icon Component
+// DOS-style icons
 
-/*********/
-/* media query */
-/*********/
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    font-size: inherit;
+    color: currentColor;
+
+    &::before {
+      color: currentColor;
+    }
+  }
+}
+
+// Size variants
+.icon-sm {
+  font-size: var(--font-size-body-sm);
+}
+
+.icon-md {
+  font-size: var(--font-size-body);
+}
+
+.icon-lg {
+  font-size: var(--font-size-h2);
+}
+
+.icon-xl {
+  font-size: var(--font-size-h1);
+}
+
+// Color variants
+.icon-brand {
+  color: var(--brand-text);
+}
+
+.icon-accent {
+  color: var(--accent-text);
+}
+
+.icon-success {
+  color: var(--success);
+}
+
+.icon-warning {
+  color: var(--warning);
+}
+
+.icon-danger {
+  color: var(--danger);
+}
+
+.icon-muted {
+  color: var(--ink-muted);
+}

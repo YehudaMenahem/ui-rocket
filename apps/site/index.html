@@ -12,6 +12,14 @@
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <title>UI Rocket</title>
+    <script>
+      (function() {
+        const stored = localStorage.getItem('segfault-theme');
+        const theme = stored || 
+          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

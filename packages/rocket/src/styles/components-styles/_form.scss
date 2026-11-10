@@ -1,26 +1,58 @@
-/*******************/
-/* form component */
-/*******************/
+// Segfault Form Component
+// DOS-style form wrapper
 
-form{
-    @include pd(25px 15px 25px 15px);
-    border: 1px solid var(--main-color);
-    @include radius(10px);
-    @include bg(rgba(255,255,255,0.05));
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 
-    .form-header{
-        @include c($mainColor);
-        @include fs(25px);
-        @include mr-b(25px);
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-h2);
+      color: var(--ink);
+      margin: 0;
+      padding-bottom: var(--space-2);
+      border-bottom: var(--border-pixel) solid var(--line-strong);
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+    padding-top: var(--space-4);
+    border-top: var(--border-pixel) solid var(--line-strong);
+  }
+
+  .form-message {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-pixel) solid var(--line-strong);
+    border-radius: var(--radius-none);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body-sm);
+
+    &.error {
+      background-color: var(--danger);
+      color: var(--ink-on-gray);
+      border-color: var(--danger);
     }
 
-    .error{
-        @include fs($fXxs);
-        @include c($error);
-        @include center();
+    &.success {
+      background-color: var(--success);
+      color: var(--ink-on-gray);
+      border-color: var(--success);
     }
+
+    &.info {
+      background-color: var(--brand);
+      color: var(--ink-on-gray);
+      border-color: var(--brand);
+    }
+  }
 }
-
-/*********/
-/* media query */
-/*********/

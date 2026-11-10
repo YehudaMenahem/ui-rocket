@@ -1,138 +1,159 @@
-/********************/
-/* general settings */
-/********************/
+// Segfault General Styles
 
-html{
-    height: 100%;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    &.no-scroll{
-        overflow: hidden;
-    }
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+body {
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
 }
 
 #root,
-.home-page{
-    height: 100%
+.home-page {
+  height: 100%;
 }
 
-body{
-    @include c($grayscale-level-1);
-    @include bg($grayscale-level-1);
-    height: 100%;
-
-    // dark mode
-    .dark & {
-        @include bg($grayscale-level-9);
-    }
+// Theme transitions (respect prefers-reduced-motion)
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  }
 }
 
-
-
-h1{
-    @include fs(48px);
-    @include c($grayscale-level-8);
-    font-weight: 400;
-    font-family: 'Rajdhani';
-    font-weight: 700;
-
-    //dark mode
-    .dark & {
-        @include c($grayscale-level-1);
-    }
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-h2{
-    @include fs($fXl);
-    @include c($grayscale-level-7);
-    font-weight: 100;
-    font-family: 'Rajdhani';
-    font-weight: 500;
-
-    //dark mode
-    .dark & {
-        @include c($grayscale-level-2);
-    }
+// Typography elements
+h1 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-h1);
+  color: var(--ink);
+  margin: 0;
 }
 
-h3,h4,h5,h6{
-    @include c($grayscale-level-6);
-
-    //dark mode
-    .dark & {
-        @include c($grayscale-level-2);
-    }
+h2 {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-h2);
+  color: var(--ink);
+  margin: 0;
 }
 
-p,span,a{
-    @include fs($fXs);
-    @include c($grayscale-level-6);
-    font-family: 'Kanit';
-    font-weight: 200;
-
-    //dark mode
-    .dark & {
-        @include c($grayscale-level-3);
-    }
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--ink);
+  margin: 0;
 }
 
-a:hover{
-    @include c(unset);
+p,
+span {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  color: var(--ink-muted);
 }
 
-ul{
-    @include resetList()
+a {
+  color: var(--brand-text);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: var(--border-focus) dotted var(--focus);
+    outline-offset: var(--focus-offset);
+  }
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Utilities
 .line-break {
-    white-space: pre-line;
+  white-space: pre-line;
 }
 
-.home-page{
-    @include flex(flex,initial,initial);
+.f-one {
+  color: var(--ink-muted);
 }
 
+.f-two {
+  color: var(--ink);
+}
 
-//scroll bar
-/* width */
+.home-page {
+  display: flex;
+}
+
+// Scrollbar (DOS-style)
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: $mainColor; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    
-  }
-
-/*********/
-/* media query */
-/*********/
-
-/* tablet break point */
-@media (max-width: 975px ) and (min-width: 500px ){
-
-
+  width: var(--space-2);
 }
 
-//mobile
-@media screen and (max-width: 500px){
-    .components-info{
-        .ui{
-            &.container {
-                @include pd(25px);
-                width: initial !important;
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-            }
-        }
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border: none;
+
+  &:hover {
+    background: var(--brand-text);
+  }
+}
+
+// Media queries
+@media (max-width: 975px) and (min-width: 500px) {
+}
+
+@media screen and (max-width: 500px) {
+  .components-info {
+    .ui {
+      &.container {
+        padding: var(--space-6);
+        width: initial !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
     }
+  }
 }

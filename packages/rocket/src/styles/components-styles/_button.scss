@@ -1,315 +1,304 @@
-/********************/
-/* button */
-/********************/
+// Segfault Button Component
+// DOS-style beveled buttons with hard shadows
 
-.button{
-    position: relative;
-    @include flex(flex,center,stretch);
-    @include mr-b(10px);
-    @include pd(0 10px);
-    @include radius(10px);
-    @include bg($mainColor);
-    @include pointer();
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-pixel) solid var(--line-strong);
+  border-radius: var(--radius-none);
+  background-color: var(--surface-raised);
+  color: var(--ink-on-gray);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-label);
+  font-weight: var(--font-weight-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: none;
+  user-select: none;
+
+  &:focus-visible {
+    outline: var(--border-focus) dotted var(--focus);
+    outline-offset: var(--focus-offset);
+  }
+
+  // Default (raised bevel)
+  box-shadow: var(--shadow-bevel);
+
+  &:hover:not(:disabled) {
+    background-color: var(--surface-raised);
+    filter: brightness(1.1);
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: var(--shadow-bevel-pressed);
+    transform: translateY(1px);
+  }
+
+  // Variants
+  &.solid {
+    background-color: var(--brand);
+    color: var(--ink-on-gray);
+
+    &:hover:not(:disabled) {
+      background-color: var(--brand);
+    }
+  }
+
+  &.ghost {
+    background-color: transparent;
+    color: var(--brand-text);
+    border-color: var(--brand);
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+      background-color: var(--brand);
+      color: var(--ink-on-gray);
+      box-shadow: var(--shadow-bevel);
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: var(--shadow-bevel-pressed);
+    }
+  }
+
+  &.text {
+    background-color: transparent;
+    color: var(--brand-text);
     border: none;
-    overflow: hidden;
+    box-shadow: none;
+    padding: var(--space-2) var(--space-3);
 
-    &.text{
-      .icon-wrapper{
-        @include pd-r(0);
-        @include pd-b(2px);
-        border-right: 1px solid transparent;
+    &:hover:not(:disabled) {
+      background-color: transparent;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+      filter: none;
+    }
 
-        .icon{
-          &:before{
-            @include c($mainColor);
+    &:active:not(:disabled) {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  // Sizes
+  &.small {
+    padding: var(--space-2) var(--space-3);
+    font-size: 16px;
+  }
+
+  &.medium {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-label);
+  }
+
+  &.large {
+    padding: var(--space-4) var(--space-6);
+    font-size: 24px;
+  }
+
+  // States
+  &:disabled {
+    background-color: var(--line);
+    color: var(--ink-muted);
+    border-color: var(--line);
+    cursor: not-allowed;
+    box-shadow: none;
+
+    &.ghost {
+      background-color: transparent;
+      border-color: var(--line);
+      color: var(--ink-muted);
+    }
+
+    &.text {
+      background-color: transparent;
+      border: none;
+    }
+  }
+
+  // Loading state
+  &.loading {
+    pointer-events: none;
+
+    .loading-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1;
+
+      .stage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+
+        .dot-pulse {
+          position: relative;
+          left: -9999px;
+          width: 8px;
+          height: 8px;
+          border-radius: 0;
+          background-color: var(--brand);
+          color: var(--brand);
+          box-shadow: 9999px 0 0 0 var(--brand);
+          animation: dotPulse 1.5s infinite linear;
+          animation-delay: 0.25s;
+
+          @media (prefers-reduced-motion: reduce) {
+            animation: none;
+            box-shadow: 9999px 0 0 0 var(--brand);
           }
-        }
 
-        +.label{
-          @include pd-l(10px);
-        }
-      }
+          &::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 0;
+            background-color: var(--brand);
+            color: var(--brand);
+            box-shadow: 9984px 0 0 0 var(--brand);
+            margin-left: -4px;
+            animation: dotPulseBefore 1.5s infinite linear;
+            animation-delay: 0s;
 
-      &:disabled{
-        @include bg(transparent);
-        @include border(1px solid transparent);
-  
-        .icon-wrapper{
-          border-right: 1px solid transparent;
-          .icon{
-            &:before{
+            @media (prefers-reduced-motion: reduce) {
+              animation: none;
+              box-shadow: 9984px 0 0 0 var(--brand);
             }
           }
-        }
-      }
 
-    }
+          &::after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 0;
+            background-color: var(--brand);
+            color: var(--brand);
+            box-shadow: 10014px 0 0 0 var(--brand);
+            margin-left: -4px;
+            animation: dotPulseAfter 1.5s infinite linear;
+            animation-delay: 0.5s;
 
-    &.small {
-        .label{
-          height: 30px;
-          @include fs(14px);
-        }
-    }
-
-    &.medium{
-      .label{
-        height: 40px;
-        @include fs(16px);
-      }
-    }
-
-    &.large{
-      .label{
-        height: 45px;
-        @include fs(18px);
-      }
-    }
-
-    &.loading{
-      .loading-bg{
-          @include flex(flex);
-          @include bg(rgba(0,0,0,0.8));
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
-
-          /**
-          * ==============================================
-          * Dot Shuttle
-          * ==============================================
-          */
-
-          .stage {
-            @include flex(flex,center,center);
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-
-            /**
-            * ==============================================
-            * Dot Pulse
-            * ==============================================
-            */
-              .dot-pulse {
-                position: relative;
-                left: -9999px;
-                width: 10px;
-                height: 10px;
-                @include radius(5px);
-                @include bg($mainColor);
-                @include c($mainColor);
-                @include shadow(9999px 0 0 -5px $mainColor);
-                animation: dotPulse 1.5s infinite linear;
-                animation-delay: .25s;
-
-                &:before{
-                  content: '';
-                  display: inline-block;
-                  position: absolute;
-                  top: 0;
-                  width: 10px;
-                  height: 10px;
-                  @include radius(5px);
-                  @include bg($mainColor);
-                  @include c($mainColor);
-                  @include shadow(9984px 0 0 -5px $mainColor);
-                  @include mr-l(-4px);
-                  animation: dotPulseBefore 1.5s infinite linear;
-                  animation-delay: 0s;
-                }
-
-                &:after{
-                  content: '';
-                  display: inline-block;
-                  position: absolute;
-                  top: 0;
-                  width: 10px;
-                  height: 10px;
-                  @include radius(5px);
-                  @include bg($mainColor);
-                  @include c($mainColor);
-                  @include shadow(10014px 0 0 -5px $mainColor);
-                  @include mr-l(-4px);
-                  animation: dotPulseAfter 1.5s infinite linear;
-                  animation-delay: .5s
-                }
-              }
-          }
-      }
-    }
-
-    &.solid{
-      .label{
-        @include c($grayscale-level-1);
-      }
-      .icon-wrapper i:before{
-        @include c($grayscale-level-1);
-      }
-    }
-
-    &.ghost{
-      @include border(1px solid $mainColor);
-      @include bg(transparent);
-
-      .label{
-        @include c($mainColor);
-      }
-
-      .icon-wrapper{ 
-        border-right: 1px solid var(--main-color);
-
-        i{
-          &:before{
-            @include c($mainColor);
-          }
-        }
-      }
-
-      &:disabled{
-        @include bg(transparent);
-        @include border(1px solid $grayscale-level-5);
-  
-        .icon-wrapper{
-          border-right: 1px solid $grayscale-level-5;
-          .icon{
-            &:before{
+            @media (prefers-reduced-motion: reduce) {
+              animation: none;
+              box-shadow: 10014px 0 0 0 var(--brand);
             }
           }
         }
       }
     }
+  }
 
-    &.text{
-      @include border(none);
-      @include bg(transparent);
+  // Icon wrapper
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      .label{
-        @include c($mainColor);
-      }
+    i::before {
+      color: currentColor;
     }
+  }
 
-    &:disabled{
-      @include bg($grayscale-level-3);
-      @include border(1px solid $grayscale-level-3);
-      cursor: not-allowed;
+  .label {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
 
-      span.label{
-        @include c($grayscale-level-5);
-      }
+  // Position variants
+  &.bottom-right {
+    position: fixed;
+    right: var(--space-4);
+    bottom: var(--space-4);
+    box-shadow: var(--shadow-window), var(--shadow-bevel);
+    z-index: 10;
+  }
 
-      .icon-wrapper{
-        border-right: 1px solid $grayscale-level-4;
-        .icon{
-          &:before{
-            @include c($grayscale-level-5);
-          }
-        }
-      }
-    }
+  &.bottom-left {
+    position: fixed;
+    left: var(--space-4);
+    bottom: var(--space-4);
+    box-shadow: var(--shadow-window), var(--shadow-bevel);
+    z-index: 10;
+  }
 
-    &:focus{
-      outline: none
-    }
+  &.bottom-center {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: var(--space-4);
+    box-shadow: var(--shadow-window), var(--shadow-bevel);
+    z-index: 10;
+  }
 
-    .icon-wrapper{
-      @include flex(flex,initial,center); 
-      @include pd-r(10px); 
-      border-right: 1px solid rgba(255,255,255,0.3);
+  // Legacy props (kept for compatibility)
+  &.rounded {
+    // Ignored - all buttons are square in Segfault
+  }
 
-      i{
-        @include mr(0); 
-      }
-
-      +.label{
-        @include pd(0 5px 0 15px); 
-      }
-
-    }
-
-    .label{
-      @include flex(flex,initial,center);
-      @include pd(0 12px 0 12px); 
-      @include transition(box-shadow .2s)
-    }
-
-    &.bottom-right{
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
-      z-index: 1;
-    }
-
-    &.bottom-left{
-      position: fixed;
-      left: 20px;
-      bottom: 20px;
-      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
-      z-index: 1;
-    }
-
-    &.bottom-center{
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 20px;
-      @include shadow(2px 2px 6px -2px rgba(0,0,0,0.4));
-      z-index: 1;
-    }
-
+  &.shadow {
+    // Ignored - all raised buttons have bevels
+  }
 }
 
-
-
-/********/
-/* bouncing dots */
-/*********/
-  
-  /* animations - specific to button comp */
-
-  @keyframes dotPulseBefore {
-    0% {
-      @include shadow(9984px 0 0 -5px $mainColor);
-    }
-    30% {
-      @include shadow(9984px 0 0 2px $mainColor);
-    }
-    60%,
-    100% {
-      @include shadow(9984px 0 0 -5px $mainColor);
-    }
+// Loading dot animations
+@keyframes dotPulseBefore {
+  0% {
+    box-shadow: 9984px 0 0 -2px var(--brand);
   }
-  
-  @keyframes dotPulse {
-    0% {
-      @include shadow(9999px 0 0 -5px $mainColor);
-    }
-    30% {
-      @include shadow(9999px 0 0 2px $mainColor);
-    }
-    60%,
-    100% {
-      @include shadow(9999px 0 0 -5px $mainColor);
-    }
+  30% {
+    box-shadow: 9984px 0 0 2px var(--brand);
   }
-  
-  @keyframes dotPulseAfter {
-    0% {
-      @include shadow(10014px 0 0 -5px $mainColor);
-    }
-    30% {
-      @include shadow(10014px 0 0 2px $mainColor);
-    }
-    60%,
-    100% {
-      @include shadow(10014px 0 0 -5px $mainColor);
-    }
+  60%,
+  100% {
+    box-shadow: 9984px 0 0 -2px var(--brand);
   }
+}
 
+@keyframes dotPulse {
+  0% {
+    box-shadow: 9999px 0 0 -2px var(--brand);
+  }
+  30% {
+    box-shadow: 9999px 0 0 2px var(--brand);
+  }
+  60%,
+  100% {
+    box-shadow: 9999px 0 0 -2px var(--brand);
+  }
+}
 
-/*********/
-/* media query */
-/*********/
+@keyframes dotPulseAfter {
+  0% {
+    box-shadow: 10014px 0 0 -2px var(--brand);
+  }
+  30% {
+    box-shadow: 10014px 0 0 2px var(--brand);
+  }
+  60%,
+  100% {
+    box-shadow: 10014px 0 0 -2px var(--brand);
+  }
+}

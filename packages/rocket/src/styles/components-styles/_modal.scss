@@ -1,167 +1,133 @@
-/*******************/
-/* modal component */
-/*******************/
+// Segfault Modal Component
+// DOS-style dialog window with hard shadow
 
-.modal{
-    @include flex(flex,center,center);
-    position: fixed;
-    flex-direction: column;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    animation: fade-in-background 0.15s forwards;
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-4);
 
-    &.close{
-        animation: fade-out-background 0.15s forwards;
+  &.show {
+    display: flex;
+  }
 
-        .box{
-            animation: pop-out .2s forwards
-        }
-    }
-
-    &.hero-image{
-        .box{
-            .header{
-                @include bg($grayscale-level-1);
-                position: relative;
-                height: 315px;
-                border-bottom: 1px solid #495057;
-                overflow: hidden;
-
-                .hero{
-                    position: absolute;
-                    top: 0;
-                    width: 100%;
-                    height: 380px;
-                }
-
-                .close-sign{
-                    position: absolute;
-                    right: 20px;
-                }
-            }
-        }
-    }
-
-    .box{
-        @include flex(flex,initial,initial);
-        flex-direction: column;
-        min-width: 450px;
-        @include bg($grayscale-level-2);
-        @include radius(3px);
-        position: relative;
-        overflow: hidden;
-        @include trans(scale(0));
-        animation: pop-in .2s .3s forwards;
-
-        .header{
-            @include flex(flex,center,initial);
-            @include bg($grayscale-level-4);
-            @include pd(20px);
-            @include c($grayscale-level-7);
-            left: 0;
-            top: 0;
-            width: 100%;
-
-            h3{
-                @include mr(auto);
-
-                .dark &{
-                    @include c($grayscale-level-9);
-                }
-            }
-        }
-
-        .body{
-            @include pd(35px 25px);
-
-            h2,p{
-                .dark &{
-                    @include c($grayscale-level-7)
-                }
-            }
-        }
-
-        .footer{
-            @include flex(flex,center,initial);
-            @include pd(25px);
-        }
-        
-        .close-sign{
-            @include mr-r(0);
-            @include fs(17px);
-            @include pointer();
-            @include c($accentColor);
-            @include transition(transform .3s);
-            
-            &:hover{
-                @include trans(rotate(90deg));
-            }
-        }
-    }
+  &.hide {
+    display: none;
+  }
 }
 
+.modal {
+  position: relative;
+  background-color: var(--surface);
+  border: var(--border-pixel) solid var(--line-strong);
+  border-radius: var(--radius-none);
+  box-shadow: var(--shadow-window);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 
+  // Title bar (like a DOS window)
+  .modal-header {
+    background-color: var(--surface-raised);
+    color: var(--ink-on-gray);
+    padding: var(--space-2) var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--border-pixel) solid var(--line-strong);
+    box-shadow: var(--shadow-bevel);
 
-
-
-
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .modal{
-
-    
-        &.close{
-    
-            .box{
-                min-width: auto;
-            }
-        }
-    
-        &.hero-image{
-            .box{
-                .header{
-    
-                    .hero{
-
-                    }
-    
-                    .close-sign{
-
-                    }
-                }
-            }
-        }
-    
-        .box{
-            top: 25px;
-            max-height: 500px;
-    
-            .header{
-
-    
-                h3{
-                }
-            }
-    
-            .body{
-            }
-    
-            .footer{
-
-            }
-            
-            .close-sign{
-
-                
-                &:hover{
-                }
-            }
-        }
+    .modal-title {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-label);
+      font-weight: var(--font-weight-label);
+      text-transform: uppercase;
+      margin: 0;
     }
+
+    .close-button {
+      background-color: transparent;
+      border: none;
+      color: var(--ink-on-gray);
+      font-family: var(--font-mono);
+      font-size: 24px;
+      line-height: 1;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--danger);
+        color: var(--ink-on-gray);
+      }
+
+      &:focus-visible {
+        outline: var(--border-focus) dotted var(--focus);
+        outline-offset: var(--focus-offset);
+      }
+    }
+  }
+
+  .modal-body {
+    padding: var(--space-6);
+    overflow-y: auto;
+    flex: 1;
+    color: var(--ink);
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: var(--space-4);
+      border: var(--border-pixel) solid var(--line-strong);
+    }
+
+    h2 {
+      margin-bottom: var(--space-3);
+      color: var(--ink);
+    }
+
+    p {
+      color: var(--ink-muted);
+      line-height: var(--line-height-body);
+    }
+  }
+
+  .modal-footer {
+    padding: var(--space-3) var(--space-6);
+    border-top: var(--border-pixel) solid var(--line-strong);
+    display: flex;
+    gap: var(--space-3);
+    justify-content: flex-end;
+  }
+}
+
+// Media queries
+@media screen and (max-width: 500px) {
+  .modal {
+    max-width: 100%;
+    margin: var(--space-2);
+
+    .modal-body {
+      padding: var(--space-4);
+    }
+
+    .modal-footer {
+      padding: var(--space-2) var(--space-4);
+    }
+  }
 }

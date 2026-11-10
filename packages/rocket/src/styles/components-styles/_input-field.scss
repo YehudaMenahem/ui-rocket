@@ -1,113 +1,127 @@
-/*********/
-/* input Field component */
-/*********/
+// Segfault InputField Component
+// DOS-style text inputs
 
+.input-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    text-transform: uppercase;
+    color: var(--ink);
+    display: block;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .input-field {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      border: var(--border-pixel) solid var(--line-strong);
+      border-radius: var(--radius-none);
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+
+      // Inset appearance (opposite of button bevel)
+      box-shadow: inset var(--border-pixel) var(--border-pixel) 0 rgba(0, 0, 0, 0.3);
+
+      &::placeholder {
+        color: var(--ink-muted);
+        opacity: 0.7;
+      }
+
+      &:focus {
+        outline: var(--border-focus) dotted var(--focus);
+        outline-offset: var(--focus-offset);
+        border-color: var(--brand);
+      }
+
+      &:disabled {
+        background-color: var(--line);
+        color: var(--ink-muted);
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      &.error {
+        border-color: var(--danger);
+      }
+
+      &.success {
+        border-color: var(--success);
+      }
+    }
+
+    .icon {
+      position: absolute;
+      right: var(--space-3);
+      pointer-events: none;
+      color: var(--ink-muted);
+
+      &.error {
+        color: var(--danger);
+      }
+
+      &.success {
+        color: var(--success);
+      }
+    }
+  }
+
+  .helper-text {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+    color: var(--ink-muted);
+
+    &.error {
+      color: var(--danger);
+    }
+
+    &.success {
+      color: var(--success);
+    }
+  }
+}
+
+// Legacy class support
 .input-field {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-pixel) solid var(--line-strong);
+  border-radius: var(--radius-none);
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  box-shadow: inset var(--border-pixel) var(--border-pixel) 0 rgba(0, 0, 0, 0.3);
 
-    .field{
-        @include flex(flex,center,initial);
-        position: relative;
-        flex-direction: column;
+  &::placeholder {
+    color: var(--ink-muted);
+    opacity: 0.7;
+  }
 
-        .label {
-            position: absolute;
-            left: 8px;
-            transition: font-size .3s, transform .3s;
+  &:focus {
+    outline: var(--border-focus) dotted var(--focus);
+    outline-offset: var(--focus-offset);
+    border-color: var(--brand);
+  }
 
-            //dark mode
-            .dark & {
-                @include c($grayscale-level-6);
-            }
-
-            .astrix{
-                @include fs(18px);
-                @include c($error);
-            }
-        }
-
-        input{
-            height: 50px;
-            @include pd-t(16px);
-            @include border(none);
-            @include bg($grayscale-level-2);
-            @include c($grayscale-level-7);
-            border-bottom: 1px solid var(--main-color);
-            text-indent: 7px;
-
-            &:focus{
-                outline: none;
-                
-                + .label{
-                    @include fs($fXxs);
-                    @include trans(translate(1px, -10px));
-                }
-            }
-        }
-    }
-
-    &.placeholder{
-        .field{
-            input{
-                +.label{
-                    @include fs($fXxs);
-                    @include trans(translate(1px, -10px));
-                }
-            }
-        }
-    }
-
-    ::placeholder{
-        @include c($grayscale-level-5)
-    }
-
-    &.with-value{
-        .field{
-            input{
-                +.label{
-                    @include fs($fXxs);
-                    @include trans(translate(1px, -10px));
-
-                    .astrix{
-                        @include fs(16px);
-                    }
-                }
-            }
-        }
-    }
-
-    .helpers{
-        @include flex(flex,initial,initial);
-
-        .error{
-            @include fs($fXxs);
-            @include c($error);
-        }
-
-        .note{
-            @include fs($fXxs);
-            @include c($mainColor);
-        }
-
-        .char-num{
-            @include fs($fXxs);
-            @include mr-l(auto);
-        }
-    }
+  &:disabled {
+    background-color: var(--line);
+    color: var(--ink-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
-
-/* remove default arrows */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  @include mr(0);
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
-/*********/
-/* media query */
-/*********/
