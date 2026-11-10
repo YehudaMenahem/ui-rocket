@@ -7,7 +7,7 @@ const THEME_KEY = 'segfault-theme';
 
 export function getInitialTheme(): Theme {
   // 1. Check localStorage
-  const stored = localStorage.getItem(THEME_KEY);
+  const stored = window.localStorage.getItem(THEME_KEY);
   if (stored === 'dark' || stored === 'light') {
     return stored;
   }
@@ -23,7 +23,7 @@ export function getInitialTheme(): Theme {
 
 export function setTheme(theme: Theme): void {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem(THEME_KEY, theme);
+  window.localStorage.setItem(THEME_KEY, theme);
 }
 
 export function toggleTheme(): Theme {
@@ -45,15 +45,17 @@ export function initTheme(): Theme {
 export function watchSystemTheme(callback?: (theme: Theme) => void): () => void {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 
-  const handleChange = (e: MediaQueryListEvent) => {
+  const handleChange = (e: { matches: boolean }) => {
     // Only update if user hasn't set a preference
-    if (!localStorage.getItem(THEME_KEY)) {
+    if (!window.localStorage.getItem(THEME_KEY)) {
       const theme: Theme = e.matches ? 'light' : 'dark';
       setTheme(theme);
       callback?.(theme);
     }
   };
 
-  mediaQuery.addEventListener('change', handleChange);
-  return () => mediaQuery.removeEventListener('change', handleChange);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mediaQuery.addEventListener('change', handleChange as any);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return () => mediaQuery.removeEventListener('change', handleChange as any);
 }
