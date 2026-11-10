@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./build",
+    "baseUrl": ".",
+    "paths": {
+      "@ui-rocket/rocket": ["../../packages/rocket/src"]
+    }
+  },
+  "include": ["src/**/*", "src/vite-env.d.ts"],
+  "exclude": ["node_modules", "build", "**/*.test.ts", "**/*.test.tsx"]
+}

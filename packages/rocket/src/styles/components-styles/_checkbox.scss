@@ -1,0 +1,80 @@
+/**********************/
+/* checkbox component */
+/**********************/
+
+.checkbox{
+    @include flex(inline-flex,initial,initial);
+    @include pointer();
+
+    + .checkbox{
+        @include mr-l(10px);
+    }
+
+    .checkmark{
+        @include flex(flex,initial,initial);
+        position: relative; 
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--main-color);
+        @include radius(3px);
+        @include mr-r($xs);
+
+        .icon{
+            #check-sign{
+                width: 16px;
+                height: 16px;
+        
+                .check{
+                    @include fill($mainColor);
+                    transform-origin: center center;
+                    @include transition(transform 0.2s);
+                    @include trans(scale(0));
+                }
+            }
+        }
+
+        input{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            @include pointer();
+
+            &[checked]{
+                +.icon{
+                    #check-sign{
+                        .check{
+                            @include trans(scale(0.9));
+                            @include fill($mainColor);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.disabled{
+        cursor: not-allowed;
+        .checkmark{
+            border-color: var(--grayscale-500);
+
+            input{
+                &[disabled]{
+                    cursor: not-allowed;
+                    +.icon{
+                        #check-sign{
+                            .check{
+                                @include fill($grayscale-level-5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*********/
+/* media query */
+/*********/
+
