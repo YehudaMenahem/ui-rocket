@@ -7,14 +7,14 @@ export function Entrance() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
+      '(prefers-color-scheme: reduce)',
     ).matches;
 
     if (!prefersReducedMotion) {
-      const interval = setInterval(() => {
+      const interval = window.setInterval(() => {
         setBlinkCursor((prev) => !prev);
       }, 530);
-      return () => clearInterval(interval);
+      return () => window.clearInterval(interval);
     }
   }, []);
 
@@ -64,7 +64,6 @@ export function Entrance() {
             className="start-button"
             onClick={handleStart}
             onKeyDown={handleKeyDown}
-            autoFocus
           >
             PRESS ANY KEY TO START
             {blinkCursor && <span className="cursor">▮</span>}
