@@ -31,10 +31,26 @@
               ? 'dark'
               : 'light';
         document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.backgroundColor =
+          theme === 'dark' ? '#18223B' : '#F9E5CE';
+        document.documentElement.style.color =
+          theme === 'dark' ? '#FDF3E6' : '#1E2A47';
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bg9JxyDu.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CzDbDDGN.css">
+    <style>
+      html,
+      body {
+        background: #f9e5ce;
+        color: #1e2a47;
+      }
+      html[data-theme='dark'],
+      html[data-theme='dark'] body {
+        background: #18223b;
+        color: #fdf3e6;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-BvdkWRRo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bx7U0Daj.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
