@@ -1,6 +1,2 @@
-// Segfault Design System
-// Modern SCSS with @use (zero deprecation warnings)
-// All styles are gathered in _index.scss using @import,
-// then loaded here with @use to avoid deprecation warnings in the build output
-
-@use './index';
+// Rocket UI design system entry
+@use './index' as *;

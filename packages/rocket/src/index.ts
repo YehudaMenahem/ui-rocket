@@ -1,3 +1,9 @@
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/600.css';
+import '@fontsource/outfit/700.css';
+import './styles/app.scss';
+
 export { Button } from './Button';
 export { Checkbox } from './Checkbox';
 export { Form } from './Form';
@@ -13,5 +19,3 @@ export { Toaster } from './Toaster';
 export { ToggleButton } from './ToggleButton';
 
 export type * from './types';
-
-import './styles/app.scss';

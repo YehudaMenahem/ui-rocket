@@ -9,7 +9,7 @@ import {
   ToggleButton,
   SelectField,
 } from '@ui-rocket/rocket';
-import { DOSWindow } from '../components/DOSWindow';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function ButtonPage() {
   const [activeTab, setActiveTab] = useState(0);
@@ -210,13 +210,9 @@ export function ButtonPage() {
 
   return (
     <div className="ui container button-page">
-      <DOSWindow title="BUTTON.EXE">
+      <ShowcaseCard title="Buttons">
         <div className="grid">
           <div className="row section">
-            <div className="col-1">
-              <h1>Buttons</h1>
-            </div>
-            <br />
             <div className="col-1">
               <p>Buttons allow users to take action with a single tap.</p>
             </div>
@@ -264,7 +260,7 @@ export function ButtonPage() {
           </div>
         </div>
         </div>
-      </DOSWindow>
+      </ShowcaseCard>
     </div>
   );
 }

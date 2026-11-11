@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { InputField } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function InputFieldPage() {
   const [value, setValue] = useState('');
 
   return (
     <div className="ui container input-field-page">
+      <ShowcaseCard title="Input Fields">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -25,6 +27,8 @@ export function InputFieldPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

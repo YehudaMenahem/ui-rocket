@@ -1,5 +1,4 @@
-// Segfault Button Component
-// DOS-style beveled buttons with hard shadows
+// Rocket UI Button — flat, rounded, high-contrast
 
 .button {
   position: relative;
@@ -7,298 +6,154 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  border: var(--border-pixel) solid var(--line-strong);
-  border-radius: var(--radius-none);
-  background-color: var(--surface-raised);
-  color: var(--ink-on-gray);
-  font-family: var(--font-mono);
+  padding: var(--space-3) var(--space-6);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-pill);
+  background-color: var(--brand);
+  color: var(--ink-on-brand);
+  font-family: var(--font-sans);
   font-size: var(--font-size-label);
   line-height: var(--line-height-label);
   font-weight: var(--font-weight-label);
-  text-transform: uppercase;
   cursor: pointer;
-  overflow: hidden;
-  transition: none;
   user-select: none;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 
   &:focus-visible {
-    outline: var(--border-focus) dotted var(--focus);
+    outline: var(--border-focus) solid var(--focus);
     outline-offset: var(--focus-offset);
   }
 
-  // Default (raised bevel)
-  box-shadow: var(--shadow-bevel);
-
   &:hover:not(:disabled) {
-    background-color: var(--surface-raised);
-    filter: brightness(1.1);
+    filter: brightness(1.05);
   }
 
   &:active:not(:disabled) {
-    box-shadow: var(--shadow-bevel-pressed);
     transform: translateY(1px);
   }
 
-  // Variants
   &.solid {
     background-color: var(--brand);
-    color: var(--ink-on-gray);
-
-    &:hover:not(:disabled) {
-      background-color: var(--brand);
-    }
+    color: var(--ink-on-brand);
+    border-color: var(--brand);
   }
 
+  &.outline,
   &.ghost {
     background-color: transparent;
     color: var(--brand-text);
     border-color: var(--brand);
-    box-shadow: none;
 
     &:hover:not(:disabled) {
-      background-color: var(--brand);
-      color: var(--ink-on-gray);
-      box-shadow: var(--shadow-bevel);
-    }
-
-    &:active:not(:disabled) {
-      box-shadow: var(--shadow-bevel-pressed);
+      background-color: var(--surface-raised);
     }
   }
 
   &.text {
     background-color: transparent;
     color: var(--brand-text);
-    border: none;
-    box-shadow: none;
-    padding: var(--space-2) var(--space-3);
+    border-color: transparent;
+    padding-inline: var(--space-3);
 
     &:hover:not(:disabled) {
-      background-color: transparent;
       text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 2px;
+      text-underline-offset: 3px;
       filter: none;
-    }
-
-    &:active:not(:disabled) {
-      transform: none;
-      box-shadow: none;
     }
   }
 
-  // Sizes
   &.small {
-    padding: var(--space-2) var(--space-3);
-    font-size: 16px;
+    padding: var(--space-2) var(--space-4);
+    font-size: 13px;
   }
 
   &.medium {
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--font-size-label);
+    padding: var(--space-3) var(--space-6);
   }
 
   &.large {
-    padding: var(--space-4) var(--space-6);
-    font-size: 24px;
+    padding: var(--space-4) var(--space-8);
+    font-size: 16px;
   }
 
-  // States
   &:disabled {
-    background-color: var(--line);
-    color: var(--ink-muted);
-    border-color: var(--line);
+    opacity: 0.45;
     cursor: not-allowed;
-    box-shadow: none;
-
-    &.ghost {
-      background-color: transparent;
-      border-color: var(--line);
-      color: var(--ink-muted);
-    }
-
-    &.text {
-      background-color: transparent;
-      border: none;
-    }
+    filter: none;
   }
 
-  // Loading state
   &.loading {
     pointer-events: none;
 
     .loading-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: color-mix(in srgb, var(--bg) 55%, transparent);
+      border-radius: inherit;
       z-index: 1;
 
       .stage {
         display: flex;
-        align-items: center;
-        justify-content: center;
         width: 100%;
-        overflow: hidden;
+        justify-content: center;
+      }
 
-        .dot-pulse {
-          position: relative;
-          left: -9999px;
-          width: 8px;
-          height: 8px;
-          border-radius: 0;
-          background-color: var(--brand);
-          color: var(--brand);
-          box-shadow: 9999px 0 0 0 var(--brand);
-          animation: dotPulse 1.5s infinite linear;
-          animation-delay: 0.25s;
+      .dot-pulse {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse-dot 1s ease-in-out infinite;
 
-          @media (prefers-reduced-motion: reduce) {
-            animation: none;
-            box-shadow: 9999px 0 0 0 var(--brand);
-          }
-
-          &::before {
-            content: '';
-            display: inline-block;
-            position: absolute;
-            top: 0;
-            width: 8px;
-            height: 8px;
-            border-radius: 0;
-            background-color: var(--brand);
-            color: var(--brand);
-            box-shadow: 9984px 0 0 0 var(--brand);
-            margin-left: -4px;
-            animation: dotPulseBefore 1.5s infinite linear;
-            animation-delay: 0s;
-
-            @media (prefers-reduced-motion: reduce) {
-              animation: none;
-              box-shadow: 9984px 0 0 0 var(--brand);
-            }
-          }
-
-          &::after {
-            content: '';
-            display: inline-block;
-            position: absolute;
-            top: 0;
-            width: 8px;
-            height: 8px;
-            border-radius: 0;
-            background-color: var(--brand);
-            color: var(--brand);
-            box-shadow: 10014px 0 0 0 var(--brand);
-            margin-left: -4px;
-            animation: dotPulseAfter 1.5s infinite linear;
-            animation-delay: 0.5s;
-
-            @media (prefers-reduced-motion: reduce) {
-              animation: none;
-              box-shadow: 10014px 0 0 0 var(--brand);
-            }
-          }
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
         }
       }
     }
   }
 
-  // Icon wrapper
   .icon-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    i::before {
-      color: currentColor;
-    }
   }
 
   .label {
-    display: flex;
-    align-items: center;
     white-space: nowrap;
   }
 
-  // Position variants
-  &.bottom-right {
+  &.bottom-right,
+  &.bottom-left,
+  &.bottom-center {
     position: fixed;
-    right: var(--space-4);
     bottom: var(--space-4);
-    box-shadow: var(--shadow-window), var(--shadow-bevel);
     z-index: 10;
+  }
+
+  &.bottom-right {
+    right: var(--space-4);
   }
 
   &.bottom-left {
-    position: fixed;
     left: var(--space-4);
-    bottom: var(--space-4);
-    box-shadow: var(--shadow-window), var(--shadow-bevel);
-    z-index: 10;
   }
 
   &.bottom-center {
-    position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: var(--space-4);
-    box-shadow: var(--shadow-window), var(--shadow-bevel);
-    z-index: 10;
-  }
-
-  // Legacy props (kept for compatibility)
-  &.rounded {
-    // Ignored - all buttons are square in Segfault
-  }
-
-  &.shadow {
-    // Ignored - all raised buttons have bevels
   }
 }
 
-// Loading dot animations
-@keyframes dotPulseBefore {
-  0% {
-    box-shadow: 9984px 0 0 -2px var(--brand);
-  }
-  30% {
-    box-shadow: 9984px 0 0 2px var(--brand);
-  }
-  60%,
+@keyframes pulse-dot {
+  0%,
   100% {
-    box-shadow: 9984px 0 0 -2px var(--brand);
+    opacity: 0.35;
+    transform: scale(0.9);
   }
-}
-
-@keyframes dotPulse {
-  0% {
-    box-shadow: 9999px 0 0 -2px var(--brand);
-  }
-  30% {
-    box-shadow: 9999px 0 0 2px var(--brand);
-  }
-  60%,
-  100% {
-    box-shadow: 9999px 0 0 -2px var(--brand);
-  }
-}
-
-@keyframes dotPulseAfter {
-  0% {
-    box-shadow: 10014px 0 0 -2px var(--brand);
-  }
-  30% {
-    box-shadow: 10014px 0 0 2px var(--brand);
-  }
-  60%,
-  100% {
-    box-shadow: 10014px 0 0 -2px var(--brand);
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
   }
 }

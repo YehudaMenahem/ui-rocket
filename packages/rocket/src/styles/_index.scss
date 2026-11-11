@@ -1,30 +1,22 @@
-// Segfault Design System - Clean Index
-// Only Segfault tokens and components, no legacy styles
+// Rocket UI design system — modern Sass modules only (@forward / @use)
+// Fonts are loaded from JS via @fontsource (keeps Sass free of @import)
 
-// Core tokens
-@import './tokens';
-@import './fonts';
-
-// Base styles (rewritten for Segfault)
-@import './typography';
-@import './animations';
-
-// Components (Segfault styled)
-@import './components-styles/side-bar';
-@import './components-styles/button';
-@import './components-styles/checkbox';
-@import './components-styles/form';
-@import './components-styles/icon';
-@import './components-styles/input-field';
-@import './components-styles/modal';
-@import './components-styles/radio-button';
-@import './components-styles/select-field';
-@import './components-styles/tabs';
-@import './components-styles/textbox';
-@import './components-styles/toggle-button';
-@import './components-styles/toaster';
-@import './components-styles/dos-window';
-
-// Pages (Segfault styled)
-@import './pages-styles/entrance';
-@import './pages-styles/not-found';
+@forward './tokens';
+@forward './base';
+@forward './typography';
+@forward './animations';
+@forward './components-styles/side-bar';
+@forward './components-styles/button';
+@forward './components-styles/checkbox';
+@forward './components-styles/form';
+@forward './components-styles/icon';
+@forward './components-styles/input-field';
+@forward './components-styles/modal';
+@forward './components-styles/radio-button';
+@forward './components-styles/select-field';
+@forward './components-styles/tabs';
+@forward './components-styles/textbox';
+@forward './components-styles/toggle-button';
+@forward './components-styles/toaster';
+@forward './pages-styles/entrance';
+@forward './pages-styles/not-found';

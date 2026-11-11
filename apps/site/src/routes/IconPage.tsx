@@ -1,6 +1,8 @@
+import { ShowcaseCard } from '../components/ShowcaseCard';
 export function IconPage() {
   return (
     <div className="ui container icon-page">
+      <ShowcaseCard title="Icons">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -9,6 +11,8 @@ export function IconPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

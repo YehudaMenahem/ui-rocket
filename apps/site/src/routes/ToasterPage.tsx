@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Button, Toaster } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function ToasterPage() {
   const [showToaster, setShowToaster] = useState(false);
 
   return (
     <div className="ui container toaster-page">
+      <ShowcaseCard title="Toasters">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -31,6 +33,8 @@ export function ToasterPage() {
         title="Success!"
         runningText="This is a toaster notification."
       />
+    
+      </ShowcaseCard>
     </div>
   );
 }

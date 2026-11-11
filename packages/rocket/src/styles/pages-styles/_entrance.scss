@@ -1,129 +1,277 @@
-// Segfault Entrance Screen
-// DOS-style title screen with blinking cursor
+// Space hero home
 
 .entrance-screen {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
   display: flex;
+  flex-direction: column;
+}
+
+.space-hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background-color: var(--bg);
-  padding: var(--space-4);
-  color: var(--ink);
+  padding: var(--space-8) var(--space-4) 140px;
+  z-index: 1;
 }
 
-.title-screen {
-  max-width: 800px;
-  width: 100%;
+.space-hero-brand {
   text-align: center;
-}
-
-.game-title {
   margin-bottom: var(--space-8);
+  z-index: 2;
 
-  .title-main {
+  .brand-name {
     font-family: var(--font-display);
-    font-size: 64px;
-    line-height: 1.1;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: var(--brand);
-    margin: 0 0 var(--space-2) 0;
-    text-shadow: var(--space-1) var(--space-1) 0 var(--hard-shadow);
-
-    @media (max-width: 768px) {
-      font-size: 48px;
-    }
+    font-size: clamp(40px, 8vw, 64px);
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--ink);
+    margin: 0 0 var(--space-3);
   }
 
-  .title-subtitle {
-    font-family: var(--font-mono);
-    font-size: var(--font-size-label);
+  .brand-tagline {
+    margin: 0;
     color: var(--ink-muted);
-    margin: 0;
-    text-transform: uppercase;
+    font-size: var(--font-size-body);
+    max-width: 36ch;
   }
 }
 
-.ascii-art {
-  margin: var(--space-8) 0;
+.space-cta {
+  z-index: 2;
+  margin-top: var(--space-6);
+}
 
-  pre {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 1.2;
-    color: var(--brand-text);
-    margin: 0;
-    overflow-x: auto;
+.space-scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
 
-    @media (max-width: 768px) {
-      font-size: 10px;
-    }
+.space-scene .stars circle {
+  fill: var(--star);
+}
+
+.space-scene .star-twinkle {
+  animation: twinkle 2.4s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.7;
   }
 }
 
-.start-prompt {
-  margin: var(--space-8) 0;
+.space-scene .planet {
+  animation: float-y 6s ease-in-out infinite;
 
-  .start-button {
-    background-color: transparent;
-    border: none;
-    font-family: var(--font-display);
-    font-size: 32px;
-    line-height: 1.2;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.space-scene .planet-slow {
+  animation-duration: 9s;
+}
+
+.space-horizon {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -40px;
+  height: 180px;
+  background: var(--horizon);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  z-index: 0;
+}
+
+.planet-links {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.planet-link {
+  pointer-events: auto;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: var(--ink);
+
+  &:hover .planet-link-label {
     color: var(--highlight);
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: var(--space-4);
-    transition: none;
+  }
 
-    @media (max-width: 768px) {
-      font-size: 24px;
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--focus);
+    outline-offset: var(--focus-offset);
+    border-radius: var(--radius-sm);
+  }
+
+  .planet-orb {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+  }
+
+  .planet-link-label {
+    font-size: var(--font-size-label);
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .callout-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lime);
+    flex-shrink: 0;
+
+    :root[data-theme='light'] & {
+      background: var(--purple);
     }
+  }
 
-    &:hover {
-      color: var(--brand);
-    }
+  .callout-line {
+    width: 36px;
+    height: 2px;
+    background: var(--lime);
+    flex-shrink: 0;
 
-    &:focus-visible {
-      outline: var(--border-focus) dotted var(--focus);
-      outline-offset: var(--focus-offset);
-    }
-
-    .cursor {
-      display: inline-block;
-      margin-left: var(--space-2);
-      animation: blink 1.06s steps(1) infinite;
-
-      @media (prefers-reduced-motion: reduce) {
-        animation: none;
-        opacity: 1;
-      }
+    :root[data-theme='light'] & {
+      background: var(--purple);
     }
   }
 }
 
-.credits {
-  margin-top: var(--space-12);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-body-sm);
-  color: var(--ink-muted);
+.planet-link--buttons {
+  top: 22%;
+  left: 8%;
 
-  p {
-    margin: var(--space-1) 0;
-  }
-
-  .version {
-    color: var(--line);
+  .planet-orb {
+    background: var(--lavender);
   }
 }
 
-@keyframes blink {
-  0%,
-  49% {
-    opacity: 1;
+.planet-link--tabs {
+  top: 18%;
+  right: 10%;
+  flex-direction: row-reverse;
+
+  .planet-orb {
+    background: var(--mint);
   }
-  50%,
-  100% {
-    opacity: 0;
+}
+
+.planet-link--inputs {
+  top: 48%;
+  left: 14%;
+
+  .planet-orb {
+    background: var(--purple);
+    border-color: var(--mint);
+  }
+}
+
+.planet-link--forms {
+  top: 42%;
+  right: 12%;
+  flex-direction: row-reverse;
+
+  .planet-orb {
+    background: var(--lavender);
+    box-shadow: inset -10px -6px 0 var(--mint);
+  }
+}
+
+.theme-toggle-button {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+
+  &:hover {
+    border-color: var(--brand);
+  }
+
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--focus);
+    outline-offset: var(--focus-offset);
+  }
+
+  .theme-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .theme-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--highlight);
+  }
+}
+
+.theme-toggle-floating {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  z-index: 5;
+}
+
+@media screen and (max-width: 768px) {
+  .space-hero {
+    padding-bottom: 120px;
+  }
+
+  .planet-link .planet-orb {
+    width: 44px;
+    height: 44px;
+  }
+
+  .planet-link .callout-line {
+    width: 20px;
+  }
+
+  .planet-link--buttons {
+    top: 16%;
+    left: 4%;
+  }
+
+  .planet-link--tabs {
+    top: 14%;
+    right: 4%;
+  }
+
+  .planet-link--inputs {
+    top: 52%;
+    left: 4%;
+  }
+
+  .planet-link--forms {
+    top: 48%;
+    right: 4%;
   }
 }

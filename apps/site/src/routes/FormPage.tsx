@@ -7,6 +7,7 @@ import {
   RadioButton,
   Button,
 } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function FormPage() {
   const [inputVal, setInputVal] = useState('');
@@ -20,6 +21,7 @@ export function FormPage() {
 
   return (
     <div className="ui container form-page">
+      <ShowcaseCard title="Forms">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -96,6 +98,8 @@ export function FormPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

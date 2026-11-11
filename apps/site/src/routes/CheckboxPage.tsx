@@ -1,8 +1,10 @@
 import { Checkbox } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function CheckboxPage() {
   return (
     <div className="ui container checkbox-page">
+      <ShowcaseCard title="Checkboxes">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -23,6 +25,8 @@ export function CheckboxPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

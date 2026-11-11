@@ -1,0 +1,178 @@
+// Global reset + base layout utilities (no mixins, no @import)
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+html.no-scroll {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+}
+
+#root {
+  min-height: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--brand-text);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--focus);
+    outline-offset: var(--focus-offset);
+  }
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Simple layout helpers used by showcase pages
+.ui.container {
+  padding: var(--space-6);
+  width: auto;
+  max-width: 1100px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.row > .col,
+.row > [class^='col'] {
+  min-width: 0;
+}
+
+.row > .col-1 {
+  flex: 1 1 100%;
+}
+
+.row > .col-2 {
+  flex: 1 1 calc(50% - var(--space-4));
+}
+
+.content {
+  padding: var(--space-4) 0;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.line-break {
+  white-space: pre-line;
+}
+
+.mr-b-xl {
+  margin-bottom: var(--space-6);
+}
+
+.mr-b-lr {
+  margin-bottom: var(--space-4);
+}
+
+.mr-r-md {
+  margin-right: var(--space-2);
+}
+
+.pd-l-xl {
+  padding-left: var(--space-6);
+}
+
+.horizontal-list,
+.vertical-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.horizontal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.showcase-card {
+  background: var(--surface);
+  border: var(--border-width) solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  color: var(--ink);
+
+  .showcase-card-title {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-h2);
+    color: var(--brand-text);
+    margin: 0 0 var(--space-6);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ui.container {
+    padding: var(--space-4);
+  }
+
+  .pd-l-xl {
+    padding-left: 0;
+  }
+}

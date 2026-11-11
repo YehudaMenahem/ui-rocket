@@ -1,13 +1,7 @@
-// Segfault Modal Component
-// DOS-style dialog window with hard shadow
-
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: color-mix(in srgb, var(--black) 70%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,10 +19,9 @@
 
 .modal {
   position: relative;
-  background-color: var(--surface);
-  border: var(--border-pixel) solid var(--line-strong);
-  border-radius: var(--radius-none);
-  box-shadow: var(--shadow-window);
+  background: var(--surface);
+  border: var(--border-width) solid var(--line-strong);
+  border-radius: var(--radius-lg);
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
@@ -36,47 +29,42 @@
   flex-direction: column;
   overflow: hidden;
 
-  // Title bar (like a DOS window)
   .modal-header {
-    background-color: var(--surface-raised);
-    color: var(--ink-on-gray);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-4) var(--space-6);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: var(--border-pixel) solid var(--line-strong);
-    box-shadow: var(--shadow-bevel);
+    border-bottom: var(--border-width) solid var(--line);
+    background: var(--surface-raised);
 
     .modal-title {
-      font-family: var(--font-mono);
-      font-size: var(--font-size-label);
-      font-weight: var(--font-weight-label);
-      text-transform: uppercase;
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-h2);
       margin: 0;
+      color: var(--ink);
     }
 
     .close-button {
-      background-color: transparent;
+      background: transparent;
       border: none;
-      color: var(--ink-on-gray);
-      font-family: var(--font-mono);
+      color: var(--ink-muted);
       font-size: 24px;
       line-height: 1;
-      padding: 0;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
 
       &:hover {
-        background-color: var(--danger);
-        color: var(--ink-on-gray);
+        color: var(--danger);
+        background: var(--bg);
       }
 
       &:focus-visible {
-        outline: var(--border-focus) dotted var(--focus);
+        outline: var(--border-focus) solid var(--focus);
         outline-offset: var(--focus-offset);
       }
     }
@@ -85,49 +73,25 @@
   .modal-body {
     padding: var(--space-6);
     overflow-y: auto;
-    flex: 1;
     color: var(--ink);
 
     img {
       max-width: 100%;
-      height: auto;
-      display: block;
+      border-radius: var(--radius-md);
       margin-bottom: var(--space-4);
-      border: var(--border-pixel) solid var(--line-strong);
-    }
-
-    h2 {
-      margin-bottom: var(--space-3);
-      color: var(--ink);
+      border: var(--border-width) solid var(--line);
     }
 
     p {
       color: var(--ink-muted);
-      line-height: var(--line-height-body);
     }
   }
 
   .modal-footer {
-    padding: var(--space-3) var(--space-6);
-    border-top: var(--border-pixel) solid var(--line-strong);
+    padding: var(--space-4) var(--space-6);
+    border-top: var(--border-width) solid var(--line);
     display: flex;
     gap: var(--space-3);
     justify-content: flex-end;
-  }
-}
-
-// Media queries
-@media screen and (max-width: 500px) {
-  .modal {
-    max-width: 100%;
-    margin: var(--space-2);
-
-    .modal-body {
-      padding: var(--space-4);
-    }
-
-    .modal-footer {
-      padding: var(--space-2) var(--space-4);
-    }
   }
 }

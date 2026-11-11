@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Button, Modal } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function ModalPage() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <div className="ui container modal-page">
+      <ShowcaseCard title="Modals">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -35,6 +37,8 @@ export function ModalPage() {
           </div>
         </div>
       </Modal>
+    
+      </ShowcaseCard>
     </div>
   );
 }

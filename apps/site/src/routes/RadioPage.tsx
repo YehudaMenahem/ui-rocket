@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { RadioButton } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function RadioPage() {
   const [selected, setSelected] = useState('option1');
 
   return (
     <div className="ui container radio-page">
+      <ShowcaseCard title="Radio Buttons">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -34,6 +36,8 @@ export function RadioPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

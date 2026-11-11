@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { ToggleButton } from '@ui-rocket/rocket';
+import { ShowcaseCard } from '../components/ShowcaseCard';
 
 export function ToggleButtonPage() {
   const [checked, setChecked] = useState(false);
 
   return (
     <div className="ui container toggle-button-page">
+      <ShowcaseCard title="Toggle Buttons">
       <div className="grid">
         <div className="row section">
           <div className="col-1">
@@ -23,6 +25,8 @@ export function ToggleButtonPage() {
           </div>
         </div>
       </div>
+    
+      </ShowcaseCard>
     </div>
   );
 }

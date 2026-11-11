@@ -1,55 +1,55 @@
-// Segfault Tabs Component
-// DOS-style tabbed navigation
+// Tabs — matches <ul class="tabs"><li class="tab">… markup
 
 .tabs {
   display: flex;
-  flex-direction: column;
-  gap: 0;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0 0 var(--space-4);
+  border-bottom: var(--border-width) solid var(--line);
 
-  .tab-list {
-    display: flex;
-    gap: 0;
-    border-bottom: var(--border-pixel) solid var(--line-strong);
-    background-color: var(--bg);
+  > .tab {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    border: var(--border-width) solid transparent;
+    cursor: pointer;
 
-    .tab {
-      padding: var(--space-3) var(--space-4);
-      background-color: var(--bg);
-      border: var(--border-pixel) solid var(--line-strong);
-      border-bottom: none;
-      border-radius: var(--radius-none);
+    .button {
+      border-radius: var(--radius-pill);
       color: var(--ink-muted);
-      font-family: var(--font-mono);
-      font-size: var(--font-size-label);
-      font-weight: var(--font-weight-label);
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: none;
-      margin-bottom: calc(-1 * var(--border-pixel));
+      background: transparent;
+      border-color: transparent;
 
-      &:hover:not(.active) {
-        background-color: var(--surface);
-      }
-
-      &.active {
-        background-color: var(--surface);
+      &:hover:not(:disabled) {
         color: var(--ink);
-        border-bottom-color: var(--surface);
-        box-shadow: var(--shadow-bevel);
-      }
-
-      &:focus-visible {
-        outline: var(--border-focus) dotted var(--focus);
-        outline-offset: var(--focus-offset);
+        background: var(--surface-raised);
+        text-decoration: none;
       }
     }
-  }
 
-  .tab-content {
-    padding: var(--space-6);
-    background-color: var(--surface);
-    border: var(--border-pixel) solid var(--line-strong);
-    border-top: none;
-    color: var(--ink);
+    &.active {
+      background: var(--brand);
+      border-color: var(--brand);
+
+      .button {
+        color: var(--ink-on-brand);
+        background: transparent;
+
+        &:hover:not(:disabled) {
+          color: var(--ink-on-brand);
+          background: transparent;
+          filter: none;
+        }
+      }
+    }
+
+    &:focus-within {
+      outline: var(--border-focus) solid var(--focus);
+      outline-offset: var(--focus-offset);
+    }
   }
 }

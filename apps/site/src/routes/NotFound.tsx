@@ -6,55 +6,26 @@ export function NotFound() {
 
   return (
     <div className="not-found-screen">
-      <div className="game-over-container">
-        <div className="game-over-title">
-          <h1 className="error-code">404</h1>
-          <h2 className="game-over-text">GAME OVER</h2>
-        </div>
-
-        <div className="game-over-message">
-          <p className="message-primary">PAGE NOT FOUND</p>
-          <p className="message-secondary">
-            THE COMPONENT YOU ARE LOOKING FOR DOES NOT EXIST
-          </p>
-        </div>
-
-        <div className="game-over-ascii">
-          <pre>{`
-    ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
-    █░░░░░░░░░░░░░░░░░░░░░█
-    █░░░▄▄░░░░░░░░░▄▄░░░░░█
-    █░░░██░░░░░░░░░██░░░░░█
-    █░░░░░░░░░░░░░░░░░░░░░█
-    █░░░░░░░░░░░░░░░░░░░░░█
-    █░░░░░░░▄▄▄▄▄░░░░░░░░░█
-    █░░░░░░▀▀▀▀▀▀▀░░░░░░░░█
-    █░░░░░░░░░░░░░░░░░░░░░█
-    ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-          `}</pre>
-        </div>
-
-        <div className="game-over-actions">
-          <p className="continue-prompt">CONTINUE? Y/N</p>
-          <div className="action-buttons">
-            <Button
-              label="YES - GO HOME"
-              styleBtn="solid"
-              size="medium"
-              click={() => navigate('/')}
-            />
-            <Button
-              label="RETRY - GO BACK"
-              styleBtn="outline"
-              size="medium"
-              click={() => navigate(-1)}
-            />
-          </div>
-        </div>
-
-        <div className="game-over-footer">
-          <p className="insert-coin">INSERT COIN TO CONTINUE</p>
-          <p className="credits-remaining">CREDITS: 0</p>
+      <div className="lost-in-space">
+        <div className="lost-planet" aria-hidden="true" />
+        <h1 className="error-code">404</h1>
+        <h2 className="title">Lost in space</h2>
+        <p className="message">
+          That route drifted out of orbit. Pick a planet below or head back to base.
+        </p>
+        <div className="actions">
+          <Button
+            label="Back to home"
+            styleBtn="solid"
+            size="medium"
+            click={() => navigate('/')}
+          />
+          <Button
+            label="Browse buttons"
+            styleBtn="outline"
+            size="medium"
+            click={() => navigate('/ButtonPage')}
+          />
         </div>
       </div>
     </div>
