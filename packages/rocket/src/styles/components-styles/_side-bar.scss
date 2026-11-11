@@ -25,15 +25,20 @@
       gap: var(--space-2);
     }
 
-    .icon-wrapper {
-      width: 32px;
-      height: 32px;
+    .icon-wrapper.rocket-logo {
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       background: var(--brand);
       color: var(--ink-on-brand);
+      flex-shrink: 0;
+
+      .rocket-mark {
+        display: block;
+      }
     }
   }
 

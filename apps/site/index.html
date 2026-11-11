@@ -7,16 +7,26 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="UI Rocket - A React component library with 90s DOS-game aesthetic"
+      content="Rocket UI — a React component library with a flat space aesthetic"
     />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>UI Rocket</title>
+    <title>Rocket UI</title>
     <script>
       (function() {
-        const stored = localStorage.getItem('segfault-theme');
-        const theme = stored || 
-          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        var key = 'rocket-theme';
+        var legacy = 'segfault-theme';
+        var stored = localStorage.getItem(key);
+        if (!stored) {
+          stored = localStorage.getItem(legacy);
+          if (stored === 'dark' || stored === 'light') {
+            localStorage.setItem(key, stored);
+            localStorage.removeItem(legacy);
+          }
+        }
+        var theme = (stored === 'dark' || stored === 'light')
+          ? stored
+          : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>

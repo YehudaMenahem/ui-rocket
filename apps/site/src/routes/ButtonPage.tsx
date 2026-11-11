@@ -22,7 +22,7 @@ export function ButtonPage() {
     'solid'
   );
   const [buttonDisable, setButtonDisable] = useState(false);
-  const [buttonLabel, setButtonLabel] = useState('Le buoton');
+  const [buttonLabel, setButtonLabel] = useState('Le bouton');
   const [buttonBackToTopPosition, setButtonBackToTopPosition] = useState<
     string | undefined
   >();

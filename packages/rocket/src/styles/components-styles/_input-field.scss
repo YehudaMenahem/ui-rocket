@@ -1,94 +1,79 @@
-.input-field-wrapper {
+// Input — label above field (matches .input-field > .field > .label + input)
+
+.input-field {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   margin-bottom: var(--space-4);
+  width: 100%;
+  max-width: 420px;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+  }
 
   .label {
     font-size: var(--font-size-label);
     font-weight: var(--font-weight-label);
     color: var(--ink);
+    order: 0;
+
+    .astrix {
+      color: var(--danger);
+      margin-left: 2px;
+    }
   }
 
-  .input-wrapper {
-    position: relative;
+  input {
+    order: 1;
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-width) solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--bg);
+    color: var(--ink);
+    font: inherit;
+
+    &::placeholder {
+      color: var(--ink-muted);
+    }
+
+    &:focus {
+      outline: var(--border-focus) solid var(--focus);
+      outline-offset: var(--focus-offset);
+      border-color: var(--brand);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &.has-error input {
+    border-color: var(--danger);
+  }
+
+  .helpers {
     display: flex;
     align-items: center;
-
-    .input-field {
-      width: 100%;
-      padding: var(--space-3) var(--space-4);
-      border: var(--border-width) solid var(--line);
-      border-radius: var(--radius-md);
-      background: var(--bg);
-      color: var(--ink);
-
-      &::placeholder {
-        color: var(--ink-muted);
-      }
-
-      &:focus {
-        outline: var(--border-focus) solid var(--focus);
-        outline-offset: var(--focus-offset);
-        border-color: var(--brand);
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      &.error {
-        border-color: var(--danger);
-      }
-
-      &.success {
-        border-color: var(--success);
-      }
-    }
-
-    .icon {
-      position: absolute;
-      right: var(--space-3);
-      color: var(--ink-muted);
-      pointer-events: none;
-    }
-  }
-
-  .helper-text {
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 1.2em;
     font-size: var(--font-size-body-sm);
     color: var(--ink-muted);
 
-    &.error {
+    .error {
       color: var(--danger);
     }
 
-    &.success {
-      color: var(--success);
+    .char-num {
+      margin-left: auto;
+      font-variant-numeric: tabular-nums;
     }
   }
 }
 
-.input-field {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: var(--border-width) solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--bg);
-  color: var(--ink);
-
-  &::placeholder {
-    color: var(--ink-muted);
-  }
-
-  &:focus {
-    outline: var(--border-focus) solid var(--focus);
-    outline-offset: var(--focus-offset);
-    border-color: var(--brand);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-}

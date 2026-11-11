@@ -6,6 +6,13 @@ interface EntranceProps {
   onToggleTheme: () => void;
 }
 
+const PLANET_LINKS = [
+  { to: '/ButtonPage', label: 'Buttons', className: 'planet-link--buttons' },
+  { to: '/TabsPage', label: 'Tabs', className: 'planet-link--tabs' },
+  { to: '/InputFieldPage', label: 'Inputs', className: 'planet-link--inputs' },
+  { to: '/FormPage', label: 'Forms', className: 'planet-link--forms' },
+];
+
 export function Entrance({ darkMode, onToggleTheme }: EntranceProps) {
   const navigate = useNavigate();
 
@@ -26,81 +33,58 @@ export function Entrance({ darkMode, onToggleTheme }: EntranceProps) {
       </button>
 
       <div className="space-scene" aria-hidden="true">
-        <svg width="100%" height="100%" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="xMidYMid slice"
+        >
           <g className="stars">
-            <circle className="star-twinkle" cx="80" cy="60" r="2" />
-            <circle cx="160" cy="120" r="1.5" />
-            <circle className="star-twinkle" cx="320" cy="40" r="2" />
-            <circle cx="180" cy="90" r="1" />
-            <circle className="star-twinkle" cx="1040" cy="50" r="2.5" />
-            <circle cx="800" cy="130" r="1.5" />
-            <circle className="star-twinkle" cx="960" cy="70" r="2" />
-            <circle cx="1100" cy="110" r="1" />
-            <circle cx="100" cy="200" r="1.5" />
-            <circle className="star-twinkle" cx="1080" cy="180" r="2" />
-            <circle cx="900" cy="210" r="1" />
-            <circle cx="70" cy="300" r="1.5" />
-            <circle className="star-twinkle" cx="1150" cy="260" r="2" />
+            <circle className="star-twinkle" cx="70" cy="50" r="2" />
+            <circle cx="150" cy="110" r="1.5" />
+            <circle className="star-twinkle" cx="280" cy="40" r="2" />
+            <circle cx="1050" cy="60" r="2.5" />
+            <circle cx="920" cy="120" r="1.5" />
+            <circle className="star-twinkle" cx="1120" cy="180" r="2" />
+            <circle cx="60" cy="220" r="1" />
+            <circle cx="1180" cy="280" r="1.5" />
           </g>
 
+          {/* Decorative planets kept clear of the center text column */}
           <g className="planet planet-slow">
-            <circle cx="180" cy="520" r="70" fill="#C58FFF" />
-            <circle cx="150" cy="500" r="12" fill="#000000" opacity="0.2" />
-            <circle cx="210" cy="540" r="8" fill="#000000" opacity="0.15" />
-            <path d="M130 530 C160 510, 200 560, 230 535" fill="none" stroke="#5CFFE4" strokeWidth="8" />
+            <circle cx="140" cy="560" r="64" fill="#C58FFF" />
+            <circle cx="118" cy="540" r="10" fill="#000000" opacity="0.2" />
+            <circle cx="168" cy="575" r="7" fill="#000000" opacity="0.15" />
+            <path
+              d="M95 565 C125 545, 165 590, 190 560"
+              fill="none"
+              stroke="#5CFFE4"
+              strokeWidth="8"
+            />
           </g>
 
           <g className="planet">
-            <circle cx="980" cy="420" r="48" fill="#5CFFE4" />
-            <circle cx="1000" cy="410" r="10" fill="#000000" opacity="0.12" />
-            <ellipse cx="980" cy="420" rx="62" ry="10" fill="none" stroke="#6439B7" strokeWidth="3" />
+            <circle cx="1040" cy="520" r="44" fill="#5CFFE4" />
+            <circle cx="1058" cy="508" r="9" fill="#000000" opacity="0.12" />
+            <ellipse
+              cx="1040"
+              cy="520"
+              rx="58"
+              ry="9"
+              fill="none"
+              stroke="#6439B7"
+              strokeWidth="3"
+            />
           </g>
 
           <g className="planet planet-slow">
-            <circle cx="720" cy="280" r="28" fill="#DCFF02" />
-            <circle cx="710" cy="272" r="5" fill="#000000" opacity="0.15" />
-          </g>
-
-          {/* Simple rocket */}
-          <g transform="translate(560 300)">
-            <path d="M40 0 L70 90 L40 75 L10 90 Z" fill="#FFFFFF" />
-            <rect x="28" y="75" width="24" height="28" rx="6" fill="#C58FFF" />
-            <circle cx="40" cy="40" r="10" fill="#5CFFE4" />
-            <path d="M10 90 L0 115 L20 95 Z" fill="#6439B7" />
-            <path d="M70 90 L80 115 L60 95 Z" fill="#6439B7" />
-            <path d="M32 103 L40 125 L48 103" fill="#DCFF02" />
+            <circle cx="1080" cy="220" r="22" fill="#DCFF02" />
+            <circle cx="1072" cy="214" r="4" fill="#000000" opacity="0.15" />
           </g>
         </svg>
       </div>
 
       <div className="space-horizon" aria-hidden="true" />
-
-      <div className="planet-links">
-        <Link className="planet-link planet-link--buttons" to="/ButtonPage">
-          <span className="planet-orb" aria-hidden="true" />
-          <span className="callout-dot" aria-hidden="true" />
-          <span className="callout-line" aria-hidden="true" />
-          <span className="planet-link-label">Buttons</span>
-        </Link>
-        <Link className="planet-link planet-link--tabs" to="/TabsPage">
-          <span className="planet-orb" aria-hidden="true" />
-          <span className="callout-dot" aria-hidden="true" />
-          <span className="callout-line" aria-hidden="true" />
-          <span className="planet-link-label">Tabs</span>
-        </Link>
-        <Link className="planet-link planet-link--inputs" to="/InputFieldPage">
-          <span className="planet-orb" aria-hidden="true" />
-          <span className="callout-dot" aria-hidden="true" />
-          <span className="callout-line" aria-hidden="true" />
-          <span className="planet-link-label">Inputs</span>
-        </Link>
-        <Link className="planet-link planet-link--forms" to="/FormPage">
-          <span className="planet-orb" aria-hidden="true" />
-          <span className="callout-dot" aria-hidden="true" />
-          <span className="callout-line" aria-hidden="true" />
-          <span className="planet-link-label">Forms</span>
-        </Link>
-      </div>
 
       <div className="space-hero">
         <div className="space-hero-brand">
@@ -109,6 +93,42 @@ export function Entrance({ darkMode, onToggleTheme }: EntranceProps) {
             A playful React component library with a flat space aesthetic.
           </p>
         </div>
+
+        <div className="space-rocket" aria-hidden="true">
+          <svg width="96" height="140" viewBox="0 0 80 130" role="presentation">
+            <path d="M40 4 L68 78 L40 64 L12 78 Z" fill="#FFFFFF" />
+            <rect x="28" y="64" width="24" height="28" rx="6" fill="#C58FFF" />
+            <circle cx="40" cy="36" r="10" fill="#5CFFE4" />
+            <path d="M12 78 L2 104 L22 84 Z" fill="#6439B7" />
+            <path d="M68 78 L78 104 L58 84 Z" fill="#6439B7" />
+            <path d="M32 92 L40 122 L48 92" fill="#DCFF02" />
+          </svg>
+        </div>
+
+        <nav className="planet-links" aria-label="Featured components">
+          {PLANET_LINKS.map((item) => (
+            <Link
+              key={item.to}
+              className={`planet-link ${item.className}`}
+              to={item.to}
+            >
+              <span className="planet-orb" aria-hidden="true" />
+              <span className="callout-dot" aria-hidden="true" />
+              <span className="callout-line" aria-hidden="true" />
+              <span className="planet-link-label">{item.label}</span>
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mobile-planet-links" aria-label="Featured components">
+          {PLANET_LINKS.map((item) => (
+            <Link key={item.to} to={item.to} className="mobile-planet-link">
+              <span className="planet-orb" aria-hidden="true" />
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
         <div className="space-cta">
           <Button
             label="Explore components"

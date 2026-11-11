@@ -1,29 +1,45 @@
-// Segfault Theme Switcher
-// Handles dark/light theme with localStorage persistence and no flash on load
+// Rocket UI theme switcher
+// localStorage persistence + no flash on load
 
 export type Theme = 'dark' | 'light';
 
-const THEME_KEY = 'segfault-theme';
+const THEME_KEY = 'rocket-theme';
+const LEGACY_THEME_KEY = 'segfault-theme';
 
-export function getInitialTheme(): Theme {
-  // 1. Check localStorage
+function readStoredTheme(): Theme | null {
   const stored = window.localStorage.getItem(THEME_KEY);
   if (stored === 'dark' || stored === 'light') {
     return stored;
   }
 
-  // 2. Check prefers-color-scheme
+  // One-time migration from the old Segfault key
+  const legacy = window.localStorage.getItem(LEGACY_THEME_KEY);
+  if (legacy === 'dark' || legacy === 'light') {
+    window.localStorage.setItem(THEME_KEY, legacy);
+    window.localStorage.removeItem(LEGACY_THEME_KEY);
+    return legacy;
+  }
+
+  return null;
+}
+
+export function getInitialTheme(): Theme {
+  const stored = readStoredTheme();
+  if (stored) {
+    return stored;
+  }
+
   if (window.matchMedia('(prefers-color-scheme: light)').matches) {
     return 'light';
   }
 
-  // 3. Default to dark
   return 'dark';
 }
 
 export function setTheme(theme: Theme): void {
   document.documentElement.setAttribute('data-theme', theme);
   window.localStorage.setItem(THEME_KEY, theme);
+  window.localStorage.removeItem(LEGACY_THEME_KEY);
 }
 
 export function toggleTheme(): Theme {
@@ -33,20 +49,16 @@ export function toggleTheme(): Theme {
   return next;
 }
 
-// Initialize theme immediately to prevent flash
-// This should be called as early as possible, ideally inline in HTML
 export function initTheme(): Theme {
   const theme = getInitialTheme();
   document.documentElement.setAttribute('data-theme', theme);
   return theme;
 }
 
-// Listen for system preference changes
 export function watchSystemTheme(callback?: (theme: Theme) => void): () => void {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 
   const handleChange = (e: { matches: boolean }) => {
-    // Only update if user hasn't set a preference
     if (!window.localStorage.getItem(THEME_KEY)) {
       const theme: Theme = e.matches ? 'light' : 'dark';
       setTheme(theme);
