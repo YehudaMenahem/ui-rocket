@@ -3,12 +3,14 @@ import { JSX } from 'react';
 import { MouseEvent as MouseEvent_2 } from 'react';
 import { ReactNode } from 'react';
 
-export declare function Button({ label, styleBtn, size, loading, classes, id, rounded, shadow, disabled, children, scrollToTop, position, click, }: ButtonProps): JSX.Element;
+export declare function Button({ label, styleBtn, size, loading, classes, id, rounded, shadow, disabled, children, scrollToTop, position, color, radius, click, }: ButtonProps): JSX.Element;
 
 export declare interface ButtonProps {
     label?: string;
-    styleBtn?: 'solid' | 'outline' | 'text';
-    size?: 'small' | 'medium' | 'large';
+    styleBtn?: 'solid' | 'outline' | 'text' | 'soft' | 'ghost';
+    size?: 'small' | 'medium' | 'large' | 'xs' | 'xl';
+    color?: 'brand' | 'olive' | 'navy' | 'mustard' | 'powder';
+    radius?: 'none' | 'sm' | 'md' | 'full';
     loading?: boolean;
     classes?: string;
     id?: string;

@@ -1,67 +1,111 @@
 .toggle-button {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 10px;
   cursor: pointer;
   user-select: none;
+  font-size: 14px;
+  color: var(--ink);
 
-  .label {
-    font-size: var(--font-size-label);
-    font-weight: var(--font-weight-label);
-    color: var(--ink);
-    order: 1;
+  .control {
+    position: relative;
+    display: inline-flex;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
   }
 
-  .switch {
+  input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+    appearance: none;
+  }
+
+  .switch,
+  .slider {
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    background: var(--switch-off);
+    border: 2px solid var(--line-strong);
     position: relative;
-    width: 48px;
-    height: 28px;
-    background: var(--line);
-    border: var(--border-width) solid var(--line);
-    border-radius: var(--radius-pill);
-    order: 2;
+    flex-shrink: 0;
+    transition: background 0.15s ease;
+    pointer-events: none;
 
-    input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-      position: absolute;
-
-      &:checked + .slider {
-        transform: translateX(20px);
-        background: var(--brand);
-      }
-
-      &:focus-visible + .slider {
-        outline: var(--border-focus) solid var(--focus);
-        outline-offset: var(--focus-offset);
-      }
-
-      &:disabled + .slider {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-    }
-
-    .slider {
+    &::after {
+      content: '';
       position: absolute;
       top: 2px;
       left: 2px;
-      width: 20px;
-      height: 20px;
-      background: var(--surface);
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
-      transition: transform 0.2s ease;
-      cursor: pointer;
-
-      @media (prefers-reduced-motion: reduce) {
-        transition: none;
-      }
+      background: #fff;
+      border: 2px solid var(--line-strong);
+      transition: left 0.15s ease;
     }
+  }
+
+  input:checked + .switch,
+  input:checked + .slider,
+  &.checked .switch,
+  &.on .switch {
+    background: var(--accent);
+
+    &::after {
+      left: 20px;
+    }
+  }
+
+  input:focus-visible + .switch,
+  input:focus-visible + .slider {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .label {
+    font-weight: 500;
   }
 
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+// Standalone switch used in demos
+.switch {
+  width: 42px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--switch-off);
+  border: 2px solid var(--line-strong);
+  position: relative;
+  display: inline-block;
+  flex: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--line-strong);
+  }
+
+  &.on {
+    background: var(--accent);
+
+    &::after {
+      left: 20px;
+    }
   }
 }

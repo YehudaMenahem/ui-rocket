@@ -1,145 +1,143 @@
-// Rocket UI — Space design tokens
-// Palette from flat playful space illustration mood (lavender / mint / lime)
+// Retro Launch design tokens
 
-:root {
-  --theme: 'dark';
+:root,
+:root[data-theme='light'] {
+  --cream: #f9e5ce;
+  --cream-2: #fdf3e6;
+  --cream-3: #f3d9bb;
+  --navy: #1e2a47;
+  --rust: #c4471d;
+  --olive: #4a5a23;
+  --mustard: #e7a33b;
+  --powder: #9fc2e8;
 
-  // Core palette
-  --black: #000000;
-  --lavender: #c58fff;
-  --mint: #5cffe4;
-  --lime: #dcff02;
-  --white: #ffffff;
-  --purple: #6439b7;
+  --bg: #f9e5ce;
+  --surface: #fdf3e6;
+  --surface-2: #f3d9bb;
+  --ink: #1e2a47;
+  --ink-2: #2f3a57;
+  --muted: #5e4f43;
+  --line: #e3c6a4;
+  --line-strong: #1e2a47;
 
-  // Semantic — dark (default)
-  --bg: var(--black);
-  --surface: #140c22;
-  --surface-raised: #1e1233;
-  --ink: var(--white);
-  --ink-muted: #c9b8e8;
-  --ink-on-brand: #1e1233;
-  --line: #3a2a5c;
-  --line-strong: var(--lavender);
-  --brand: var(--lavender);
-  --brand-text: var(--lavender);
-  --accent: var(--mint);
-  --accent-text: var(--mint);
-  --highlight: var(--lime);
-  --success: var(--mint);
-  --warning: var(--lime);
-  --danger: #ff6b8a;
-  --focus: var(--lime);
-  --horizon: var(--lavender);
-  --star: var(--white);
+  --accent: #c4471d;
+  --accent-ink: #fff6ec;
+  --accent-soft: #f6d3bd;
+  --accent-text: #a93a14;
+  --focus-ring: rgba(196, 71, 29, 0.25);
 
-  // Space scale
+  --topbar-bg: rgba(249, 229, 206, 0.92);
+  --nav-on: #f1d5b5;
+  --field-bg: #fff8ef;
+  --switch-off: #d9bb98;
+  --canvas-bg: #f7e0c4;
+  --pill-bg: #1e2a47;
+  --pill-ink: #fdf1e2;
+
+  --success: #4a5a23;
+  --success-ink: #f6efd9;
+  --danger: #c4471d;
+  --danger-ink: #fff6ec;
+
+  --r-sm: 10px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+  --r-btn: 999px;
+  --r-field: 12px;
+  --r-check: 5px;
+  --r-swatch: 50%;
+
+  --shadow-sm: 3px 3px 0 #1e2a47;
+  --shadow-md: 5px 5px 0 #1e2a47;
+  --shadow-lg: 7px 7px 0 #1e2a47;
+  --btn-shadow: 3px 3px 0 #1e2a47;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --font-sans: var(--font-body);
+
+  --code-bg: #1e2a47;
+  --code-ink: #fbe9d3;
+  --code-head: #18223b;
+  --code-line: #2e3b5e;
+  --code-tab: #33416a;
+  --tk-k: #f28c5e;
+  --tk-s: #c7d88c;
+  --tk-t: #f3c063;
+  --tk-a: #9fc2e8;
+  --tk-c: #8792ae;
+  --tk-p: #c3b49e;
+
+  --type-bg: #f1d5b5;
+  --type-ink: #1e2a47;
+  --av1: #c4471d;
+  --av2: #4a5a23;
+  --av3: #1e2a47;
+
+  --h1-size: 96px;
+  --h1-m: 42px;
+  --h1-track: -0.03em;
+  --h1-weight: 900;
+  --h2-weight: 800;
+  --logo-weight: 800;
+
+  --border-width: 2px;
+  --border-focus: 2px;
+  --focus: var(--accent);
+  --focus-offset: 3px;
+
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
+  --space-10: 40px;
   --space-12: 48px;
-
-  // Shape — generous rounded corners, flat (no glow / 3D)
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 28px;
-  --radius-pill: 999px;
-  --border-width: 2px;
-  --border-focus: 2px;
-  --focus-offset: 3px;
-
-  // Flat “shadow” = soft offset block, no blur/glow
-  --shadow-card: 0 0 0 0 transparent;
-
-  // Typography — Outfit (rounded geometric sans)
-  --font-sans: 'Outfit', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --font-heading: 'Outfit', system-ui, sans-serif;
-  --font-mono: 'Outfit', system-ui, sans-serif;
-
-  --font-size-display-xl: 56px;
-  --line-height-display-xl: 1.05;
-  --font-weight-display-xl: 500;
-
-  --font-size-display: 32px;
-  --line-height-display: 1.15;
-  --font-weight-display: 500;
-
-  --font-size-h1: 36px;
-  --line-height-h1: 1.2;
-  --font-weight-h1: 500;
-
-  --font-size-h2: 24px;
-  --line-height-h2: 1.3;
-  --font-weight-h2: 500;
-
-  --font-size-body: 16px;
-  --line-height-body: 1.55;
-  --font-weight-body: 400;
-
-  --font-size-body-sm: 14px;
-  --line-height-body-sm: 1.45;
-  --font-weight-body-sm: 400;
-
-  --font-size-label: 14px;
-  --line-height-label: 1.3;
-  --font-weight-label: 500;
-
-  --font-size-code: 14px;
-  --line-height-code: 1.45;
-  --font-weight-code: 400;
 }
 
-:root[data-theme='light'] {
-  --theme: 'light';
+:root[data-theme='dark'] {
+  --bg: #18223b;
+  --surface: #1e2a47;
+  --surface-2: #2a3758;
+  --ink: #fdf3e6;
+  --ink-2: #f3d9bb;
+  --muted: #c3b49e;
+  --line: #3a4868;
+  --line-strong: #f3d9bb;
 
-  // Lavender / white base, dark purple text — WCAG AA
-  // Lime is decorative only on dark chips (fails on white)
-  --bg: #f7f0ff;
-  --surface: #ffffff;
-  --surface-raised: #ebe0ff;
-  --ink: #1e1233;
-  --ink-muted: #4a3570;
-  --ink-on-brand: #1e1233;
-  --line: #d4c2f0;
-  --line-strong: #6439b7;
-  --brand: #c58fff;
-  --brand-text: #4b2d8a;
-  --accent: #5cffe4;
-  --accent-text: #0a6e62;
-  --highlight: #6439b7;
-  --success: #0a6e62;
-  --warning: #6b5a00;
-  --danger: #b0003a;
-  --focus: #6439b7;
-  --horizon: #c58fff;
-  --star: #6439b7;
-}
+  --accent: #e05a2b;
+  --accent-ink: #fff6ec;
+  --accent-soft: #4a2a1f;
+  --accent-text: #f6d3bd;
+  --focus-ring: rgba(224, 90, 43, 0.35);
 
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    --theme: 'light';
-    --bg: #f7f0ff;
-    --surface: #ffffff;
-    --surface-raised: #ebe0ff;
-    --ink: #1e1233;
-    --ink-muted: #4a3570;
-    --ink-on-brand: #1e1233;
-    --line: #d4c2f0;
-    --line-strong: #6439b7;
-    --brand: #c58fff;
-    --brand-text: #4b2d8a;
-    --accent: #5cffe4;
-    --accent-text: #0a6e62;
-    --highlight: #6439b7;
-    --success: #0a6e62;
-    --warning: #6b5a00;
-    --danger: #b0003a;
-    --focus: #6439b7;
-    --horizon: #c58fff;
-    --star: #6439b7;
-  }
+  --topbar-bg: rgba(24, 34, 59, 0.92);
+  --nav-on: #2a3758;
+  --field-bg: #24304f;
+  --switch-off: #3a4868;
+  --canvas-bg: #1a2644;
+  --pill-bg: #fdf3e6;
+  --pill-ink: #1e2a47;
+
+  --shadow-sm: 3px 3px 0 #0d1324;
+  --shadow-md: 5px 5px 0 #0d1324;
+  --shadow-lg: 7px 7px 0 #0d1324;
+  --btn-shadow: 3px 3px 0 #0d1324;
+
+  --code-bg: #0f1628;
+  --code-ink: #fbe9d3;
+  --code-head: #0b1220;
+  --code-line: #24304f;
+  --code-tab: #2a3758;
+
+  --type-bg: #2a3758;
+  --type-ink: #fdf3e6;
+
+  --success: #7a9140;
+  --success-ink: #18223b;
 }

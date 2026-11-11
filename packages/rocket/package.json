@@ -1,7 +1,7 @@
 {
   "name": "@ui-rocket/rocket",
   "version": "1.0.0",
-  "description": "React component library with a playful flat space aesthetic",
+  "description": "React component library with a Retro Launch design system",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -46,6 +46,8 @@
     "vitest": "^3.2.7"
   },
   "dependencies": {
-    "@fontsource/outfit": "^5.3.0"
+    "@fontsource/fraunces": "^5.3.0",
+    "@fontsource/dm-sans": "^5.3.0",
+    "@fontsource/dm-mono": "^5.3.0"
   }
 }

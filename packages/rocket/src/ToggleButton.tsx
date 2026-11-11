@@ -24,24 +24,29 @@ export function ToggleButton({
 
   return (
     <label
+      htmlFor={id}
       className={`toggle-button ${classes} ${labelPosition} ${
         toggle ? 'checked' : 'unchecked'
-      }`}
+      } ${disabled ? 'disabled' : ''}`}
     >
-      <span className="label">{label}</span>
-      <span className="switch">
+      {labelPosition === 'label-from-left' && (
+        <span className="label">{label}</span>
+      )}
+      <span className="control">
         <input
           type="checkbox"
           id={id}
           name={name}
-          defaultChecked={toggle}
+          checked={toggle}
           onChange={handleChange}
           required={required}
           disabled={disabled}
         />
-        <span className="circle-bg"></span>
-        <span className="circle"></span>
+        <span className="switch" aria-hidden="true" />
       </span>
+      {labelPosition === 'label-from-right' && (
+        <span className="label">{label}</span>
+      )}
     </label>
   );
 }

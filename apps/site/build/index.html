@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#F9E5CE" />
     <meta
       name="description"
-      content="Rocket UI — a React component library with a flat space aesthetic"
+      content="Rocket UI — Retro Launch design system. Accessible React components with cream, navy, rust and mustard."
     />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <title>Rocket UI</title>
     <script>
-      (function() {
+      (function () {
         var key = 'rocket-theme';
         var legacy = 'segfault-theme';
         var stored = localStorage.getItem(key);
@@ -24,14 +24,17 @@
             localStorage.removeItem(legacy);
           }
         }
-        var theme = (stored === 'dark' || stored === 'light')
-          ? stored
-          : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        var theme =
+          stored === 'dark' || stored === 'light'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CFRy1gT_.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-McY8vVTo.css">
+    <script type="module" crossorigin src="/assets/index-Bg9JxyDu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CzDbDDGN.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

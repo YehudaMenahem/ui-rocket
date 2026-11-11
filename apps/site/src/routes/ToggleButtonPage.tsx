@@ -1,32 +1,37 @@
-import { useState } from 'react';
 import { ToggleButton } from '@ui-rocket/rocket';
-import { ShowcaseCard } from '../components/ShowcaseCard';
+import { ComponentDoc } from '../components/ComponentDoc';
+import { COMPONENTS } from '../data/components';
 
-export function ToggleButtonPage() {
-  const [checked, setChecked] = useState(false);
+const meta = COMPONENTS.find((c) => c.id === 'toggle')!;
 
+interface PageProps {
+  sidebarOpen: boolean;
+  onCloseSidebar: () => void;
+}
+
+export function ToggleButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
   return (
-    <div className="ui container toggle-button-page">
-      <ShowcaseCard title="Toggle Buttons">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Toggle Button</h1>
-            <p>Toggle buttons switch between two states.</p>
-          </div>
-        </div>
-        <div className="row section">
-          <div className="col-1">
-            <ToggleButton
-              label="Enable feature"
-              isChecked={checked}
-              change={setChecked}
-            />
-          </div>
-        </div>
-      </div>
-    
-      </ShowcaseCard>
-    </div>
+    <ComponentDoc
+      meta={meta}
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      importName="ToggleButton"
+      showPlayground={true}
+      preview={() => (
+        <ToggleButton id="demo-tog" label="Thrusters" isChecked />
+      )}
+      examples={<>
+          <h3>States</h3>
+          <div className="ex"><div className="canvas">
+            <ToggleButton id="t1" label="Armed" isChecked />
+            <ToggleButton id="t2" label="Standby" />
+          </div><div className="exbar"><span>states.tsx</span></div></div>
+        </>}
+      props={[
+        { name: 'label', type: ['string'], defaultValue: '—', description: 'Adjacent label.' },
+        { name: 'isChecked', type: ['boolean'], defaultValue: 'false', description: 'Initial on state.' },
+        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the switch.' },
+      ]}
+    />
   );
 }

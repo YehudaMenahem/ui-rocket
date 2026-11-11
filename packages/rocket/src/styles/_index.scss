@@ -1,11 +1,8 @@
-// Rocket UI design system — modern Sass modules only (@forward / @use)
-// Fonts are loaded from JS via @fontsource (keeps Sass free of @import)
-
+@forward './fonts';
 @forward './tokens';
 @forward './base';
 @forward './typography';
 @forward './animations';
-@forward './demo';
 @forward './components-styles/side-bar';
 @forward './components-styles/button';
 @forward './components-styles/checkbox';
@@ -19,5 +16,3 @@
 @forward './components-styles/textbox';
 @forward './components-styles/toggle-button';
 @forward './components-styles/toaster';
-@forward './pages-styles/entrance';
-@forward './pages-styles/not-found';

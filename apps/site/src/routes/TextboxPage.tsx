@@ -1,33 +1,35 @@
-import { useState } from 'react';
 import { Textbox } from '@ui-rocket/rocket';
-import { ShowcaseCard } from '../components/ShowcaseCard';
+import { ComponentDoc } from '../components/ComponentDoc';
+import { COMPONENTS } from '../data/components';
 
-export function TextboxPage() {
-  const [value, setValue] = useState('');
+const meta = COMPONENTS.find((c) => c.id === 'textbox')!;
 
+interface PageProps {
+  sidebarOpen: boolean;
+  onCloseSidebar: () => void;
+}
+
+export function TextboxPage({ sidebarOpen, onCloseSidebar }: PageProps) {
   return (
-    <div className="ui container textbox-page">
-      <ShowcaseCard title="Textboxes">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Textbox</h1>
-            <p>Textbox for multi-line text input.</p>
-          </div>
-        </div>
-        <div className="row section">
-          <div className="col-1">
-            <Textbox
-              label="Comments"
-              rows={5}
-              value={value}
-              change={setValue}
-            />
-          </div>
-        </div>
-      </div>
-    
-      </ShowcaseCard>
-    </div>
+    <ComponentDoc
+      meta={meta}
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      importName="Textbox"
+      showPlayground={true}
+      preview={() => (
+        <Textbox id="demo-tb" label="Mission log" value="T-00:42:10 — systems nominal" change={() => {}} />
+      )}
+      examples={<>
+          <h3>Basic</h3>
+          <div className="ex"><div className="canvas"><Textbox id="tb1" label="Notes" placeholder="Write a note…" value="" change={() => {}} /></div><div className="exbar"><span>basic.tsx</span></div></div>
+        </>}
+      props={[
+        { name: 'label', type: ['string'], defaultValue: '—', description: 'Field label.' },
+        { name: 'value', type: ['string'], defaultValue: '—', description: 'Controlled value.' },
+        { name: 'rows', type: ['number'], defaultValue: '1', description: 'Visible rows.' },
+        { name: 'maxlength', type: ['number'], defaultValue: '135', description: 'Character limit.' },
+      ]}
+    />
   );
 }

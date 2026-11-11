@@ -13,6 +13,8 @@ export function Button({
   children,
   scrollToTop = false,
   position,
+  color = 'brand',
+  radius,
   click,
 }: ButtonProps) {
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,22 +31,26 @@ export function Button({
     }
   };
 
+  const colorClass = color !== 'brand' ? `color-${color}` : '';
+  const radiusClass = radius ? `radius-${radius}` : rounded ? 'rounded' : '';
+
   return (
     <button
       id={id}
-      className={`button ${loading ? 'loading' : ''} ${styleBtn} ${size} ${
-        rounded ? 'rounded' : ''
-      } ${shadow ? 'shadow' : ''} ${classes} ${
+      className={`button btn ${loading ? 'loading' : ''} ${styleBtn} ${size} ${
+        shadow ? 'shadow' : ''
+      } ${colorClass} ${radiusClass} ${classes} ${
         scrollToTop && position ? position : ''
       }`}
       onClick={handleClick}
       disabled={disabled}
+      aria-busy={loading || undefined}
     >
       {children}
       {loading && (
         <div className="loading-bg">
           <div className="stage">
-            <div className="dot-pulse"></div>
+            <div className="spin" />
           </div>
         </div>
       )}

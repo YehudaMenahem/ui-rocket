@@ -9,6 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'build',
     sourcemap: true,
+    assetsInlineLimit: 0,
   },
   test: {
     globals: true,

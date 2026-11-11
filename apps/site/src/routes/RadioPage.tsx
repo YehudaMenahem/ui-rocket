@@ -1,43 +1,41 @@
-import { useState } from 'react';
 import { RadioButton } from '@ui-rocket/rocket';
-import { ShowcaseCard } from '../components/ShowcaseCard';
+import { ComponentDoc } from '../components/ComponentDoc';
+import { COMPONENTS } from '../data/components';
 
-export function RadioPage() {
-  const [selected, setSelected] = useState('option1');
+const meta = COMPONENTS.find((c) => c.id === 'radio')!;
 
+interface PageProps {
+  sidebarOpen: boolean;
+  onCloseSidebar: () => void;
+}
+
+export function RadioPage({ sidebarOpen, onCloseSidebar }: PageProps) {
   return (
-    <div className="ui container radio-page">
-      <ShowcaseCard title="Radio Buttons">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Radio Button</h1>
-            <p>Radio buttons allow selection of a single option from a set.</p>
-          </div>
+    <ComponentDoc
+      meta={meta}
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      importName="RadioButton"
+      showPlayground={true}
+      preview={() => (
+        <div style={{display:'flex',flexDirection:'column',gap:8}}>
+          <RadioButton id="d1" name="demo" label="Low orbit" isSelected val="low" />
+          <RadioButton id="d2" name="demo" label="Lunar" val="lunar" />
         </div>
-        <div className="row section">
-          <div className="col-1">
-            <RadioButton
-              name="demo"
-              val="option1"
-              id="option1"
-              label="Option 1"
-              isSelected={selected === 'option1'}
-              change={() => setSelected('option1')}
-            />
-            <RadioButton
-              name="demo"
-              val="option2"
-              id="option2"
-              label="Option 2"
-              isSelected={selected === 'option2'}
-              change={() => setSelected('option2')}
-            />
-          </div>
-        </div>
-      </div>
-    
-      </ShowcaseCard>
-    </div>
+      )}
+      examples={<>
+          <h3>Group</h3>
+          <div className="ex"><div className="canvas" style={{flexDirection:'column',alignItems:'flex-start'}}>
+            <RadioButton id="g1" name="g" label="Pad 39A" isSelected val="a" />
+            <RadioButton id="g2" name="g" label="Pad 39B" val="b" />
+          </div><div className="exbar"><span>group.tsx</span></div></div>
+        </>}
+      props={[
+        { name: 'label', type: ['string'], defaultValue: '—', description: 'Option label.' },
+        { name: 'name', type: ['string'], defaultValue: '—', description: 'Radio group name.' },
+        { name: 'isSelected', type: ['boolean'], defaultValue: 'false', description: 'Selected state.' },
+        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the option.' },
+      ]}
+    />
   );
 }

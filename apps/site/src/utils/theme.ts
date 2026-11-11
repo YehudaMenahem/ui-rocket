@@ -29,11 +29,12 @@ export function getInitialTheme(): Theme {
     return stored;
   }
 
-  if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-    return 'light';
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
   }
 
-  return 'dark';
+  // Retro Launch defaults to light (cream) when no preference is stored
+  return 'light';
 }
 
 export function setTheme(theme: Theme): void {

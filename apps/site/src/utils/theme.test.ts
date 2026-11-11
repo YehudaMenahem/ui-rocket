@@ -10,29 +10,29 @@ describe('Theme utilities', () => {
 
   describe('getInitialTheme', () => {
     it('should return stored theme from localStorage', () => {
-      window.localStorage.setItem('rocket-theme', 'light');
-      expect(getInitialTheme()).toBe('light');
+      window.localStorage.setItem('rocket-theme', 'dark');
+      expect(getInitialTheme()).toBe('dark');
     });
 
     it('should migrate legacy segfault-theme key once', () => {
-      window.localStorage.setItem('segfault-theme', 'light');
-      expect(getInitialTheme()).toBe('light');
-      expect(window.localStorage.getItem('rocket-theme')).toBe('light');
+      window.localStorage.setItem('segfault-theme', 'dark');
+      expect(getInitialTheme()).toBe('dark');
+      expect(window.localStorage.getItem('rocket-theme')).toBe('dark');
       expect(window.localStorage.getItem('segfault-theme')).toBeNull();
     });
 
-    it('should return light theme if prefers-color-scheme is light', () => {
+    it('should return dark theme if prefers-color-scheme is dark', () => {
       window.matchMedia = vi.fn().mockImplementation((query) => ({
-        matches: query === '(prefers-color-scheme: light)',
+        matches: query === '(prefers-color-scheme: dark)',
         media: query,
         addEventListener: vi.fn(),
         removeEventListener: vi.fn(),
       })) as unknown as typeof window.matchMedia;
 
-      expect(getInitialTheme()).toBe('light');
+      expect(getInitialTheme()).toBe('dark');
     });
 
-    it('should default to dark theme', () => {
+    it('should default to light theme', () => {
       window.matchMedia = vi.fn().mockImplementation(() => ({
         matches: false,
         media: '',
@@ -40,7 +40,7 @@ describe('Theme utilities', () => {
         removeEventListener: vi.fn(),
       })) as unknown as typeof window.matchMedia;
 
-      expect(getInitialTheme()).toBe('dark');
+      expect(getInitialTheme()).toBe('light');
     });
   });
 

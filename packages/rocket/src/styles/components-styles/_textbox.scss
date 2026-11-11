@@ -1,69 +1,58 @@
-// Textbox — label above field
-
 .textbox {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  margin-bottom: var(--space-4);
+  gap: 6px;
+  margin-bottom: 16px;
   width: 100%;
   max-width: 520px;
 
   .field {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    width: 100%;
+    gap: 6px;
   }
 
   .label {
-    font-size: var(--font-size-label);
-    font-weight: var(--font-weight-label);
+    font-size: 13px;
+    font-weight: 600;
     color: var(--ink);
 
     .astrix {
-      color: var(--danger);
-      margin-left: 2px;
+      color: var(--accent);
     }
   }
 
   textarea {
     width: 100%;
     min-height: 120px;
-    padding: var(--space-3) var(--space-4);
-    border: var(--border-width) solid var(--line);
-    border-radius: var(--radius-md);
-    background: var(--bg);
+    padding: 10px 12px;
+    border-radius: var(--r-field);
+    border: 2px solid var(--line-strong);
+    background: var(--field-bg);
     color: var(--ink);
     font: inherit;
     resize: vertical;
 
     &::placeholder {
-      color: var(--ink-muted);
+      color: var(--muted);
     }
 
     &:focus {
-      outline: var(--border-focus) solid var(--focus);
-      outline-offset: var(--focus-offset);
-      border-color: var(--brand);
+      outline: none;
+      border-color: var(--accent-text);
+      box-shadow: 0 0 0 3px var(--focus-ring);
     }
 
     &:disabled {
       opacity: 0.5;
-      cursor: not-allowed;
     }
-  }
-
-  &.has-error textarea {
-    border-color: var(--danger);
   }
 
   .helpers {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: var(--space-3);
-    font-size: var(--font-size-body-sm);
-    color: var(--ink-muted);
+    font-size: 12px;
+    color: var(--muted);
 
     .error {
       color: var(--danger);
@@ -71,8 +60,7 @@
 
     .char-num {
       margin-left: auto;
-      font-variant-numeric: tabular-nums;
+      font-family: var(--font-mono);
     }
   }
 }
-
