@@ -1,62 +1,39 @@
-/*******************/
-/* tabs */
-/*******************/
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid var(--line);
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 0;
 
-.tabs{
-    @include flex(flex,initial,initial);
-    @include mr(0);
-    @include pd(0);
-    @include bg($grayscale-level-1);
+  .tab,
+  button,
+  li {
     list-style: none;
+  }
 
-    .tab{
-        position: relative;
-        @include pd(15px);
-        @include trans(border .3s);
-        @include pointer();
-        border-bottom: 2px solid transparent;
+  .tab,
+  button {
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    border-radius: 0;
 
-        .button{
-            @include mr-b(0);
-            @include pointer();
-
-            &.text{
-                .label{
-                    @include c($accentColor);
-                }
-            }
-        }   
-
-        &:before{
-            @include bg(none repeat scroll 0 0 transparent);
-            @include db();
-            @include bg($accentColor);
-            top: 0;
-            content: "";
-            height: 2px;
-            position: absolute;
-            transition: width 0.3s ease 0s, left 0.3s ease 0s;
-            left: 50%;
-            width: 0;
-        }
-
-        &.active{
-            &:before{
-                left: 0;
-                width: 100%;
-            }
-        }
+    &.active,
+    &[aria-selected='true'] {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
     }
-}
 
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .tabs{    
-        .tab{
-            flex: 1;
-        }
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
+  }
 }

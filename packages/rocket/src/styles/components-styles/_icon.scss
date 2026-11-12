@@ -1,7 +1,12 @@
-/*********/
-/* icons */
-/*********/
+.icon,
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-text);
 
-/*********/
-/* media query */
-/*********/
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}

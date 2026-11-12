@@ -4,16 +4,53 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#F9E5CE" />
     <meta
       name="description"
-      content="UI Rocket - A React component library with 90s DOS-game aesthetic"
+      content="Rocket UI — Retro Launch design system. Accessible React components with cream, navy, rust and mustard."
     />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
-    <title>UI Rocket</title>
-    <script type="module" crossorigin src="/assets/index-DsUxnGgY.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BHcOKGpc.css">
+    <title>Rocket UI</title>
+    <script>
+      (function () {
+        var key = 'rocket-theme';
+        var legacy = 'segfault-theme';
+        var stored = localStorage.getItem(key);
+        if (!stored) {
+          stored = localStorage.getItem(legacy);
+          if (stored === 'dark' || stored === 'light') {
+            localStorage.setItem(key, stored);
+            localStorage.removeItem(legacy);
+          }
+        }
+        var theme =
+          stored === 'dark' || stored === 'light'
+            ? stored
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.backgroundColor =
+          theme === 'dark' ? '#18223B' : '#F9E5CE';
+        document.documentElement.style.color =
+          theme === 'dark' ? '#FDF3E6' : '#1E2A47';
+      })();
+    </script>
+    <style>
+      html,
+      body {
+        background: #f9e5ce;
+        color: #1e2a47;
+      }
+      html[data-theme='dark'],
+      html[data-theme='dark'] body {
+        background: #18223b;
+        color: #fdf3e6;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CMmfXddW.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-mBg4uEpt.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

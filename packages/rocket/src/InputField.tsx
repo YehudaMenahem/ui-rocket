@@ -47,9 +47,13 @@ export function InputField({
     <div
       className={`input-field ${placeholder ? 'placeholder' : ''} ${
         value ? 'with-value' : ''
-      }`}
+      } ${showError ? 'has-error' : ''}`}
     >
-      <label className="field">
+      <label className="field" htmlFor={id}>
+        <span className="label">
+          {label}
+          {required && <span className="astrix">*</span>}
+        </span>
         <input
           type={type}
           id={id}
@@ -68,10 +72,6 @@ export function InputField({
           value={value}
           onChange={handleChange}
         />
-        <span className="label">
-          {label}
-          {required && <span className="astrix">*</span>}
-        </span>
       </label>
       <div className="helpers">
         {error && showError && required && (

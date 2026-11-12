@@ -2,13 +2,16 @@ import { ChangeEvent } from 'react';
 import { JSX } from 'react';
 import { MouseEvent as MouseEvent_2 } from 'react';
 import { ReactNode } from 'react';
+import { ReactPortal } from 'react';
 
-export declare function Button({ label, styleBtn, size, loading, classes, id, rounded, shadow, disabled, children, scrollToTop, position, click, }: ButtonProps): JSX.Element;
+export declare function Button({ label, styleBtn, size, loading, classes, id, rounded, shadow, disabled, children, scrollToTop, position, color, radius, click, }: ButtonProps): JSX.Element;
 
 export declare interface ButtonProps {
     label?: string;
-    styleBtn?: 'solid' | 'outline' | 'text';
-    size?: 'small' | 'medium' | 'large';
+    styleBtn?: 'solid' | 'outline' | 'text' | 'soft' | 'ghost';
+    size?: 'small' | 'medium' | 'large' | 'xs' | 'xl';
+    color?: 'brand' | 'olive' | 'navy' | 'mustard' | 'powder';
+    radius?: 'none' | 'sm' | 'md' | 'full';
     loading?: boolean;
     classes?: string;
     id?: string;
@@ -91,7 +94,7 @@ export declare interface InputFieldProps {
     change?: (value: string) => void;
 }
 
-export declare function Modal({ modalTitle, heroImage, classes, show, closeModal, children, }: ModalProps): JSX.Element | null;
+export declare function Modal({ modalTitle, heroImage, classes, show, closeModal, children, }: ModalProps): ReactPortal | null;
 
 export declare interface ModalProps {
     modalTitle?: string;

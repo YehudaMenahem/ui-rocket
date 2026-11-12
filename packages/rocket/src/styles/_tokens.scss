@@ -1,0 +1,144 @@
+// Retro Launch design tokens
+
+:root,
+:root[data-theme='light'] {
+  --cream: #f9e5ce;
+  --cream-2: #fdf3e6;
+  --cream-3: #f3d9bb;
+  --navy: #1e2a47;
+  --rust: #c4471d;
+  --olive: #4a5a23;
+  --mustard: #e7a33b;
+  --powder: #9fc2e8;
+
+  --bg: #f9e5ce;
+  --surface: #fdf3e6;
+  --surface-2: #f3d9bb;
+  --ink: #1e2a47;
+  --ink-2: #2f3a57;
+  --muted: #5e4f43;
+  --line: #e3c6a4;
+  --line-strong: #1e2a47;
+
+  --accent: #c4471d;
+  --accent-ink: #fff6ec;
+  --accent-soft: #f6d3bd;
+  --accent-text: #a93a14;
+  --focus-ring: rgba(196, 71, 29, 0.25);
+
+  --topbar-bg: rgba(249, 229, 206, 0.92);
+  --nav-on: #f1d5b5;
+  --field-bg: #fff8ef;
+  --switch-off: #d9bb98;
+  --canvas-bg: #f7e0c4;
+  --pill-bg: #1e2a47;
+  --pill-ink: #fdf1e2;
+
+  --success: #4a5a23;
+  --success-ink: #f6efd9;
+  --danger: #c4471d;
+  --danger-ink: #fff6ec;
+
+  --r-sm: 10px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+  --r-btn: 999px;
+  --r-field: 12px;
+  --r-check: 5px;
+  --r-swatch: 50%;
+
+  --shadow-sm: 3px 3px 0 #1e2a47;
+  --shadow-md: 5px 5px 0 #1e2a47;
+  --shadow-lg: 7px 7px 0 #1e2a47;
+  --btn-shadow: 3px 3px 0 #1e2a47;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --font-sans: var(--font-body);
+
+  --code-bg: #1e2a47;
+  --code-ink: #fbe9d3;
+  --code-head: #18223b;
+  --code-line: #2e3b5e;
+  --code-tab: #33416a;
+  --tk-k: #f28c5e;
+  --tk-s: #c7d88c;
+  --tk-t: #f3c063;
+  --tk-a: #9fc2e8;
+  --tk-c: #8792ae;
+  --tk-p: #c3b49e;
+
+  --type-bg: #f1d5b5;
+  --type-ink: #1e2a47;
+  --av1: #c4471d;
+  --av2: #4a5a23;
+  --av3: #1e2a47;
+
+  --h1-size: 96px;
+  --h1-m: 42px;
+  --h1-track: -0.03em;
+  --h1-weight: 900;
+  --h2-weight: 800;
+  --logo-weight: 800;
+
+  --border-width: 2px;
+  --border-focus: 2px;
+  --focus: var(--accent);
+  --focus-offset: 3px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+}
+
+:root[data-theme='dark'] {
+  --bg: #18223b;
+  --surface: #1e2a47;
+  --surface-2: #2a3758;
+  --ink: #fdf3e6;
+  --ink-2: #f3d9bb;
+  --muted: #c3b49e;
+  --line: #3a4868;
+  --line-strong: #f3d9bb;
+
+  --accent: #e05a2b;
+  --accent-ink: #fff6ec;
+  --accent-soft: #4a2a1f;
+  --accent-text: #f6d3bd;
+  --focus-ring: rgba(224, 90, 43, 0.35);
+
+  --topbar-bg: rgba(24, 34, 59, 0.94);
+  --nav-on: #2a3758;
+  --field-bg: #24304f;
+  --switch-off: #3a4868;
+  --canvas-bg: #1a2644;
+  --pill-bg: #fdf3e6;
+  --pill-ink: #1e2a47;
+
+  --shadow-sm: 3px 3px 0 #0d1324;
+  --shadow-md: 5px 5px 0 #0d1324;
+  --shadow-lg: 7px 7px 0 #0d1324;
+  --btn-shadow: 3px 3px 0 #0d1324;
+
+  --code-bg: #0f1628;
+  --code-ink: #fbe9d3;
+  --code-head: #0b1220;
+  --code-line: #24304f;
+  --code-tab: #2a3758;
+
+  --type-bg: #2a3758;
+  --type-ink: #fdf3e6;
+
+  --success: #7a9140;
+  --success-ink: #18223b;
+  --olive: #7a9140;
+}

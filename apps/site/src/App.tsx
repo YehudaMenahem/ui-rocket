@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToggleButton, Modal, Toaster } from '@ui-rocket/rocket';
-import { SideBar } from './components/SideBar';
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { TopBar } from './components/TopBar';
+import { CommandPalette } from './components/CommandPalette';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Entrance } from './routes/Entrance';
+import { NotFound } from './routes/NotFound';
+import { DocsPage } from './routes/DocsPage';
+import { ThemingPage } from './routes/ThemingPage';
+import { PlaygroundPage } from './routes/PlaygroundPage';
+import { BlogPage } from './routes/BlogPage';
 import { ButtonPage } from './routes/ButtonPage';
 import { IconPage } from './routes/IconPage';
 import { RadioPage } from './routes/RadioPage';
@@ -17,172 +22,88 @@ import { TabsPage } from './routes/TabsPage';
 import { ToggleButtonPage } from './routes/ToggleButtonPage';
 import { ToasterPage } from './routes/ToasterPage';
 import { FormPage } from './routes/FormPage';
+import { setTheme, getInitialTheme } from './utils/theme';
 
-interface ModalSettings {
-  showModal: boolean;
-  headerTitle?: string;
-  heroImage?: boolean;
-  contentTitle?: string;
-  contentRunningText?: string;
-}
+function AppLayout() {
+  const location = useLocation();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(getInitialTheme() === 'dark');
+  const isHome = location.pathname === '/';
 
-interface ToasterSettings {
-  showToaster: boolean;
-  type?: 'info' | 'success' | 'error' | 'warning';
-  title?: string;
-  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
-  runningText?: string;
-}
-
-export function App() {
-  const [toggleSideBar, setToggleSideBar] = useState(false);
-  const [darkTheme, setDarkTheme] = useState(false);
-  const [modalSettings, setModalSettings] = useState<ModalSettings>({
-    showModal: false,
-  });
-  const [toasterSettings, setToasterSettings] = useState<ToasterSettings>({
-    showToaster: false,
-  });
+  const toggleTheme = () => {
+    const next = darkMode ? 'light' : 'dark';
+    setTheme(next);
+    setDarkMode(next === 'dark');
+  };
 
   useEffect(() => {
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-    const html = document.querySelector('html');
+    setSidebarOpen(false);
+  }, [location.pathname]);
 
-    if (mobile && html) {
-      html.classList.add('no-scroll');
-    }
-
-    const day = new Date();
-    const hourInDay = day.getHours();
-    const theme = hourInDay >= 17 || hourInDay <= 4 ? 'dark' : 'light';
-    const isDark = theme === 'dark';
-    setDarkTheme(isDark);
-
-    if (html) {
-      html.classList.add(theme);
-    }
+  useEffect(() => {
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, []);
 
-  const closeSideBar = () => {
-    const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-    const html = document.querySelector('html');
-
-    if (mobile && html) {
-      if (toggleSideBar) {
-        html.classList.add('no-scroll');
-      } else {
-        html.classList.remove('no-scroll');
-      }
-    }
-
-    setToggleSideBar(!toggleSideBar);
-  };
-
-  const closeModal = () => {
-    setModalSettings({ showModal: false });
-  };
-
-  const closeToaster = () => {
-    setToasterSettings({ showToaster: false });
-  };
-
-  const changeTheme = (state: boolean) => {
-    const html = document.querySelector('html');
-    if (html) {
-      if (state) {
-        html.classList.add('dark');
-        html.classList.remove('light');
-      } else {
-        html.classList.add('light');
-        html.classList.remove('dark');
-      }
-    }
-    setDarkTheme(state);
+  const pageProps = {
+    sidebarOpen,
+    onCloseSidebar: () => setSidebarOpen(false),
   };
 
   return (
-    <BrowserRouter>
-      <Modal
-        show={modalSettings.showModal}
-        closeModal={closeModal}
-        modalTitle={modalSettings.headerTitle}
-        heroImage={modalSettings.heroImage}
-      >
-        <div className="row">
-          <div className="col-1">
-            <h2>{modalSettings.contentTitle}</h2>
-            <p className="line-break">{modalSettings.contentRunningText}</p>
-          </div>
-        </div>
-      </Modal>
-
-      <Toaster
-        show={toasterSettings.showToaster}
-        closeToaster={closeToaster}
-        type={toasterSettings.type}
-        title={toasterSettings.title}
-        position={toasterSettings.position}
-        runningText={toasterSettings.runningText}
+    <div className="site-root">
+      <TopBar
+        darkMode={darkMode}
+        onToggleTheme={toggleTheme}
+        onOpenSearch={() => setSearchOpen(true)}
+        onOpenNav={isHome ? undefined : () => setSidebarOpen(true)}
       />
 
-      <div className="home-page">
-        <ToggleButton
-          classes="toggle-theme"
-          label="Mode: Light/Dark"
-          name="theme"
-          id="theme"
-          isChecked={darkTheme}
-          change={changeTheme}
+      <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
+
+      <Routes>
+        <Route path="/" element={<Entrance darkMode={darkMode} />} />
+        <Route path="/docs" element={<DocsPage />} />
+        <Route path="/theming" element={<ThemingPage />} />
+        <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/ButtonPage" element={<ButtonPage {...pageProps} />} />
+        <Route path="/IconPage" element={<IconPage {...pageProps} />} />
+        <Route path="/RadioPage" element={<RadioPage {...pageProps} />} />
+        <Route path="/CheckboxPage" element={<CheckboxPage {...pageProps} />} />
+        <Route path="/ToggleButtonPage" element={<ToggleButtonPage {...pageProps} />} />
+        <Route path="/InputFieldPage" element={<InputFieldPage {...pageProps} />} />
+        <Route path="/SelectFieldPage" element={<SelectFieldPage {...pageProps} />} />
+        <Route path="/ImgPage" element={<ImgPage {...pageProps} />} />
+        <Route
+          path="/FormPage"
+          element={
+            <ErrorBoundary>
+              <FormPage {...pageProps} />
+            </ErrorBoundary>
+          }
         />
+        <Route path="/TextboxPage" element={<TextboxPage {...pageProps} />} />
+        <Route path="/TabsPage" element={<TabsPage {...pageProps} />} />
+        <Route path="/ModalPage" element={<ModalPage {...pageProps} />} />
+        <Route path="/ToasterPage" element={<ToasterPage {...pageProps} />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
 
-        <div
-          className={`mobile-header ${toggleSideBar ? 'close' : 'open'}`}
-        >
-          <h3>
-            <span className="icon-wrapper mr-r-md">
-              <i className="icon rocket"></i>
-            </span>
-            Rocket UI
-          </h3>
-          <i className="close-icon mr-l-auto" onClick={closeSideBar}>
-            <span className="strip"></span>
-            <span className="strip"></span>
-            <span className="strip"></span>
-          </i>
-        </div>
-
-        <SideBar closeBar={toggleSideBar} closeSideBar={closeSideBar} />
-
-        <div className="components-info">
-          <Routes>
-            <Route path="/" element={<Entrance theme={darkTheme} />} />
-            <Route path="/ButtonPage" element={<ButtonPage />} />
-            <Route path="/IconPage" element={<IconPage />} />
-            <Route path="/RadioPage" element={<RadioPage />} />
-            <Route path="/CheckboxPage" element={<CheckboxPage />} />
-            <Route path="/ToggleButtonPage" element={<ToggleButtonPage />} />
-            <Route path="/InputFieldPage" element={<InputFieldPage />} />
-            <Route path="/SelectFieldPage" element={<SelectFieldPage />} />
-            <Route path="/ImgPage" element={<ImgPage />} />
-            <Route
-              path="/FormPage"
-              element={
-                <ErrorBoundary>
-                  <FormPage />
-                </ErrorBoundary>
-              }
-            />
-            <Route path="/TextboxPage" element={<TextboxPage />} />
-            <Route path="/TabsPage" element={<TabsPage />} />
-            <Route path="/ModalPage" element={<ModalPage />} />
-            <Route path="/ToasterPage" element={<ToasterPage />} />
-          </Routes>
-        </div>
-      </div>
+export function App() {
+  return (
+    <BrowserRouter>
+      <AppLayout />
     </BrowserRouter>
   );
 }

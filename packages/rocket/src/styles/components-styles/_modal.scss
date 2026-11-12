@@ -1,167 +1,158 @@
-/*******************/
-/* modal component */
-/*******************/
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(30, 42, 71, 0.48);
+  animation: modal-fade-in 0.18s ease;
 
-.modal{
-    @include flex(flex,center,center);
-    position: fixed;
+  &.close {
+    animation: modal-fade-out 0.28s ease forwards;
+  }
+
+  .modal-panel {
+    display: flex;
     flex-direction: column;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    animation: fade-in-background 0.15s forwards;
+    width: min(100%, 520px);
+    max-height: min(90vh, 720px);
+    background: var(--surface);
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow-lg);
+    color: var(--ink);
+    overflow: auto;
+    transform: translateY(0);
+    animation: modal-rise 0.2s ease;
+  }
 
-    &.close{
-        animation: fade-out-background 0.15s forwards;
+  &.close .modal-panel {
+    animation: modal-sink 0.28s ease forwards;
+  }
 
-        .box{
-            animation: pop-out .2s forwards
-        }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid var(--line);
+
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1.2;
     }
 
-    &.hero-image{
-        .box{
-            .header{
-                @include bg($grayscale-level-1);
-                position: relative;
-                height: 315px;
-                border-bottom: 1px solid #495057;
-                overflow: hidden;
+    &.hero {
+      display: block;
+      position: relative;
+      padding: 0;
+      border-bottom: 0;
 
-                .hero{
-                    position: absolute;
-                    top: 0;
-                    width: 100%;
-                    height: 380px;
-                }
+      .hero,
+      img {
+        display: block;
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        background: var(--accent-soft);
+      }
+    }
+  }
 
-                .close-sign{
-                    position: absolute;
-                    right: 20px;
-                }
-            }
-        }
+  .close-sign {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0 var(--line-strong);
     }
 
-    .box{
-        @include flex(flex,initial,initial);
-        flex-direction: column;
-        min-width: 450px;
-        @include bg($grayscale-level-2);
-        @include radius(3px);
-        position: relative;
-        overflow: hidden;
-        @include trans(scale(0));
-        animation: pop-in .2s .3s forwards;
-
-        .header{
-            @include flex(flex,center,initial);
-            @include bg($grayscale-level-4);
-            @include pd(20px);
-            @include c($grayscale-level-7);
-            left: 0;
-            top: 0;
-            width: 100%;
-
-            h3{
-                @include mr(auto);
-
-                .dark &{
-                    @include c($grayscale-level-9);
-                }
-            }
-        }
-
-        .body{
-            @include pd(35px 25px);
-
-            h2,p{
-                .dark &{
-                    @include c($grayscale-level-7)
-                }
-            }
-        }
-
-        .footer{
-            @include flex(flex,center,initial);
-            @include pd(25px);
-        }
-        
-        .close-sign{
-            @include mr-r(0);
-            @include fs(17px);
-            @include pointer();
-            @include c($accentColor);
-            @include transition(transform .3s);
-            
-            &:hover{
-                @include trans(rotate(90deg));
-            }
-        }
+    &:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--line-strong);
     }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  }
+
+  .header.hero .close-sign {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  .body {
+    padding: 18px 20px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 12px 20px 20px;
+  }
 }
 
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
+@keyframes modal-fade-out {
+  to {
+    opacity: 0;
+  }
+}
 
+@keyframes modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+@keyframes modal-sink {
+  to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
 
-
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .modal{
-
-    
-        &.close{
-    
-            .box{
-                min-width: auto;
-            }
-        }
-    
-        &.hero-image{
-            .box{
-                .header{
-    
-                    .hero{
-
-                    }
-    
-                    .close-sign{
-
-                    }
-                }
-            }
-        }
-    
-        .box{
-            top: 25px;
-            max-height: 500px;
-    
-            .header{
-
-    
-                h3{
-                }
-            }
-    
-            .body{
-            }
-    
-            .footer{
-
-            }
-            
-            .close-sign{
-
-                
-                &:hover{
-                }
-            }
-        }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .modal,
+  .modal .modal-panel,
+  .modal.close,
+  .modal.close .modal-panel {
+    animation: none;
+  }
 }

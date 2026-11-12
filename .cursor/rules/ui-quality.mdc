@@ -1,0 +1,50 @@
+---
+description: Persistent UI quality standards for Rocket UI (interactions, playgrounds, a11y, verification)
+alwaysApply: true
+---
+
+# UI quality (always on)
+
+These rules apply to every change in this repo — library components, showcase pages, and docs chrome.
+
+## Interactions
+
+1. Every interactive element (`button`, `a`, `[role=button]`, clickable controls) must have `cursor: pointer` (and `cursor: not-allowed` when disabled).
+2. Every interactive element needs visible **hover**, **active/press**, and **`:focus-visible`** states.
+3. Prefer a short tasteful micro-interaction (120–200ms) that fits the design language (e.g. hard-shadow lift / press). Honor `prefers-reduced-motion: reduce` (no motion, keep state color changes).
+4. Every nav link and button must actually be clickable on every route. Before finishing, check for overlapping layers, bad `z-index`, `pointer-events: none` on parents, and invisible overlays.
+
+## No dead UI
+
+5. No dead controls on showcase/demo pages. Every control either works or is removed.
+6. Forms and primary actions must do something meaningful (validate, navigate, toast, animate, copy, etc.).
+7. Playground controls must map to **real component props** and visibly change the preview. Never show a control that does nothing. Only expose props the component actually supports.
+
+## Feature parity
+
+8. When refactoring a component, list the props / variants / behaviours from the **original pre-refactor code** (git history / `main` before the refactor) and keep them unless explicitly dropped.
+9. Document any intentional removals in the PR description (parity table).
+
+## Copy & feedback
+
+10. Copyable snippets (install commands, code blocks) need a copy affordance with visible success feedback: icon swap and/or “Copied” text, plus an `aria-live` announcement.
+11. Async UI feedback (toasts, countdown, launch states) should use `aria-live` where appropriate.
+
+## Playgrounds & color
+
+12. Color playgrounds: provide preset swatches **and** a free color picker. The chosen value must flow into the component (prefer CSS custom properties / inline style vars).
+13. Loaders/spinners must be centered, keep control width stable, and look on-brand.
+
+## Illustrations
+
+14. Check illustration layering/occlusion (rings that pass behind spheres, overlaps). Remove stray strokes and accidental paths.
+
+## Accessibility
+
+15. Basics: labels, roles, keyboard support, focus rings, contrast (WCAG AA for text), and `aria-*` for busy/disabled/expanded states.
+
+## Verification before finishing
+
+16. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual.
+17. Exercise each new/changed control in the browser (or headless) before reporting done.
+18. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).

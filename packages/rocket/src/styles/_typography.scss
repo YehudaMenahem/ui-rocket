@@ -1,42 +1,36 @@
-/******************/
-/*** Typography ***/
-/******************/
-
-/* import fonts from google fonts */
-@import url(https://fonts.googleapis.com/css?family=Rajdhani:Bold700,Medium500,Regular400,Light300);
-@import url(https://fonts.googleapis.com/css?family=Kanit:Thin100,Extra-light200,Medium500,Semi-bold600);
-
-
-/* font size */
-
-.f-xxs{
-    @include fs(12px);
+h1,
+h2,
+h3,
+h4,
+.logo,
+.card h4,
+.feature h3,
+.sec-head h2,
+.cta-band h2,
+.main h1,
+.main h2,
+.main h3,
+.pn b,
+.tile .tm b,
+.stats b {
+  font-family: var(--font-display);
+  font-variation-settings: 'SOFT' 100, 'WONK' 1;
 }
 
-.f-xs{
-    @include fs(14px);
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
 }
 
-.f-sm{
-    @include fs(16px);
+code,
+.inline {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--nav-on);
+  color: var(--ink);
 }
-
-.f-md{
-    @include fs(20px);
-}
-
-.f-lr{
-    @include fs(28px);
-}
-
-.f-xl{
-    @include fs(36px);
-}
-
-.f-xxl{
-    @include fs(44px);
-}
-
-
-
-

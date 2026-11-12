@@ -1,174 +1,133 @@
-/*******************/
-/* tabs */
-/*******************/
+.toaster {
+  position: fixed;
+  z-index: 110;
+  min-width: 280px;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 2px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md);
+  color: var(--ink);
+  animation: toast-in 0.2s ease;
 
-.toaster{
-    @include flex(flex,initial,center);
-    @include pd(25px 25px 12px 12px);
-    @include radius(5px);
-    @include shadow(1px 1px 5px rgba(0,0,0,0.3));
-    position: fixed;
-    min-width: 280px;
-    max-width: 350px;
-    z-index: 1;
-    animation: notice-pop-in .3s forwards;
+  &.close {
+    animation: toast-out 0.28s ease forwards;
+  }
 
-    &.close{
-        animation: notice-pop-out .3s forwards;
+  &.top-right {
+    top: 24px;
+    right: 24px;
+  }
+
+  &.top-left {
+    top: 24px;
+    left: 24px;
+  }
+
+  &.bottom-right {
+    bottom: 24px;
+    right: 24px;
+  }
+
+  &.bottom-left {
+    bottom: 24px;
+    left: 24px;
+  }
+
+  &.success {
+    border-color: var(--olive);
+  }
+
+  &.error {
+    border-color: var(--rust, #c4471d);
+  }
+
+  &.warning {
+    border-color: var(--mustard);
+  }
+
+  &.info {
+    border-color: var(--powder);
+  }
+
+  .icon-type {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--line-strong);
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    background: var(--accent-soft);
+  }
+
+  &.success .icon-type {
+    background: color-mix(in srgb, var(--olive) 22%, transparent);
+  }
+
+  .content {
+    min-width: 0;
+  }
+
+  .title {
+    font-weight: 700;
+    margin: 0 0 4px;
+    font-family: var(--font-display);
+  }
+
+  .running-text {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  > .icon.close,
+  > .close {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--line-strong);
+    background: var(--surface);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-style: normal;
+    line-height: 1;
+
+    &::before {
+      content: '×';
+      font-size: 18px;
     }
-
-    .icon.close{
-        @include pointer();
-        position:absolute;
-        top:10px;
-        right:10px;
-    }
-
-    &.info{
-        @include bg($info);
-    }
-
-    // types
-    &.success{
-        @include bg($success);
-    }
-
-    &.error{
-        @include bg($error);
-    }
-
-    &.warning{
-        @include bg($warning);
-    }
-
-
-
-    // positions
-    &.top-right{
-        top: 20px;
-        right: 20px;
-    }
-
-    &.top-left{
-        top: 20px;
-        left: 20px;
-    }
-
-    &.bottom-right{
-        bottom: 20px;
-        right: 20px;
-    }
-
-    &.bottom-left{
-        bottom: 20px;
-        left: 20px;
-    }
-
-
-    .icon-type{
-        @include pd-t(5px);
-        align-self: flex-start;
-
-        .icon{
-            @include c($grayscale-level-1);
-            @include fs($fLr);
-        }
-    }
-
-    .content{
-        @include pd(0);
-        @include bg(transparent);
-
-        //dark mode
-        .dark &{
-            @include border(none);
-        }
-        
-        .title{
-            @include mr-b(0);
-            @include c($grayscale-level-1);
-        }
-
-        .running-text{
-            @include c($grayscale-level-1);
-            @include fs($fXs);
-        }
-    }
+  }
 }
 
-/*********/
-/* media query */
-/*********/
-
-@media screen and (max-width: 500px){
-    .toaster{
-        min-width: 210px;
-
-        &.close{
-        }
-    
-        .icon.close{
-
-        }
-    
-        &.info{
-        }
-    
-        // types
-        &.success{
-        }
-    
-        &.error{
-        }
-    
-        &.warning{
-        }
-    
-    
-    
-        // positions
-        &.top-right{
-            top: 95px;
-        }
-    
-        &.top-left{
-            top: 95px;
-        }
-    
-        &.bottom-right{
-        }
-    
-        &.bottom-left{
-        }
-    
-    
-        .icon-type{
-    
-            .icon{
-            }
-        }
-    
-        .content{
-            
-            .title{
-            }
-    
-            .running-text{
-            }
-        }
-    }
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/*********/
-/* animations */
-/*********/
-
-@keyframes notice-pop-in{
-    from{opacity:0; transform:translateY(12px)}
-    to{opacity:1; transform:translateY(0)}
+@keyframes toast-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
 }
 
-@keyframes notice-pop-out{
-    from{opacity:1; transform:translateY(0)}
-    to{opacity:0; transform:translateY(12px)}
+@media (prefers-reduced-motion: reduce) {
+  .toaster,
+  .toaster.close {
+    animation: none;
+  }
 }

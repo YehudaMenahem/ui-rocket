@@ -1,161 +1,125 @@
-/*********/
-/* select Field Component */
-/*********/
-   
-.select-wrapper{
-    .select{
-        @include pointer;
-        position: relative;
-        z-index: 1;
-        min-width: 150px;
-    
-        .field{
-            @include flex(flex,initial,initial);
-            @include pd-t(16px);
-            @include border(none);
-            @include bg($grayscale-level-2);
-            position: relative;
-            flex-direction: column;
-            height: 50px;
-            border-bottom: 1px solid var(--main-color);
-            text-indent: 7px;
-    
-            .label{
-                position: absolute;
-                transition: font-size .3s, transform .3s;
+.select-field,
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
 
-                //dark mode
-                .dark & {
-                    @include c($grayscale-level-6);
-                }
-            }
-    
-            .selected{
-                position: relative;
-                top: 7px;
+  > .label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
 
-                //dark mode
-                .dark &{
-                    @include c($grayscale-level-7);
-                }
-            }
-    
-            .toggle-icon{
-                @include flex(flex,initial,initial);
-                top: 50%;
-                @include trans(translateY(-50%));
-                width: 15px;
-                height: 12px;
-                right: 7px;
-    
-                &.icon{
-                    #arrow{ 
-                        width: 100%;
-                        height: 100%;
-                        transition: transform .3s;
-    
-                        .path{
-                            fill:none;
-                            stroke: $mainColor;
-                            stroke-width:2;
-                            stroke-linecap:round;
-                            stroke-linejoin:round;
-                            stroke-miterlimit:10;
-                        }
-                    }
-                }
-            }
-    
-            .dropdown{
-                @include bg($accentColor);
-                @include c($grayscale-level-1);
-                @include mr(0);
-                @include pd(15px 0);
-                @include pointer();
-                @include transition(transform .2s);
-                @include trans(scaleY(0));
-                position: absolute;
-                width: 100%;
-                top: calc(100% + 1px);
-                list-style-type: none;
-                transform-origin: top;
-    
-                .option{
-                    @include pd(10px 15px);
-                    @include transition(background .4s ease-in);
-    
-                    &:hover{
-                        @include bg($accentColorDark)
-                    }
-                }
-            }
-    
-            &.open{
-    
-                .toggle-icon{
-    
-                    &.icon{
-                        #arrow{ 
-                            transform: rotate(180deg);
-                            .path{
-    
-                            }
-                        }
-                    }
-                }
-    
-                .dropdown{
-                    @include trans(scaleY(1));
-                }
-            }
-    
-            &.with-value{
-                .label{
-                    @include fs($fXxs);
-                    @include trans(translate(1px, -10px));
-                }
-            } 
-    
-            &:focus{
-                outline: none
-            }   
-    
-            .toggle-icon{
-                position: absolute;
-                right: 0;
-                @include mr-r(12px);
-                @include fs($fMd);
-    
-                &.icon{
-                    &:before{
-                        @include db();
-                        @include transition(transform .2s);
-                        transform-origin: 50% 50%;
-                    }
-                }
-            }
-        }
+    .astrix {
+      color: var(--accent);
+      margin-left: 2px;
     }
+  }
+
+  .select-trigger {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 12px;
+    border-radius: var(--r-field);
+    border: 2px solid var(--line-strong);
+    background: var(--field-bg);
+    font-size: 14px;
+    color: var(--ink);
+    width: 100%;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+    &:hover:not(:disabled) {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--line-strong);
+    }
+
+    &:active:not(:disabled) {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--line-strong);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .placeholder {
+      color: var(--muted);
+    }
+
+    .chev {
+      width: 14px;
+      height: 10px;
+      flex: none;
+    }
+  }
+
+  &.open .select-trigger .chev {
+    transform: rotate(180deg);
+  }
+
+  .options {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    z-index: 40;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+    background: var(--surface);
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-md);
+    max-height: 240px;
+    overflow: auto;
+  }
+
+  .option {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font: inherit;
+
+    &:hover,
+    &.active,
+    &.selected {
+      background: var(--nav-on);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
 }
 
-
-/*********/
-/* media query */
-/*********/
-
-
-// special break point
-@media screen and (min-width: 550px) {
-    .select-wrapper .select-mobile{
-        @include hide();
-    }
+@media (prefers-reduced-motion: reduce) {
+  .select-field .select-trigger,
+  .select-wrapper .select-trigger {
+    transition: none;
+  }
 }
-
-@media screen and (max-width: 550px) {
-    .select-wrapper .select{ /* select desktop */
-        @include hidden();
-        height: 0;
-        width: 0;
-    }
-}
-

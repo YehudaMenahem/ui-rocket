@@ -1,36 +1,44 @@
 import { useState } from 'react';
 import { Button, Toaster } from '@ui-rocket/rocket';
+import { ComponentDoc } from '../components/ComponentDoc';
+import { COMPONENTS } from '../data/components';
 
-export function ToasterPage() {
-  const [showToaster, setShowToaster] = useState(false);
+const meta = COMPONENTS.find((c) => c.id === 'toaster')!;
 
+interface PageProps {
+  sidebarOpen: boolean;
+  onCloseSidebar: () => void;
+}
+
+function ToasterDemo() {
+  const [show, setShow] = useState(false);
   return (
-    <div className="ui container toaster-page">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Toaster</h1>
-            <p>Toasters display temporary notifications.</p>
-          </div>
-        </div>
-        <div className="row section">
-          <div className="col-1">
-            <Button
-              label="Show Toaster"
-              click={() => setShowToaster(true)}
-              styleBtn="solid"
-            />
-          </div>
-        </div>
-      </div>
+    <>
+      <Button label="Show toast" styleBtn="solid" click={() => setShow(true)} />
+      <Toaster show={show} closeToaster={() => setShow(false)} type="success" title="Systems go" runningText="Range is clear." />
+    </>
+  );
+}
 
-      <Toaster
-        show={showToaster}
-        closeToaster={() => setShowToaster(false)}
-        type="success"
-        title="Success!"
-        runningText="This is a toaster notification."
-      />
-    </div>
+export function ToasterPage({ sidebarOpen, onCloseSidebar }: PageProps) {
+  return (
+    <ComponentDoc
+      meta={meta}
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      importName="Toaster"
+      showPlayground={true}
+      controls={['color']}
+      preview={() => <ToasterDemo />}
+      examples={<>
+          <h3>Positions</h3>
+          <div className="ex"><div className="canvas"><ToasterDemo /></div><div className="exbar"><span>toast.tsx</span></div></div>
+        </>}
+      props={[
+        { name: 'show', type: ['boolean'], defaultValue: 'false', description: 'Visibility.' },
+        { name: 'type', type: ['"info"', '"success"', '"error"', '"warning"'], defaultValue: '"info"', description: 'Tone.' },
+        { name: 'title', type: ['string'], defaultValue: '—', description: 'Toast title.' },
+      ]}
+    />
   );
 }

@@ -1,267 +1,180 @@
-import { useState } from 'react';
-import {
-  Button,
-  Icon,
-  Tabs,
-  InputField,
-  RadioButton,
-  Checkbox,
-  ToggleButton,
-  SelectField,
-} from '@ui-rocket/rocket';
+import { Button } from '@ui-rocket/rocket';
+import { ComponentDoc, PlaygroundState } from '../components/ComponentDoc';
+import { Icon } from '../components/Icons';
+import { COMPONENTS } from '../data/components';
 
-export function ButtonPage() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [buttonSize, setButtonSize] = useState<'small' | 'medium' | 'large'>(
-    'small'
-  );
-  const [buttonIcon, setButtonIcon] = useState(false);
-  const [buttonStyle, setButtonStyle] = useState<'solid' | 'outline' | 'text'>(
-    'solid'
-  );
-  const [buttonDisable, setButtonDisable] = useState(false);
-  const [buttonLabel, setButtonLabel] = useState('Le buoton');
-  const [buttonBackToTopPosition, setButtonBackToTopPosition] = useState<
-    string | undefined
-  >();
+const meta = COMPONENTS.find((c) => c.id === 'button')!;
 
-  const buttonBackToTopOptions = [
-    'default',
-    'bottom-right',
-    'bottom-center',
-    'bottom-left',
-  ];
+const sizeMap: Record<PlaygroundState['size'], 'xs' | 'small' | 'medium' | 'large' | 'xl'> = {
+  xs: 'xs',
+  sm: 'small',
+  md: 'medium',
+  lg: 'large',
+  xl: 'xl',
+};
 
-  const renderView = () => {
-    switch (activeTab) {
-      case 1:
-        return (
-          <div className="grid">
-            <div className="row mr-b-xl">
-              <div className="col-1 mobile-col-1 btn-backTop">
-                <Button
-                  label="Rocket To Top"
-                  styleBtn="solid"
-                  size={buttonSize}
-                  scrollToTop={true}
-                  position={buttonBackToTopPosition}
-                />
-              </div>
-            </div>
-            <div className="settings pd-l-xl">
-              <h3>
-                <Icon iconClass="setting" />
-                Customization
-              </h3>
-              <ul className="mr-b-xl">
-                <li>
-                  <SelectField
-                    label="button position"
-                    options={buttonBackToTopOptions}
-                    id="button-positions"
-                    name="button-positions"
-                    change={setButtonBackToTopPosition}
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        );
+const colorMap: Record<string, 'brand' | 'olive' | 'navy' | 'mustard' | 'powder'> = {
+  rust: 'brand',
+  olive: 'olive',
+  navy: 'navy',
+  mustard: 'mustard',
+  powder: 'powder',
+};
 
-      default:
-        return (
-          <div className="grid">
-            <div className="row mr-b-xl">
-              <div className="col-1 btn">
-                <Button
-                  styleBtn={buttonStyle}
-                  size={buttonSize}
-                  label={buttonLabel}
-                  classes="specific-cssclass"
-                  disabled={buttonDisable}
-                  loading={loading}
-                >
-                  {buttonIcon && <Icon iconClass="user" />}
-                </Button>
-              </div>
-            </div>
-            <div className="settings pd-l-xl" style={{ minWidth: '250px' }}>
-              <h3>
-                <Icon iconClass="setting" />
-                Customization
-              </h3>
-              <ul className="mr-b-xl">
-                <li>
-                  <InputField
-                    type="text"
-                    label="Button Label"
-                    value={buttonLabel}
-                    change={setButtonLabel}
-                    maxlength={15}
-                  />
-                </li>
-              </ul>
-              <ul className="mr-b-lr horizontal-list">
-                <span className="mr-r-sm">Size:</span>
-                <li>
-                  <RadioButton
-                    name="size"
-                    val="small"
-                    label="small"
-                    id="small"
-                    isSelected={buttonSize === 'small'}
-                    change={() => setButtonSize('small')}
-                  />
-                </li>
-                <li>
-                  <RadioButton
-                    name="size"
-                    val="medium"
-                    label="medium"
-                    id="medium"
-                    isSelected={buttonSize === 'medium'}
-                    change={() => setButtonSize('medium')}
-                  />
-                </li>
-                <li>
-                  <RadioButton
-                    name="size"
-                    val="large"
-                    label="large"
-                    id="large"
-                    isSelected={buttonSize === 'large'}
-                    change={() => setButtonSize('large')}
-                  />
-                </li>
-              </ul>
-              <ul className="mr-b-xl horizontal-list">
-                <span className="mr-r-sm">Type:</span>
-                <li>
-                  <RadioButton
-                    name="button-type"
-                    val="solid"
-                    label="solid"
-                    id="solid"
-                    isSelected={buttonStyle === 'solid'}
-                    change={() => setButtonStyle('solid')}
-                  />
-                </li>
-                <li>
-                  <RadioButton
-                    name="button-type"
-                    val="ghost"
-                    label="ghost"
-                    id="ghost"
-                    isSelected={buttonStyle === 'outline'}
-                    change={() => setButtonStyle('outline')}
-                  />
-                </li>
-                <li>
-                  <RadioButton
-                    name="button-type"
-                    val="text"
-                    label="text"
-                    id="text"
-                    isSelected={buttonStyle === 'text'}
-                    change={() => setButtonStyle('text')}
-                  />
-                </li>
-              </ul>
-              <ul className="mr-b-lr">
-                <li>
-                  <Checkbox
-                    label="Add Icon"
-                    name="add-icon"
-                    id="addIcon"
-                    checked={buttonIcon}
-                    change={() => setButtonIcon(!buttonIcon)}
-                  />
-                </li>
-              </ul>
-              <ul className="mr-b-xl">
-                <li>
-                  <Checkbox
-                    label="Disabled Mode"
-                    name="disabled-mode"
-                    id="disabledMode"
-                    checked={buttonDisable}
-                    change={() => setButtonDisable(!buttonDisable)}
-                  />
-                </li>
-              </ul>
-              <ul className="mr-b-xl">
-                <li>
-                  <ToggleButton
-                    label="Loading state"
-                    name="Loading"
-                    id="Loading"
-                    isChecked={loading}
-                    change={setLoading}
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-        );
-    }
-  };
+interface PageProps {
+  sidebarOpen: boolean;
+  onCloseSidebar: () => void;
+}
 
+export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
   return (
-    <div className="ui container button-page">
-      <div className="grid">
-        <div className="row section">
-          <div className="col-1">
-            <h1>Buttons</h1>
-          </div>
-          <br />
-          <div className="col-1">
-            <p>Buttons allow users to take action with a single tap.</p>
-          </div>
-        </div>
+    <ComponentDoc
+      meta={meta}
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      importName="Button"
+      controls={['variant', 'color', 'size', 'radius', 'loading', 'disabled']}
+      generateCode={(s) => {
+        const color = colorMap[s.color] || 'brand';
+        return `import { Button } from '@ui-rocket/rocket'
 
-        <div className="row section">
-          <div className="col-1 mr-b-lr">
-            <h2>Demo</h2>
-          </div>
-          <div className="col-1">
-            <div className="container">
-              <Tabs
-                tabs={['Btn', 'Back To Top Btn']}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-              />
-              <div className="content">{renderView()}</div>
+export default function Demo() {
+  return (
+    <Button
+      label="Launch"
+      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"
+      size="${sizeMap[s.size]}"
+      radius="${s.radius}"
+      color="${color}"${s.loading ? '\n      loading' : ''}${s.disabled ? '\n      disabled' : ''}
+    />
+  )
+}`;
+      }}
+      preview={(s) => (
+        <Button
+          label="Launch"
+          styleBtn={s.variant}
+          size={sizeMap[s.size]}
+          radius={s.radius}
+          color={colorMap[s.color] || 'brand'}
+          loading={s.loading}
+          disabled={s.disabled}
+          classes="btn-primary"
+        >
+          {!s.loading ? <Icon name="send" /> : null}
+        </Button>
+      )}
+      examples={
+        <>
+          <h3 id="variants">Variants</h3>
+          <p className="txt">
+            Four variants map to emphasis: solid for the main action, ghost for the least.
+          </p>
+          <div className="ex">
+            <div className="canvas">
+              <Button label="Solid" styleBtn="solid" />
+              <Button label="Soft" styleBtn="soft" />
+              <Button label="Outline" styleBtn="outline" />
+              <Button label="Ghost" styleBtn="ghost" />
+            </div>
+            <div className="exbar">
+              <span>variants.tsx</span>
             </div>
           </div>
-        </div>
 
-        <div className="row section">
-          <div className="col-1 props-keys">
-            <h2>Component props</h2>
-            <p>
-              <span className="bold prop">label:</span> The text inside the
-              button | string
-            </p>
-            <p>
-              <span className="bold prop">styleBtn:</span> Button style: solid /
-              outline / text | string
-            </p>
-            <p>
-              <span className="bold prop">size:</span> Button size: small /
-              medium / large | string
-            </p>
-            <p>
-              <span className="bold prop">loading:</span> Show loading state |
-              boolean
-            </p>
-            <p>
-              <span className="bold prop">disabled:</span> Disable the button |
-              boolean
-            </p>
+          <h3 id="sizes">Sizes</h3>
+          <div className="ex">
+            <div className="canvas">
+              <Button label="Extra small" styleBtn="solid" size="xs" />
+              <Button label="Small" styleBtn="solid" size="small" />
+              <Button label="Medium" styleBtn="solid" size="medium" />
+              <Button label="Large" styleBtn="solid" size="large" />
+            </div>
+            <div className="exbar">
+              <span>sizes.tsx</span>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+
+          <h3 id="icons">Icons & loading</h3>
+          <div className="ex">
+            <div className="canvas">
+              <Button label="Launch" styleBtn="solid">
+                <Icon name="send" />
+              </Button>
+              <Button label="Next stage" styleBtn="outline" classes="btn-secondary">
+                <Icon name="arrow" />
+              </Button>
+              <Button label="Fueling…" styleBtn="solid" loading />
+              <Button label="Disabled" styleBtn="outline" disabled classes="btn-secondary" />
+            </div>
+            <div className="exbar">
+              <span>icons.tsx</span>
+            </div>
+          </div>
+        </>
+      }
+      props={[
+        {
+          name: 'styleBtn',
+          type: ['"solid"', '"soft"', '"outline"', '"ghost"', '"text"'],
+          defaultValue: '"solid"',
+          description: 'Visual style of the button.',
+        },
+        {
+          name: 'color',
+          type: ['"brand"', '"olive"', '"navy"', '"mustard"', '"powder"'],
+          defaultValue: '"brand"',
+          description: 'Color role from the theme tokens (override via --accent CSS var).',
+        },
+        {
+          name: 'size',
+          type: ['"xs"', '"small"', '"medium"', '"large"', '"xl"'],
+          defaultValue: '"small"',
+          description: 'Height, padding and font size.',
+        },
+        {
+          name: 'radius',
+          type: ['"none"', '"sm"', '"md"', '"full"'],
+          defaultValue: '—',
+          description: 'Corner radius token.',
+        },
+        {
+          name: 'loading',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Shows a centered spinner and sets aria-busy.',
+        },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Button label text.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables interaction.',
+        },
+        {
+          name: 'rounded',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Legacy alias for pill radius.',
+        },
+        {
+          name: 'shadow',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Adds an explicit shadow class.',
+        },
+        {
+          name: 'scrollToTop',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Scrolls window to top on click.',
+        },
+      ]}
+    />
   );
 }

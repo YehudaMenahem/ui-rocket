@@ -1,92 +1,66 @@
-/************/
-/* textbox / textarea **/
-/************/
-
 .textbox {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  width: 100%;
+  max-width: 520px;
 
-    .field{
-        @include flex(flex,initial,initial);
-        position: relative;
-        flex-direction: column;
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
 
-        .label {
-            position: absolute;
-            top: 10px;
-            left: 8px;
-            transition: font-size .3s, transform .3s;
+  .label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
 
-            //dark mode
-            .dark &{
-                @include c($grayscale-level-7);
-            }
+    .astrix {
+      color: var(--accent);
+    }
+  }
 
-            .astrix{
-                @include fs(18px);
-                @include c($error);
-            }
-        }        
+  textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px 12px;
+    border-radius: var(--r-field);
+    border: 2px solid var(--line-strong);
+    background: var(--field-bg);
+    color: var(--ink);
+    font: inherit;
+    resize: vertical;
 
-        textarea{
-            @include pd-t(30px);
-            @include border(none);
-            @include bg($grayscale-level-2);
-            min-height: 90px;
-            max-width: 100%;
-            border-bottom: 1px solid var(--main-color);
-            text-indent: 7px;
-
-            &:focus{
-                outline: none;
-
-                +.label{
-                    @include trans(translateY(-5px));
-                    @include fs($fXxs);
-                }
-            }
-        }
+    &::placeholder {
+      color: var(--muted);
     }
 
-    &.placeholder{
-        .field{
-            textarea{
-                +.label{
-                    @include fs($fXxs);
-                }
-            }
-        }
+    &:focus {
+      outline: none;
+      border-color: var(--accent-text);
+      box-shadow: 0 0 0 3px var(--focus-ring);
     }
 
-    &.with-value{
-        .field{
-            textarea{
-                +.label{
-                    @include fs($fXxs);
-                }
-            }
-        }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  .helpers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+
+    .error {
+      color: var(--danger);
     }
 
-    .helpers{
-        display: flex;
-
-        .error{
-            @include fs($fXxs);
-            @include c($error);
-        }
-
-        .note{
-            @include fs($fXxs);
-            @include c($mainColor);
-        }
-
-        .char-num{
-            @include fs($fXxs);
-            @include mr-l(auto);
-        }
+    .char-num {
+      margin-left: auto;
+      font-family: var(--font-mono);
     }
+  }
 }
-
-
-/*********/
-/* media query */
-/*********/
