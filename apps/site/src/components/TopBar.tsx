@@ -6,26 +6,33 @@ interface TopBarProps {
   onToggleTheme: () => void;
   onOpenSearch: () => void;
   onOpenNav?: () => void;
-  activeNav?: string;
 }
 
 const LINKS = [
-  { label: 'Docs', path: '/ButtonPage' },
+  { label: 'Docs', path: '/docs' },
   { label: 'Components', path: '/ButtonPage' },
-  { label: 'Theming', path: '/ButtonPage' },
-  { label: 'Playground', path: '/ButtonPage' },
-  { label: 'Blog', path: '/' },
+  { label: 'Theming', path: '/theming' },
+  { label: 'Playground', path: '/playground' },
+  { label: 'Blog', path: '/blog' },
 ];
+
+function isActive(pathname: string, linkPath: string, label: string) {
+  if (label === 'Docs') {
+    return pathname === '/docs' || pathname === '/';
+  }
+  if (label === 'Components') {
+    return pathname.endsWith('Page') && pathname !== '/';
+  }
+  return pathname === linkPath || pathname.startsWith(`${linkPath}/`);
+}
 
 export function TopBar({
   darkMode,
   onToggleTheme,
   onOpenSearch,
   onOpenNav,
-  activeNav = 'Components',
 }: TopBarProps) {
   const location = useLocation();
-  const isHome = location.pathname === '/';
 
   return (
     <header className="topbar">
@@ -51,12 +58,7 @@ export function TopBar({
           <Link
             key={link.label}
             to={link.path}
-            className={
-              (isHome && link.label === 'Docs') ||
-              (!isHome && link.label === activeNav)
-                ? 'on'
-                : ''
-            }
+            className={isActive(location.pathname, link.path, link.label) ? 'on' : ''}
           >
             {link.label}
           </Link>

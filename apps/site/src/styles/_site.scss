@@ -425,3 +425,60 @@ button.chip{cursor:pointer}
  .controls{border-left:0;border-top:2px solid var(--line-strong)}
  .main{padding:28px 20px 48px}
 }
+
+/* Quality / Retro Launch polish */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.search{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.search:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--line-strong)}
+.search:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--line-strong)}
+.search:focus-visible,.icon-btn:focus-visible,.gh:focus-visible,.nav-links a:focus-visible,.install:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.icon-btn,.gh,.nav-links a,.install,button.chip,.copy-btn,.tool,.color-picker{cursor:pointer}
+.icon-btn:hover,.gh:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--line-strong)}
+.icon-btn,.gh{transition:transform .15s ease,box-shadow .15s ease}
+.nav-links a{transition:background .15s ease,color .15s ease}
+.install{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease}
+.install:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 var(--line-strong)}
+.install.copied .cp{background:var(--olive);color:var(--success-ink)}
+.install .cp{display:inline-flex;align-items:center;gap:4px;min-width:30px}
+.install .cp-text{font-family:var(--font-body);font-size:11px;font-weight:700}
+.copy-btn{display:inline-flex;align-items:center;gap:6px}
+.copy-btn.copied{color:var(--olive)}
+.copy-label{font-size:12px}
+.color-picker{width:28px;height:28px;border-radius:var(--r-swatch);border:2px solid var(--line-strong);overflow:hidden;display:grid;place-items:center;background:conic-gradient(red,yellow,lime,aqua,blue,magenta,red)}
+.color-picker input[type=color]{width:40px;height:40px;border:0;padding:0;cursor:pointer;background:transparent}
+.ctl-input{width:100%;height:36px;border:2px solid var(--line-strong);border-radius:var(--r-field);padding:0 10px;background:var(--field-bg);color:var(--ink);font:inherit}
+.simple-page{padding-top:24px}
+.simple-page .feature{text-decoration:none;color:inherit;display:block;transition:transform .15s ease,box-shadow .15s ease}
+.simple-page .feature:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--line-strong)}
+.token-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:28px}
+.token-card{display:flex;gap:12px;align-items:flex-start;padding:14px;border:2px solid var(--line-strong);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-sm)}
+.token-card .swatch{width:42px;height:42px;border-radius:12px;border:2px solid var(--line-strong);flex:none}
+.token-card b{display:block;font-family:var(--font-mono);font-size:13px}
+.token-card code{font-size:12px;color:var(--muted)}
+.token-card p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.blog-list{display:flex;flex-direction:column;gap:16px;max-width:720px}
+.blog-card{padding:20px;border:2px solid var(--line-strong);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-sm)}
+.blog-card small{font-family:var(--font-mono);color:var(--accent-text)}
+.blog-card h3{margin:8px 0;font-family:var(--font-display);font-size:28px;line-height:1.1}
+.blog-card p{margin:0;color:var(--muted)}
+.form-error{margin:12px 0 0;color:var(--accent);font-size:13px;font-weight:600}
+.countdown{margin:12px 0 0;font-family:var(--font-display);font-size:28px;color:var(--accent);font-weight:800}
+.hold-hint{margin:12px 0 0;font-size:12px;color:var(--muted);line-height:1.4}
+.badge.held,.badge.countdown{background:var(--mustard);color:var(--navy)}
+.badge.liftoff{background:var(--accent);color:var(--accent-ink)}
+.button.is-held,.btn.is-held{background:var(--mustard)!important;color:var(--navy)!important}
+.retro .rocket-fly{transform-box:fill-box;transform-origin:center;transition:transform .8s ease}
+.retro.is-launching .rocket-fly{animation:rocket-liftoff 1.6s ease forwards}
+@keyframes rocket-liftoff{
+  0%{transform:translate(360px,300px) rotate(18deg)}
+  100%{transform:translate(420px,-220px) rotate(8deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .search,.icon-btn,.gh,.install,.simple-page .feature,.retro .rocket-fly{transition:none}
+  .retro.is-launching .rocket-fly{animation:none;opacity:.85}
+  .ticker-track{animation:none}
+}
+.topbar,.nav-links,.top-right{position:relative;z-index:30}
+.shell{position:relative;z-index:1}
+.select-field{max-width:100%}
+.launch-checklist .select-field{margin-bottom:8px}

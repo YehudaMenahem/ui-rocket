@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToggleButtonProps } from './types';
 
 export function ToggleButton({
@@ -13,6 +13,10 @@ export function ToggleButton({
   labelPosition = 'label-from-left',
 }: ToggleButtonProps) {
   const [toggle, setToggle] = useState(isChecked);
+
+  useEffect(() => {
+    setToggle(isChecked);
+  }, [isChecked]);
 
   const handleChange = () => {
     const newToggle = !toggle;
@@ -29,9 +33,9 @@ export function ToggleButton({
         toggle ? 'checked' : 'unchecked'
       } ${disabled ? 'disabled' : ''}`}
     >
-      {labelPosition === 'label-from-left' && (
+      {labelPosition === 'label-from-left' && label ? (
         <span className="label">{label}</span>
-      )}
+      ) : null}
       <span className="control">
         <input
           type="checkbox"
@@ -44,9 +48,9 @@ export function ToggleButton({
         />
         <span className="switch" aria-hidden="true" />
       </span>
-      {labelPosition === 'label-from-right' && (
+      {labelPosition === 'label-from-right' && label ? (
         <span className="label">{label}</span>
-      )}
+      ) : null}
     </label>
   );
 }

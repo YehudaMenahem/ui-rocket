@@ -46,13 +46,12 @@ export function Button({
       disabled={disabled}
       aria-busy={loading || undefined}
     >
-      {children}
-      {loading && (
-        <div className="loading-bg">
-          <div className="stage">
-            <div className="spin" />
-          </div>
-        </div>
+      {loading ? (
+        <span className="loading-bg" aria-hidden="true">
+          <span className="spin" />
+        </span>
+      ) : (
+        children
       )}
       <span className="label">{label}</span>
     </button>

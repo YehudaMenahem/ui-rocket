@@ -5,6 +5,10 @@ import { CommandPalette } from './components/CommandPalette';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { Entrance } from './routes/Entrance';
 import { NotFound } from './routes/NotFound';
+import { DocsPage } from './routes/DocsPage';
+import { ThemingPage } from './routes/ThemingPage';
+import { PlaygroundPage } from './routes/PlaygroundPage';
+import { BlogPage } from './routes/BlogPage';
 import { ButtonPage } from './routes/ButtonPage';
 import { IconPage } from './routes/IconPage';
 import { RadioPage } from './routes/RadioPage';
@@ -60,13 +64,16 @@ function AppLayout() {
         onToggleTheme={toggleTheme}
         onOpenSearch={() => setSearchOpen(true)}
         onOpenNav={isHome ? undefined : () => setSidebarOpen(true)}
-        activeNav={isHome ? 'Docs' : 'Components'}
       />
 
       <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
 
       <Routes>
         <Route path="/" element={<Entrance darkMode={darkMode} />} />
+        <Route path="/docs" element={<DocsPage />} />
+        <Route path="/theming" element={<ThemingPage />} />
+        <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="/blog" element={<BlogPage />} />
         <Route path="/ButtonPage" element={<ButtonPage {...pageProps} />} />
         <Route path="/IconPage" element={<IconPage {...pageProps} />} />
         <Route path="/RadioPage" element={<RadioPage {...pageProps} />} />

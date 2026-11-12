@@ -1,6 +1,4 @@
-import {
-  Button,
-} from '@ui-rocket/rocket';
+import { Button } from '@ui-rocket/rocket';
 import { ComponentDoc, PlaygroundState } from '../components/ComponentDoc';
 import { Icon } from '../components/Icons';
 import { COMPONENTS } from '../data/components';
@@ -21,7 +19,6 @@ const colorMap: Record<string, 'brand' | 'olive' | 'navy' | 'mustard' | 'powder'
   navy: 'navy',
   mustard: 'mustard',
   powder: 'powder',
-  plum: 'brand',
 };
 
 interface PageProps {
@@ -36,9 +33,23 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       sidebarOpen={sidebarOpen}
       onCloseSidebar={onCloseSidebar}
       importName="Button"
-      generateCode={(s) =>
-        `import { Button } from '@ui-rocket/rocket'\n\nexport default function Demo() {\n  return (\n    <Button\n      label="Launch"\n      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"\n      size="${sizeMap[s.size]}"\n      radius="${s.radius}"\n      color="${colorMap[s.color] || 'brand'}"${s.loading ? '\n      loading' : ''}\n    />\n  )\n}`
-      }
+      controls={['variant', 'color', 'size', 'radius', 'loading', 'disabled']}
+      generateCode={(s) => {
+        const color = colorMap[s.color] || 'brand';
+        return `import { Button } from '@ui-rocket/rocket'
+
+export default function Demo() {
+  return (
+    <Button
+      label="Launch"
+      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"
+      size="${sizeMap[s.size]}"
+      radius="${s.radius}"
+      color="${color}"${s.loading ? '\n      loading' : ''}${s.disabled ? '\n      disabled' : ''}
+    />
+  )
+}`;
+      }}
       preview={(s) => (
         <Button
           label="Launch"
@@ -47,9 +58,10 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
           radius={s.radius}
           color={colorMap[s.color] || 'brand'}
           loading={s.loading}
+          disabled={s.disabled}
           classes="btn-primary"
         >
-          <Icon name="send" />
+          {!s.loading ? <Icon name="send" /> : null}
         </Button>
       )}
       examples={
@@ -104,7 +116,7 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       props={[
         {
           name: 'styleBtn',
-          type: ['"solid"', '"soft"', '"outline"', '"ghost"'],
+          type: ['"solid"', '"soft"', '"outline"', '"ghost"', '"text"'],
           defaultValue: '"solid"',
           description: 'Visual style of the button.',
         },
@@ -112,7 +124,7 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
           name: 'color',
           type: ['"brand"', '"olive"', '"navy"', '"mustard"', '"powder"'],
           defaultValue: '"brand"',
-          description: 'Color role from the theme tokens.',
+          description: 'Color role from the theme tokens (override via --accent CSS var).',
         },
         {
           name: 'size',
@@ -123,14 +135,14 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
         {
           name: 'radius',
           type: ['"none"', '"sm"', '"md"', '"full"'],
-          defaultValue: '"full"',
+          defaultValue: '—',
           description: 'Corner radius token.',
         },
         {
           name: 'loading',
           type: ['boolean'],
           defaultValue: 'false',
-          description: 'Shows a spinner and sets aria-busy.',
+          description: 'Shows a centered spinner and sets aria-busy.',
         },
         {
           name: 'label',
@@ -143,6 +155,24 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
           type: ['boolean'],
           defaultValue: 'false',
           description: 'Disables interaction.',
+        },
+        {
+          name: 'rounded',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Legacy alias for pill radius.',
+        },
+        {
+          name: 'shadow',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Adds an explicit shadow class.',
+        },
+        {
+          name: 'scrollToTop',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Scrolls window to top on click.',
         },
       ]}
     />

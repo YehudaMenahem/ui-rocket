@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Button,
   Checkbox,
   InputField,
   RadioButton,
+  SelectField,
   ToggleButton,
+  Toaster,
 } from '@ui-rocket/rocket';
 import { Icon } from '../components/Icons';
 import { RetroScene, Stamp } from '../components/RetroArt';
@@ -48,20 +50,98 @@ const TILES = [
   { name: 'Img', path: '/ImgPage', size: '0.7 kB' },
 ];
 
+const WINDOWS = ['Nov 14 · 06:20 UTC', 'Nov 14 · 18:40 UTC', 'Nov 15 · 09:10 UTC'];
+
+type LaunchPhase = 'idle' | 'held' | 'countdown' | 'liftoff';
+
 export function Entrance({ darkMode: _darkMode }: EntranceProps) {
   const navigate = useNavigate();
   const [mission, setMission] = useState('Artemis IV');
-  const [windowOpt] = useState('Nov 14 · 06:20 UTC');
+  const [windowOpt, setWindowOpt] = useState(WINDOWS[0]);
   const [checks, setChecks] = useState({ a: true, b: true, c: false });
   const [abort, setAbort] = useState(true);
   const [armed, setArmed] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [phase, setPhase] = useState<LaunchPhase>('idle');
+  const [count, setCount] = useState<number | null>(null);
+  const [toast, setToast] = useState(false);
+  const [formError, setFormError] = useState('');
+  const timers = useRef<number[]>([]);
+
+  useEffect(() => {
+    return () => {
+      timers.current.forEach((id) => window.clearTimeout(id));
+    };
+  }, []);
 
   const copyInstall = async () => {
     await navigator.clipboard?.writeText('pnpm add @ui-rocket/rocket');
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setTimeout(() => setCopied(false), 1600);
   };
+
+  const clearTimers = () => {
+    timers.current.forEach((id) => window.clearTimeout(id));
+    timers.current = [];
+  };
+
+  const holdLaunch = () => {
+    clearTimers();
+    if (phase === 'held') {
+      setPhase('idle');
+      setCount(null);
+      setFormError('');
+      return;
+    }
+    setPhase('held');
+    setCount(null);
+    setFormError('Pad on hold — countdown frozen. Press Hold again to resume, or Launch when ready.');
+    setToast(false);
+  };
+
+  const startLaunch = () => {
+    if (phase === 'held') {
+      setFormError('Release Hold first — systems are paused.');
+      return;
+    }
+    const missing: string[] = [];
+    if (!checks.a) missing.push('propellant');
+    if (!checks.b) missing.push('crew');
+    if (!checks.c) missing.push('range safety');
+    if (missing.length) {
+      setFormError(`Checklist incomplete: still need ${missing.join(', ')}.`);
+      setPhase('idle');
+      return;
+    }
+    if (!mission.trim()) {
+      setFormError('Give the mission a name before liftoff.');
+      return;
+    }
+
+    setFormError('');
+    setPhase('countdown');
+    setCount(3);
+    clearTimers();
+
+    timers.current.push(
+      window.setTimeout(() => setCount(2), 900),
+      window.setTimeout(() => setCount(1), 1800),
+      window.setTimeout(() => {
+        setCount(null);
+        setPhase('liftoff');
+        setToast(true);
+      }, 2700)
+    );
+  };
+
+  const badgeLabel =
+    phase === 'countdown' && count != null
+      ? `● T-${count}`
+      : phase === 'liftoff'
+        ? '● LIFTOFF'
+        : phase === 'held'
+          ? '● HOLD'
+          : '● T-00:42:10';
 
   return (
     <div className="landing">
@@ -71,9 +151,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
             <span className="eyebrow">
               <b>NEW</b>v2.0 · now in TypeScript
             </span>
-            <h1>
-              Build it <span className="o">till</span> you <span className="r">launch</span> it.
-            </h1>
+            <h1>If you build it, they will come.</h1>
             <p className="lede">
               Rocket UI is a friendly little React component library. Accessible, typed,
               themeable, and small enough to read over a cup of coffee.
@@ -84,7 +162,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                 styleBtn="solid"
                 size="large"
                 classes="btn-primary btn-lg"
-                click={() => navigate('/ButtonPage')}
+                click={() => navigate('/docs')}
               >
                 <Icon name="send" />
               </Button>
@@ -97,12 +175,21 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
               />
             </div>
             <div className="ctas" style={{ marginTop: 16 }}>
-              <button type="button" className="install" onClick={copyInstall}>
+              <button
+                type="button"
+                className={`install ${copied ? 'copied' : ''}`}
+                onClick={copyInstall}
+                aria-label="Copy install command"
+              >
                 <span>
                   <span className="pr">$</span> pnpm add @ui-rocket/rocket
                 </span>
-                <span className="cp" aria-label={copied ? 'Copied' : 'Copy'}>
-                  <Icon name="copy" />
+                <span className="cp">
+                  <Icon name={copied ? 'check' : 'copy'} />
+                  <span className="cp-text">{copied ? 'Copied' : ''}</span>
+                </span>
+                <span className="sr-only" aria-live="polite">
+                  {copied ? 'Install command copied' : ''}
                 </span>
               </button>
             </div>
@@ -123,16 +210,16 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
           </div>
 
           <div className="stage">
-            <RetroScene />
+            <RetroScene launching={phase === 'liftoff'} />
             <Stamp />
             <div className="collage">
-              <div className="card launch launch-checklist">
+              <div className={`card launch launch-checklist ${phase}`}>
                 <div className="between">
                   <div>
                     <h4>Launch checklist</h4>
-                    <p className="sub">Artemis IV · Pad 39B</p>
+                    <p className="sub">{mission || 'Untitled'} · Pad 39B</p>
                   </div>
-                  <span className="badge">● T-00:42:10</span>
+                  <span className={`badge ${phase}`}>{badgeLabel}</span>
                 </div>
                 <InputField
                   label="Mission name"
@@ -141,13 +228,13 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                   change={setMission}
                   maxlength={40}
                 />
-                <div className="field" style={{ marginTop: 14 }}>
-                  <label htmlFor="window">Launch window</label>
-                  <div className="select" id="window" role="button" tabIndex={0}>
-                    <span>{windowOpt}</span>
-                    <Icon name="chev" />
-                  </div>
-                </div>
+                <SelectField
+                  id="window"
+                  label="Launch window"
+                  options={WINDOWS}
+                  selectOption={windowOpt}
+                  change={setWindowOpt}
+                />
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 11, marginTop: 8 }}>
                   <Checkbox
                     id="c1"
@@ -185,17 +272,40 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                     labelPosition="label-from-right"
                   />
                 </div>
+                {formError ? (
+                  <p className="form-error" role="alert">
+                    {formError}
+                  </p>
+                ) : null}
+                {phase === 'countdown' && count != null ? (
+                  <p className="countdown" aria-live="assertive">
+                    Liftoff in {count}…
+                  </p>
+                ) : null}
                 <div className="row" style={{ marginTop: 18 }}>
-                  <Button label="Hold" styleBtn="outline" size="small" classes="btn-secondary btn-sm" />
                   <Button
-                    label="Launch"
+                    label={phase === 'held' ? 'On hold' : 'Hold'}
+                    styleBtn="outline"
+                    size="small"
+                    classes={`btn-secondary btn-sm ${phase === 'held' ? 'is-held' : ''}`}
+                    click={holdLaunch}
+                  />
+                  <Button
+                    label={phase === 'liftoff' ? 'Liftoff!' : 'Launch'}
                     styleBtn="solid"
                     size="small"
                     classes="btn-primary btn-sm"
+                    loading={phase === 'countdown'}
+                    disabled={phase === 'countdown'}
+                    click={startLaunch}
                   >
                     <Icon name="send" />
                   </Button>
                 </div>
+                <p className="hold-hint">
+                  Hold pauses the countdown and freezes the pad. Launch validates the checklist,
+                  counts down, then flies the rocket.
+                </p>
               </div>
             </div>
           </div>
@@ -265,7 +375,13 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                   </Button>
                 )}
                 {tile.name === 'Input' && (
-                  <InputField label="" id={`tile-${tile.name}`} placeholder="callsign@nasa.gov" value="" change={() => {}} />
+                  <InputField
+                    label=""
+                    id={`tile-${tile.name}`}
+                    placeholder="callsign@nasa.gov"
+                    value=""
+                    change={() => {}}
+                  />
                 )}
                 {tile.name === 'Checkbox' && (
                   <Checkbox id="tile-check" label="Systems nominal" checked />
@@ -280,10 +396,12 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                   <ToggleButton id="tile-tog" label="Thrusters" isChecked />
                 )}
                 {tile.name === 'Select' && (
-                  <div className="select" style={{ width: 160 }}>
-                    <span>Falcon 9</span>
-                    <Icon name="chev" />
-                  </div>
+                  <SelectField
+                    id="tile-sel"
+                    label=""
+                    options={['Falcon 9', 'Starship']}
+                    selectOption="Falcon 9"
+                  />
                 )}
                 {tile.name === 'Icon' && (
                   <div className="row" style={{ gap: 14, color: 'var(--accent-text)' }}>
@@ -358,7 +476,7 @@ export function LaunchPanel() {
               styleBtn="solid"
               size="large"
               classes="btn-primary btn-lg"
-              click={() => navigate('/ButtonPage')}
+              click={() => navigate('/docs')}
             >
               <Icon name="arrow" />
             </Button>
@@ -377,12 +495,23 @@ export function LaunchPanel() {
       <footer className="foot">
         <span>© 2026 Rocket UI · MIT License · Made by Yehuda Menahem</span>
         <nav>
-          <Link to="/ButtonPage">Docs</Link>
+          <Link to="/docs">Docs</Link>
           <a href="https://github.com/YehudaMenahem/ui-rocket">GitHub</a>
-          <a href="https://github.com/YehudaMenahem/ui-rocket">Changelog</a>
-          <Link to="/ButtonPage">Storybook</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/playground">Playground</Link>
         </nav>
       </footer>
+
+      <Toaster
+        show={toast}
+        type="success"
+        position="top-right"
+        title="Liftoff!"
+        runningText={`${mission} cleared the tower · window ${windowOpt}${
+          abort ? ' · auto-abort armed' : ''
+        }`}
+        closeToaster={() => setToast(false)}
+      />
     </div>
   );
 }

@@ -28,6 +28,7 @@ export function ToasterPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Toaster"
       showPlayground={true}
+      controls={['color']}
       preview={() => <ToasterDemo />}
       examples={<>
           <h3>Positions</h3>

@@ -16,6 +16,7 @@ export function ImgPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Img"
       showPlayground={true}
+      controls={['color']}
       preview={() => (
         <div className="img-demo" role="img" aria-label="Retro sun landscape" />
       )}

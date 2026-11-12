@@ -17,10 +17,18 @@ export function FormPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Form"
       showPlayground={true}
-      preview={() => (
+      controls={['color', 'disabled']}
+      preview={(s) => (
         <form className="form" onSubmit={(e) => e.preventDefault()}>
-          <InputField label="Callsign" id="f1" value="" change={() => {}} />
-          <Button label="Submit" styleBtn="solid" />
+          <InputField
+            label="Callsign"
+            id="f1"
+            value="Eagle"
+            change={() => {}}
+            disabled={s.disabled}
+          />
+          <Checkbox id="f-go" label="Ready" checked change={() => {}} disabled={s.disabled} />
+          <Button label="Submit" styleBtn="solid" disabled={s.disabled} />
         </form>
       )}
       examples={<>

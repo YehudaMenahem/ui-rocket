@@ -2,6 +2,7 @@ import { ChangeEvent } from 'react';
 import { JSX } from 'react';
 import { MouseEvent as MouseEvent_2 } from 'react';
 import { ReactNode } from 'react';
+import { ReactPortal } from 'react';
 
 export declare function Button({ label, styleBtn, size, loading, classes, id, rounded, shadow, disabled, children, scrollToTop, position, color, radius, click, }: ButtonProps): JSX.Element;
 
@@ -93,7 +94,7 @@ export declare interface InputFieldProps {
     change?: (value: string) => void;
 }
 
-export declare function Modal({ modalTitle, heroImage, classes, show, closeModal, children, }: ModalProps): JSX.Element | null;
+export declare function Modal({ modalTitle, heroImage, classes, show, closeModal, children, }: ModalProps): ReactPortal | null;
 
 export declare interface ModalProps {
     modalTitle?: string;

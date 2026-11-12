@@ -41,15 +41,15 @@
     background: var(--field-bg);
     box-sizing: border-box;
     pointer-events: none;
+    overflow: hidden;
 
-    &::after {
-      content: '';
-      width: 5px;
-      height: 9px;
-      border: solid var(--accent-ink);
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg) scale(0);
-      margin-top: -1px;
+    svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--accent-ink);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.12s ease, transform 0.12s ease;
     }
   }
 
@@ -57,9 +57,15 @@
     background: var(--accent);
     border-color: var(--line-strong);
 
-    &::after {
-      transform: rotate(45deg) scale(1);
+    svg {
+      opacity: 1;
+      transform: scale(1);
     }
+  }
+
+  input[type='checkbox'][data-icon-type='heart']:checked + .indicator,
+  input[type='checkbox'][data-icon-type='star']:checked + .indicator {
+    background: var(--accent);
   }
 
   input[type='checkbox']:focus-visible + .indicator {
@@ -76,5 +82,15 @@
   &:has(input:disabled) {
     opacity: 0.5;
     cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox .indicator svg {
+    transition: none;
   }
 }

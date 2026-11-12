@@ -18,21 +18,23 @@ export function Toaster({
       setTimeout(() => {
         closeToaster();
       }, 300);
+    } else {
+      closeToaster();
     }
   };
 
   const renderIcon = () => {
     switch (type) {
       case 'success':
-        return <i className="icon check circle"></i>;
+        return '✓';
       case 'info':
-        return <i className="icon info circle"></i>;
+        return 'i';
       case 'error':
-        return <i className="icon times circle"></i>;
+        return '×';
       case 'warning':
-        return <i className="icon exclamation triangle"></i>;
+        return '!';
       default:
-        return <i className="icon info circle"></i>;
+        return 'i';
     }
   };
 
@@ -41,15 +43,25 @@ export function Toaster({
   }
 
   return (
-    <div ref={toasterRef} className={`toaster ${type} ${position}`}>
-      <i className="icon close" onClick={handleCloseToaster}></i>
-      <div className="icon-type mr-r-lr">
+    <div
+      ref={toasterRef}
+      className={`toaster ${type} ${position}`}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="icon-type" aria-hidden="true">
         <span>{renderIcon()}</span>
       </div>
       <div className="content">
         <h4 className="title">{title}</h4>
         <p className="running-text">{runningText}</p>
       </div>
+      <button
+        type="button"
+        className="close"
+        aria-label="Dismiss notification"
+        onClick={handleCloseToaster}
+      />
     </div>
   );
 }

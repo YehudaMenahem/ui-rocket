@@ -17,11 +17,23 @@
   background: var(--accent);
   color: var(--accent-ink);
   box-shadow: var(--btn-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    color 0.15s ease;
 
   .label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+  }
+
+  &:hover:not(:disabled):not(.loading) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--line-strong);
+  }
+
+  &:active:not(:disabled):not(.loading) {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--line-strong);
   }
 
   &.solid,
@@ -37,6 +49,10 @@
     color: var(--accent-text);
     border-color: transparent;
     box-shadow: none;
+
+    &:hover:not(:disabled):not(.loading) {
+      box-shadow: 4px 4px 0 var(--line-strong);
+    }
   }
 
   &.outline,
@@ -45,6 +61,11 @@
     color: var(--accent-text);
     border-color: var(--accent-text);
     box-shadow: none;
+
+    &:hover:not(:disabled):not(.loading) {
+      background: var(--accent-soft);
+      box-shadow: 4px 4px 0 var(--line-strong);
+    }
   }
 
   &.text,
@@ -54,6 +75,12 @@
     color: var(--accent-text);
     border-color: transparent;
     box-shadow: none;
+
+    &:hover:not(:disabled):not(.loading) {
+      background: var(--accent-soft);
+      box-shadow: none;
+      transform: none;
+    }
   }
 
   &.btn-secondary {
@@ -142,6 +169,8 @@
   &[disabled] {
     opacity: 0.45;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--btn-shadow);
   }
 
   &:focus-visible {
@@ -150,40 +179,62 @@
   }
 
   &.loading {
+    cursor: progress;
+
+    .label {
+      visibility: hidden;
+    }
+
     .loading-bg {
       position: absolute;
       inset: 0;
       display: grid;
       place-items: center;
-      background: inherit;
       border-radius: inherit;
+      pointer-events: none;
     }
 
-    .label {
-      opacity: 0;
-    }
-
-    .dot-pulse,
     .spin {
-      width: 14px;
-      height: 14px;
+      display: block;
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
       border-radius: 50%;
-      border: 2px solid currentColor;
-      border-right-color: transparent;
-      animation: spin 0.7s linear infinite;
+      border: 2.5px solid rgba(255, 246, 236, 0.35);
+      border-top-color: #fff6ec;
+      animation: rocket-spin 0.7s linear infinite;
+    }
+
+    &.outline .spin,
+    &.ghost .spin,
+    &.soft .spin,
+    &.text .spin,
+    &.btn-outline .spin,
+    &.btn-ghost .spin,
+    &.btn-soft .spin,
+    &.btn-secondary .spin {
+      border: 2.5px solid rgba(30, 42, 71, 0.25);
+      border-top-color: #1e2a47;
     }
   }
 }
 
-@keyframes spin {
+@keyframes rocket-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .button,
+  .btn {
+    transition: none;
+  }
+
   .button.loading .spin,
   .btn.loading .spin {
     animation: none;
+    border-top-color: currentColor;
+    opacity: 0.85;
   }
 }

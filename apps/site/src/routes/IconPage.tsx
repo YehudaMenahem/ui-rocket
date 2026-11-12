@@ -17,8 +17,9 @@ export function IconPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Icon"
       showPlayground={true}
+      controls={['color']}
       preview={() => (
-        <div className="row" style={{gap:16,color:'var(--accent-text)'}}>
+        <div className="row" style={{ gap: 16, color: 'var(--accent-text)' }}>
           <Icon name="send" className="ico ico-lg" />
           <Icon name="shield" className="ico ico-lg" />
           <Icon name="code" className="ico ico-lg" />

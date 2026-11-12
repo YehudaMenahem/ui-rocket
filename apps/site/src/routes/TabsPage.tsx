@@ -23,6 +23,7 @@ export function TabsPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Tabs"
       showPlayground={true}
+      controls={['color']}
       preview={() => <TabsDemo />}
       examples={<>
           <h3>Basic</h3>
