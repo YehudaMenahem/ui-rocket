@@ -13,11 +13,12 @@ export function GitHubStars() {
 
   useEffect(() => {
     let cancelled = false;
-    const ctrl = new AbortController();
-    fetch(`https://api.github.com/repos/${REPO}`, {
-      signal: ctrl.signal,
-      headers: { Accept: 'application/vnd.github+json' },
-    })
+    const ctrl = new globalThis.AbortController();
+    globalThis
+      .fetch(`https://api.github.com/repos/${REPO}`, {
+        signal: ctrl.signal,
+        headers: { Accept: 'application/vnd.github+json' },
+      })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (!cancelled && data && typeof data.stargazers_count === 'number') {

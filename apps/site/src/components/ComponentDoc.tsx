@@ -551,9 +551,9 @@ export default function Demo() {
               </div>
             </div>
           ) : (
-            <pre className="code" tabIndex={0}>
-              {code}
-            </pre>
+            <div className="code-scroll" tabIndex={0} role="region" aria-label="Generated code">
+              <pre className="code">{code}</pre>
+            </div>
           )}
 
           <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
@@ -561,9 +561,11 @@ export default function Demo() {
             <span className="sp" />
             <CopyButton text={code} />
           </div>
-          <pre className="code" style={{ borderTop: 0 }} tabIndex={0}>
-            {code}
-          </pre>
+          <div className="code-scroll" tabIndex={0} role="region" aria-label="Demo source">
+            <pre className="code" style={{ borderTop: 0 }}>
+              {code}
+            </pre>
+          </div>
         </div>
       ) : null}
 

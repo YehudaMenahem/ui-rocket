@@ -95,7 +95,9 @@ svg{display:block}
 .tile .tm b{font-family:var(--font-display);font-size:15px}
 .tile .tm span{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
 .codeband{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow-md)}
-.code{background:var(--code-bg);color:var(--code-ink);font-family:var(--font-mono);font-size:13.5px;line-height:1.75;padding:22px 24px;white-space:pre;overflow:hidden}
+.code-scroll{overflow:auto;max-width:100%;outline-offset:-2px}
+.code-scroll:focus-visible{outline:2px solid var(--accent)}
+.code{background:var(--code-bg);color:var(--code-ink);font-family:var(--font-mono);font-size:13.5px;line-height:1.75;padding:22px 24px;white-space:pre;overflow:visible;margin:0}
 .code .k{color:var(--tk-k)}.code .s{color:var(--tk-s)}.code .t{color:var(--tk-t)}.code .a{color:var(--tk-a)}.code .c{color:var(--tk-c);font-style:italic}.code .p{color:var(--tk-p)}
 .code-head{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--code-head);border-bottom:1px solid var(--code-line);font-family:var(--font-mono);font-size:12px;color:var(--tk-c)}
 .code-head .tab{padding:5px 10px;border-radius:6px}
