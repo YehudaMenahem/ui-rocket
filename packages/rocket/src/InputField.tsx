@@ -74,10 +74,8 @@ export function InputField({
         />
       </label>
       <div className="helpers">
-        {error && showError && required && (
-          <span className="error">{error}</span>
-        )}
-        {note && !showError && <span className="note">{note}</span>}
+        {error && showError ? <span className="error">{error}</span> : null}
+        {note && !showError ? <span className="note">{note}</span> : null}
         <span className="char-num">
           {charIsUse}/{maxlength}
         </span>

@@ -35,18 +35,26 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       importName="Button"
       controls={['variant', 'color', 'size', 'radius', 'loading', 'disabled']}
       generateCode={(s) => {
-        const color = colorMap[s.color] || 'brand';
+        const preset = colorMap[s.color];
+        const colorLine = preset
+          ? `      color="${preset}"`
+          : `      /* accent: ${s.colorHex} */`;
+        const wrapOpen = preset
+          ? ''
+          : `    <div style={{ ['--accent' as string]: '${s.colorHex}' }}>\n`;
+        const wrapClose = preset ? '' : '\n    </div>';
+        const indent = preset ? '' : '  ';
         return `import { Button } from '@ui-rocket/rocket'
 
 export default function Demo() {
   return (
-    <Button
-      label="Launch"
-      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"
-      size="${sizeMap[s.size]}"
-      radius="${s.radius}"
-      color="${color}"${s.loading ? '\n      loading' : ''}${s.disabled ? '\n      disabled' : ''}
-    />
+${wrapOpen}${indent}    <Button
+${indent}      label="Launch"
+${indent}      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"
+${indent}      size="${sizeMap[s.size]}"
+${indent}      radius="${s.radius}"
+${indent}${colorLine}${s.loading ? `\n${indent}      loading` : ''}${s.disabled ? `\n${indent}      disabled` : ''}
+${indent}    />${wrapClose}
   )
 }`;
       }}

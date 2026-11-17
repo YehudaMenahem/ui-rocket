@@ -21,26 +21,26 @@ const POSTS = [
 export function BlogPage() {
   return (
     <div className="landing simple-page">
-      <section className="section">
+      <main className="section">
         <div className="sec-head">
           <div className="kick">Blog</div>
-          <h2>Notes from the launch pad.</h2>
+          <h1>Notes from the launch pad.</h1>
           <p>Short posts on design, accessibility, and package craft.</p>
         </div>
         <div className="blog-list">
           {POSTS.map((post) => (
             <article className="blog-card" key={post.title}>
               <small>{post.date}</small>
-              <h3>{post.title}</h3>
+              <h2>{post.title}</h2>
               <p>{post.blurb}</p>
             </article>
           ))}
         </div>
         <p className="txt" style={{ marginTop: 24 }}>
           Looking for API docs? <Link to="/docs">Start in Docs</Link> or jump to{' '}
-          <Link to="/ButtonPage">Components</Link>.
+          <Link to="/components">Components</Link>.
         </p>
-      </section>
+      </main>
     </div>
   );
 }

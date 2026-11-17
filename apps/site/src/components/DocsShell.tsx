@@ -1,24 +1,32 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { NAV_GROUPS, ComponentMeta } from '../data/components';
+import { NAV_GROUPS } from '../data/components';
 import { Icon, RocketMark } from './Icons';
 
+export type TocItem = { id: string; label: string; sub?: boolean };
+
 interface DocsShellProps {
-  meta: ComponentMeta;
   children: ReactNode;
   sidebarOpen: boolean;
   onCloseSidebar: () => void;
+  /** Path used to highlight the sidebar link. Defaults to current location. */
+  activePath?: string;
+  toc?: TocItem[];
   activeToc?: string;
+  showPromo?: boolean;
 }
 
 export function DocsShell({
-  meta,
   children,
   sidebarOpen,
   onCloseSidebar,
+  activePath,
+  toc = [],
   activeToc = 'usage',
+  showPromo = true,
 }: DocsShellProps) {
   const location = useLocation();
+  const current = activePath || location.pathname;
 
   return (
     <div className={`shell ${sidebarOpen ? 'sidebar-open' : ''}`}>
@@ -34,25 +42,22 @@ export function DocsShell({
       <aside className={`side ${sidebarOpen ? 'open' : ''}`} aria-label="Docs navigation">
         {NAV_GROUPS.map((group) => (
           <div key={group.title} className="nav-section">
-            <h6>{group.title}</h6>
-            {group.items.map((item) => (
-              <Link
-                key={item.path + item.label}
-                to={item.path}
-                className={
-                  location.pathname === item.path && item.label === meta.name ? 'on' : ''
-                }
-                onClick={onCloseSidebar}
-                aria-current={
-                  location.pathname === item.path && item.label === meta.name
-                    ? 'page'
-                    : undefined
-                }
-              >
-                {item.label}
-                {item.badge ? <span className="new">{item.badge}</span> : null}
-              </Link>
-            ))}
+            <h2 className="side-heading">{group.title}</h2>
+            {group.items.map((item) => {
+              const on = current === item.path;
+              return (
+                <Link
+                  key={item.path + item.label}
+                  to={item.path}
+                  className={on ? 'on' : ''}
+                  onClick={onCloseSidebar}
+                  aria-current={on ? 'page' : undefined}
+                >
+                  {item.label}
+                  {item.badge ? <span className="new">{item.badge}</span> : null}
+                </Link>
+              );
+            })}
           </div>
         ))}
       </aside>
@@ -60,8 +65,8 @@ export function DocsShell({
       <main className="main">{children}</main>
 
       <aside className="toc" aria-label="On this page">
-        <h6>On this page</h6>
-        {meta.toc.map((item) => (
+        <p className="toc-title">On this page</p>
+        {toc.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
@@ -70,16 +75,18 @@ export function DocsShell({
             {item.label}
           </a>
         ))}
-        <div className="promo">
-          <RocketMark />
-          <b>Theme builder</b>
-          Tweak tokens and export a CSS file for your brand.
-          <div style={{ marginTop: 12 }}>
-            <Link className="btn btn-secondary btn-xs" to="/">
-              Open builder <Icon name="arrow" />
-            </Link>
+        {showPromo ? (
+          <div className="promo">
+            <RocketMark />
+            <b>Theme builder</b>
+            Tweak tokens and export a CSS file for your brand.
+            <div style={{ marginTop: 12 }}>
+              <Link className="btn btn-secondary btn-xs" to="/theming">
+                Open builder <Icon name="arrow" />
+              </Link>
+            </div>
           </div>
-        </div>
+        ) : null}
       </aside>
     </div>
   );

@@ -45,6 +45,7 @@ export function Button({
       onClick={handleClick}
       disabled={disabled}
       aria-busy={loading || undefined}
+      aria-label={label || undefined}
     >
       {loading ? (
         <span className="loading-bg" aria-hidden="true">
@@ -53,7 +54,9 @@ export function Button({
       ) : (
         children
       )}
-      <span className="label">{label}</span>
+      <span className="label" aria-hidden={loading || undefined}>
+        {label}
+      </span>
     </button>
   );
 }

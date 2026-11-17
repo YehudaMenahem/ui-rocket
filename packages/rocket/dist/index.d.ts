@@ -50,12 +50,15 @@ export declare interface FormProps {
     submit: (values: Record<string, unknown>) => void;
 }
 
-export declare function Icon({ classes, iconClass, click }: IconProps): JSX.Element;
+export declare function Icon({ classes, iconClass, click, children, label, }: IconProps): JSX.Element;
 
 export declare interface IconProps {
     classes?: string;
     iconClass?: string;
     click?: () => void;
+    children?: ReactNode;
+    /** Accessible name; omit for decorative icons. */
+    label?: string;
 }
 
 export declare function Img({ src, alt, width, height, classes, click }: ImgProps): JSX.Element;

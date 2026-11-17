@@ -15,10 +15,10 @@ export function ThemingPage() {
 
   return (
     <div className="landing simple-page">
-      <section className="section">
+      <main className="section">
         <div className="sec-head">
           <div className="kick">Theming</div>
-          <h2>One token sheet. Light and dark.</h2>
+          <h1>One token sheet. Light and dark.</h1>
           <p>
             Set CSS variables on <code>:root</code> / <code>[data-theme=&quot;dark&quot;]</code>.
             Components read those vars — no CSS-in-JS runtime.
@@ -39,15 +39,24 @@ export function ThemingPage() {
         </div>
 
         <div className="card" style={{ maxWidth: 360, marginTop: 32 }}>
-          <h4>Live sample</h4>
+          <h2 className="card-kicker">Live sample</h2>
           <p className="sub">Toggle and button inherit theme tokens.</p>
-          <div className="between" style={{ margin: '16px 0' }}>
-            <span>Accented controls</span>
-            <ToggleButton id="theme-sample" label="" isChecked={sampleOn} change={setSampleOn} />
+          <div style={{ margin: '16px 0' }}>
+            <ToggleButton
+              id="theme-sample"
+              label="Accented controls"
+              isChecked={sampleOn}
+              change={setSampleOn}
+            />
           </div>
-          <Button label="Primary action" styleBtn="solid" classes="btn-primary" disabled={!sampleOn} />
+          <Button
+            label="Primary action"
+            styleBtn="solid"
+            classes="btn-primary"
+            disabled={!sampleOn}
+          />
         </div>
-      </section>
+      </main>
     </div>
   );
 }

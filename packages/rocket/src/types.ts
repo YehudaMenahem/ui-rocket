@@ -58,6 +58,9 @@ export interface IconProps {
   classes?: string;
   iconClass?: string;
   click?: () => void;
+  children?: ReactNode;
+  /** Accessible name; omit for decorative icons. */
+  label?: string;
 }
 
 export interface ImgProps {

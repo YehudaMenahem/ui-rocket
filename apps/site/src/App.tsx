@@ -22,6 +22,9 @@ import { TabsPage } from './routes/TabsPage';
 import { ToggleButtonPage } from './routes/ToggleButtonPage';
 import { ToasterPage } from './routes/ToasterPage';
 import { FormPage } from './routes/FormPage';
+import { InstallationPage } from './routes/InstallationPage';
+import { DarkModePage } from './routes/DarkModePage';
+import { ComponentsIndexPage } from './routes/ComponentsIndexPage';
 import { setTheme, getInitialTheme } from './utils/theme';
 
 function AppLayout() {
@@ -30,6 +33,11 @@ function AppLayout() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(getInitialTheme() === 'dark');
   const isHome = location.pathname === '/';
+  const needsSidebar =
+    !isHome &&
+    (location.pathname.endsWith('Page') ||
+      location.pathname.startsWith('/docs/') ||
+      location.pathname === '/components');
 
   const toggleTheme = () => {
     const next = darkMode ? 'light' : 'dark';
@@ -63,7 +71,7 @@ function AppLayout() {
         darkMode={darkMode}
         onToggleTheme={toggleTheme}
         onOpenSearch={() => setSearchOpen(true)}
-        onOpenNav={isHome ? undefined : () => setSidebarOpen(true)}
+        onOpenNav={needsSidebar ? () => setSidebarOpen(true) : undefined}
       />
 
       <CommandPalette open={searchOpen} onClose={() => setSearchOpen(false)} />
@@ -71,6 +79,9 @@ function AppLayout() {
       <Routes>
         <Route path="/" element={<Entrance darkMode={darkMode} />} />
         <Route path="/docs" element={<DocsPage />} />
+        <Route path="/docs/installation" element={<InstallationPage {...pageProps} />} />
+        <Route path="/docs/dark-mode" element={<DarkModePage {...pageProps} />} />
+        <Route path="/components" element={<ComponentsIndexPage {...pageProps} />} />
         <Route path="/theming" element={<ThemingPage />} />
         <Route path="/playground" element={<PlaygroundPage />} />
         <Route path="/blog" element={<BlogPage />} />

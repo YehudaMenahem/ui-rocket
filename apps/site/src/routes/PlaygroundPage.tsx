@@ -17,15 +17,15 @@ export function PlaygroundPage() {
 
   return (
     <div className="landing simple-page">
-      <section className="section">
+      <main className="section">
         <div className="sec-head">
           <div className="kick">Playground</div>
-          <h2>Compose a launch panel.</h2>
+          <h1>Compose a launch panel.</h1>
           <p>Every control here is a real Rocket UI component wired to state.</p>
         </div>
 
         <div className="card" style={{ maxWidth: 420 }}>
-          <h4>Mission builder</h4>
+          <h2 className="card-kicker">Mission builder</h2>
           <InputField label="Mission name" id="pg-name" value={name} change={setName} maxlength={40} />
           <SelectField
             id="pg-vehicle"
@@ -42,9 +42,8 @@ export function PlaygroundPage() {
               change={(t) => setGo(t.checked)}
             />
           </div>
-          <div className="between" style={{ marginBottom: 16 }}>
-            <span>Arm thrusters</span>
-            <ToggleButton id="pg-arm" label="" isChecked={armed} change={setArmed} />
+          <div style={{ marginBottom: 16 }}>
+            <ToggleButton id="pg-arm" label="Arm thrusters" isChecked={armed} change={setArmed} />
           </div>
           <Button
             label="Fire demo toast"
@@ -54,7 +53,7 @@ export function PlaygroundPage() {
             click={() => setToast(true)}
           />
         </div>
-      </section>
+      </main>
 
       <Toaster
         show={toast}
