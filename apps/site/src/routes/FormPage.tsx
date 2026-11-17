@@ -54,6 +54,7 @@ function FormPreview({ disabled, idPrefix = 'f' }: { disabled: boolean; idPrefix
       <Toaster
         show={toast}
         type="success"
+        position="top-right"
         title="Checklist submitted"
         runningText={`${callsign || 'Crew'} is cleared for launch.`}
         closeToaster={() => setToast(false)}
