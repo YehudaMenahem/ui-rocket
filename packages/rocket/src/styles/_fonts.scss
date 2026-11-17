@@ -1,27 +1,12 @@
-// Fonts are served from the site/public/fonts folder (and copied there from @fontsource).
-// Absolute /fonts paths avoid Vite base64-inlining woff2 into rocket.css.
-
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 400;
-  src: url('/fonts/fraunces-latin-400-normal.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Fraunces';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 400;
-  src: url('/fonts/fraunces-latin-400-italic.woff2') format('woff2');
-}
+// Latin-subset woff2 files served from apps/site/public/fonts (absolute /fonts paths).
+// Keep the weight set small for Lighthouse; map heavier display use to 700/800.
 
 @font-face {
   font-family: 'Fraunces';
   font-style: normal;
   font-display: swap;
   font-weight: 700;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/fraunces-latin-700-normal.woff2') format('woff2');
 }
 
@@ -30,23 +15,8 @@
   font-style: normal;
   font-display: swap;
   font-weight: 800;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/fraunces-latin-800-normal.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Fraunces';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 800;
-  src: url('/fonts/fraunces-latin-800-italic.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Fraunces';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 900;
-  src: url('/fonts/fraunces-latin-900-normal.woff2') format('woff2');
 }
 
 @font-face {
@@ -54,6 +24,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 400;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/dm-sans-latin-400-normal.woff2') format('woff2');
 }
 
@@ -61,15 +32,8 @@
   font-family: 'DM Sans';
   font-style: normal;
   font-display: swap;
-  font-weight: 500;
-  src: url('/fonts/dm-sans-latin-500-normal.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-display: swap;
   font-weight: 600;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/dm-sans-latin-600-normal.woff2') format('woff2');
 }
 
@@ -78,6 +42,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 700;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/dm-sans-latin-700-normal.woff2') format('woff2');
 }
 
@@ -86,6 +51,7 @@
   font-style: normal;
   font-display: swap;
   font-weight: 400;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/dm-mono-latin-400-normal.woff2') format('woff2');
 }
 
@@ -94,5 +60,6 @@
   font-style: normal;
   font-display: swap;
   font-weight: 500;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
   src: url('/fonts/dm-mono-latin-500-normal.woff2') format('woff2');
 }
