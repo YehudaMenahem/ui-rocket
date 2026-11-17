@@ -7,7 +7,8 @@ import {
   useState,
 } from 'react';
 import { Link } from 'react-router-dom';
-import { ComponentMeta } from '../data/components';
+import { ComponentMeta, componentTestsLabel } from '../data/components';
+import { CopyButton } from './CopyButton';
 import { DocsShell } from './DocsShell';
 import { Icon } from './Icons';
 
@@ -84,24 +85,6 @@ interface ComponentDocProps {
   /** Which playground controls to show. Defaults to button-style controls. */
   controls?: ControlKey[];
   initialState?: Partial<PlaygroundState>;
-}
-
-function CopyButton({ text, label = 'Copy' }: { text: string; label?: string }) {
-  const [copied, setCopied] = useState(false);
-  const onCopy = async () => {
-    await navigator.clipboard?.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
-  };
-  return (
-    <button type="button" className={`tool copy-btn ${copied ? 'copied' : ''}`} onClick={onCopy}>
-      <Icon name={copied ? 'check' : 'copy'} />
-      <span className="copy-label">{copied ? 'Copied' : label}</span>
-      <span className="sr-only" aria-live="polite">
-        {copied ? 'Copied to clipboard' : ''}
-      </span>
-    </button>
-  );
 }
 
 export function ComponentDoc({
@@ -189,10 +172,18 @@ export default function Demo() {
     '--playground-accent': state.colorHex,
   } as CSSProperties;
 
+  const testsChip = componentTestsLabel(meta.id);
+
   return (
-    <DocsShell meta={meta} sidebarOpen={sidebarOpen} onCloseSidebar={onCloseSidebar}>
+    <DocsShell
+      sidebarOpen={sidebarOpen}
+      onCloseSidebar={onCloseSidebar}
+      activePath={meta.path}
+      toc={meta.toc}
+    >
       <div className="crumbs">
-        Components <Icon name="chevr" /> {meta.group} <Icon name="chevr" />{' '}
+        <Link to="/components">Components</Link> <Icon name="chevr" />{' '}
+        <Link to="/components">{meta.group}</Link> <Icon name="chevr" />{' '}
         <span style={{ color: 'var(--ink)' }}>{meta.name}</span>
       </div>
 
@@ -212,21 +203,20 @@ export default function Demo() {
         <span className="chip">
           <Icon name="shield" /> {meta.aria}
         </span>
-        <span className="chip">
-          <Icon name="pkg" /> {meta.gzip}
-        </span>
-        <span className="chip">
-          <Icon name="test" /> {meta.tests}
-        </span>
+        {testsChip !== '0 tests' ? (
+          <span className="chip">
+            <Icon name="test" /> {testsChip}
+          </span>
+        ) : null}
       </div>
 
-      <div className="doc-tabs" role="tablist">
-        <button type="button" className="on" role="tab" aria-selected>
+      <nav className="doc-tabs" aria-label="On this page sections">
+        <a href="#usage" className="on">
           Documentation
-        </button>
+        </a>
         <a href="#props">Props</a>
         <a href="#accessibility">Accessibility</a>
-      </div>
+      </nav>
 
       <h2 id="usage">Usage</h2>
       <p className="txt">

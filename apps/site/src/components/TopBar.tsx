@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { GitHubStars } from './GitHubStars';
 import { Icon, RocketMark } from './Icons';
 
 interface TopBarProps {
@@ -10,7 +11,7 @@ interface TopBarProps {
 
 const LINKS = [
   { label: 'Docs', path: '/docs' },
-  { label: 'Components', path: '/ButtonPage' },
+  { label: 'Components', path: '/components' },
   { label: 'Theming', path: '/theming' },
   { label: 'Playground', path: '/playground' },
   { label: 'Blog', path: '/blog' },
@@ -18,10 +19,10 @@ const LINKS = [
 
 function isActive(pathname: string, linkPath: string, label: string) {
   if (label === 'Docs') {
-    return pathname === '/docs' || pathname === '/';
+    return pathname === '/docs' || pathname.startsWith('/docs/');
   }
   if (label === 'Components') {
-    return pathname.endsWith('Page') && pathname !== '/';
+    return pathname === '/components' || pathname.endsWith('Page');
   }
   return pathname === linkPath || pathname.startsWith(`${linkPath}/`);
 }
@@ -95,7 +96,7 @@ export function TopBar({
           rel="noreferrer"
         >
           <Icon name="gh" />
-          GitHub <small>2.4k</small>
+          GitHub <GitHubStars />
         </a>
       </div>
     </header>

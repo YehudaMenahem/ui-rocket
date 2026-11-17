@@ -91,14 +91,14 @@ export function Stamp() {
         fill="#1E2A47"
         letterSpacing="2.2"
       >
-        <textPath href="#cp">WCAG 2.2 AA ✦ 9.8 KB ✦ MIT ✦ TYPED ✦ </textPath>
+        <textPath href="#cp">ACCESSIBLE ✦ MIT ✦ TYPED ✦ RETRO ✦ </textPath>
       </text>
       <text
         x="70"
         y="78"
         textAnchor="middle"
         fontFamily="Fraunces"
-        fontWeight="900"
+        fontWeight="800"
         fontSize="24"
         fill="#FFF6EC"
       >

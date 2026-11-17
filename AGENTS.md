@@ -20,3 +20,4 @@ See always-on Cursor rules:
 8. Fix illustration layering; remove stray strokes.
 9. Screenshot light/dark + desktop/mobile for touched pages; exercise controls before finishing.
 10. a11y: labels, roles, keyboard, contrast, live regions.
+11. **No fabricated metrics** — test counts, gzip sizes, stars, component counts, etc. must be generated from the repo/API (`metrics.generated.ts`) or removed; never hard-code numbers that can drift.

@@ -43,8 +43,14 @@ These rules apply to every change in this repo — library components, showcase 
 
 15. Basics: labels, roles, keyboard support, focus rings, contrast (WCAG AA for text), and `aria-*` for busy/disabled/expanded states.
 
+## Metrics (no fabricated numbers)
+
+16. Never hard-code showcase metrics that can drift (test counts, gzip sizes, star counts, component counts, “100%”, “AA”, kB badges, etc.).
+17. Every displayed number must be **derived at build/runtime from the repo or an API**, with a graceful fallback that **hides** the number (never invents one). Prefer `apps/site/scripts/generate-metrics.mjs` / `metrics.generated.ts` for package stats and Vitest counts.
+18. If a metric cannot be measured honestly, remove the chip/stat rather than approximating.
+
 ## Verification before finishing
 
-16. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual.
-17. Exercise each new/changed control in the browser (or headless) before reporting done.
-18. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).
+19. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual.
+20. Exercise each new/changed control in the browser (or headless) before reporting done.
+21. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).
