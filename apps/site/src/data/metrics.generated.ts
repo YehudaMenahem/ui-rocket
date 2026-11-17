@@ -3,7 +3,7 @@
 // Run: node apps/site/scripts/generate-metrics.mjs (also via Vite plugin / prebuild)
 
 export const METRICS = {
-  generatedAt: "2026-11-17T19:28:50.361Z",
+  generatedAt: "2026-11-17T19:29:29.716Z",
   componentCount: 13,
   exportNames: ["Button","Checkbox","Form","Icon","Img","InputField","Modal","RadioButton","SelectField","Tabs","Textbox","Toaster","ToggleButton"] as const,
   totalTests: 11,
