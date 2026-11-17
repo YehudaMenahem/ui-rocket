@@ -524,6 +524,7 @@ export default function Demo() {
                     <input
                       className="ctl-input"
                       value={state.placeholder}
+                      aria-label="Placeholder text"
                       onChange={(e) => setState((s) => ({ ...s, placeholder: e.target.value }))}
                     />
                   </div>
@@ -540,6 +541,7 @@ export default function Demo() {
                       min={1}
                       max={12}
                       value={state.rows}
+                      aria-label="Rows"
                       onChange={(e) =>
                         setState((s) => ({ ...s, rows: Number(e.target.value) || 1 }))
                       }
@@ -549,7 +551,9 @@ export default function Demo() {
               </div>
             </div>
           ) : (
-            <pre className="code">{code}</pre>
+            <pre className="code" tabIndex={0}>
+              {code}
+            </pre>
           )}
 
           <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
@@ -557,7 +561,7 @@ export default function Demo() {
             <span className="sp" />
             <CopyButton text={code} />
           </div>
-          <pre className="code" style={{ borderTop: 0 }}>
+          <pre className="code" style={{ borderTop: 0 }} tabIndex={0}>
             {code}
           </pre>
         </div>

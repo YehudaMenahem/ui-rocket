@@ -1,6 +1,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
-body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55;overflow-x:hidden}
+html,body{overflow-x:hidden;max-width:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.55}
 a{color:inherit;text-decoration:none}
 svg{display:block}
 .ico{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -178,12 +179,21 @@ footer.foot nav{display:flex;gap:22px}
 .toc a.sub{padding-left:24px}
 .toc .promo{margin-top:28px;padding:16px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface);font-size:13px;color:var(--muted)}
 .toc .promo b{display:block;color:var(--ink);font-size:14px;margin:10px 0 4px;font-family:var(--font-display)}
+@media (max-width:1024px){
+ .nav-links{display:none}
+ .codeband{grid-template-columns:1fr}
+ .grid8>*,.codeband>*,.collage>*,.hero>*,.stage{min-width:0}
+ .topbar{padding:0 16px;gap:10px;overflow:hidden}
+ .top-right{min-width:0;flex-wrap:nowrap}
+ .search{width:38px;height:38px;padding:0;justify-content:center;border:1px solid var(--line);background:var(--surface);flex:none}
+ .search span,.search .kbd{display:none}
+ .gh small{display:none}
+ .ticker{overflow:hidden;max-width:100%}
+}
+
 @media (max-width:760px){
  .topbar{padding:0 16px;gap:12px;height:58px}
- .nav-links,.gh,.ver{display:none}
- .search{width:auto;padding:0;border:0;background:none}
- .search span,.search .kbd{display:none}
- .search{width:38px;height:38px;justify-content:center;border:1px solid var(--line);background:var(--surface)}
+ .gh,.ver{display:none}
  .hero{grid-template-columns:1fr;padding:40px 20px 40px;gap:36px}
  .hero h1{font-size:var(--h1-m,42px)}
  .hero .lede{font-size:16px}
@@ -194,16 +204,14 @@ footer.foot nav{display:flex;gap:22px}
  .stage{min-height:0}
  .collage{grid-template-columns:1fr}
  .section{padding:56px 20px}
- .sec-head h2{font-size:30px}
+ .sec-head h1,.sec-head h2{font-size:30px}
  .features{grid-template-columns:1fr}
  .grid8{grid-template-columns:1fr 1fr;gap:12px}
  .tile .tv{height:120px}
- .codeband{grid-template-columns:1fr}
  .code{font-size:12px;padding:18px}
  .cta-band{flex-direction:column;align-items:flex-start;padding:36px 24px}
  .cta-band h2{font-size:30px}
  footer.foot{flex-direction:column;gap:16px;padding:28px 20px}
- .grid8>*,.codeband>*,.collage>*{min-width:0}
  .tile .tv .input,.tile .tv .select{width:100%!important}
  .img-demo{max-width:100%}
  .cta-band .row{flex-wrap:wrap}
