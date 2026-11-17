@@ -19,22 +19,23 @@
     animation: toast-out 0.28s ease forwards;
   }
 
-  &.top-right {
+  // Prefix toast-* so site utility .top-right cannot override position/display.
+  &.toast-top-right {
     top: 24px;
     right: 24px;
   }
 
-  &.top-left {
+  &.toast-top-left {
     top: 24px;
     left: 24px;
   }
 
-  &.bottom-right {
+  &.toast-bottom-right {
     bottom: 24px;
     right: 24px;
   }
 
-  &.bottom-left {
+  &.toast-bottom-left {
     bottom: 24px;
     left: 24px;
   }

@@ -45,7 +45,7 @@ export function Toaster({
   return (
     <div
       ref={toasterRef}
-      className={`toaster ${type} ${position}`}
+      className={`toaster ${type} toast-${position}`}
       role="status"
       aria-live="polite"
     >

@@ -596,7 +596,7 @@ function Q({
     "div",
     {
       ref: p,
-      className: `toaster ${s} ${r}`,
+      className: `toaster ${s} toast-${r}`,
       role: "status",
       "aria-live": "polite",
       children: [
