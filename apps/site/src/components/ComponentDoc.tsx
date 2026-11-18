@@ -551,21 +551,34 @@ export default function Demo() {
               </div>
             </div>
           ) : (
-            <div className="code-scroll" tabIndex={0} role="region" aria-label="Generated code">
-              <pre className="code">{code}</pre>
-            </div>
+            <>
+              <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
+                <span className="tab on">Demo.tsx</span>
+                <span className="sp" />
+                <CopyButton text={code} />
+              </div>
+              <div className="code-scroll" tabIndex={0} role="region" aria-label="Generated code">
+                <pre className="code" style={{ borderTop: 0 }}>
+                  {code}
+                </pre>
+              </div>
+            </>
           )}
 
-          <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
-            <span className="tab on">Demo.tsx</span>
-            <span className="sp" />
-            <CopyButton text={code} />
-          </div>
-          <div className="code-scroll" tabIndex={0} role="region" aria-label="Demo source">
-            <pre className="code" style={{ borderTop: 0 }}>
-              {code}
-            </pre>
-          </div>
+          {tab === 'preview' ? (
+            <>
+              <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
+                <span className="tab on">Demo.tsx</span>
+                <span className="sp" />
+                <CopyButton text={code} />
+              </div>
+              <div className="code-scroll" tabIndex={0} role="region" aria-label="Demo source">
+                <pre className="code" style={{ borderTop: 0 }}>
+                  {code}
+                </pre>
+              </div>
+            </>
+          ) : null}
         </div>
       ) : null}
 

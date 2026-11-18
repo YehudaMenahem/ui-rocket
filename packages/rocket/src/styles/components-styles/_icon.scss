@@ -4,9 +4,17 @@
   align-items: center;
   justify-content: center;
   color: var(--accent-text);
+  cursor: default;
 
   svg {
     width: 1em;
     height: 1em;
+  }
+
+  // Interactive icon buttons set cursor on the control, not the glyph.
+  button &,
+  a &,
+  [role='button'] & {
+    cursor: inherit;
   }
 }

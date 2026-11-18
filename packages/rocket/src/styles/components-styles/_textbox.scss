@@ -32,6 +32,7 @@
     color: var(--ink);
     font: inherit;
     resize: vertical;
+    cursor: text;
 
     &::placeholder {
       color: var(--muted);
@@ -45,6 +46,8 @@
 
     &:disabled {
       opacity: 0.5;
+      cursor: not-allowed;
+      resize: none;
     }
   }
 

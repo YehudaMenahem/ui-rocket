@@ -72,9 +72,14 @@
     font-weight: 500;
   }
 
-  &.disabled {
+  &.disabled,
+  &:has(input:disabled) {
     opacity: 0.5;
     cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+    }
   }
 }
 

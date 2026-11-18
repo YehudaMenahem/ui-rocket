@@ -9,10 +9,19 @@ These rules apply to every change in this repo — library components, showcase 
 
 ## Interactions
 
-1. Every interactive element (`button`, `a`, `[role=button]`, clickable controls) must have `cursor: pointer` (and `cursor: not-allowed` when disabled).
+1. Follow the **Cursor conventions** section below. Library components must set the correct cursor themselves (not only site CSS).
 2. Every interactive element needs visible **hover**, **active/press**, and **`:focus-visible`** states.
 3. Prefer a short tasteful micro-interaction (120–200ms) that fits the design language (e.g. hard-shadow lift / press). Honor `prefers-reduced-motion: reduce` (no motion, keep state color changes).
 4. Every nav link and button must actually be clickable on every route. Before finishing, check for overlapping layers, bad `z-index`, `pointer-events: none` on parents, and invisible overlays.
+
+## Cursor conventions
+
+1. `cursor: pointer` — anything that triggers an action or navigation: links, buttons, tabs, chips that are links/buttons, copy controls, checkbox/radio/toggle labels, select trigger + options, swatches, link-cards, accordion headers, close icons, command-palette rows.
+2. `cursor: text` — text inputs and textareas (enabled).
+3. `cursor: not-allowed` — disabled controls; never leave `pointer` on disabled.
+4. `cursor: default` — non-interactive text, static cards, decorative illustrations/icons; no pointer on non-clickable chrome.
+5. `cursor: progress` — loading-only buttons (still prefer `not-allowed` when also disabled).
+6. `grab` / `grabbing`, `col-resize`, etc. — only for real drag/resize UI; do not fake them.
 
 ## No dead UI
 
@@ -49,8 +58,15 @@ These rules apply to every change in this repo — library components, showcase 
 17. Every displayed number must be **derived at build/runtime from the repo or an API**, with a graceful fallback that **hides** the number (never invents one). Prefer `apps/site/scripts/generate-metrics.mjs` / `metrics.generated.ts` for package stats and Vitest counts.
 18. If a metric cannot be measured honestly, remove the chip/stat rather than approximating.
 
+## Visual alignment & spacing
+
+19. Icons inside buttons, chips, copy controls, inputs, and nav items must be **vertically and horizontally centered** (flex/grid + fixed icon box). No baseline offset, stray `line-height`, or asymmetric padding on the icon alone.
+20. Use the spacing token scale (`--space-1` … `--space-12`). Prefer `gap` on stacks over ad-hoc margins. Label→field, field→field, and group→actions should share one rhythm on a given surface.
+21. Sibling controls in a row (e.g. Hold/Launch) share the same height, border width, and vertical alignment. Cards in a row share content top edges; avoid unequal padding that drifts baselines.
+22. Check at 1440 / 1024 / 768 / 375: no clipped focus rings, no hover that shifts layout (prefer transform/shadow), no orphaned headline words when easy to avoid, no truncated/overflowing text from fixed heights.
+
 ## Verification before finishing
 
-19. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual.
-20. Exercise each new/changed control in the browser (or headless) before reporting done.
-21. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).
+23. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual. For alignment bugs, include zoomed crops before/after.
+24. Exercise each new/changed control in the browser (or headless) before reporting done.
+25. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).

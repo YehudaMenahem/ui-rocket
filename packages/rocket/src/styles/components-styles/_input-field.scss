@@ -1,15 +1,15 @@
 .input-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 16px;
+  gap: var(--space-2, 8px);
+  margin-bottom: 0;
   width: 100%;
   max-width: 420px;
 
   .field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: var(--space-2, 8px);
     width: 100%;
   }
 
@@ -33,6 +33,7 @@
     background: var(--field-bg);
     color: var(--ink);
     font-size: 14px;
+    cursor: text;
 
     &::placeholder {
       color: var(--muted);

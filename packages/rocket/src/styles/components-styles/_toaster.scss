@@ -20,14 +20,17 @@
   }
 
   // Prefix toast-* so site utility .top-right cannot override position/display.
+  // Clear sticky topbar (64px) so toasts are not clipped underneath.
   &.toast-top-right {
-    top: 24px;
-    right: 24px;
+    top: calc(64px + var(--space-3, 12px));
+    right: var(--space-4, 16px);
+    z-index: 200;
   }
 
   &.toast-top-left {
-    top: 24px;
-    left: 24px;
+    top: calc(64px + var(--space-3, 12px));
+    left: var(--space-4, 16px);
+    z-index: 200;
   }
 
   &.toast-bottom-right {

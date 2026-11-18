@@ -36,25 +36,33 @@ export function ButtonPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       controls={['variant', 'color', 'size', 'radius', 'loading', 'disabled']}
       generateCode={(s) => {
         const preset = colorMap[s.color];
-        const colorLine = preset
-          ? `      color="${preset}"`
-          : `      /* accent: ${s.colorHex} */`;
-        const wrapOpen = preset
-          ? ''
-          : `    <div style={{ ['--accent' as string]: '${s.colorHex}' }}>\n`;
-        const wrapClose = preset ? '' : '\n    </div>';
-        const indent = preset ? '' : '  ';
+        const indent = preset ? '    ' : '      ';
+        const props = [
+          `${indent}label="Launch"`,
+          `${indent}styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"`,
+          `${indent}size="${sizeMap[s.size]}"`,
+          `${indent}radius="${s.radius}"`,
+        ];
+        if (preset) props.push(`${indent}color="${preset}"`);
+        if (s.loading) props.push(`${indent}loading`);
+        if (s.disabled) props.push(`${indent}disabled`);
+        const button = `${indent.slice(0, -2)}<Button\n${props.join('\n')}\n${indent.slice(0, -2)}/>`;
+        if (preset) {
+          return `import { Button } from '@ui-rocket/rocket'
+
+export default function Demo() {
+  return (
+${button}
+  )
+}`;
+        }
         return `import { Button } from '@ui-rocket/rocket'
 
 export default function Demo() {
   return (
-${wrapOpen}${indent}    <Button
-${indent}      label="Launch"
-${indent}      styleBtn="${s.variant === 'ghost' ? 'ghost' : s.variant}"
-${indent}      size="${sizeMap[s.size]}"
-${indent}      radius="${s.radius}"
-${indent}${colorLine}${s.loading ? `\n${indent}      loading` : ''}${s.disabled ? `\n${indent}      disabled` : ''}
-${indent}    />${wrapClose}
+    <div style={{ ['--accent' as string]: '${s.colorHex}' }}>
+${button}
+    </div>
   )
 }`;
       }}

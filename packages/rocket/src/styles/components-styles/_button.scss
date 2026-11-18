@@ -165,14 +165,6 @@
     color: var(--navy);
   }
 
-  &:disabled,
-  &[disabled] {
-    opacity: 0.45;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: var(--btn-shadow);
-  }
-
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
@@ -216,6 +208,15 @@
       border: 2.5px solid rgba(30, 42, 71, 0.25);
       border-top-color: #1e2a47;
     }
+  }
+
+  // Disabled wins over loading cursor (progress).
+  &:disabled,
+  &[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--btn-shadow);
   }
 }
 

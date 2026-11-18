@@ -34,6 +34,6 @@ export function GitHubStars() {
     };
   }, []);
 
-  if (stars == null) return null;
+  if (stars == null || stars === 0) return null;
   return <small>{formatStars(stars)}</small>;
 }
