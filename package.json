@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "description": "A React component library with 90s DOS-game aesthetic",
-  "author": "Yehuda",
+  "author": "Yehuda Menahem",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0",
