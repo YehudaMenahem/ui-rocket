@@ -1,184 +1,73 @@
-# UI Rocket 🚀
+# Rocket UI
 
-A React component library with a 90s DOS-game aesthetic, built with TypeScript and modern tooling.
+A React component library with a Retro Launch design system, written in TypeScript.
 
-## Project Structure
+Built by Yehuda Menahem · [LinkedIn](https://www.linkedin.com/in/yehuda-menahem-49022330/)
 
-This is a **pnpm workspace monorepo** with the following structure:
+**Live site:** [https://rocket-ui-tau.vercel.app](https://rocket-ui-tau.vercel.app)
 
-```
-ui-rocket/
-├── packages/
-│   └── rocket/           # Component library (published as @ui-rocket/rocket)
-│       ├── src/          # Component source code
-│       ├── dist/         # Built library output
-│       └── package.json
-├── apps/
-│   └── site/             # Showcase website
-│       ├── src/          # Site source code
-│       ├── build/        # Production build output
-│       └── package.json
-├── package.json          # Root workspace config
-└── pnpm-workspace.yaml   # pnpm workspace definition
-```
+![Rocket UI home page](docs/screenshot-home.png)
 
-## Tech Stack
+![Button component page](docs/screenshot-button.png)
 
-### Core
-- **React 19** - Latest React with modern hooks
-- **TypeScript** - Strict mode, full type safety
-- **pnpm** - Fast, efficient package manager with workspace support
-- **Vite** - Lightning-fast build tool
+## What it is
 
-### Library (`packages/rocket`)
-- Built with **Vite library mode**
-- ESM + CJS outputs with TypeScript declarations
-- Proper `exports` map for tree-shaking
-- SCSS for styling
+Rocket UI is a personal portfolio project: a small, typed React component library and a showcase site that documents each component with live playgrounds, theming, and dark mode.
 
-### Site (`apps/site`)
-- **React Router v7** - Modern routing
-- Consumes library via workspace protocol
-- Demonstrates all components
+It is useful as a reference for how a design-system-style library can be structured in a pnpm monorepo with strict TypeScript, Vite, and automated checks. It is **not published to npm** yet — install and use it from this repository (workspace package `@ui-rocket/rocket`).
 
-### Tooling
-- **ESLint 9** - Flat config with typescript-eslint, react-hooks, jsx-a11y
-- **Prettier** - Code formatting
-- **Vitest** - Fast unit testing with Testing Library
-- **GitHub Actions** - CI pipeline (typecheck, lint, test, build)
+## What works today
 
-## Getting Started
+- **13 components** exported from `packages/rocket`: Button, Checkbox, Form, Icon, Img, InputField, Modal, RadioButton, SelectField, Tabs, Textbox, Toaster, ToggleButton
+- Showcase site with per-component docs pages, interactive playgrounds, theming, and dark mode
+- Continuous integration with GitHub Actions (typecheck, lint, test, build)
+- Production deploy on Vercel at the live URL above
 
-### Prerequisites
-- Node.js >= 18
-- pnpm >= 8
+## Tech stack
 
-### Installation
+- React 19
+- TypeScript (strict)
+- Vite
+- pnpm workspaces
+- React Router 7
+- Sass
+- Vitest
+- ESLint
+- Prettier
+- GitHub Actions
+- Vercel
+
+AI coding agents, working under AGENTS.md
+
+## Run locally
+
+**Prerequisites:** Node.js >= 18, pnpm >= 8
 
 ```bash
 pnpm install
+pnpm --filter @ui-rocket/rocket build   # build the library once
+pnpm dev                                # showcase site at http://localhost:3000
 ```
 
-### Development
+Useful root scripts (from `package.json`):
 
 ```bash
-# Start the showcase site (runs on http://localhost:3000)
-pnpm dev
-
-# Build the library in watch mode
-cd packages/rocket && pnpm dev
+pnpm start          # same as pnpm dev
+pnpm build          # build all workspace packages
+pnpm typecheck      # TypeScript across the monorepo
+pnpm lint           # ESLint
+pnpm test           # Vitest
+pnpm format         # Prettier write
+pnpm format:check   # Prettier check
 ```
 
-### Scripts
-
-All scripts can be run from the root using pnpm's workspace commands:
+Per-package:
 
 ```bash
-# Development
-pnpm dev              # Start showcase site
-pnpm start            # Alias for dev
-
-# Build
-pnpm build            # Build all packages
-
-# Quality checks
-pnpm typecheck        # TypeScript type checking
-pnpm lint             # ESLint
-pnpm test             # Run all tests
-pnpm format           # Format code with Prettier
-pnpm format:check     # Check formatting
-
-# Per-package commands
 pnpm --filter @ui-rocket/rocket build
+pnpm --filter @ui-rocket/rocket test
 pnpm --filter @ui-rocket/site dev
 ```
-
-## Components
-
-The library includes the following components:
-
-- **Button** - Solid, outline, and text variants with loading states
-- **InputField** - Text inputs with validation
-- **Checkbox** - Multiple icon styles (check, heart, star)
-- **RadioButton** - Single selection from options
-- **ToggleButton** - Switch between states
-- **SelectField** - Dropdown selection (mobile-friendly)
-- **Textbox** - Multi-line text input
-- **Tabs** - Organize content into separate views
-- **Modal** - Dialog overlays
-- **Toaster** - Temporary notifications
-- **Form** - Form wrapper with validation
-- **Icon** - Icon wrapper component
-- **Img** - Image component
-
-All components are fully typed with TypeScript and export their prop types.
-
-## Architecture Decisions
-
-### Monorepo Structure
-- **Why**: Separates library from showcase while keeping them in sync
-- Library can be published independently
-- Site always tests against latest library code via workspace protocol
-
-### TypeScript
-- **Strict mode enabled** for maximum type safety
-- Converted from prop-types to proper TypeScript interfaces
-- All components fully typed with exported types
-
-### State Management
-- **Removed Redux** - Global state (modals, toasters) moved to React local state in App
-- Simpler, less boilerplate, easier to understand
-- Components remain pure and reusable
-
-### React 19 + Router v7
-- Latest React features and performance improvements
-- Modern React Router with data APIs
-- Removed deprecated patterns
-
-### Build & Bundle
-- Vite library mode produces optimized ESM + CJS
-- Proper `sideEffects` configuration for tree-shaking
-- TypeScript declarations generated with `vite-plugin-dts`
-
-### Testing
-- Vitest for speed and Vite integration
-- Testing Library for component tests
-- Tests focus on user behavior, not implementation
-
-## Removed Dependencies
-
-The following dependencies were removed during the refactor:
-- **Redux + react-redux** - Replaced with React local state
-- **axios** - Can use native `fetch` for API calls
-- **faker** - Can be added back if needed for demos
-- **emailjs-com** - Was used only in FormPage; can be re-added if form submission is needed
-- **prop-types** - Replaced with TypeScript
-
-## Next Steps
-
-This PR establishes the foundation. Future PRs will:
-
-1. **Design System** - Implement the "Segfault" 90s DOS aesthetic
-   - 16-color EGA palette
-   - Fat pixels, 4px grid, zero border radius
-   - Beveled buttons, hard shadows
-   - VT323/Pixelify Sans/IBM Plex Mono fonts
-
-2. **Accessibility** - WAI-ARIA patterns, full keyboard support
-
-3. **Storybook** - Component documentation and visual testing
-
-4. **Testing & Quality** - axe a11y tests, bundle-size budget, Lighthouse CI
-
-5. **Deployment** - Vercel for previews and production (replacing Firebase)
-
-## Contributing
-
-1. Create a feature branch off `main`
-2. Make your changes
-3. Ensure all checks pass: `pnpm typecheck && pnpm lint && pnpm test && pnpm build`
-4. Open a PR against `main`
-5. CI must pass before merging
 
 ## License
 
