@@ -63,13 +63,31 @@ export interface IconProps {
   label?: string;
 }
 
+export interface ImgSource {
+  /** MIME type, e.g. `image/avif` or `image/webp`. */
+  type: string;
+  srcSet: string;
+  sizes?: string;
+}
+
 export interface ImgProps {
   src: string;
   alt?: string;
-  width?: string;
-  height?: string;
+  width?: number | string;
+  height?: number | string;
   classes?: string;
   click?: () => void;
+  /** Native `srcset` on the `<img>` (or fallback inside `<picture>`). */
+  srcSet?: string;
+  sizes?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  fetchPriority?: 'high' | 'low' | 'auto';
+  /** When set, renders a `<picture>` with these `<source>` elements before the img. */
+  sources?: ImgSource[];
+  /** Swapped in if the primary `src` fails to load. */
+  fallbackSrc?: string;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 }
 
 export interface ModalProps {

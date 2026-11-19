@@ -23,7 +23,7 @@ const COMPONENT_IDS = {
   select: { file: 'SelectField.tsx', test: null, exportName: 'SelectField' },
   textbox: { file: 'Textbox.tsx', test: null, exportName: 'Textbox' },
   icon: { file: 'Icon.tsx', test: null, exportName: 'Icon' },
-  img: { file: 'Img.tsx', test: null, exportName: 'Img' },
+  img: { file: 'Img.tsx', test: 'Img.test.tsx', exportName: 'Img' },
   tabs: { file: 'Tabs.tsx', test: null, exportName: 'Tabs' },
   form: { file: 'Form.tsx', test: null, exportName: 'Form' },
   modal: { file: 'Modal.tsx', test: null, exportName: 'Modal' },
