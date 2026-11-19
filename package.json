@@ -20,7 +20,9 @@
     "build:rocket": "pnpm --filter @ui-rocket/rocket build",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
-    "size": "pnpm --filter @ui-rocket/rocket build && size-limit"
+    "size": "pnpm --filter @ui-rocket/rocket build && size-limit",
+    "a11y": "node scripts/a11y.mjs",
+    "a11y:ci": "pnpm build && pnpm a11y"
   },
   "size-limit": [
     {
@@ -31,6 +33,7 @@
     }
   ],
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@size-limit/file": "^11.2.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
@@ -39,6 +42,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.0",
     "eslint-plugin-react": "^7.37.0",
     "eslint-plugin-react-hooks": "^5.0.0",
+    "playwright": "^1.65.1",
     "prettier": "^3.3.0",
     "size-limit": "^11.2.0",
     "typescript": "^5.6.0"
