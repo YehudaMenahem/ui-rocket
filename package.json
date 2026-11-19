@@ -13,10 +13,11 @@
   "scripts": {
     "dev": "pnpm --filter @ui-rocket/site dev",
     "start": "pnpm --filter @ui-rocket/site dev",
-    "build": "pnpm --recursive --stream build",
+    "build": "pnpm --filter @ui-rocket/rocket build && pnpm --filter @ui-rocket/site build",
     "typecheck": "pnpm --recursive --stream typecheck",
     "lint": "pnpm --recursive --stream lint",
     "test": "pnpm --recursive --stream test",
+    "build:rocket": "pnpm --filter @ui-rocket/rocket build",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\""
   },

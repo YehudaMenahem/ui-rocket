@@ -39,6 +39,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Site typecheck/tests resolve @ui-rocket/rocket from packages/rocket/dist.
+      # Dist is gitignored, so build the library before those steps.
+      - name: Build library
+        run: pnpm --filter @ui-rocket/rocket build
+
       - name: Typecheck
         run: pnpm typecheck
 

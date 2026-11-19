@@ -5,10 +5,13 @@ node_modules
 
 # Testing
 /coverage
+coverage/
 
-# Production builds
-/build
-/dist
+# Production builds (any package)
+build/
+dist/
+**/build/
+**/dist/
 
 # Environment
 .env
