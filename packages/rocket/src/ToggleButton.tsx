@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToggleButtonProps } from './types';
 
 export function ToggleButton({
@@ -14,6 +14,10 @@ export function ToggleButton({
 }: ToggleButtonProps) {
   const [toggle, setToggle] = useState(isChecked);
 
+  useEffect(() => {
+    setToggle(isChecked);
+  }, [isChecked]);
+
   const handleChange = () => {
     const newToggle = !toggle;
     setToggle(newToggle);
@@ -24,24 +28,29 @@ export function ToggleButton({
 
   return (
     <label
+      htmlFor={id}
       className={`toggle-button ${classes} ${labelPosition} ${
         toggle ? 'checked' : 'unchecked'
-      }`}
+      } ${disabled ? 'disabled' : ''}`}
     >
-      <span className="label">{label}</span>
-      <span className="switch">
+      {labelPosition === 'label-from-left' && label ? (
+        <span className="label">{label}</span>
+      ) : null}
+      <span className="control">
         <input
           type="checkbox"
           id={id}
           name={name}
-          defaultChecked={toggle}
+          checked={toggle}
           onChange={handleChange}
           required={required}
           disabled={disabled}
         />
-        <span className="circle-bg"></span>
-        <span className="circle"></span>
+        <span className="switch" aria-hidden="true" />
       </span>
+      {labelPosition === 'label-from-right' && label ? (
+        <span className="label">{label}</span>
+      ) : null}
     </label>
   );
 }

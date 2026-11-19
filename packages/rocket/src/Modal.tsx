@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Button } from './Button';
 import { Img } from './Img';
 import { ModalProps } from './types';
@@ -14,6 +15,22 @@ export function Modal({
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (!show) return;
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [show, closeModal]);
+
   const closeModalWin = (e: React.MouseEvent) => {
     const modal = modalRef.current;
     if (modal) {
@@ -21,40 +38,62 @@ export function Modal({
       setTimeout(() => {
         closeModal(e);
       }, 300);
+    } else {
+      closeModal(e);
     }
   };
 
-  if (!show) {
+  if (!show || typeof document === 'undefined') {
     return null;
   }
 
-  return (
+  return createPortal(
     <div
       ref={modalRef}
       className={`modal ${classes} ${heroImage ? 'hero-image' : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={modalTitle || 'Dialog'}
       onClick={closeModal}
     >
-      <div className="box" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-panel" onClick={(e) => e.stopPropagation()} role="document">
         {heroImage ? (
-          <div className="header">
-            <Img classes="hero" src={forgotPassword} alt="Hero" />
-            <i className="close-sign close icon" onClick={closeModal}></i>
+          <div className="header hero">
+            <Img classes="hero" src={forgotPassword} alt="" />
+            <button
+              type="button"
+              className="close-sign"
+              aria-label="Close dialog"
+              onClick={closeModal}
+            >
+              ×
+            </button>
           </div>
         ) : (
           <div className="header">
             <h3>{modalTitle}</h3>
-            <i className="close-sign close icon" onClick={closeModal}></i>
+            <button
+              type="button"
+              className="close-sign"
+              aria-label="Close dialog"
+              onClick={closeModal}
+            >
+              ×
+            </button>
           </div>
         )}
-        <div className="body grid">{children}</div>
-        <div className="footer grid">
-          <div className="row">
-            <div className="col-1">
-              <Button size="medium" label="Close Modal" click={closeModalWin} />
-            </div>
-          </div>
+        <div className="body">{children}</div>
+        <div className="footer">
+          <Button
+            size="medium"
+            label="Close"
+            styleBtn="outline"
+            classes="btn-secondary"
+            click={closeModalWin}
+          />
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

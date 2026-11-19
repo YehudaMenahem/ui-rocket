@@ -27,9 +27,13 @@ export function Textbox({
     <div
       className={`textbox ${placeholder ? 'placeholder' : ''} ${
         value ? 'with-value' : ''
-      }`}
+      } ${showError ? 'has-error' : ''}`}
     >
-      <label className="field">
+      <label className="field" htmlFor={id}>
+        <span className="label">
+          {label}
+          {required && <span className="astrix">*</span>}
+        </span>
         <textarea
           name={name}
           rows={rows}
@@ -43,10 +47,6 @@ export function Textbox({
           onChange={handleChange}
           value={value}
         />
-        <span className="label">
-          {label}
-          {required && <span className="astrix">*</span>}
-        </span>
       </label>
       <div className="helpers">
         {error && showError && <span className="error">{error}</span>}

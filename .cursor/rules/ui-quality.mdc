@@ -1,0 +1,73 @@
+---
+description: Persistent UI quality standards for Rocket UI (interactions, playgrounds, a11y, verification)
+alwaysApply: true
+---
+
+# UI quality (always on)
+
+These rules apply to every change in this repo — library components, showcase pages, and docs chrome.
+
+## Interactions
+
+1. Follow the **Cursor conventions** section below. Library components must set the correct cursor themselves (not only site CSS).
+2. Every interactive element needs visible **hover**, **active/press**, and **`:focus-visible`** states.
+3. Prefer a short tasteful micro-interaction (120–200ms) that fits the design language (e.g. hard-shadow lift / press). Honor `prefers-reduced-motion: reduce` (no motion, keep state color changes).
+4. Every nav link and button must actually be clickable on every route. Before finishing, check for overlapping layers, bad `z-index`, `pointer-events: none` on parents, and invisible overlays.
+
+## Cursor conventions
+
+1. `cursor: pointer` — anything that triggers an action or navigation: links, buttons, tabs, chips that are links/buttons, copy controls, checkbox/radio/toggle labels, select trigger + options, swatches, link-cards, accordion headers, close icons, command-palette rows.
+2. `cursor: text` — text inputs and textareas (enabled).
+3. `cursor: not-allowed` — disabled controls; never leave `pointer` on disabled.
+4. `cursor: default` — non-interactive text, static cards, decorative illustrations/icons; no pointer on non-clickable chrome.
+5. `cursor: progress` — loading-only buttons (still prefer `not-allowed` when also disabled).
+6. `grab` / `grabbing`, `col-resize`, etc. — only for real drag/resize UI; do not fake them.
+
+## No dead UI
+
+5. No dead controls on showcase/demo pages. Every control either works or is removed.
+6. Forms and primary actions must do something meaningful (validate, navigate, toast, animate, copy, etc.).
+7. Playground controls must map to **real component props** and visibly change the preview. Never show a control that does nothing. Only expose props the component actually supports.
+
+## Feature parity
+
+8. When refactoring a component, list the props / variants / behaviours from the **original pre-refactor code** (git history / `main` before the refactor) and keep them unless explicitly dropped.
+9. Document any intentional removals in the PR description (parity table).
+
+## Copy & feedback
+
+10. Copyable snippets (install commands, code blocks) need a copy affordance with visible success feedback: icon swap and/or “Copied” text, plus an `aria-live` announcement.
+11. Async UI feedback (toasts, countdown, launch states) should use `aria-live` where appropriate.
+
+## Playgrounds & color
+
+12. Color playgrounds: provide preset swatches **and** a free color picker. The chosen value must flow into the component (prefer CSS custom properties / inline style vars).
+13. Custom color pickers use the familiar **conic-gradient rainbow swatch** (same size/border as presets, native `<input type="color">` underneath, `aria-label="Custom color"`, focus-visible ring). When custom is selected, show the chosen color (inner dot/ring) plus the check mark; keep all swatches on one row at desktop widths.
+14. Loaders/spinners must be centered, keep control width stable, and look on-brand.
+
+## Illustrations
+
+15. Check illustration layering/occlusion (rings that pass behind spheres, overlaps). Remove stray strokes and accidental paths.
+
+## Accessibility
+
+16. Basics: labels, roles, keyboard support, focus rings, contrast (WCAG AA for text), and `aria-*` for busy/disabled/expanded states.
+
+## Metrics (no fabricated numbers)
+
+17. Never hard-code showcase metrics that can drift (test counts, gzip sizes, star counts, component counts, “100%”, “AA”, kB badges, etc.).
+18. Every displayed number must be **derived at build/runtime from the repo or an API**, with a graceful fallback that **hides** the number (never invents one). Prefer `apps/site/scripts/generate-metrics.mjs` / `metrics.generated.ts` for package stats and Vitest counts.
+19. If a metric cannot be measured honestly, remove the chip/stat rather than approximating.
+
+## Visual alignment & spacing
+
+20. Icons inside buttons, chips, copy controls, inputs, and nav items must be **vertically and horizontally centered** (flex/grid + fixed icon box). No baseline offset, stray `line-height`, or asymmetric padding on the icon alone.
+21. Use the spacing token scale (`--space-1` … `--space-12`). Prefer `gap` on stacks over ad-hoc margins. Label→field, field→field, and group→actions should share one rhythm on a given surface.
+22. Sibling controls in a row (e.g. Hold/Launch) share the same height, border width, and vertical alignment. Cards in a row share content top edges; avoid unequal padding that drifts baselines.
+23. Check at 1440 / 1024 / 768 / 375: no clipped focus rings, no hover that shifts layout (prefer transform/shadow), no orphaned headline words when easy to avoid, no truncated/overflowing text from fixed heights.
+
+## Verification before finishing
+
+24. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual. For alignment bugs, include zoomed crops before/after.
+25. Exercise each new/changed control in the browser (or headless) before reporting done.
+26. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).

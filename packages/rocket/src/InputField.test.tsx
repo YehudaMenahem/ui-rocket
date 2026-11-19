@@ -40,3 +40,10 @@ test('InputField shows error when showError is true', () => {
   );
   expect(getByText('Field is required')).toBeInTheDocument();
 });
+
+test('InputField shows error from showError alone', () => {
+  const { getByText } = render(
+    <InputField showError error="Mission name is required" label="Mission" />
+  );
+  expect(getByText('Mission name is required')).toBeInTheDocument();
+});

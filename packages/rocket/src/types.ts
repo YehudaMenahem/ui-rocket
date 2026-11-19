@@ -2,8 +2,10 @@ import { ReactNode, ChangeEvent, MouseEvent } from 'react';
 
 export interface ButtonProps {
   label?: string;
-  styleBtn?: 'solid' | 'outline' | 'text';
-  size?: 'small' | 'medium' | 'large';
+  styleBtn?: 'solid' | 'outline' | 'text' | 'soft' | 'ghost';
+  size?: 'small' | 'medium' | 'large' | 'xs' | 'xl';
+  color?: 'brand' | 'olive' | 'navy' | 'mustard' | 'powder';
+  radius?: 'none' | 'sm' | 'md' | 'full';
   loading?: boolean;
   classes?: string;
   id?: string;
@@ -56,6 +58,9 @@ export interface IconProps {
   classes?: string;
   iconClass?: string;
   click?: () => void;
+  children?: ReactNode;
+  /** Accessible name; omit for decorative icons. */
+  label?: string;
 }
 
 export interface ImgProps {
