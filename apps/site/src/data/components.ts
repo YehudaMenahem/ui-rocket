@@ -207,7 +207,7 @@ export const COMPONENTS: ComponentMeta[] = [
     name: 'Img',
     path: '/ImgPage',
     group: 'Media',
-    oneLiner: 'Responsive NASA photos with picture/srcset, navy frames, and hard shadows.',
+    oneLiner: 'Responsive retro game screenshots with picture/srcset, navy frames, and hard shadows.',
     aria: 'Meaningful alt or empty for decorative',
     prev: { label: 'Icon', path: '/IconPage' },
     next: { label: 'Tabs', path: '/TabsPage' },

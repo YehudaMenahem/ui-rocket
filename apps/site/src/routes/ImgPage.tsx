@@ -1,14 +1,14 @@
 import { Img } from '@ui-rocket/rocket';
 import { ComponentDoc } from '../components/ComponentDoc';
 import { COMPONENTS } from '../data/components';
-import { DEFAULT_SIZES, PHOTOS } from '../data/photos';
+import { DEFAULT_SIZES, SCREENSHOTS } from '../data/screenshots';
 
 const meta = COMPONENTS.find((c) => c.id === 'img')!;
-const hero = PHOTOS.apollo11;
-const cover = PHOTOS.columbia;
-const square = PHOTOS.earthrise;
-const contain = PHOTOS.blueMarble;
-const lazyShot = PHOTOS.engineTest;
+const hero = SCREENSHOTS.alleyCat;
+const cover = SCREENSHOTS.monkeyIsland;
+const square = SCREENSHOTS.keen;
+const contain = SCREENSHOTS.loom;
+const lazyShot = SCREENSHOTS.homm3;
 
 interface PageProps {
   sidebarOpen: boolean;
@@ -39,7 +39,7 @@ export default function Demo() {
       ]}
       srcSet="${hero.srcSetWebp}"
       sizes="${DEFAULT_SIZES}"
-      classes="img-framed img-playground"
+      classes="img-framed img-playground img-pixel"
       loading="eager"
       fetchPriority="high"
       decoding="async"
@@ -56,7 +56,7 @@ export default function Demo() {
           sources={hero.sources}
           srcSet={hero.srcSetWebp}
           sizes={DEFAULT_SIZES}
-          classes="img-framed img-playground"
+          classes="img-framed img-playground img-pixel"
           loading="eager"
           fetchPriority="high"
           decoding="async"
@@ -67,8 +67,8 @@ export default function Demo() {
         <>
           <h3 id="responsive">Responsive picture</h3>
           <p className="txt">
-            AVIF and WebP sources with <code>srcSet</code> + <code>sizes</code>. Explicit width and
-            height reserve space and avoid layout shift.
+            AVIF and WebP sources with <code>srcSet</code> + <code>sizes</code>. Screenshots are
+            nearest-neighbor upscaled and rendered with <code>image-rendering: pixelated</code>.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack">
@@ -80,7 +80,7 @@ export default function Demo() {
                 sources={cover.sources}
                 srcSet={cover.srcSetWebp}
                 sizes={DEFAULT_SIZES}
-                classes="img-framed img-demo-wide"
+                classes="img-framed img-demo-wide img-pixel"
                 loading="lazy"
                 decoding="async"
                 objectFit="cover"
@@ -93,8 +93,8 @@ export default function Demo() {
 
           <h3 id="aspect-ratios">Aspect ratios &amp; object-fit</h3>
           <p className="txt">
-            Framed crops at 16:9, 4:3, and 1:1. Cover fills the frame; contain letterboxes on the navy
-            matte.
+            Framed crops at 16:9, 4:3, and 1:1. Cover fills the frame; contain letterboxes DOS 16:10
+            pixels on the navy matte.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack img-aspect-row">
@@ -107,7 +107,7 @@ export default function Demo() {
                   sources={cover.sources}
                   srcSet={cover.srcSetWebp}
                   sizes="(max-width: 640px) 100vw, 320px"
-                  classes="img-frame__media"
+                  classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
                   objectFit="cover"
@@ -123,7 +123,7 @@ export default function Demo() {
                   sources={lazyShot.sources}
                   srcSet={lazyShot.srcSetWebp}
                   sizes="(max-width: 640px) 100vw, 280px"
-                  classes="img-frame__media"
+                  classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
                   objectFit="cover"
@@ -139,7 +139,7 @@ export default function Demo() {
                   sources={square.sources}
                   srcSet={square.srcSetWebp}
                   sizes="(max-width: 640px) 50vw, 220px"
-                  classes="img-frame__media"
+                  classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
                   objectFit="cover"
@@ -155,7 +155,7 @@ export default function Demo() {
                   sources={contain.sources}
                   srcSet={contain.srcSetWebp}
                   sizes="(max-width: 640px) 100vw, 280px"
-                  classes="img-frame__media"
+                  classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
                   objectFit="contain"
@@ -183,7 +183,7 @@ export default function Demo() {
                 sources={lazyShot.sources}
                 srcSet={lazyShot.srcSetWebp}
                 sizes={DEFAULT_SIZES}
-                classes="img-framed img-demo-wide"
+                classes="img-framed img-demo-wide img-pixel"
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"
@@ -197,18 +197,18 @@ export default function Demo() {
 
           <h3 id="fallback">Broken image fallback</h3>
           <p className="txt">
-            When the primary <code>src</code> fails, <code>fallbackSrc</code> swaps in a local photo so
-            the frame never collapses.
+            When the primary <code>src</code> fails, <code>fallbackSrc</code> swaps in a local
+            screenshot so the frame never collapses.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack">
               <Img
-                src="/does-not-exist-launch.jpg"
+                src="/does-not-exist-game.jpg"
                 fallbackSrc={square.src}
-                alt="Demonstration of fallback after a missing launch photo"
+                alt="Demonstration of fallback after a missing game screenshot"
                 width={640}
-                height={640}
-                classes="img-framed img-demo-square"
+                height={400}
+                classes="img-framed img-demo-square img-pixel"
                 loading="lazy"
                 decoding="async"
                 objectFit="cover"
@@ -233,7 +233,7 @@ export default function Demo() {
                 sources={contain.sources}
                 srcSet={contain.srcSetWebp}
                 sizes="120px"
-                classes="img-framed img-demo-thumb"
+                classes="img-framed img-demo-thumb img-pixel"
                 loading="lazy"
                 decoding="async"
                 objectFit="cover"
@@ -325,7 +325,7 @@ export default function Demo() {
         {
           key: 'alt',
           title: 'Meaningful alt',
-          body: 'Describe the subject for informative photos; use alt="" when the image is decorative.',
+          body: 'Describe what is on screen for informative shots; use alt="" when decorative.',
         },
         {
           key: 'cls',

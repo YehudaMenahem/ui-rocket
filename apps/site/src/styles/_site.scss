@@ -287,6 +287,7 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .img-framed img,.img-framed.img-framed{display:block;width:100%;height:auto}
 picture.img-framed{line-height:0}
 picture.img-framed img{width:100%;height:100%;display:block}
+.img-pixel,.img-pixel img{image-rendering:pixelated;image-rendering:crisp-edges}
 .img-playground{width:min(100%,420px);aspect-ratio:16/9}
 .img-playground img{width:100%;height:100%;object-fit:cover}
 .img-demo-wide{width:min(100%,560px);aspect-ratio:16/9}
