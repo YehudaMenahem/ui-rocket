@@ -57,9 +57,20 @@ const COLOR_PRESETS = [
 
 const SIZES: PlaygroundState['size'][] = ['xs', 'sm', 'md', 'lg', 'xl'];
 const RADII: PlaygroundState['radius'][] = ['none', 'sm', 'md', 'full'];
-const VARIANTS: PlaygroundState['variant'][] = ['solid', 'soft', 'outline', 'ghost'];
+const VARIANTS: PlaygroundState['variant'][] = [
+  'solid',
+  'soft',
+  'outline',
+  'ghost',
+];
 
-const DEFAULT_CONTROLS: ControlKey[] = ['variant', 'color', 'size', 'radius', 'loading'];
+const DEFAULT_CONTROLS: ControlKey[] = [
+  'variant',
+  'color',
+  'size',
+  'radius',
+  'loading',
+];
 
 export type PropRow = {
   name: string;
@@ -197,7 +208,12 @@ export default function Demo() {
       <p className="one">{meta.oneLiner}</p>
 
       <div className="meta">
-        <a className="chip" href="https://github.com/YehudaMenahem/ui-rocket" target="_blank" rel="noreferrer">
+        <a
+          className="chip"
+          href="https://github.com/YehudaMenahem/ui-rocket"
+          target="_blank"
+          rel="noreferrer"
+        >
           <Icon name="gh" /> Source
         </a>
         <span className="chip">
@@ -220,7 +236,8 @@ export default function Demo() {
 
       <h2 id="usage">Usage</h2>
       <p className="txt">
-        Use the controls to try every supported prop. The preview and code update together.
+        Use the controls to try every supported prop. The preview and code
+        update together.
       </p>
 
       {showPlayground ? (
@@ -260,8 +277,14 @@ export default function Demo() {
                           key={v}
                           type="button"
                           className={state.variant === v ? 'on' : ''}
-                          style={{ flex: 1, textAlign: 'center', padding: '5px 4px' }}
-                          onClick={() => setState((s) => ({ ...s, variant: v }))}
+                          style={{
+                            flex: 1,
+                            textAlign: 'center',
+                            padding: '5px 4px',
+                          }}
+                          onClick={() =>
+                            setState((s) => ({ ...s, variant: v }))
+                          }
                         >
                           {v[0].toUpperCase() + v.slice(1)}
                         </button>
@@ -275,7 +298,9 @@ export default function Demo() {
                     <div className="lbl">
                       Color{' '}
                       <em>
-                        {state.color === 'custom' ? state.colorHex.toLowerCase() : state.color}
+                        {state.color === 'custom'
+                          ? state.colorHex.toLowerCase()
+                          : state.color}
                       </em>
                     </div>
                     <div className="sw">
@@ -287,10 +312,16 @@ export default function Demo() {
                           style={{ background: c.value }}
                           aria-label={c.name}
                           onClick={() =>
-                            setState((s) => ({ ...s, color: c.name, colorHex: c.value }))
+                            setState((s) => ({
+                              ...s,
+                              color: c.name,
+                              colorHex: c.value,
+                            }))
                           }
                         >
-                          {state.color === c.name ? <Icon name="check" /> : null}
+                          {state.color === c.name ? (
+                            <Icon name="check" />
+                          ) : null}
                         </button>
                       ))}
                       <label
@@ -312,12 +343,22 @@ export default function Demo() {
                           value={state.colorHex}
                           aria-label="Custom color"
                           onInput={(e) => {
-                            const hex = (e.target as HTMLInputElement).value.toLowerCase();
-                            setState((s) => ({ ...s, color: 'custom', colorHex: hex }));
+                            const hex = (
+                              e.target as HTMLInputElement
+                            ).value.toLowerCase();
+                            setState((s) => ({
+                              ...s,
+                              color: 'custom',
+                              colorHex: hex,
+                            }));
                           }}
                           onChange={(e) => {
                             const hex = e.target.value.toLowerCase();
-                            setState((s) => ({ ...s, color: 'custom', colorHex: hex }));
+                            setState((s) => ({
+                              ...s,
+                              color: 'custom',
+                              colorHex: hex,
+                            }));
                           }}
                         />
                       </label>
@@ -385,7 +426,10 @@ export default function Demo() {
                         setState((s) => ({ ...s, radius: RADII[idx] }));
                       }}
                     >
-                      <div className="fill" style={{ width: `${radiusPct}%` }} />
+                      <div
+                        className="fill"
+                        style={{ width: `${radiusPct}%` }}
+                      />
                       <div className="th" style={{ left: `${radiusPct}%` }} />
                     </div>
                     <div className="marks">
@@ -407,7 +451,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.loading}
                       aria-label="Toggle loading"
-                      onClick={() => setState((s) => ({ ...s, loading: !s.loading }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, loading: !s.loading }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -423,7 +469,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.disabled}
                       aria-label="Toggle disabled"
-                      onClick={() => setState((s) => ({ ...s, disabled: !s.disabled }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, disabled: !s.disabled }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -439,7 +487,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.checked}
                       aria-label="Toggle checked"
-                      onClick={() => setState((s) => ({ ...s, checked: !s.checked }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, checked: !s.checked }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -455,7 +505,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.required}
                       aria-label="Toggle required"
-                      onClick={() => setState((s) => ({ ...s, required: !s.required }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, required: !s.required }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -475,7 +527,9 @@ export default function Demo() {
                           type="button"
                           className={state.labelPosition === value ? 'on' : ''}
                           style={{ flex: 1 }}
-                          onClick={() => setState((s) => ({ ...s, labelPosition: value }))}
+                          onClick={() =>
+                            setState((s) => ({ ...s, labelPosition: value }))
+                          }
                         >
                           {label}
                         </button>
@@ -488,17 +542,21 @@ export default function Demo() {
                   <div className="ctl">
                     <div className="lbl">Icon type</div>
                     <div className="seg" style={{ display: 'flex' }}>
-                      {(['default', 'heart', 'star'] as const).map((iconType) => (
-                        <button
-                          key={iconType}
-                          type="button"
-                          className={state.iconType === iconType ? 'on' : ''}
-                          style={{ flex: 1 }}
-                          onClick={() => setState((s) => ({ ...s, iconType }))}
-                        >
-                          {iconType}
-                        </button>
-                      ))}
+                      {(['default', 'heart', 'star'] as const).map(
+                        (iconType) => (
+                          <button
+                            key={iconType}
+                            type="button"
+                            className={state.iconType === iconType ? 'on' : ''}
+                            style={{ flex: 1 }}
+                            onClick={() =>
+                              setState((s) => ({ ...s, iconType }))
+                            }
+                          >
+                            {iconType}
+                          </button>
+                        )
+                      )}
                     </div>
                   </div>
                 ) : null}
@@ -514,7 +572,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.heroImage}
                       aria-label="Toggle hero image"
-                      onClick={() => setState((s) => ({ ...s, heroImage: !s.heroImage }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, heroImage: !s.heroImage }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -530,7 +590,9 @@ export default function Demo() {
                       role="switch"
                       aria-checked={state.showError}
                       aria-label="Toggle error"
-                      onClick={() => setState((s) => ({ ...s, showError: !s.showError }))}
+                      onClick={() =>
+                        setState((s) => ({ ...s, showError: !s.showError }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -542,7 +604,9 @@ export default function Demo() {
                       className="ctl-input"
                       value={state.placeholder}
                       aria-label="Placeholder text"
-                      onChange={(e) => setState((s) => ({ ...s, placeholder: e.target.value }))}
+                      onChange={(e) =>
+                        setState((s) => ({ ...s, placeholder: e.target.value }))
+                      }
                     />
                   </div>
                 ) : null}
@@ -560,7 +624,10 @@ export default function Demo() {
                       value={state.rows}
                       aria-label="Rows"
                       onChange={(e) =>
-                        setState((s) => ({ ...s, rows: Number(e.target.value) || 1 }))
+                        setState((s) => ({
+                          ...s,
+                          rows: Number(e.target.value) || 1,
+                        }))
                       }
                     />
                   </div>
@@ -569,12 +636,20 @@ export default function Demo() {
             </div>
           ) : (
             <>
-              <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
+              <div
+                className="code-head"
+                style={{ borderTop: '1px solid var(--code-line)' }}
+              >
                 <span className="tab on">Demo.tsx</span>
                 <span className="sp" />
                 <CopyButton text={code} />
               </div>
-              <div className="code-scroll" tabIndex={0} role="region" aria-label="Generated code">
+              <div
+                className="code-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Generated code"
+              >
                 <pre className="code" style={{ borderTop: 0 }}>
                   {code}
                 </pre>
@@ -584,12 +659,20 @@ export default function Demo() {
 
           {tab === 'preview' ? (
             <>
-              <div className="code-head" style={{ borderTop: '1px solid var(--code-line)' }}>
+              <div
+                className="code-head"
+                style={{ borderTop: '1px solid var(--code-line)' }}
+              >
                 <span className="tab on">Demo.tsx</span>
                 <span className="sp" />
                 <CopyButton text={code} />
               </div>
-              <div className="code-scroll" tabIndex={0} role="region" aria-label="Demo source">
+              <div
+                className="code-scroll"
+                tabIndex={0}
+                role="region"
+                aria-label="Demo source"
+              >
                 <pre className="code" style={{ borderTop: 0 }}>
                   {code}
                 </pre>
@@ -602,7 +685,9 @@ export default function Demo() {
       <h2 id="installation" style={{ marginTop: 48 }}>
         Installation
       </h2>
-      <p className="txt">Install the package, then import the stylesheet once at your app root.</p>
+      <p className="txt">
+        Install the package, then import the stylesheet once at your app root.
+      </p>
       <div className="pm">
         <div className="code-head">
           {['pnpm', 'npm', 'yarn', 'bun'].map((t) => (
@@ -629,7 +714,9 @@ export default function Demo() {
       <h2 id="props" style={{ marginTop: 48 }}>
         Props
       </h2>
-      <p className="txt">{meta.name} also accepts relevant native element attributes.</p>
+      <p className="txt">
+        {meta.name} also accepts relevant native element attributes.
+      </p>
       <div className="props-wrap">
         <table className="props">
           <thead>
@@ -664,7 +751,10 @@ export default function Demo() {
       <h2 id="accessibility" style={{ marginTop: 48 }}>
         Accessibility
       </h2>
-      <p className="txt">Built on native controls so keyboard and screen-reader support come free.</p>
+      <p className="txt">
+        Built on native controls so keyboard and screen-reader support come
+        free.
+      </p>
       <div className="a11y">
         {a11y.map((item) => (
           <div key={item.key}>

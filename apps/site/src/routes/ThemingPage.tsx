@@ -20,8 +20,9 @@ export function ThemingPage() {
           <div className="kick">Theming</div>
           <h1>One token sheet. Light and dark.</h1>
           <p>
-            Set CSS variables on <code>:root</code> / <code>[data-theme=&quot;dark&quot;]</code>.
-            Components read those vars — no CSS-in-JS runtime.
+            Set CSS variables on <code>:root</code> /{' '}
+            <code>[data-theme=&quot;dark&quot;]</code>. Components read those
+            vars — no CSS-in-JS runtime.
           </p>
         </div>
 

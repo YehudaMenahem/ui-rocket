@@ -25,7 +25,9 @@ function InputPreview({
 }) {
   const [value, setValue] = useState('Artemis IV');
   return (
-    <div style={{ width: '100%', maxWidth: 320, ['--accent' as string]: colorHex }}>
+    <div
+      style={{ width: '100%', maxWidth: 320, ['--accent' as string]: colorHex }}
+    >
       <InputField
         label="Mission name"
         id="demo-input"
@@ -113,16 +115,66 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'label', type: ['string'], defaultValue: '""', description: 'Visible label above the field.' },
-        { name: 'value', type: ['string'], defaultValue: '—', description: 'Controlled value.' },
-        { name: 'maxlength', type: ['number'], defaultValue: '30', description: 'Character limit.' },
-        { name: 'required', type: ['boolean'], defaultValue: 'false', description: 'Marks the field required.' },
-        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the input.' },
-        { name: 'placeholder', type: ['string'], defaultValue: '—', description: 'Placeholder text.' },
-        { name: 'showError', type: ['boolean'], defaultValue: 'false', description: 'Shows the error message.' },
-        { name: 'error', type: ['string'], defaultValue: '"This field is required"', description: 'Error copy.' },
-        { name: 'note', type: ['string'], defaultValue: '—', description: 'Helper text when not in error.' },
-        { name: 'change', type: ['(value: string) => void'], defaultValue: '—', description: 'Change handler.' },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '""',
+          description: 'Visible label above the field.',
+        },
+        {
+          name: 'value',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Controlled value.',
+        },
+        {
+          name: 'maxlength',
+          type: ['number'],
+          defaultValue: '30',
+          description: 'Character limit.',
+        },
+        {
+          name: 'required',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Marks the field required.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables the input.',
+        },
+        {
+          name: 'placeholder',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Placeholder text.',
+        },
+        {
+          name: 'showError',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Shows the error message.',
+        },
+        {
+          name: 'error',
+          type: ['string'],
+          defaultValue: '"This field is required"',
+          description: 'Error copy.',
+        },
+        {
+          name: 'note',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Helper text when not in error.',
+        },
+        {
+          name: 'change',
+          type: ['(value: string) => void'],
+          defaultValue: '—',
+          description: 'Change handler.',
+        },
       ]}
     />
   );

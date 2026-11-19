@@ -56,7 +56,11 @@ export function Modal({
       aria-label={modalTitle || 'Dialog'}
       onClick={closeModal}
     >
-      <div className="modal-panel" onClick={(e) => e.stopPropagation()} role="document">
+      <div
+        className="modal-panel"
+        onClick={(e) => e.stopPropagation()}
+        role="document"
+      >
         {heroImage ? (
           <div className="header hero">
             <Img classes="hero" src={forgotPassword} alt="" />

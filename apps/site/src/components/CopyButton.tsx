@@ -8,7 +8,11 @@ interface CopyButtonProps {
   className?: string;
 }
 
-export function CopyButton({ text, label = 'Copy', className = 'tool copy-btn' }: CopyButtonProps) {
+export function CopyButton({
+  text,
+  label = 'Copy',
+  className = 'tool copy-btn',
+}: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -31,7 +35,9 @@ export function CopyButton({ text, label = 'Copy', className = 'tool copy-btn' }
       onClick={onCopy}
     >
       <Icon name={copied ? 'check' : 'copy'} />
-      <span className="copy-label">{copied ? 'Copied' : failed ? 'Failed' : label}</span>
+      <span className="copy-label">
+        {copied ? 'Copied' : failed ? 'Failed' : label}
+      </span>
       <span className="sr-only" aria-live="polite">
         {copied ? 'Copied to clipboard' : failed ? 'Copy failed' : ''}
       </span>

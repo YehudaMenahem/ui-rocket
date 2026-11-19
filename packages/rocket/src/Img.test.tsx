@@ -2,7 +2,9 @@ import { render, fireEvent } from '@testing-library/react';
 import { Img } from './Img';
 
 test('Img renders with src and alt', () => {
-  const { getByAltText } = render(<Img src="/a.webp" alt="Pad 39A" width={320} height={180} />);
+  const { getByAltText } = render(
+    <Img src="/a.webp" alt="Pad 39A" width={320} height={180} />
+  );
   const img = getByAltText('Pad 39A');
   expect(img).toBeInTheDocument();
   expect(img.getAttribute('src')).toBe('/a.webp');

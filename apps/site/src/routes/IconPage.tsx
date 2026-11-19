@@ -10,7 +10,14 @@ interface PageProps {
 }
 
 const Glyph = ({ d }: { d: string }) => (
-  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg
+    viewBox="0 0 24 24"
+    width="28"
+    height="28"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+  >
     <path d={d} />
   </svg>
 );
@@ -56,7 +63,10 @@ export default function Demo() {
         <>
           <h3>Set</h3>
           <div className="ex">
-            <div className="canvas" style={{ gap: 18, color: 'var(--accent-text)' }}>
+            <div
+              className="canvas"
+              style={{ gap: 18, color: 'var(--accent-text)' }}
+            >
               {GLYPHS.map((g) => (
                 <RocketIcon key={g.name} label={g.name} classes="ico ico-lg">
                   <Glyph d={g.d} />
@@ -70,11 +80,36 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'children', type: ['ReactNode'], defaultValue: '—', description: 'SVG glyph or icon markup.' },
-        { name: 'label', type: ['string'], defaultValue: '—', description: 'Accessible name; omit for decorative icons.' },
-        { name: 'iconClass', type: ['string'], defaultValue: '""', description: 'Legacy class on the inner <i> when no children.' },
-        { name: 'classes', type: ['string'], defaultValue: '""', description: 'Wrapper class name.' },
-        { name: 'click', type: ['() => void'], defaultValue: '—', description: 'Optional click handler.' },
+        {
+          name: 'children',
+          type: ['ReactNode'],
+          defaultValue: '—',
+          description: 'SVG glyph or icon markup.',
+        },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Accessible name; omit for decorative icons.',
+        },
+        {
+          name: 'iconClass',
+          type: ['string'],
+          defaultValue: '""',
+          description: 'Legacy class on the inner <i> when no children.',
+        },
+        {
+          name: 'classes',
+          type: ['string'],
+          defaultValue: '""',
+          description: 'Wrapper class name.',
+        },
+        {
+          name: 'click',
+          type: ['() => void'],
+          defaultValue: '—',
+          description: 'Optional click handler.',
+        },
       ]}
     />
   );

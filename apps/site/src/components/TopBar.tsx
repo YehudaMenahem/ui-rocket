@@ -59,7 +59,9 @@ export function TopBar({
           <Link
             key={link.label}
             to={link.path}
-            className={isActive(location.pathname, link.path, link.label) ? 'on' : ''}
+            className={
+              isActive(location.pathname, link.path, link.label) ? 'on' : ''
+            }
           >
             {link.label}
           </Link>
@@ -83,7 +85,9 @@ export function TopBar({
           className="icon-btn"
           role="switch"
           aria-checked={darkMode}
-          aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+          aria-label={
+            darkMode ? 'Switch to light theme' : 'Switch to dark theme'
+          }
           onClick={onToggleTheme}
         >
           <Icon name={darkMode ? 'sun' : 'moon'} />

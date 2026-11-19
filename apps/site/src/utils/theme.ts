@@ -56,7 +56,9 @@ export function initTheme(): Theme {
   return theme;
 }
 
-export function watchSystemTheme(callback?: (theme: Theme) => void): () => void {
+export function watchSystemTheme(
+  callback?: (theme: Theme) => void
+): () => void {
   const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 
   const handleChange = (e: { matches: boolean }) => {

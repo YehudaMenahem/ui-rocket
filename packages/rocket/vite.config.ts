@@ -29,13 +29,22 @@ export default defineConfig({
           'react/jsx-runtime': 'jsxRuntime',
         },
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css' || assetInfo.name?.endsWith('.css')) {
-            if (assetInfo.name?.includes('fraunces') || assetInfo.name?.includes('dm-')) {
+          if (
+            assetInfo.name === 'style.css' ||
+            assetInfo.name?.endsWith('.css')
+          ) {
+            if (
+              assetInfo.name?.includes('fraunces') ||
+              assetInfo.name?.includes('dm-')
+            ) {
               return 'fonts/[name][extname]';
             }
             return 'rocket.css';
           }
-          if (assetInfo.name?.endsWith('.woff2') || assetInfo.name?.endsWith('.woff')) {
+          if (
+            assetInfo.name?.endsWith('.woff2') ||
+            assetInfo.name?.endsWith('.woff')
+          ) {
             return 'fonts/[name][extname]';
           }
           return 'assets/[name][extname]';
