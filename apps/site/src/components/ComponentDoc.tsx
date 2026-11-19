@@ -290,11 +290,24 @@ export default function Demo() {
                           {state.color === c.name ? <Icon name="check" /> : null}
                         </button>
                       ))}
-                      <label className="color-picker" title="Custom color">
+                      <label
+                        className={`color-picker${state.color === 'custom' ? ' on' : ''}`}
+                        title="Custom color"
+                      >
+                        {state.color === 'custom' ? (
+                          <>
+                            <span
+                              className="color-picker__dot"
+                              style={{ background: state.colorHex }}
+                              aria-hidden="true"
+                            />
+                            <Icon name="check" />
+                          </>
+                        ) : null}
                         <input
                           type="color"
                           value={state.colorHex}
-                          aria-label="Custom color picker"
+                          aria-label="Custom color"
                           onChange={(e) =>
                             setState((s) => ({
                               ...s,

@@ -42,31 +42,32 @@ These rules apply to every change in this repo — library components, showcase 
 ## Playgrounds & color
 
 12. Color playgrounds: provide preset swatches **and** a free color picker. The chosen value must flow into the component (prefer CSS custom properties / inline style vars).
-13. Loaders/spinners must be centered, keep control width stable, and look on-brand.
+13. Custom color pickers use the familiar **conic-gradient rainbow swatch** (same size/border as presets, native `<input type="color">` underneath, `aria-label="Custom color"`, focus-visible ring). When custom is selected, show the chosen color (inner dot/ring) plus the check mark; keep all swatches on one row at desktop widths.
+14. Loaders/spinners must be centered, keep control width stable, and look on-brand.
 
 ## Illustrations
 
-14. Check illustration layering/occlusion (rings that pass behind spheres, overlaps). Remove stray strokes and accidental paths.
+15. Check illustration layering/occlusion (rings that pass behind spheres, overlaps). Remove stray strokes and accidental paths.
 
 ## Accessibility
 
-15. Basics: labels, roles, keyboard support, focus rings, contrast (WCAG AA for text), and `aria-*` for busy/disabled/expanded states.
+16. Basics: labels, roles, keyboard support, focus rings, contrast (WCAG AA for text), and `aria-*` for busy/disabled/expanded states.
 
 ## Metrics (no fabricated numbers)
 
-16. Never hard-code showcase metrics that can drift (test counts, gzip sizes, star counts, component counts, “100%”, “AA”, kB badges, etc.).
-17. Every displayed number must be **derived at build/runtime from the repo or an API**, with a graceful fallback that **hides** the number (never invents one). Prefer `apps/site/scripts/generate-metrics.mjs` / `metrics.generated.ts` for package stats and Vitest counts.
-18. If a metric cannot be measured honestly, remove the chip/stat rather than approximating.
+17. Never hard-code showcase metrics that can drift (test counts, gzip sizes, star counts, component counts, “100%”, “AA”, kB badges, etc.).
+18. Every displayed number must be **derived at build/runtime from the repo or an API**, with a graceful fallback that **hides** the number (never invents one). Prefer `apps/site/scripts/generate-metrics.mjs` / `metrics.generated.ts` for package stats and Vitest counts.
+19. If a metric cannot be measured honestly, remove the chip/stat rather than approximating.
 
 ## Visual alignment & spacing
 
-19. Icons inside buttons, chips, copy controls, inputs, and nav items must be **vertically and horizontally centered** (flex/grid + fixed icon box). No baseline offset, stray `line-height`, or asymmetric padding on the icon alone.
-20. Use the spacing token scale (`--space-1` … `--space-12`). Prefer `gap` on stacks over ad-hoc margins. Label→field, field→field, and group→actions should share one rhythm on a given surface.
-21. Sibling controls in a row (e.g. Hold/Launch) share the same height, border width, and vertical alignment. Cards in a row share content top edges; avoid unequal padding that drifts baselines.
-22. Check at 1440 / 1024 / 768 / 375: no clipped focus rings, no hover that shifts layout (prefer transform/shadow), no orphaned headline words when easy to avoid, no truncated/overflowing text from fixed heights.
+20. Icons inside buttons, chips, copy controls, inputs, and nav items must be **vertically and horizontally centered** (flex/grid + fixed icon box). No baseline offset, stray `line-height`, or asymmetric padding on the icon alone.
+21. Use the spacing token scale (`--space-1` … `--space-12`). Prefer `gap` on stacks over ad-hoc margins. Label→field, field→field, and group→actions should share one rhythm on a given surface.
+22. Sibling controls in a row (e.g. Hold/Launch) share the same height, border width, and vertical alignment. Cards in a row share content top edges; avoid unequal padding that drifts baselines.
+23. Check at 1440 / 1024 / 768 / 375: no clipped focus rings, no hover that shifts layout (prefer transform/shadow), no orphaned headline words when easy to avoid, no truncated/overflowing text from fixed heights.
 
 ## Verification before finishing
 
-23. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual. For alignment bugs, include zoomed crops before/after.
-24. Exercise each new/changed control in the browser (or headless) before reporting done.
-25. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).
+24. Screenshot each touched page in **light + dark** and **desktop + mobile** when the change is visual. For alignment bugs, include zoomed crops before/after.
+25. Exercise each new/changed control in the browser (or headless) before reporting done.
+26. Keep CI green and ensure Vercel preview actually builds for monorepo changes (`apps/site` ignoreCommand must not skip `packages/rocket` / lockfile edits).
