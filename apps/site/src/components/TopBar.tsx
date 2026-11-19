@@ -48,10 +48,12 @@ export function TopBar({
         </button>
       ) : null}
 
-      <Link className="logo" to="/" aria-label="Rocket UI home">
+      <Link className="logo" to="/">
         <RocketMark />
         <span>Rocket UI</span>
-        <span className="ver">v2.0</span>
+        <span className="ver" aria-hidden="true">
+          v2.0
+        </span>
       </Link>
 
       <nav className="nav-links" aria-label="Primary">
@@ -67,15 +69,12 @@ export function TopBar({
       </nav>
 
       <div className="top-right">
-        <button
-          type="button"
-          className="search"
-          onClick={onOpenSearch}
-          aria-label="Search docs"
-        >
+        <button type="button" className="search" onClick={onOpenSearch}>
           <Icon name="search" />
           <span>Search docs…</span>
-          <span className="kbd">⌘K</span>
+          <span className="kbd" aria-hidden="true">
+            ⌘K
+          </span>
         </button>
 
         <button

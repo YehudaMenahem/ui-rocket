@@ -204,14 +204,17 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                   type="button"
                   className={`install ${copied ? 'copied' : ''} ${copyFailed ? 'copy-failed' : ''}`}
                   onClick={copyInstall}
-                  aria-label="Copy install command"
                 >
                   <span>
-                    <span className="pr">$</span> pnpm add @ui-rocket/rocket
+                    <span className="pr" aria-hidden="true">
+                      $
+                    </span>{' '}
+                    pnpm add @ui-rocket/rocket
                   </span>
                   <span className="cp" aria-hidden="true">
                     <Icon name={copied ? 'check' : copyFailed ? 'close' : 'copy'} />
                   </span>
+                  <span className="sr-only">Copy install command</span>
                   <span className="sr-only" aria-live="polite">
                     {copied ? 'Install command copied' : copyFailed ? 'Copy failed' : ''}
                   </span>
