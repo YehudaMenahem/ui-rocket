@@ -29,9 +29,11 @@ const modules = import.meta.glob('../assets/screenshots/*.{webp,avif}', {
 const WIDTHS: Record<ScreenshotId, readonly number[]> = {
   'alley-cat': [640, 960, 1600],
   'commander-keen': [640, 960, 1280],
-  homm3: [730, 1095, 1460],
-  'monkey-island': [730, 1095, 1460],
-  loom: [730, 1095, 1460],
+  /** Native 800×600 → 1× / 2× */
+  homm3: [800, 1600],
+  /** Native 320×200 → 2× / 3× / 5× */
+  'monkey-island': [640, 960, 1600],
+  loom: [640, 960, 1600],
 };
 
 function url(id: ScreenshotId, width: number, ext: 'webp' | 'avif'): string {
@@ -88,21 +90,21 @@ export const SCREENSHOTS = {
   ),
   homm3: shot(
     'homm3',
-    1460,
-    1092,
-    'Heroes of Might and Magic III (1999): open spellbook UI with spell icons over the adventure map'
+    1600,
+    1200,
+    'Heroes of Might and Magic III (1999): adventure map as a new campaign begins, with hero portrait and resource bar'
   ),
   monkeyIsland: shot(
     'monkey-island',
-    1460,
-    1092,
-    'The Secret of Monkey Island (1990): Guybrush in the SCUMM Bar talking to pirates at a wooden table'
+    1600,
+    1000,
+    'The Secret of Monkey Island (1990): Guybrush at the Melee Island docks at game start, with verb interface'
   ),
   loom: shot(
     'loom',
-    1460,
-    1092,
-    'Loom (1990 VGA): Bobbin Threadbare in a misty landscape with the distaff interface at the bottom'
+    1600,
+    1000,
+    'Loom (1990 VGA/CD-ROM): the weavers’ camp on the misty hillside with the distaff interface'
   ),
 } as const;
 
