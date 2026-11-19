@@ -273,7 +273,10 @@ export default function Demo() {
                 {show('color') ? (
                   <div className="ctl">
                     <div className="lbl">
-                      Color <em>{state.color}</em>
+                      Color{' '}
+                      <em>
+                        {state.color === 'custom' ? state.colorHex.toLowerCase() : state.color}
+                      </em>
                     </div>
                     <div className="sw">
                       {COLOR_PRESETS.map((c) => (
@@ -308,13 +311,14 @@ export default function Demo() {
                           type="color"
                           value={state.colorHex}
                           aria-label="Custom color"
-                          onChange={(e) =>
-                            setState((s) => ({
-                              ...s,
-                              color: 'custom',
-                              colorHex: e.target.value,
-                            }))
-                          }
+                          onInput={(e) => {
+                            const hex = (e.target as HTMLInputElement).value.toLowerCase();
+                            setState((s) => ({ ...s, color: 'custom', colorHex: hex }));
+                          }}
+                          onChange={(e) => {
+                            const hex = e.target.value.toLowerCase();
+                            setState((s) => ({ ...s, color: 'custom', colorHex: hex }));
+                          }}
                         />
                       </label>
                     </div>
