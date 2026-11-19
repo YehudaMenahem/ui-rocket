@@ -1,11 +1,7 @@
 import type { ImgSource } from '@ui-rocket/rocket';
 
 export type ScreenshotId =
-  | 'alley-cat'
-  | 'commander-keen'
-  | 'homm3'
-  | 'monkey-island'
-  | 'loom';
+  'alley-cat' | 'commander-keen' | 'homm3' | 'monkey-island' | 'loom';
 
 export interface ScreenshotAssets {
   id: ScreenshotId;
@@ -111,4 +107,5 @@ export const SCREENSHOTS = {
 /** @deprecated Use SCREENSHOTS — kept as an alias for existing imports during rename. */
 export const PHOTOS = SCREENSHOTS;
 
-export const DEFAULT_SIZES = '(max-width: 640px) 100vw, (max-width: 1100px) 70vw, 640px';
+export const DEFAULT_SIZES =
+  '(max-width: 640px) 100vw, (max-width: 1100px) 70vw, 640px';

@@ -67,8 +67,9 @@ export default function Demo() {
         <>
           <h3 id="responsive">Responsive picture</h3>
           <p className="txt">
-            AVIF and WebP sources with <code>srcSet</code> + <code>sizes</code>. Screenshots are
-            nearest-neighbor upscaled and rendered with <code>image-rendering: pixelated</code>.
+            AVIF and WebP sources with <code>srcSet</code> + <code>sizes</code>.
+            Screenshots are nearest-neighbor upscaled and rendered with{' '}
+            <code>image-rendering: pixelated</code>.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack">
@@ -93,8 +94,8 @@ export default function Demo() {
 
           <h3 id="aspect-ratios">Aspect ratios &amp; object-fit</h3>
           <p className="txt">
-            Framed crops at 16:9, 4:3, and 1:1. Cover fills the frame; contain letterboxes DOS 16:10
-            pixels on the navy matte.
+            Framed crops at 16:9, 4:3, and 1:1. Cover fills the frame; contain
+            letterboxes DOS 16:10 pixels on the navy matte.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack img-aspect-row">
@@ -170,8 +171,9 @@ export default function Demo() {
 
           <h3 id="lazy-loading">Lazy loading</h3>
           <p className="txt">
-            Below-the-fold shots use <code>loading=&quot;lazy&quot;</code>. The playground hero above is the
-            only eager image (<code>fetchPriority=&quot;high&quot;</code>).
+            Below-the-fold shots use <code>loading=&quot;lazy&quot;</code>. The
+            playground hero above is the only eager image (
+            <code>fetchPriority=&quot;high&quot;</code>).
           </p>
           <div className="ex">
             <div className="canvas canvas-stack">
@@ -197,8 +199,8 @@ export default function Demo() {
 
           <h3 id="fallback">Broken image fallback</h3>
           <p className="txt">
-            When the primary <code>src</code> fails, <code>fallbackSrc</code> swaps in a local
-            screenshot so the frame never collapses.
+            When the primary <code>src</code> fails, <code>fallbackSrc</code>{' '}
+            swaps in a local screenshot so the frame never collapses.
           </p>
           <div className="ex">
             <div className="canvas canvas-stack">
@@ -221,7 +223,8 @@ export default function Demo() {
 
           <h3 id="decorative">Decorative (empty alt)</h3>
           <p className="txt">
-            Purely decorative frames use <code>alt=&quot;&quot;</code> so assistive tech skips them.
+            Purely decorative frames use <code>alt=&quot;&quot;</code> so
+            assistive tech skips them.
           </p>
           <div className="ex">
             <div className="canvas">
@@ -246,30 +249,39 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'src', type: ['string'], defaultValue: '—', description: 'Primary image URL (required).' },
+        {
+          name: 'src',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Primary image URL (required).',
+        },
         {
           name: 'alt',
           type: ['string'],
           defaultValue: '""',
-          description: 'Accessible description. Use empty string for decorative images.',
+          description:
+            'Accessible description. Use empty string for decorative images.',
         },
         {
           name: 'width',
           type: ['number', 'string'],
           defaultValue: '—',
-          description: 'Intrinsic width attribute — set with height to avoid CLS.',
+          description:
+            'Intrinsic width attribute — set with height to avoid CLS.',
         },
         {
           name: 'height',
           type: ['number', 'string'],
           defaultValue: '—',
-          description: 'Intrinsic height attribute — set with width to avoid CLS.',
+          description:
+            'Intrinsic height attribute — set with width to avoid CLS.',
         },
         {
           name: 'srcSet',
           type: ['string'],
           defaultValue: '—',
-          description: 'Native srcset on the img (also used as the picture fallback).',
+          description:
+            'Native srcset on the img (also used as the picture fallback).',
         },
         {
           name: 'sizes',
@@ -281,7 +293,8 @@ export default function Demo() {
           name: 'sources',
           type: ['ImgSource[]'],
           defaultValue: '—',
-          description: 'Optional <source> list; when set, Img renders a <picture>.',
+          description:
+            'Optional <source> list; when set, Img renders a <picture>.',
         },
         {
           name: 'loading',
@@ -319,7 +332,12 @@ export default function Demo() {
           defaultValue: '—',
           description: 'Class on picture (when used) or img.',
         },
-        { name: 'click', type: ['() => void'], defaultValue: '—', description: 'Optional click handler.' },
+        {
+          name: 'click',
+          type: ['() => void'],
+          defaultValue: '—',
+          description: 'Optional click handler.',
+        },
       ]}
       a11y={[
         {

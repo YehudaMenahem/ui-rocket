@@ -45,7 +45,14 @@ export function TextboxPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       sidebarOpen={sidebarOpen}
       onCloseSidebar={onCloseSidebar}
       importName="Textbox"
-      controls={['color', 'disabled', 'required', 'showError', 'placeholder', 'rows']}
+      controls={[
+        'color',
+        'disabled',
+        'required',
+        'showError',
+        'placeholder',
+        'rows',
+      ]}
       initialState={{ rows: 3, placeholder: 'Write a note…' }}
       preview={(s) => (
         <TextboxPreview
@@ -93,18 +100,78 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'label', type: ['string'], defaultValue: '—', description: 'Field label.' },
-        { name: 'value', type: ['string'], defaultValue: '—', description: 'Controlled value.' },
-        { name: 'rows', type: ['number'], defaultValue: '1', description: 'Visible rows.' },
-        { name: 'cols', type: ['string'], defaultValue: '"100%"', description: 'Width style for the textarea.' },
-        { name: 'maxlength', type: ['number'], defaultValue: '135', description: 'Character limit.' },
-        { name: 'placeholder', type: ['string'], defaultValue: '—', description: 'Placeholder text.' },
-        { name: 'required', type: ['boolean'], defaultValue: 'false', description: 'Required field.' },
-        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the field.' },
-        { name: 'showError', type: ['boolean'], defaultValue: 'false', description: 'Shows error text.' },
-        { name: 'error', type: ['string'], defaultValue: '"This is a required field"', description: 'Error copy.' },
-        { name: 'note', type: ['string'], defaultValue: '—', description: 'Helper text when not in error.' },
-        { name: 'change', type: ['(value: string) => void'], defaultValue: '—', description: 'Change handler.' },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Field label.',
+        },
+        {
+          name: 'value',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Controlled value.',
+        },
+        {
+          name: 'rows',
+          type: ['number'],
+          defaultValue: '1',
+          description: 'Visible rows.',
+        },
+        {
+          name: 'cols',
+          type: ['string'],
+          defaultValue: '"100%"',
+          description: 'Width style for the textarea.',
+        },
+        {
+          name: 'maxlength',
+          type: ['number'],
+          defaultValue: '135',
+          description: 'Character limit.',
+        },
+        {
+          name: 'placeholder',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Placeholder text.',
+        },
+        {
+          name: 'required',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Required field.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables the field.',
+        },
+        {
+          name: 'showError',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Shows error text.',
+        },
+        {
+          name: 'error',
+          type: ['string'],
+          defaultValue: '"This is a required field"',
+          description: 'Error copy.',
+        },
+        {
+          name: 'note',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Helper text when not in error.',
+        },
+        {
+          name: 'change',
+          type: ['(value: string) => void'],
+          defaultValue: '—',
+          description: 'Change handler.',
+        },
       ]}
     />
   );

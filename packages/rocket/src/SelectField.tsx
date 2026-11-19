@@ -102,12 +102,22 @@ export function SelectField({
           {value || 'Choose an option'}
         </span>
         <svg className="chev" viewBox="0 0 20 12" aria-hidden="true">
-          <path d="M18.2,1.9L10,10.1L1.8,1.9" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path
+            d="M18.2,1.9L10,10.1L1.8,1.9"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
         </svg>
       </button>
 
       {isOpen ? (
-        <ul className="options" id={listId} role="listbox" aria-labelledby={fieldId}>
+        <ul
+          className="options"
+          id={listId}
+          role="listbox"
+          aria-labelledby={fieldId}
+        >
           {options.map((opt, index) => (
             <li key={opt} role="option" aria-selected={opt === value}>
               <button

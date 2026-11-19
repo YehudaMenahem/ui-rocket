@@ -22,13 +22,19 @@ export function InstallationPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       toc={TOC}
     >
       <div className="crumbs">
-        <Link to="/components">Components</Link> / <span style={{ color: 'var(--ink)' }}>Installation</span>
+        <Link to="/components">Components</Link> /{' '}
+        <span style={{ color: 'var(--ink)' }}>Installation</span>
       </div>
       <h1>Installation</h1>
-      <p className="one">Add the package, import the stylesheet once, then drop in a component.</p>
+      <p className="one">
+        Add the package, import the stylesheet once, then drop in a component.
+      </p>
 
       <h2 id="install">Install</h2>
-      <p className="txt">Pick your package manager. The package name is <code>@ui-rocket/rocket</code>.</p>
+      <p className="txt">
+        Pick your package manager. The package name is{' '}
+        <code>@ui-rocket/rocket</code>.
+      </p>
       <div className="pm">
         <div className="code-head">
           <span className="tab on">pnpm</span>
@@ -39,7 +45,10 @@ export function InstallationPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       </div>
 
       <h2 id="styles">Stylesheet</h2>
-      <p className="txt">Import the compiled CSS at your app root so tokens and component styles load once.</p>
+      <p className="txt">
+        Import the compiled CSS at your app root so tokens and component styles
+        load once.
+      </p>
       <pre className="code">{`import '@ui-rocket/rocket/styles'`}</pre>
 
       <h2 id="first">First component</h2>

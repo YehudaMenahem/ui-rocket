@@ -47,7 +47,14 @@ export default function Demo() {
         <>
           <h3>States</h3>
           <div className="ex">
-            <div className="canvas" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: 12 }}>
+            <div
+              className="canvas"
+              style={{
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: 12,
+              }}
+            >
               <ToggleButton id="t1" label="Armed" isChecked />
               <ToggleButton id="t2" label="Standby" />
               <ToggleButton
@@ -64,17 +71,42 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'label', type: ['string'], defaultValue: '—', description: 'Adjacent label.' },
-        { name: 'isChecked', type: ['boolean'], defaultValue: 'false', description: 'On/off state.' },
-        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the switch.' },
-        { name: 'required', type: ['boolean'], defaultValue: 'false', description: 'Required in forms.' },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Adjacent label.',
+        },
+        {
+          name: 'isChecked',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'On/off state.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables the switch.',
+        },
+        {
+          name: 'required',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Required in forms.',
+        },
         {
           name: 'labelPosition',
           type: ['"label-from-left"', '"label-from-right"'],
           defaultValue: '"label-from-left"',
           description: 'Places the label before or after the switch.',
         },
-        { name: 'change', type: ['(checked: boolean) => void'], defaultValue: '—', description: 'Change handler.' },
+        {
+          name: 'change',
+          type: ['(checked: boolean) => void'],
+          defaultValue: '—',
+          description: 'Change handler.',
+        },
       ]}
     />
   );

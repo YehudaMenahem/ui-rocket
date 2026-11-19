@@ -22,7 +22,8 @@ const PATHS: Record<string, string> = {
   send: '<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
   monitor:
     '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
-  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
+  phone:
+    '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',
   refresh: '<path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/>',
   test: '<path d="M9 3h6M10 3v6L4.5 19a1.5 1.5 0 0 0 1.3 2h12.4a1.5 1.5 0 0 0 1.3-2L14 9V3"/>',
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
@@ -50,7 +51,14 @@ export function Icon({
 export function RocketMark({ className = 'mark' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 32 32" aria-hidden="true">
-      <circle cx="16" cy="16" r="14.5" fill="#E7A33B" stroke="#1E2A47" strokeWidth="2" />
+      <circle
+        cx="16"
+        cy="16"
+        r="14.5"
+        fill="#E7A33B"
+        stroke="#1E2A47"
+        strokeWidth="2"
+      />
       <path
         d="M16 5.5c3.6 3 4.6 7.4 4 12h-8c-.6-4.6.4-9 4-12z"
         fill="#FDF1E2"
@@ -58,7 +66,14 @@ export function RocketMark({ className = 'mark' }: { className?: string }) {
         strokeWidth="1.8"
         strokeLinejoin="round"
       />
-      <circle cx="16" cy="12.5" r="1.9" fill="#C4471D" stroke="#1E2A47" strokeWidth="1.2" />
+      <circle
+        cx="16"
+        cy="12.5"
+        r="1.9"
+        fill="#C4471D"
+        stroke="#1E2A47"
+        strokeWidth="1.2"
+      />
       <path
         d="M12.2 15.5l-2.6 4.2h2.9M19.8 15.5l2.6 4.2h-2.9"
         fill="#C4471D"

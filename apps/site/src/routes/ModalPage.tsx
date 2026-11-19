@@ -26,8 +26,8 @@ function ModalDemo({ heroImage = false }: { heroImage?: boolean }) {
         heroImage={heroImage}
       >
         <p>
-          Confirm abort sequence. Backdrop click, Escape, and the footer Close button all dismiss
-          this dialog.
+          Confirm abort sequence. Backdrop click, Escape, and the footer Close
+          button all dismiss this dialog.
         </p>
       </Modal>
     </>
@@ -42,7 +42,9 @@ export function ModalPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       onCloseSidebar={onCloseSidebar}
       importName="Modal"
       controls={['color', 'heroImage']}
-      preview={(s) => <ModalDemo heroImage={s.heroImage} key={String(s.heroImage)} />}
+      preview={(s) => (
+        <ModalDemo heroImage={s.heroImage} key={String(s.heroImage)} />
+      )}
       generateCode={(s) =>
         `import { Modal, Button } from '@ui-rocket/rocket'
 
@@ -86,17 +88,43 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'show', type: ['boolean'], defaultValue: 'false', description: 'Controls visibility.' },
-        { name: 'closeModal', type: ['() => void'], defaultValue: '—', description: 'Close handler.' },
-        { name: 'modalTitle', type: ['string'], defaultValue: '—', description: 'Header title.' },
+        {
+          name: 'show',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Controls visibility.',
+        },
+        {
+          name: 'closeModal',
+          type: ['() => void'],
+          defaultValue: '—',
+          description: 'Close handler.',
+        },
+        {
+          name: 'modalTitle',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Header title.',
+        },
         {
           name: 'heroImage',
           type: ['boolean'],
           defaultValue: 'false',
-          description: 'Shows the illustrated hero header instead of a text title.',
+          description:
+            'Shows the illustrated hero header instead of a text title.',
         },
-        { name: 'classes', type: ['string'], defaultValue: '""', description: 'Extra class names.' },
-        { name: 'children', type: ['ReactNode'], defaultValue: '—', description: 'Dialog body content.' },
+        {
+          name: 'classes',
+          type: ['string'],
+          defaultValue: '""',
+          description: 'Extra class names.',
+        },
+        {
+          name: 'children',
+          type: ['ReactNode'],
+          defaultValue: '—',
+          description: 'Dialog body content.',
+        },
       ]}
     />
   );

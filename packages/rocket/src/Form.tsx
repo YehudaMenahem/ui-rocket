@@ -64,9 +64,7 @@ export function Form({
       <h3 className="form-header">{title}</h3>
       {children}
       {error && (
-        <p className="error">
-          Please fill the fields with the astrik (*) mark
-        </p>
+        <p className="error">Please fill the fields with the astrik (*) mark</p>
       )}
     </form>
   );

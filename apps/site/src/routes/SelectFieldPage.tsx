@@ -51,7 +51,11 @@ export default function Demo() {
           <h3>Basic</h3>
           <div className="ex">
             <div className="canvas">
-              <SelectField id="s1" label="Launch window" options={['Dawn', 'Noon', 'Dusk']} />
+              <SelectField
+                id="s1"
+                label="Launch window"
+                options={['Dawn', 'Noon', 'Dusk']}
+              />
             </div>
             <div className="exbar">
               <span>basic.tsx</span>
@@ -60,14 +64,54 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'label', type: ['string'], defaultValue: '—', description: 'Field label.' },
-        { name: 'options', type: ['string[]'], defaultValue: '—', description: 'Selectable options.' },
-        { name: 'selectOption', type: ['string'], defaultValue: '—', description: 'Selected value.' },
-        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the select.' },
-        { name: 'required', type: ['boolean'], defaultValue: 'false', description: 'Required in forms.' },
-        { name: 'multiple', type: ['boolean'], defaultValue: 'false', description: 'Native multiple select (progressive enhancement).' },
-        { name: 'isOpen', type: ['boolean'], defaultValue: 'false', description: 'Initial open state.' },
-        { name: 'change', type: ['(value: string) => void'], defaultValue: '—', description: 'Selection handler.' },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Field label.',
+        },
+        {
+          name: 'options',
+          type: ['string[]'],
+          defaultValue: '—',
+          description: 'Selectable options.',
+        },
+        {
+          name: 'selectOption',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Selected value.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables the select.',
+        },
+        {
+          name: 'required',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Required in forms.',
+        },
+        {
+          name: 'multiple',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Native multiple select (progressive enhancement).',
+        },
+        {
+          name: 'isOpen',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Initial open state.',
+        },
+        {
+          name: 'change',
+          type: ['(value: string) => void'],
+          defaultValue: '—',
+          description: 'Selection handler.',
+        },
       ]}
     />
   );
