@@ -5,24 +5,30 @@ alwaysApply: true
 
 # Ways of working
 
+- Prefer **git worktrees**: each agent/task uses its own worktree and a **new branch from up-to-date `origin/main`**. Do not switch branches, stash, or commit inside a shared “main folder” checkout used by other agents.
 - Explain each terminal command in one sentence before running it.
 - Prefer small, targeted edits. Never rewrite a file wholesale when a patch will do.
 - Prefer small diffs; do not stop mid-task unless the user asked to pause.
 - Flag before running anything that rewrites git history, touches more than 5 files at once, or changes deployment/build config.
+- Only touch files the task needs. If a shared file outside scope must change (`package.json`, lockfile, CI, global styles, layout), stop and ask first.
+- Do not add dependencies without asking.
+- Everything written in the repo (code, docs, commits, PR titles/bodies) is in **English**.
 
-# Commits
+# Commits & pull requests
 
 - Keep Cursor's default Co-authored-by attribution trailer on commits.
-- Only commit when the user asks.
-- Do not commit or push to `main`. Create a branch, commit there, push the branch, and open a PR.
-- The agent opens the PR; do not merge it unless the user explicitly asks. The user merges on GitHub.
-- After the user says they have merged, check out `main` and `git pull` so local `main` matches GitHub.
-- Only merge to `main` via GitHub pull request (not by pushing `main` directly), unless the user explicitly overrides this.
+- Conventional Commits. One logical change per PR; one self-contained commit per step when practical.
+- Do **not** commit or push to `main`. `main` is protected — open a PR and wait for the owner to merge.
+- The agent opens the PR; do not merge it unless the user explicitly asks.
+- Do not delete branches or repository content unless the user explicitly asks.
 
 # Verification
 
-After changes to build tooling or config, confirm:
+Before opening a PR, confirm:
 
-- `yarn start` (or `yarn dev`) runs
-- `yarn test --run` passes
-- `yarn build` completes and writes to `build/`
+- `pnpm lint` passes (warnings from existing a11y debt are OK if CI accepts them; no new errors)
+- `pnpm typecheck` passes
+- `pnpm test` passes
+- `pnpm build` completes
+
+After changes to build tooling or deploy config, also confirm the site still builds for Vercel (`apps/site` `build/` output as in `vercel.json`) and that the library is built before the site when artifacts are not committed.

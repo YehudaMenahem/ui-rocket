@@ -5,18 +5,19 @@ alwaysApply: true
 
 # Stack
 
-- React 16 — class and function components both exist. Do not convert classes to hooks unless asked.
-- Vite 6.4.3 (pinned via `package.json` `resolutions`). Do not reintroduce webpack/`react-scripts`, and do not bump Vite to 7+ without a Node upgrade.
-- Production `outDir` is `build/` (Firebase hosting). Do not switch it to `dist`.
-- SCSS (`sass`) for styling. No CSS-in-JS.
-- Classic Redux (not Toolkit) for modal/toast global state only. Do not replace with Context/Zustand unless asked.
-- React Router v5.
-- Yarn only — never `npm install` / `npm run`; use yarn equivalents.
-- Vitest (not Jest). `jest.fn()` works via `vitest.setup.js` aliasing `jest` to `vi`.
+- **pnpm workspace monorepo** — `packages/rocket` (library) and `apps/site` (showcase). Never use `npm install` / `npm run`; use pnpm equivalents.
+- **React 19** — function components and modern hooks. Do not downgrade React without being asked.
+- **TypeScript (strict)** — library and site are TS. Do not reintroduce plain JS sources for new work.
+- **Vite** — library mode for `@ui-rocket/rocket`, app mode for the site. Do not reintroduce webpack / `react-scripts`.
+- **React Router 7** — site routing. Do not downgrade to v5/v6 without being asked.
+- **Sass (SCSS)** for styling. No CSS-in-JS.
+- **No Redux** — modal/toast and other UI state stay in React local state (or existing site patterns). Do not add Redux/Toolkit/Zustand unless asked.
+- **Vitest** (not Jest). `jest.fn()` may still work via setup aliases where present; prefer `vi`.
+- **Vercel** deploys the showcase (`apps/site/vercel.json`). Production `outDir` for the site is `build/` as configured there — do not switch it to `dist` without updating Vercel config. Do not reintroduce Firebase hosting as the deploy path.
 - No `require()` for images; use ESM default imports (Vite has no `require()`).
 
 # Constraints
 
-- `.env` is gitignored; `.env.example` documents `VITE_UNSPLASH_KEY`. Never commit real `.env` values. Env vars use `import.meta.env.VITE_*`, not `process.env.REACT_APP_*`.
-- This project is plain JS. Do not add `.ts`/`.tsx` unless explicitly asked to start a TypeScript migration.
-- Out of scope unless requested: React 18, Router v6, Redux Toolkit, ESLint from scratch, deleting unused files such as `src/views/Entrance.js`.
+- `.env` is gitignored; never commit real secrets. Prefer `import.meta.env.VITE_*` for Vite env vars.
+- Library package name is `@ui-rocket/rocket` (workspace). It is **not published to npm** unless that changes explicitly.
+- Out of scope unless requested: React major upgrades beyond current, Router major changes, adding state libraries, rewriting ESLint from scratch.
