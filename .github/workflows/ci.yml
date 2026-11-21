@@ -53,5 +53,7 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Build
-        run: pnpm build
+      # Root `pnpm build` rebuilds rocket then the site. Rocket is already built
+      # above for typecheck/tests, so only build the site here.
+      - name: Build site
+        run: pnpm --filter @ui-rocket/site build
