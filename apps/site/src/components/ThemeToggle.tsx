@@ -6,7 +6,7 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setThemeState(
-      (document.documentElement.getAttribute('data-theme') as Theme) || 'dark',
+      (document.documentElement.getAttribute('data-theme') as Theme) || 'dark'
     );
   }, []);
 

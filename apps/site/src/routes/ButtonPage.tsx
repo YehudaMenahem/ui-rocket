@@ -5,7 +5,10 @@ import { COMPONENTS } from '../data/components';
 
 const meta = COMPONENTS.find((c) => c.id === 'button')!;
 
-const sizeMap: Record<PlaygroundState['size'], 'xs' | 'small' | 'medium' | 'large' | 'xl'> = {
+const sizeMap: Record<
+  PlaygroundState['size'],
+  'xs' | 'small' | 'medium' | 'large' | 'xl'
+> = {
   xs: 'xs',
   sm: 'small',
   md: 'medium',
@@ -13,7 +16,10 @@ const sizeMap: Record<PlaygroundState['size'], 'xs' | 'small' | 'medium' | 'larg
   xl: 'xl',
 };
 
-const colorMap: Record<string, 'brand' | 'olive' | 'navy' | 'mustard' | 'powder'> = {
+const colorMap: Record<
+  string,
+  'brand' | 'olive' | 'navy' | 'mustard' | 'powder'
+> = {
   rust: 'brand',
   olive: 'olive',
   navy: 'navy',
@@ -84,7 +90,8 @@ ${button}
         <>
           <h3 id="variants">Variants</h3>
           <p className="txt">
-            Four variants map to emphasis: solid for the main action, ghost for the least.
+            Four variants map to emphasis: solid for the main action, ghost for
+            the least.
           </p>
           <div className="ex">
             <div className="canvas">
@@ -117,11 +124,20 @@ ${button}
               <Button label="Launch" styleBtn="solid">
                 <Icon name="send" />
               </Button>
-              <Button label="Next stage" styleBtn="outline" classes="btn-secondary">
+              <Button
+                label="Next stage"
+                styleBtn="outline"
+                classes="btn-secondary"
+              >
                 <Icon name="arrow" />
               </Button>
               <Button label="Fueling…" styleBtn="solid" loading />
-              <Button label="Disabled" styleBtn="outline" disabled classes="btn-secondary" />
+              <Button
+                label="Disabled"
+                styleBtn="outline"
+                disabled
+                classes="btn-secondary"
+              />
             </div>
             <div className="exbar">
               <span>icons.tsx</span>
@@ -140,7 +156,8 @@ ${button}
           name: 'color',
           type: ['"brand"', '"olive"', '"navy"', '"mustard"', '"powder"'],
           defaultValue: '"brand"',
-          description: 'Color role from the theme tokens (override via --accent CSS var).',
+          description:
+            'Color role from the theme tokens (override via --accent CSS var).',
         },
         {
           name: 'size',

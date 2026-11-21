@@ -39,7 +39,10 @@ export function DocsShell({
         />
       ) : null}
 
-      <aside className={`side ${sidebarOpen ? 'open' : ''}`} aria-label="Docs navigation">
+      <aside
+        className={`side ${sidebarOpen ? 'open' : ''}`}
+        aria-label="Docs navigation"
+      >
         {NAV_GROUPS.map((group) => (
           <div key={group.title} className="nav-section">
             <h2 className="side-heading">{group.title}</h2>
@@ -54,7 +57,9 @@ export function DocsShell({
                   aria-current={on ? 'page' : undefined}
                 >
                   {item.label}
-                  {item.badge ? <span className="new">{item.badge}</span> : null}
+                  {item.badge ? (
+                    <span className="new">{item.badge}</span>
+                  ) : null}
                 </Link>
               );
             })}

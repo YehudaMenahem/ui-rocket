@@ -10,7 +10,13 @@ interface PageProps {
   onCloseSidebar: () => void;
 }
 
-function FormPreview({ disabled, idPrefix = 'f' }: { disabled: boolean; idPrefix?: string }) {
+function FormPreview({
+  disabled,
+  idPrefix = 'f',
+}: {
+  disabled: boolean;
+  idPrefix?: string;
+}) {
   const [callsign, setCallsign] = useState('');
   const [ready, setReady] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -72,7 +78,9 @@ export function FormPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       importName="Form"
       showPlayground
       controls={['color', 'disabled']}
-      generateCode={(s: PlaygroundState) => `import { Form, InputField, Checkbox, Button } from '@ui-rocket/rocket'
+      generateCode={(
+        s: PlaygroundState
+      ) => `import { Form, InputField, Checkbox, Button } from '@ui-rocket/rocket'
 
 export default function Demo() {
   return (
@@ -98,10 +106,30 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'title', type: ['string'], defaultValue: '""', description: 'Form heading.' },
-        { name: 'submit', type: ['(data) => void'], defaultValue: '—', description: 'Called with field values when valid.' },
-        { name: 'children', type: ['ReactNode'], defaultValue: '—', description: 'Form fields and actions.' },
-        { name: 'novalidate', type: ['boolean'], defaultValue: 'false', description: 'Skip HTML5 validation attributes.' },
+        {
+          name: 'title',
+          type: ['string'],
+          defaultValue: '""',
+          description: 'Form heading.',
+        },
+        {
+          name: 'submit',
+          type: ['(data) => void'],
+          defaultValue: '—',
+          description: 'Called with field values when valid.',
+        },
+        {
+          name: 'children',
+          type: ['ReactNode'],
+          defaultValue: '—',
+          description: 'Form fields and actions.',
+        },
+        {
+          name: 'novalidate',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Skip HTML5 validation attributes.',
+        },
       ]}
     />
   );

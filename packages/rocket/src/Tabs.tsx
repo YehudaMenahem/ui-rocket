@@ -1,11 +1,7 @@
 import { Button } from './Button';
 import { TabsProps } from './types';
 
-export function Tabs({
-  tabs,
-  activeTab = 0,
-  setActiveTab,
-}: TabsProps) {
+export function Tabs({ tabs, activeTab = 0, setActiveTab }: TabsProps) {
   const handleClickTab = (index: number) => {
     setActiveTab(index);
   };

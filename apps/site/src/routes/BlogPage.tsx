@@ -4,17 +4,20 @@ const POSTS = [
   {
     title: 'Retro Launch: why hard shadows still feel modern',
     date: 'Nov 2026',
-    blurb: 'Offset shadows, cream paper, and Fraunces display type — the Retro Launch visual language.',
+    blurb:
+      'Offset shadows, cream paper, and Fraunces display type — the Retro Launch visual language.',
   },
   {
     title: 'Shipping accessible primitives without the bloat',
     date: 'Oct 2026',
-    blurb: 'How Rocket UI keeps each entry under a few kilobytes while staying keyboard-first.',
+    blurb:
+      'How Rocket UI keeps each entry under a few kilobytes while staying keyboard-first.',
   },
   {
     title: 'From class components to a typed package',
     date: 'Sep 2026',
-    blurb: 'What we kept from the original API surface — and what we intentionally tightened.',
+    blurb:
+      'What we kept from the original API surface — and what we intentionally tightened.',
   },
 ];
 

@@ -6,7 +6,12 @@ export function RetroScene({ launching = false }: { launching?: boolean }) {
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
     >
-      <g stroke="#1E2A47" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round">
+      <g
+        stroke="#1E2A47"
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      >
         <circle cx="370" cy="270" r="215" fill="#E7A33B" />
         <g fill="none" strokeWidth="2.5" opacity=".35">
           <path d="M190 200h360M170 250h400M165 300h410M175 350h390M200 400h340" />
@@ -35,7 +40,11 @@ export function RetroScene({ launching = false }: { launching?: boolean }) {
 
         <g className="rocket-fly" transform="translate(360 300) rotate(18)">
           <path d="M-30 120 Q-10 210 0 230 Q10 210 30 120Z" fill="#C4471D" />
-          <path d="M-16 120 Q-6 175 0 190 Q6 175 16 120Z" fill="#F3C063" strokeWidth="3" />
+          <path
+            d="M-16 120 Q-6 175 0 190 Q6 175 16 120Z"
+            fill="#F3C063"
+            strokeWidth="3"
+          />
           <path d="M-56 40 Q-100 70 -98 130 L-44 110Z" fill="#C4471D" />
           <path d="M56 40 Q100 70 98 130 L44 110Z" fill="#C4471D" />
           <path
@@ -48,8 +57,20 @@ export function RetroScene({ launching = false }: { launching?: boolean }) {
           />
           <path d="M-64 30 L64 30 L60 56 L-60 56Z" fill="#4A5A23" />
           <circle cx="0" cy="-45" r="34" fill="#9FC2E8" />
-          <circle cx="0" cy="-45" r="34" fill="none" strokeWidth="7" stroke="#1E2A47" />
-          <path d="M-14 -60 Q-6 -68 6 -66" fill="none" stroke="#FDF1E2" strokeWidth="5" />
+          <circle
+            cx="0"
+            cy="-45"
+            r="34"
+            fill="none"
+            strokeWidth="7"
+            stroke="#1E2A47"
+          />
+          <path
+            d="M-14 -60 Q-6 -68 6 -66"
+            fill="none"
+            stroke="#FDF1E2"
+            strokeWidth="5"
+          />
           <path d="M0 118 V140" strokeWidth="4" />
         </g>
 
@@ -80,10 +101,27 @@ export function Stamp() {
   return (
     <svg className="stamp" viewBox="0 0 140 140" aria-hidden="true">
       <defs>
-        <path id="cp" d="M70 70 m-50 0 a50 50 0 1 1 100 0 a50 50 0 1 1 -100 0" />
+        <path
+          id="cp"
+          d="M70 70 m-50 0 a50 50 0 1 1 100 0 a50 50 0 1 1 -100 0"
+        />
       </defs>
-      <circle cx="70" cy="70" r="64" fill="#FDF1E2" stroke="#1E2A47" strokeWidth="3" />
-      <circle cx="70" cy="70" r="38" fill="#C4471D" stroke="#1E2A47" strokeWidth="3" />
+      <circle
+        cx="70"
+        cy="70"
+        r="64"
+        fill="#FDF1E2"
+        stroke="#1E2A47"
+        strokeWidth="3"
+      />
+      <circle
+        cx="70"
+        cy="70"
+        r="38"
+        fill="#C4471D"
+        stroke="#1E2A47"
+        strokeWidth="3"
+      />
       <text
         fontFamily="DM Mono"
         fontSize="11.5"

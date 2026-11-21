@@ -53,7 +53,11 @@ const TILES = [
   { name: 'Img', path: '/ImgPage' },
 ];
 
-const WINDOWS = ['Nov 14 · 06:20 UTC', 'Nov 14 · 18:40 UTC', 'Nov 15 · 09:10 UTC'];
+const WINDOWS = [
+  'Nov 14 · 06:20 UTC',
+  'Nov 14 · 18:40 UTC',
+  'Nov 15 · 09:10 UTC',
+];
 
 const CODEBAND = `import { Button, ToggleButton } from '@ui-rocket/rocket'
 
@@ -117,7 +121,9 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
     }
     setPhase('held');
     setCount(null);
-    setFormError('Pad on hold — countdown frozen. Press Hold again to resume, or Launch when ready.');
+    setFormError(
+      'Pad on hold — countdown frozen. Press Hold again to resume, or Launch when ready.'
+    );
     setToast(false);
   };
 
@@ -178,8 +184,9 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
               </span>
               <h1>If you build it, they will come.</h1>
               <p className="lede">
-                Rocket UI is a friendly little React component library. Accessible, typed,
-                themeable, and small enough to read over a cup of coffee.
+                Rocket UI is a friendly little React component library.
+                Accessible, typed, themeable, and small enough to read over a
+                cup of coffee.
               </p>
               <div className="ctas">
                 <Button
@@ -210,10 +217,16 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                     <span className="pr">$</span> pnpm add @ui-rocket/rocket
                   </span>
                   <span className="cp" aria-hidden="true">
-                    <Icon name={copied ? 'check' : copyFailed ? 'close' : 'copy'} />
+                    <Icon
+                      name={copied ? 'check' : copyFailed ? 'close' : 'copy'}
+                    />
                   </span>
                   <span className="sr-only" aria-live="polite">
-                    {copied ? 'Install command copied' : copyFailed ? 'Copy failed' : ''}
+                    {copied
+                      ? 'Install command copied'
+                      : copyFailed
+                        ? 'Copy failed'
+                        : ''}
                   </span>
                 </button>
               </div>
@@ -267,19 +280,25 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                         id="c1"
                         label="Propellant loaded"
                         checked={checks.a}
-                        change={(t) => setChecks((s) => ({ ...s, a: t.checked }))}
+                        change={(t) =>
+                          setChecks((s) => ({ ...s, a: t.checked }))
+                        }
                       />
                       <Checkbox
                         id="c2"
                         label="Crew boarded & sealed"
                         checked={checks.b}
-                        change={(t) => setChecks((s) => ({ ...s, b: t.checked }))}
+                        change={(t) =>
+                          setChecks((s) => ({ ...s, b: t.checked }))
+                        }
                       />
                       <Checkbox
                         id="c3"
                         label="Range safety go"
                         checked={checks.c}
-                        change={(t) => setChecks((s) => ({ ...s, c: t.checked }))}
+                        change={(t) =>
+                          setChecks((s) => ({ ...s, c: t.checked }))
+                        }
                       />
                     </div>
                     <div className="launch-checklist__divider">
@@ -322,8 +341,9 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                       </Button>
                     </div>
                     <p className="hold-hint">
-                      Hold pauses the countdown and freezes the pad. Launch validates the checklist,
-                      counts down, then flies the rocket.
+                      Hold pauses the countdown and freezes the pad. Launch
+                      validates the checklist, counts down, then flies the
+                      rocket.
                     </p>
                   </div>
                 </div>
@@ -364,7 +384,10 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
               <br />
               Light enough to launch.
             </h2>
-            <p>Hand-written primitives with no runtime CSS-in-JS, so they stay fast and predictable.</p>
+            <p>
+              Hand-written primitives with no runtime CSS-in-JS, so they stay
+              fast and predictable.
+            </p>
           </div>
           <div className="features">
             {FEATURES.map((f) => (
@@ -384,8 +407,8 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
             <div className="kick">The launch pad</div>
             <h2>Every part, ready on the pad.</h2>
             <p>
-              {METRICS.componentCount} components you can read in one sitting. Here are the ones
-              you&apos;ll reach for first.
+              {METRICS.componentCount} components you can read in one sitting.
+              Here are the ones you&apos;ll reach for first.
             </p>
           </div>
           <div className="grid8">
@@ -393,7 +416,12 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
               <Link className="tile" key={tile.name} to={tile.path}>
                 <div className="tv">
                   {tile.name === 'Button' && (
-                    <Button label="Launch" styleBtn="solid" size="small" classes="btn-primary btn-sm">
+                    <Button
+                      label="Launch"
+                      styleBtn="solid"
+                      size="small"
+                      classes="btn-primary btn-sm"
+                    >
                       <Icon name="send" />
                     </Button>
                   )}
@@ -410,9 +438,26 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                     <Checkbox id="tile-check" label="Systems nominal" checked />
                   )}
                   {tile.name === 'Radio' && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <RadioButton id="r1" name="orbit" label="Low orbit" isSelected val="low" />
-                      <RadioButton id="r2" name="orbit" label="Lunar" val="lunar" />
+                    <div
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 8,
+                      }}
+                    >
+                      <RadioButton
+                        id="r1"
+                        name="orbit"
+                        label="Low orbit"
+                        isSelected
+                        val="low"
+                      />
+                      <RadioButton
+                        id="r2"
+                        name="orbit"
+                        label="Lunar"
+                        val="lunar"
+                      />
                     </div>
                   )}
                   {tile.name === 'Toggle' && (
@@ -427,7 +472,10 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                     />
                   )}
                   {tile.name === 'Icon' && (
-                    <div className="row" style={{ gap: 14, color: 'var(--accent-text)' }}>
+                    <div
+                      className="row"
+                      style={{ gap: 14, color: 'var(--accent-text)' }}
+                    >
                       <Icon name="shield" className="ico ico-lg" />
                       <Icon name="palette" className="ico ico-lg" />
                       <Icon name="code" className="ico ico-lg" />
@@ -452,7 +500,10 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                 <span className="tab on">LaunchPanel.tsx</span>
                 <span className="tab">styles.css</span>
                 <span className="sp" />
-                <CopyButton text={CODEBAND} className="tool copy-btn codeband-copy" />
+                <CopyButton
+                  text={CODEBAND}
+                  className="tool copy-btn codeband-copy"
+                />
               </div>
               <pre className="code">{CODEBAND}</pre>
             </div>
@@ -484,7 +535,9 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="cta-band">
             <div>
-              <h2>Ready for liftoff? Your first screen is five minutes away.</h2>
+              <h2>
+                Ready for liftoff? Your first screen is five minutes away.
+              </h2>
               <p>Install, import the stylesheet, and drop in a Button.</p>
             </div>
             <div className="row">

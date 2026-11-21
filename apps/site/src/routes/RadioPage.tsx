@@ -56,9 +56,25 @@ export default function Demo() {
         <>
           <h3>Group</h3>
           <div className="ex">
-            <div className="canvas" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-              <RadioButton id="g1" name="g" label="Pad 39A" isSelected val="a" change={() => {}} />
-              <RadioButton id="g2" name="g" label="Pad 39B" val="b" change={() => {}} />
+            <div
+              className="canvas"
+              style={{ flexDirection: 'column', alignItems: 'flex-start' }}
+            >
+              <RadioButton
+                id="g1"
+                name="g"
+                label="Pad 39A"
+                isSelected
+                val="a"
+                change={() => {}}
+              />
+              <RadioButton
+                id="g2"
+                name="g"
+                label="Pad 39B"
+                val="b"
+                change={() => {}}
+              />
             </div>
             <div className="exbar">
               <span>group.tsx</span>
@@ -67,11 +83,36 @@ export default function Demo() {
         </>
       }
       props={[
-        { name: 'label', type: ['string'], defaultValue: '—', description: 'Option label.' },
-        { name: 'name', type: ['string'], defaultValue: '—', description: 'Radio group name.' },
-        { name: 'val', type: ['string'], defaultValue: '—', description: 'Option value.' },
-        { name: 'isSelected', type: ['boolean'], defaultValue: 'false', description: 'Selected state.' },
-        { name: 'disabled', type: ['boolean'], defaultValue: 'false', description: 'Disables the option.' },
+        {
+          name: 'label',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Option label.',
+        },
+        {
+          name: 'name',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Radio group name.',
+        },
+        {
+          name: 'val',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Option value.',
+        },
+        {
+          name: 'isSelected',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Selected state.',
+        },
+        {
+          name: 'disabled',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Disables the option.',
+        },
         {
           name: 'change',
           type: ['(event: ChangeEvent) => void'],

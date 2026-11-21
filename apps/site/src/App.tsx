@@ -35,7 +35,9 @@ const InputFieldPage = lazy(() =>
   import('./routes/InputFieldPage').then((m) => ({ default: m.InputFieldPage }))
 );
 const SelectFieldPage = lazy(() =>
-  import('./routes/SelectFieldPage').then((m) => ({ default: m.SelectFieldPage }))
+  import('./routes/SelectFieldPage').then((m) => ({
+    default: m.SelectFieldPage,
+  }))
 );
 const ImgPage = lazy(() =>
   import('./routes/ImgPage').then((m) => ({ default: m.ImgPage }))
@@ -50,7 +52,9 @@ const TabsPage = lazy(() =>
   import('./routes/TabsPage').then((m) => ({ default: m.TabsPage }))
 );
 const ToggleButtonPage = lazy(() =>
-  import('./routes/ToggleButtonPage').then((m) => ({ default: m.ToggleButtonPage }))
+  import('./routes/ToggleButtonPage').then((m) => ({
+    default: m.ToggleButtonPage,
+  }))
 );
 const ToasterPage = lazy(() =>
   import('./routes/ToasterPage').then((m) => ({ default: m.ToasterPage }))
@@ -59,13 +63,17 @@ const FormPage = lazy(() =>
   import('./routes/FormPage').then((m) => ({ default: m.FormPage }))
 );
 const InstallationPage = lazy(() =>
-  import('./routes/InstallationPage').then((m) => ({ default: m.InstallationPage }))
+  import('./routes/InstallationPage').then((m) => ({
+    default: m.InstallationPage,
+  }))
 );
 const DarkModePage = lazy(() =>
   import('./routes/DarkModePage').then((m) => ({ default: m.DarkModePage }))
 );
 const ComponentsIndexPage = lazy(() =>
-  import('./routes/ComponentsIndexPage').then((m) => ({ default: m.ComponentsIndexPage }))
+  import('./routes/ComponentsIndexPage').then((m) => ({
+    default: m.ComponentsIndexPage,
+  }))
 );
 
 function RouteFallback() {
@@ -129,19 +137,40 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<Entrance darkMode={darkMode} />} />
           <Route path="/docs" element={<DocsPage />} />
-          <Route path="/docs/installation" element={<InstallationPage {...pageProps} />} />
-          <Route path="/docs/dark-mode" element={<DarkModePage {...pageProps} />} />
-          <Route path="/components" element={<ComponentsIndexPage {...pageProps} />} />
+          <Route
+            path="/docs/installation"
+            element={<InstallationPage {...pageProps} />}
+          />
+          <Route
+            path="/docs/dark-mode"
+            element={<DarkModePage {...pageProps} />}
+          />
+          <Route
+            path="/components"
+            element={<ComponentsIndexPage {...pageProps} />}
+          />
           <Route path="/theming" element={<ThemingPage />} />
           <Route path="/playground" element={<PlaygroundPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/ButtonPage" element={<ButtonPage {...pageProps} />} />
           <Route path="/IconPage" element={<IconPage {...pageProps} />} />
           <Route path="/RadioPage" element={<RadioPage {...pageProps} />} />
-          <Route path="/CheckboxPage" element={<CheckboxPage {...pageProps} />} />
-          <Route path="/ToggleButtonPage" element={<ToggleButtonPage {...pageProps} />} />
-          <Route path="/InputFieldPage" element={<InputFieldPage {...pageProps} />} />
-          <Route path="/SelectFieldPage" element={<SelectFieldPage {...pageProps} />} />
+          <Route
+            path="/CheckboxPage"
+            element={<CheckboxPage {...pageProps} />}
+          />
+          <Route
+            path="/ToggleButtonPage"
+            element={<ToggleButtonPage {...pageProps} />}
+          />
+          <Route
+            path="/InputFieldPage"
+            element={<InputFieldPage {...pageProps} />}
+          />
+          <Route
+            path="/SelectFieldPage"
+            element={<SelectFieldPage {...pageProps} />}
+          />
           <Route path="/ImgPage" element={<ImgPage {...pageProps} />} />
           <Route
             path="/FormPage"

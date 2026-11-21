@@ -8,7 +8,10 @@ interface PageProps {
   onCloseSidebar: () => void;
 }
 
-export function ComponentsIndexPage({ sidebarOpen, onCloseSidebar }: PageProps) {
+export function ComponentsIndexPage({
+  sidebarOpen,
+  onCloseSidebar,
+}: PageProps) {
   const groups = [...new Set(COMPONENTS.map((c) => c.group))];
 
   return (
@@ -20,12 +23,13 @@ export function ComponentsIndexPage({ sidebarOpen, onCloseSidebar }: PageProps) 
       showPromo
     >
       <div className="crumbs">
-        <Link to="/docs">Docs</Link> / <span style={{ color: 'var(--ink)' }}>Components</span>
+        <Link to="/docs">Docs</Link> /{' '}
+        <span style={{ color: 'var(--ink)' }}>Components</span>
       </div>
       <h1>Components</h1>
       <p className="one">
-        {METRICS.componentCount} primitives exported from <code>@ui-rocket/rocket</code> — each with
-        a playground and props table.
+        {METRICS.componentCount} primitives exported from{' '}
+        <code>@ui-rocket/rocket</code> — each with a playground and props table.
       </p>
 
       {groups.map((group) => (

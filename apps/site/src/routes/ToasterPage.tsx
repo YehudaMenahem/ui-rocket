@@ -15,7 +15,13 @@ function ToasterDemo() {
   return (
     <>
       <Button label="Show toast" styleBtn="solid" click={() => setShow(true)} />
-      <Toaster show={show} closeToaster={() => setShow(false)} type="success" title="Systems go" runningText="Range is clear." />
+      <Toaster
+        show={show}
+        closeToaster={() => setShow(false)}
+        type="success"
+        title="Systems go"
+        runningText="Range is clear."
+      />
     </>
   );
 }
@@ -30,14 +36,38 @@ export function ToasterPage({ sidebarOpen, onCloseSidebar }: PageProps) {
       showPlayground={true}
       controls={['color']}
       preview={() => <ToasterDemo />}
-      examples={<>
+      examples={
+        <>
           <h3>Positions</h3>
-          <div className="ex"><div className="canvas"><ToasterDemo /></div><div className="exbar"><span>toast.tsx</span></div></div>
-        </>}
+          <div className="ex">
+            <div className="canvas">
+              <ToasterDemo />
+            </div>
+            <div className="exbar">
+              <span>toast.tsx</span>
+            </div>
+          </div>
+        </>
+      }
       props={[
-        { name: 'show', type: ['boolean'], defaultValue: 'false', description: 'Visibility.' },
-        { name: 'type', type: ['"info"', '"success"', '"error"', '"warning"'], defaultValue: '"info"', description: 'Tone.' },
-        { name: 'title', type: ['string'], defaultValue: '—', description: 'Toast title.' },
+        {
+          name: 'show',
+          type: ['boolean'],
+          defaultValue: 'false',
+          description: 'Visibility.',
+        },
+        {
+          name: 'type',
+          type: ['"info"', '"success"', '"error"', '"warning"'],
+          defaultValue: '"info"',
+          description: 'Tone.',
+        },
+        {
+          name: 'title',
+          type: ['string'],
+          defaultValue: '—',
+          description: 'Toast title.',
+        },
       ]}
     />
   );

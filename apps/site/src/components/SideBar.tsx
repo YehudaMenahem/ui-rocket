@@ -46,11 +46,19 @@ function RocketMark() {
   );
 }
 
-export function SideBar({ isOpen, onClose, darkMode, onToggleTheme }: SideBarProps) {
+export function SideBar({
+  isOpen,
+  onClose,
+  darkMode,
+  onToggleTheme,
+}: SideBarProps) {
   const location = useLocation();
 
   return (
-    <aside className={`side-bar ${isOpen ? 'open' : ''}`} aria-label="Component navigation">
+    <aside
+      className={`side-bar ${isOpen ? 'open' : ''}`}
+      aria-label="Component navigation"
+    >
       <div className="logo">
         <Link to="/" onClick={onClose} aria-label="Rocket UI home">
           <h3>
@@ -72,7 +80,9 @@ export function SideBar({ isOpen, onClose, darkMode, onToggleTheme }: SideBarPro
                   to={item.path}
                   className={location.pathname === item.path ? 'active' : ''}
                   onClick={onClose}
-                  aria-current={location.pathname === item.path ? 'page' : undefined}
+                  aria-current={
+                    location.pathname === item.path ? 'page' : undefined
+                  }
                 >
                   {item.label}
                 </Link>
@@ -88,7 +98,9 @@ export function SideBar({ isOpen, onClose, darkMode, onToggleTheme }: SideBarPro
           className="theme-toggle-button"
           role="switch"
           aria-checked={darkMode}
-          aria-label={darkMode ? 'Switch to light theme' : 'Switch to dark theme'}
+          aria-label={
+            darkMode ? 'Switch to light theme' : 'Switch to dark theme'
+          }
           onClick={onToggleTheme}
         >
           <span className="theme-label">

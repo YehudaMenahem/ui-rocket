@@ -7,3 +7,12 @@ coverage
 pnpm-lock.yaml
 yarn.lock
 package-lock.json
+
+# Generated / build outputs
+**/build/**
+**/dist/**
+*.tsbuildinfo
+apps/site/src/data/metrics.generated.ts
+docs/*.png
+*.min.js
+*.min.css
