@@ -60,7 +60,7 @@ export function SideBar({
       aria-label="Component navigation"
     >
       <div className="logo">
-        <Link to="/" onClick={onClose} aria-label="Rocket UI home">
+        <Link to="/" onClick={onClose}>
           <h3>
             <span className="icon-wrapper rocket-logo" aria-hidden="true">
               <RocketMark />
