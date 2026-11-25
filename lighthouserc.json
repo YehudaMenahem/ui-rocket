@@ -1,0 +1,24 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "pnpm --filter @ui-rocket/site exec vite preview --host 127.0.0.1 --port 4173",
+      "startServerReadyPattern": "Local:",
+      "url": [
+        "http://127.0.0.1:4173/",
+        "http://127.0.0.1:4173/docs/installation",
+        "http://127.0.0.1:4173/ButtonPage",
+        "http://127.0.0.1:4173/ImgPage"
+      ],
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.8 }],
+        "categories:accessibility": ["error", { "minScore": 0.95 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

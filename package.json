@@ -22,7 +22,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
     "size": "pnpm --filter @ui-rocket/rocket build && size-limit",
     "a11y": "node scripts/a11y.mjs",
-    "a11y:ci": "pnpm build && pnpm a11y"
+    "a11y:ci": "pnpm build && pnpm a11y",
+    "lighthouse": "lhci autorun"
   },
   "size-limit": [
     {
@@ -34,6 +35,7 @@
   ],
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.1",
     "@size-limit/file": "^11.2.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
