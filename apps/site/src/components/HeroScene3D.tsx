@@ -194,7 +194,7 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={rocket720Webp}
           width={360}
           height={599}
-          sizes="(max-width: 760px) 52vw, (max-width: 1100px) 42vw, 360px"
+          sizes="(max-width: 760px) 50vw, (max-width: 900px) 40vw, 38vw"
           priority
         />
       </div>
