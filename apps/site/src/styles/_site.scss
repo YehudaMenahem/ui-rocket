@@ -285,6 +285,8 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .stamp{position:absolute;z-index:3;right:12px;bottom:24px;width:120px;height:120px}
 .ticker{background:var(--navy);color:var(--code-ink);border-top:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong);overflow:hidden;white-space:nowrap;font-family:var(--font-display);font-weight:800;font-size:28px;padding:14px 0}
 .card-kicker{font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--ink)}
+/* Defer layout/paint (and image fetches) for below-fold Img demos. */
+.img-examples .ex{content-visibility:auto;contain-intrinsic-size:800px}
 .img-framed{border:2px solid var(--line-strong);border-radius:12px;box-shadow:var(--shadow-md);background:var(--navy);overflow:hidden;display:block;max-width:100%}
 .img-framed img,.img-framed.img-framed{display:block;width:100%;height:auto}
 picture.img-framed{line-height:0}

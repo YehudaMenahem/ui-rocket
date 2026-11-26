@@ -1,7 +1,7 @@
 import { Img } from '@ui-rocket/rocket';
 import { ComponentDoc } from '../components/ComponentDoc';
 import { COMPONENTS } from '../data/components';
-import { DEFAULT_SIZES, SCREENSHOTS } from '../data/screenshots';
+import { HERO_SIZES, SCREENSHOTS, WIDE_SIZES } from '../data/screenshots';
 
 const meta = COMPONENTS.find((c) => c.id === 'img')!;
 const hero = SCREENSHOTS.alleyCat;
@@ -38,7 +38,7 @@ export default function Demo() {
         { type: 'image/webp', srcSet: '${hero.srcSetWebp}' },
       ]}
       srcSet="${hero.srcSetWebp}"
-      sizes="${DEFAULT_SIZES}"
+      sizes="${HERO_SIZES}"
       classes="img-framed img-playground img-pixel"
       loading="eager"
       fetchPriority="high"
@@ -55,7 +55,7 @@ export default function Demo() {
           height={hero.height}
           sources={hero.sources}
           srcSet={hero.srcSetWebp}
-          sizes={DEFAULT_SIZES}
+          sizes={HERO_SIZES}
           classes="img-framed img-playground img-pixel"
           loading="eager"
           fetchPriority="high"
@@ -64,7 +64,7 @@ export default function Demo() {
         />
       )}
       examples={
-        <>
+        <div className="img-examples">
           <h3 id="responsive">Responsive picture</h3>
           <p className="txt">
             AVIF and WebP sources with <code>srcSet</code> + <code>sizes</code>.
@@ -80,10 +80,11 @@ export default function Demo() {
                 height={cover.height}
                 sources={cover.sources}
                 srcSet={cover.srcSetWebp}
-                sizes={DEFAULT_SIZES}
+                sizes={WIDE_SIZES}
                 classes="img-framed img-demo-wide img-pixel"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 objectFit="cover"
               />
             </div>
@@ -107,10 +108,11 @@ export default function Demo() {
                   height={cover.height}
                   sources={cover.sources}
                   srcSet={cover.srcSetWebp}
-                  sizes="(max-width: 640px) 100vw, 320px"
+                  sizes="(max-width: 640px) 180px, 320px"
                   classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   objectFit="cover"
                 />
                 <figcaption>16:9 · cover</figcaption>
@@ -123,10 +125,11 @@ export default function Demo() {
                   height={lazyShot.height}
                   sources={lazyShot.sources}
                   srcSet={lazyShot.srcSetWebp}
-                  sizes="(max-width: 640px) 100vw, 280px"
+                  sizes="(max-width: 640px) 180px, 280px"
                   classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   objectFit="cover"
                 />
                 <figcaption>4:3 · cover</figcaption>
@@ -139,10 +142,11 @@ export default function Demo() {
                   height={square.height}
                   sources={square.sources}
                   srcSet={square.srcSetWebp}
-                  sizes="(max-width: 640px) 50vw, 220px"
+                  sizes="(max-width: 640px) 100px, 220px"
                   classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   objectFit="cover"
                 />
                 <figcaption>1:1 · cover</figcaption>
@@ -155,10 +159,11 @@ export default function Demo() {
                   height={contain.height}
                   sources={contain.sources}
                   srcSet={contain.srcSetWebp}
-                  sizes="(max-width: 640px) 100vw, 280px"
+                  sizes="(max-width: 640px) 180px, 280px"
                   classes="img-frame__media img-pixel"
                   loading="lazy"
                   decoding="async"
+                  fetchPriority="low"
                   objectFit="contain"
                 />
                 <figcaption>4:3 · contain</figcaption>
@@ -184,7 +189,7 @@ export default function Demo() {
                 height={lazyShot.height}
                 sources={lazyShot.sources}
                 srcSet={lazyShot.srcSetWebp}
-                sizes={DEFAULT_SIZES}
+                sizes={WIDE_SIZES}
                 classes="img-framed img-demo-wide img-pixel"
                 loading="lazy"
                 decoding="async"
@@ -213,6 +218,7 @@ export default function Demo() {
                 classes="img-framed img-demo-square img-pixel"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 objectFit="cover"
               />
             </div>
@@ -239,6 +245,7 @@ export default function Demo() {
                 classes="img-framed img-demo-thumb img-pixel"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 objectFit="cover"
               />
             </div>
@@ -246,7 +253,7 @@ export default function Demo() {
               <span>decorative.tsx</span>
             </div>
           </div>
-        </>
+        </div>
       }
       props={[
         {
