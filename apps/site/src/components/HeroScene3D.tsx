@@ -24,10 +24,6 @@ import cloudC200Avif from '../assets/hero-3d/cloud-c-200.avif';
 import cloudC400Avif from '../assets/hero-3d/cloud-c-400.avif';
 import cloudC200Webp from '../assets/hero-3d/cloud-c-200.webp';
 import cloudC400Webp from '../assets/hero-3d/cloud-c-400.webp';
-import stars240Avif from '../assets/hero-3d/stars-240.avif';
-import stars480Avif from '../assets/hero-3d/stars-480.avif';
-import stars240Webp from '../assets/hero-3d/stars-240.webp';
-import stars480Webp from '../assets/hero-3d/stars-480.webp';
 
 type LayerPictureProps = {
   className: string;
@@ -133,6 +129,7 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
       ref={sceneRef}
       className={`hero-scene ${launching ? 'is-launching' : ''}`}
     >
+      <div className="hero-scene__glow" aria-hidden="true" />
       <div className="hero-scene__depth" aria-hidden="true">
         <LayerPicture
           className="hero-layer hero-layer--sun"
@@ -142,18 +139,13 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={sun1040Webp}
           width={520}
           height={526}
-          sizes="(max-width: 760px) 72vw, 520px"
+          sizes="(max-width: 760px) 78vw, (max-width: 1100px) 64vw, 560px"
         />
-        <LayerPicture
-          className="hero-layer hero-layer--stars"
-          avif1x={stars240Avif}
-          avif2x={stars480Avif}
-          webp1x={stars240Webp}
-          webp2x={stars480Webp}
-          width={240}
-          height={108}
-          sizes="(max-width: 760px) 42vw, 240px"
-        />
+        {/* CSS sparkles — pure CSS instead of the stars raster */}
+        <span className="hero-sparkle hero-sparkle--1" />
+        <span className="hero-sparkle hero-sparkle--2" />
+        <span className="hero-sparkle hero-sparkle--3" />
+        <span className="hero-sparkle hero-sparkle--4" />
         <LayerPicture
           className="hero-layer hero-layer--moon"
           avif1x={moon140Avif}
@@ -162,7 +154,7 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={moon280Webp}
           width={140}
           height={142}
-          sizes="(max-width: 760px) 22vw, 140px"
+          sizes="(max-width: 760px) 18vw, 120px"
         />
         <LayerPicture
           className="hero-layer hero-layer--cloud-b"
@@ -182,7 +174,7 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={cloudA480Webp}
           width={240}
           height={163}
-          sizes="(max-width: 760px) 48vw, 240px"
+          sizes="(max-width: 760px) 48vw, 260px"
         />
         <LayerPicture
           className="hero-layer hero-layer--cloud-c"
@@ -192,7 +184,7 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={cloudC400Webp}
           width={200}
           height={133}
-          sizes="(max-width: 760px) 40vw, 200px"
+          sizes="(max-width: 760px) 36vw, 200px"
         />
         <LayerPicture
           className="hero-layer hero-layer--rocket"
@@ -202,10 +194,11 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           webp2x={rocket720Webp}
           width={360}
           height={599}
-          sizes="(max-width: 760px) 58vw, 360px"
+          sizes="(max-width: 760px) 52vw, (max-width: 1100px) 42vw, 360px"
           priority
         />
       </div>
+      <div className="hero-scene__ground" aria-hidden="true" />
       {children ? <div className="hero-scene__overlay">{children}</div> : null}
     </div>
   );

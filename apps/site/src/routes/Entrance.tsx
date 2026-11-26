@@ -53,12 +53,6 @@ const TILES = [
   { name: 'Img', path: '/ImgPage' },
 ];
 
-const WINDOWS = [
-  'Nov 14 · 06:20 UTC',
-  'Nov 14 · 18:40 UTC',
-  'Nov 15 · 09:10 UTC',
-];
-
 const CODEBAND = `import { Button, ToggleButton } from '@ui-rocket/rocket'
 
 export function LaunchPanel() {
@@ -71,14 +65,12 @@ export function LaunchPanel() {
   )
 }`;
 
-type LaunchPhase = 'idle' | 'held' | 'countdown' | 'liftoff';
+type LaunchPhase = 'idle' | 'countdown' | 'liftoff';
 
 export function Entrance({ darkMode: _darkMode }: EntranceProps) {
   const navigate = useNavigate();
   const [mission, setMission] = useState('Artemis IV');
-  const [windowOpt, setWindowOpt] = useState(WINDOWS[0]);
-  const [checks, setChecks] = useState({ a: true, b: true, c: false });
-  const [abort, setAbort] = useState(true);
+  const [checks, setChecks] = useState({ a: true, b: true });
   const [armed, setArmed] = useState(true);
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
@@ -111,31 +103,10 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
     timers.current = [];
   };
 
-  const holdLaunch = () => {
-    clearTimers();
-    if (phase === 'held') {
-      setPhase('idle');
-      setCount(null);
-      setFormError('');
-      return;
-    }
-    setPhase('held');
-    setCount(null);
-    setFormError(
-      'Pad on hold — countdown frozen. Press Hold again to resume, or Launch when ready.'
-    );
-    setToast(false);
-  };
-
   const startLaunch = () => {
-    if (phase === 'held') {
-      setFormError('Release Hold first — systems are paused.');
-      return;
-    }
     const missing: string[] = [];
     if (!checks.a) missing.push('propellant');
     if (!checks.b) missing.push('crew');
-    if (!checks.c) missing.push('range safety');
     if (missing.length) {
       setFormError(`Checklist incomplete: still need ${missing.join(', ')}.`);
       setPhase('idle');
@@ -167,9 +138,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
       ? `● T-${count}`
       : phase === 'liftoff'
         ? '● LIFTOFF'
-        : phase === 'held'
-          ? '● HOLD'
-          : '● T-00:42:10';
+        : '● T-00:42:10';
 
   const gzipLabel = METRICS.bundleGzipLabel.replace(' gzip', '');
 
@@ -182,7 +151,11 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
               <span className="eyebrow">
                 <b>NEW</b>
               </span>
-              <h1>If you build it, they will come.</h1>
+              <h1>
+                If you build it,
+                <br />
+                they will come.
+              </h1>
               <p className="lede">A friendly little React component library.</p>
               <div className="ctas">
                 <Button
@@ -202,49 +175,6 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                   click={() => navigate('/components')}
                 />
               </div>
-              <div className="ctas" style={{ marginTop: 16 }}>
-                <button
-                  type="button"
-                  className={`install ${copied ? 'copied' : ''} ${copyFailed ? 'copy-failed' : ''}`}
-                  onClick={copyInstall}
-                >
-                  <span>
-                    <span className="pr" aria-hidden="true">
-                      $
-                    </span>{' '}
-                    pnpm add @ui-rocket/rocket
-                  </span>
-                  <span className="cp" aria-hidden="true">
-                    <Icon
-                      name={copied ? 'check' : copyFailed ? 'close' : 'copy'}
-                    />
-                  </span>
-                  <span className="sr-only">Copy install command</span>
-                  <span className="sr-only" aria-live="polite">
-                    {copied
-                      ? 'Install command copied'
-                      : copyFailed
-                        ? 'Copy failed'
-                        : ''}
-                  </span>
-                </button>
-              </div>
-              <div className="stats">
-                <div>
-                  <b>{METRICS.componentCount}</b>components
-                </div>
-                {METRICS.bundleGzipLabel ? (
-                  <div>
-                    <b>{gzipLabel}</b>min + gzip
-                  </div>
-                ) : null}
-                <div>
-                  <b>{METRICS.license}</b>license
-                </div>
-                <div>
-                  <b>{METRICS.typedPct}%</b>TypeScript
-                </div>
-              </div>
             </div>
 
             <div className="stage">
@@ -252,10 +182,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                 <div className="collage">
                   <div className={`card launch launch-checklist ${phase}`}>
                     <div className="launch-checklist__head between">
-                      <div>
-                        <p className="card-kicker">Launch checklist</p>
-                        <p className="sub">{mission || 'Untitled'} · Pad 39B</p>
-                      </div>
+                      <p className="card-kicker">Launch checklist</p>
                       <span className={`badge ${phase}`}>{badgeLabel}</span>
                     </div>
                     <div className="launch-checklist__stack">
@@ -265,13 +192,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                         value={mission}
                         change={setMission}
                         maxlength={40}
-                      />
-                      <SelectField
-                        id="window"
-                        label="Launch window"
-                        options={WINDOWS}
-                        selectOption={windowOpt}
-                        change={setWindowOpt}
+                        classes="hero-mission"
                       />
                       <div className="launch-checklist__checks">
                         <Checkbox
@@ -290,23 +211,6 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                             setChecks((s) => ({ ...s, b: t.checked }))
                           }
                         />
-                        <Checkbox
-                          id="c3"
-                          label="Range safety go"
-                          checked={checks.c}
-                          change={(t) =>
-                            setChecks((s) => ({ ...s, c: t.checked }))
-                          }
-                        />
-                      </div>
-                      <div className="launch-checklist__divider">
-                        <ToggleButton
-                          id="abort"
-                          label="Auto-abort on anomaly"
-                          isChecked={abort}
-                          change={setAbort}
-                          labelPosition="label-from-left"
-                        />
                       </div>
                       {formError ? (
                         <p className="form-error" role="alert">
@@ -318,14 +222,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                           Liftoff in {count}…
                         </p>
                       ) : null}
-                      <div className="launch-checklist__actions row">
-                        <Button
-                          label={phase === 'held' ? 'On hold' : 'Hold'}
-                          styleBtn="outline"
-                          size="small"
-                          classes={`btn-secondary btn-sm ${phase === 'held' ? 'is-held' : ''}`}
-                          click={holdLaunch}
-                        />
+                      <div className="launch-checklist__actions">
                         <Button
                           label={phase === 'liftoff' ? 'Liftoff!' : 'Launch'}
                           styleBtn="solid"
@@ -338,11 +235,6 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                           <Icon name="send" />
                         </Button>
                       </div>
-                      <p className="hold-hint">
-                        Hold pauses the countdown and freezes the pad. Launch
-                        validates the checklist, counts down, then flies the
-                        rocket.
-                      </p>
                     </div>
                   </div>
                 </div>
@@ -350,6 +242,52 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
             </div>
           </section>
         </div>
+
+        <section className="hero-below" aria-label="Install and library stats">
+          <div className="hero-below__inner">
+            <button
+              type="button"
+              className={`install ${copied ? 'copied' : ''} ${copyFailed ? 'copy-failed' : ''}`}
+              onClick={copyInstall}
+            >
+              <span>
+                <span className="pr" aria-hidden="true">
+                  $
+                </span>{' '}
+                pnpm add @ui-rocket/rocket
+              </span>
+              <span className="cp" aria-hidden="true">
+                <Icon
+                  name={copied ? 'check' : copyFailed ? 'close' : 'copy'}
+                />
+              </span>
+              <span className="sr-only">Copy install command</span>
+              <span className="sr-only" aria-live="polite">
+                {copied
+                  ? 'Install command copied'
+                  : copyFailed
+                    ? 'Copy failed'
+                    : ''}
+              </span>
+            </button>
+            <div className="stats">
+              <div>
+                <b>{METRICS.componentCount}</b>components
+              </div>
+              {METRICS.bundleGzipLabel ? (
+                <div>
+                  <b>{gzipLabel}</b>min + gzip
+                </div>
+              ) : null}
+              <div>
+                <b>{METRICS.license}</b>license
+              </div>
+              <div>
+                <b>{METRICS.typedPct}%</b>TypeScript
+              </div>
+            </div>
+          </div>
+        </section>
 
         <div className="ticker" aria-hidden="true">
           <div className="ticker-track">
@@ -468,6 +406,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                       label=""
                       options={['Falcon 9', 'Starship']}
                       selectOption="Falcon 9"
+                      change={() => {}}
                     />
                   )}
                   {tile.name === 'Icon' && (
@@ -577,9 +516,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
         type="success"
         position="top-right"
         title="Liftoff!"
-        runningText={`${mission} cleared the tower · window ${windowOpt}${
-          abort ? ' · auto-abort armed' : ''
-        }`}
+        runningText={`${mission} cleared the tower`}
         closeToaster={() => setToast(false)}
       />
     </div>
