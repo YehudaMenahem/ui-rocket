@@ -11,7 +11,7 @@ import {
 } from '@ui-rocket/rocket';
 import { CopyButton } from '../components/CopyButton';
 import { Icon } from '../components/Icons';
-import { RetroScene, Stamp } from '../components/RetroArt';
+import { HeroScene3D } from '../components/HeroScene3D';
 import { METRICS } from '../data/metrics.generated';
 import { copyText } from '../utils/copyText';
 
@@ -180,14 +180,10 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
           <section className="hero">
             <div className="copy">
               <span className="eyebrow">
-                <b>NEW</b>v2.0 · now in TypeScript
+                <b>NEW</b>
               </span>
               <h1>If you build it, they will come.</h1>
-              <p className="lede">
-                Rocket UI is a friendly little React component library.
-                Accessible, typed, themeable, and small enough to read over a
-                cup of coffee.
-              </p>
+              <p className="lede">A friendly little React component library.</p>
               <div className="ctas">
                 <Button
                   label="Get started"
@@ -252,105 +248,105 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
             </div>
 
             <div className="stage">
-              <RetroScene launching={phase === 'liftoff'} />
-              <Stamp />
-              <div className="collage">
-                <div className={`card launch launch-checklist ${phase}`}>
-                  <div className="launch-checklist__head between">
-                    <div>
-                      <p className="card-kicker">Launch checklist</p>
-                      <p className="sub">{mission || 'Untitled'} · Pad 39B</p>
+              <HeroScene3D launching={phase === 'liftoff'}>
+                <div className="collage">
+                  <div className={`card launch launch-checklist ${phase}`}>
+                    <div className="launch-checklist__head between">
+                      <div>
+                        <p className="card-kicker">Launch checklist</p>
+                        <p className="sub">{mission || 'Untitled'} · Pad 39B</p>
+                      </div>
+                      <span className={`badge ${phase}`}>{badgeLabel}</span>
                     </div>
-                    <span className={`badge ${phase}`}>{badgeLabel}</span>
-                  </div>
-                  <div className="launch-checklist__stack">
-                    <InputField
-                      label="Mission name"
-                      id="mission"
-                      value={mission}
-                      change={setMission}
-                      maxlength={40}
-                    />
-                    <SelectField
-                      id="window"
-                      label="Launch window"
-                      options={WINDOWS}
-                      selectOption={windowOpt}
-                      change={setWindowOpt}
-                    />
-                    <div className="launch-checklist__checks">
-                      <Checkbox
-                        id="c1"
-                        label="Propellant loaded"
-                        checked={checks.a}
-                        change={(t) =>
-                          setChecks((s) => ({ ...s, a: t.checked }))
-                        }
+                    <div className="launch-checklist__stack">
+                      <InputField
+                        label="Mission name"
+                        id="mission"
+                        value={mission}
+                        change={setMission}
+                        maxlength={40}
                       />
-                      <Checkbox
-                        id="c2"
-                        label="Crew boarded & sealed"
-                        checked={checks.b}
-                        change={(t) =>
-                          setChecks((s) => ({ ...s, b: t.checked }))
-                        }
+                      <SelectField
+                        id="window"
+                        label="Launch window"
+                        options={WINDOWS}
+                        selectOption={windowOpt}
+                        change={setWindowOpt}
                       />
-                      <Checkbox
-                        id="c3"
-                        label="Range safety go"
-                        checked={checks.c}
-                        change={(t) =>
-                          setChecks((s) => ({ ...s, c: t.checked }))
-                        }
-                      />
-                    </div>
-                    <div className="launch-checklist__divider">
-                      <ToggleButton
-                        id="abort"
-                        label="Auto-abort on anomaly"
-                        isChecked={abort}
-                        change={setAbort}
-                        labelPosition="label-from-left"
-                      />
-                    </div>
-                    {formError ? (
-                      <p className="form-error" role="alert">
-                        {formError}
+                      <div className="launch-checklist__checks">
+                        <Checkbox
+                          id="c1"
+                          label="Propellant loaded"
+                          checked={checks.a}
+                          change={(t) =>
+                            setChecks((s) => ({ ...s, a: t.checked }))
+                          }
+                        />
+                        <Checkbox
+                          id="c2"
+                          label="Crew boarded & sealed"
+                          checked={checks.b}
+                          change={(t) =>
+                            setChecks((s) => ({ ...s, b: t.checked }))
+                          }
+                        />
+                        <Checkbox
+                          id="c3"
+                          label="Range safety go"
+                          checked={checks.c}
+                          change={(t) =>
+                            setChecks((s) => ({ ...s, c: t.checked }))
+                          }
+                        />
+                      </div>
+                      <div className="launch-checklist__divider">
+                        <ToggleButton
+                          id="abort"
+                          label="Auto-abort on anomaly"
+                          isChecked={abort}
+                          change={setAbort}
+                          labelPosition="label-from-left"
+                        />
+                      </div>
+                      {formError ? (
+                        <p className="form-error" role="alert">
+                          {formError}
+                        </p>
+                      ) : null}
+                      {phase === 'countdown' && count != null ? (
+                        <p className="countdown" aria-live="assertive">
+                          Liftoff in {count}…
+                        </p>
+                      ) : null}
+                      <div className="launch-checklist__actions row">
+                        <Button
+                          label={phase === 'held' ? 'On hold' : 'Hold'}
+                          styleBtn="outline"
+                          size="small"
+                          classes={`btn-secondary btn-sm ${phase === 'held' ? 'is-held' : ''}`}
+                          click={holdLaunch}
+                        />
+                        <Button
+                          label={phase === 'liftoff' ? 'Liftoff!' : 'Launch'}
+                          styleBtn="solid"
+                          size="small"
+                          classes="btn-primary btn-sm"
+                          loading={phase === 'countdown'}
+                          disabled={phase === 'countdown'}
+                          click={startLaunch}
+                        >
+                          <Icon name="send" />
+                        </Button>
+                      </div>
+                      <p className="hold-hint">
+                        Hold pauses the countdown and freezes the pad. Launch
+                        validates the checklist, counts down, then flies the
+                        rocket.
                       </p>
-                    ) : null}
-                    {phase === 'countdown' && count != null ? (
-                      <p className="countdown" aria-live="assertive">
-                        Liftoff in {count}…
-                      </p>
-                    ) : null}
-                    <div className="launch-checklist__actions row">
-                      <Button
-                        label={phase === 'held' ? 'On hold' : 'Hold'}
-                        styleBtn="outline"
-                        size="small"
-                        classes={`btn-secondary btn-sm ${phase === 'held' ? 'is-held' : ''}`}
-                        click={holdLaunch}
-                      />
-                      <Button
-                        label={phase === 'liftoff' ? 'Liftoff!' : 'Launch'}
-                        styleBtn="solid"
-                        size="small"
-                        classes="btn-primary btn-sm"
-                        loading={phase === 'countdown'}
-                        disabled={phase === 'countdown'}
-                        click={startLaunch}
-                      >
-                        <Icon name="send" />
-                      </Button>
                     </div>
-                    <p className="hold-hint">
-                      Hold pauses the countdown and freezes the pad. Launch
-                      validates the checklist, counts down, then flies the
-                      rocket.
-                    </p>
                   </div>
                 </div>
-              </div>
+              </HeroScene3D>
             </div>
           </section>
         </div>
