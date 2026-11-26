@@ -30,24 +30,32 @@
     padding: 0 12px;
     border-radius: var(--r-field);
     border: 2px solid var(--line-strong);
-    background: var(--field-bg);
+    background-color: var(--field-bg);
+    background-image: var(--rk-surface-sheen);
     color: var(--ink);
     font-size: 14px;
     cursor: text;
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
 
     &::placeholder {
       color: var(--muted);
     }
 
+    &:hover:not(:disabled):not(:focus) {
+      box-shadow: var(--rk-elevation-1), var(--rk-bevel-strong);
+    }
+
     &:focus {
       outline: none;
       border-color: var(--accent-text);
-      box-shadow: 0 0 0 3px var(--focus-ring);
+      box-shadow: var(--rk-elevation-1), var(--rk-bevel), 0 0 0 3px var(--focus-ring);
     }
 
     &:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      box-shadow: var(--rk-bevel);
     }
   }
 
@@ -70,6 +78,30 @@
     .char-num {
       margin-left: auto;
       font-family: var(--font-mono);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input-field input {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .input-field input {
+    background-image: none;
+    box-shadow: none;
+
+    &:hover:not(:disabled):not(:focus),
+    &:focus,
+    &:disabled {
+      box-shadow: none;
+    }
+
+    &:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
   }
 }

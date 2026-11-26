@@ -73,7 +73,7 @@ export function TopBar({
       <div className="top-right">
         <button type="button" className="search" onClick={onOpenSearch}>
           <Icon name="search" />
-          <span>Search docs…</span>
+          <span>Search</span>
           <span className="kbd" aria-hidden="true">
             ⌘K
           </span>

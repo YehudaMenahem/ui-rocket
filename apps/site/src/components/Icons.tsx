@@ -1,3 +1,8 @@
+import logoRocket64Avif from '../assets/brand/logo-rocket-64.avif';
+import logoRocket128Avif from '../assets/brand/logo-rocket-128.avif';
+import logoRocket64Webp from '../assets/brand/logo-rocket-64.webp';
+import logoRocket128Webp from '../assets/brand/logo-rocket-128.webp';
+
 const PATHS: Record<string, string> = {
   search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
   sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
@@ -48,40 +53,28 @@ export function Icon({
   );
 }
 
+/** Small 3D clay rocket mark for the site wordmark (decorative; pair with visible text). */
 export function RocketMark({ className = 'mark' }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 32 32" aria-hidden="true">
-      <circle
-        cx="16"
-        cy="16"
-        r="14.5"
-        fill="#E7A33B"
-        stroke="#1E2A47"
-        strokeWidth="2"
+    <picture className={className}>
+      <source
+        type="image/avif"
+        srcSet={`${logoRocket64Avif} 1x, ${logoRocket128Avif} 2x`}
       />
-      <path
-        d="M16 5.5c3.6 3 4.6 7.4 4 12h-8c-.6-4.6.4-9 4-12z"
-        fill="#FDF1E2"
-        stroke="#1E2A47"
-        strokeWidth="1.8"
-        strokeLinejoin="round"
+      <source
+        type="image/webp"
+        srcSet={`${logoRocket64Webp} 1x, ${logoRocket128Webp} 2x`}
       />
-      <circle
-        cx="16"
-        cy="12.5"
-        r="1.9"
-        fill="#C4471D"
-        stroke="#1E2A47"
-        strokeWidth="1.2"
+      <img
+        src={logoRocket64Webp}
+        srcSet={`${logoRocket64Webp} 1x, ${logoRocket128Webp} 2x`}
+        width={32}
+        height={32}
+        alt=""
+        decoding="async"
+        draggable={false}
+        aria-hidden="true"
       />
-      <path
-        d="M12.2 15.5l-2.6 4.2h2.9M19.8 15.5l2.6 4.2h-2.9"
-        fill="#C4471D"
-        stroke="#1E2A47"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path d="M14.2 18.6h3.6L16 23z" fill="#C4471D" />
-    </svg>
+    </picture>
   );
 }
