@@ -117,7 +117,11 @@ export const PHOTOS = SCREENSHOTS;
 export const DEFAULT_SIZES =
   '(max-width: 640px) 180px, (max-width: 1100px) 70vw, 640px';
 
-/** Playground / hero frame: min(100%, 420px). */
+/**
+ * Playground / hero frame: min(calc(100% - 56px), 420px) — 28px side inset
+ * matching .ex .canvas. Mobile sizes stay at 180px so LH still picks the
+ * 320w master under ~1.75 DPR (180×1.75 ≈ 315).
+ */
 export const HERO_SIZES = '(max-width: 640px) 180px, 420px';
 
 /** Wide demo frames: min(100%, 560px). */
