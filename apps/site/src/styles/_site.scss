@@ -76,6 +76,13 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
 .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
 .ctas .btn-primary,.ctas .button.solid{background:var(--accent);color:var(--accent-ink)}
 .ctas .btn-secondary,.ctas .button.outline{background:var(--hero-cream,#f6ead9);color:var(--ink);border-color:var(--line-strong)}
+/* Install row is a second .ctas; keep primary CTA pair from stretching on narrow widths */
+.hero .copy > .ctas:first-of-type{flex-direction:row}
+@media (max-width:760px){
+  .hero .copy > .ctas:first-of-type{flex-direction:column;align-items:stretch;width:100%}
+  .hero .copy > .ctas:first-of-type .btn,
+  .hero .copy > .ctas:first-of-type .button{flex:none;width:100%;max-width:100%}
+}
 .install{display:inline-flex;align-items:center;gap:var(--space-3);height:44px;padding:0 var(--space-2) 0 var(--space-4);border-radius:var(--r-btn);border:1px dashed var(--line-strong);background:var(--field-bg);font-family:var(--font-mono);font-size:13.5px;color:var(--ink);line-height:1}
 .install .pr{color:var(--accent-text)}
 .install .cp{width:30px;height:30px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;gap:0;padding:0;flex:none;background:var(--nav-on);color:var(--muted);line-height:0}
@@ -87,33 +94,41 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
 .collage{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start;max-width:100%}
 .collage .stack{display:flex;flex-direction:column;gap:16px}
 
-/* Immersive 3D hero layers (pre-rendered AVIF/WebP + CSS parallax) */
+/* Immersive 3D hero layers (pre-rendered AVIF/WebP + CSS parallax)
+   Composition (desktop): sun ~45% of stage; rocket ~58% of sun height in
+   front of sun's lower-left; moon clear at top-right; clouds frame sun base.
+   All layers stay inside the stage with margins — no edge clipping. */
 .hero-scene{
   --tilt-x:0deg;
   --tilt-y:0deg;
+  --scene-pad:4%;
   position:relative;
   width:100%;
-  min-height:620px;
+  min-height:560px;
   perspective:1200px;
   transform-style:preserve-3d;
+  overflow:visible;
 }
 .hero-scene__depth{
   position:absolute;
-  inset:-18px -36px -24px -24px;
+  inset:0;
   z-index:1;
   transform-style:preserve-3d;
   transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transition:transform .35s ease;
   will-change:transform;
   pointer-events:none;
+  overflow:visible;
 }
 .hero-scene__overlay{
   position:absolute;
-  z-index:5;
+  z-index:8;
   left:0;
-  bottom:8px;
-  width:min(310px,92%);
+  bottom:0;
+  width:min(240px,40%);
   pointer-events:auto;
+  transform:scale(0.92);
+  transform-origin:bottom left;
 }
 .hero-layer{
   position:absolute;
@@ -122,7 +137,8 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   transform:translate3d(0,0,0);
   will-change:transform;
 }
-.hero-layer img{
+.hero-layer img,
+.hero-layer picture{
   display:block;
   width:100%;
   height:auto;
@@ -130,58 +146,67 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   user-select:none;
   -webkit-user-drag:none;
 }
+/* Sun: dominant orb, inset from right/top so moon has clear air */
 .hero-layer--sun{
   z-index:1;
-  right:2%;
-  top:4%;
-  width:min(520px,92%);
-  --parallax-y:18px;
+  width:45%;
+  right:14%;
+  top:12%;
+  --parallax-y:14px;
 }
+/* Stars over the sun face for cream-on-cream contrast */
 .hero-layer--stars{
   z-index:2;
-  right:10%;
-  top:10%;
-  width:min(240px,46%);
-  filter:drop-shadow(0 1px 0 rgba(30,42,71,.35)) drop-shadow(0 0 1px rgba(30,42,71,.25));
-  --parallax-y:28px;
+  width:28%;
+  right:20%;
+  top:18%;
+  filter:drop-shadow(0 1px 0 rgba(30,42,71,.4)) drop-shadow(0 0 1.5px rgba(30,42,71,.3));
+  --parallax-y:22px;
 }
+/* Moon fully outside the sun's top-right edge */
 .hero-layer--moon{
   z-index:3;
-  right:4%;
-  top:0;
-  width:min(140px,26%);
-  --parallax-y:36px;
+  width:14%;
+  right:3%;
+  top:4%;
+  --parallax-y:30px;
 }
+/* Clouds frame the sun base; navy drop-shadow so cream reads on cream */
 .hero-layer--cloud-b{
   z-index:4;
+  width:34%;
   left:8%;
-  bottom:18%;
-  width:min(320px,62%);
-  --parallax-y:12px;
+  bottom:28%;
+  filter:drop-shadow(0 2px 3px rgba(30,42,71,.18)) drop-shadow(0 0 1px rgba(30,42,71,.2));
+  --parallax-y:10px;
 }
 .hero-layer--cloud-a{
   z-index:5;
-  right:18%;
-  bottom:10%;
-  width:min(240px,48%);
-  --parallax-y:20px;
+  width:26%;
+  right:10%;
+  bottom:22%;
+  filter:drop-shadow(0 2px 3px rgba(30,42,71,.18)) drop-shadow(0 0 1px rgba(30,42,71,.2));
+  --parallax-y:16px;
 }
 .hero-layer--cloud-c{
   z-index:6;
-  left:28%;
-  bottom:6%;
-  width:min(200px,40%);
-  --parallax-y:26px;
+  width:20%;
+  left:36%;
+  bottom:18%;
+  filter:drop-shadow(0 2px 3px rgba(30,42,71,.18)) drop-shadow(0 0 1px rgba(30,42,71,.2));
+  --parallax-y:20px;
 }
+/* Rocket height ≈ 58% of sun: width ≈ 0.58 × 45% × (360/599) ≈ 16% of stage.
+   Slightly larger so the porthole clears the scaled checklist card. */
 .hero-layer--rocket{
   z-index:7;
-  left:34%;
-  top:2%;
-  width:min(360px,68%);
-  --parallax-y:8px;
+  width:20%;
+  left:26%;
+  top:14%;
+  --parallax-y:6px;
   animation:hero-rocket-float 5.5s ease-in-out infinite;
 }
-.hero-layer--rocket img{transform:rotate(12deg);transform-origin:center 60%}
+.hero-layer--rocket img{transform:rotate(14deg);transform-origin:center 55%}
 .hero-scene.is-launching .hero-layer--rocket{
   animation:hero-rocket-liftoff 1.5s ease forwards;
 }
@@ -354,7 +379,7 @@ footer.foot nav{display:flex;gap:22px}
  .hero{grid-template-columns:1fr;padding:40px 20px 40px;gap:36px}
  .hero h1{font-size:var(--h1-m,42px)}
  .hero .lede{font-size:16px}
- .ctas .btn{flex:1}
+ /* Primary CTAs stack full-width (see .hero .copy > .ctas:first-of-type) */
  .install{width:100%;justify-content:space-between;font-size:12.5px}
  .stats{gap:18px}
  .stats b{font-size:18px}
@@ -420,10 +445,10 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .install .cp{border-radius:50%;background:var(--nav-on);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
 .stats{border-top:2px solid var(--line-strong);color:var(--muted)}
 .stats b{font-size:26px;color:var(--ink)}
-.stage{min-height:620px;overflow:visible}
-.hero-scene{min-height:620px}
+.stage{min-height:560px;overflow:visible}
+.hero-scene{min-height:560px}
 .collage{position:relative;z-index:2;left:0;bottom:0;width:100%;display:block}
-.collage .card.launch{transform:rotate(-2.5deg)}
+.collage .card.launch{transform:rotate(-2deg)}
 .stamp{position:absolute;z-index:3;right:12px;bottom:24px;width:120px;height:120px}
 .ticker{background:var(--navy);color:var(--code-ink);border-top:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong);overflow:hidden;white-space:nowrap;font-family:var(--font-display);font-weight:800;font-size:28px;padding:14px 0}
 .card-kicker{font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--ink)}
@@ -556,32 +581,36 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero{grid-template-columns:1fr;gap:28px;padding:56px 28px 48px}
   .stage{min-height:0;height:auto;overflow:visible;padding-bottom:0}
   .hero-scene{
-    min-height:560px;
+    min-height:0;
     height:auto;
-    aspect-ratio:auto;
     width:100%;
-    padding-bottom:0;
+    max-width:560px;
+    margin:0 auto;
   }
   .hero-scene__depth{
     position:relative;
     inset:auto;
-    height:480px;
-    margin:0 -12px;
+    height:420px;
+    width:100%;
+    margin:0;
   }
   .hero-scene__overlay{
     position:relative;
     left:auto;
     bottom:auto;
-    width:min(360px,92%);
-    margin:-120px auto 0;
-    transform:none;
+    width:min(280px,84%);
+    margin:-88px auto 0;
+    transform:scale(0.94);
+    transform-origin:top center;
   }
-  .hero-layer--rocket{left:28%;top:2%;width:min(300px,54%)}
-  .hero-layer--sun{right:2%;top:4%;width:min(420px,78%)}
-  .hero-layer--moon{right:6%;top:2%;width:min(120px,20%)}
-  .hero-layer--stars{right:12%;top:12%}
-  .hero-layer--cloud-a,.hero-layer--cloud-b,.hero-layer--cloud-c{bottom:8%}
-  .collage{position:relative;left:0;bottom:0;width:100%;max-width:360px;margin:0}
+  .hero-layer--sun{width:48%;right:16%;top:10%}
+  .hero-layer--moon{width:15%;right:4%;top:4%}
+  .hero-layer--stars{width:30%;right:22%;top:16%}
+  .hero-layer--rocket{width:20%;left:28%;top:12%}
+  .hero-layer--cloud-b{width:36%;left:6%;bottom:26%}
+  .hero-layer--cloud-a{width:28%;right:8%;bottom:20%}
+  .hero-layer--cloud-c{width:22%;left:34%;bottom:16%}
+  .collage{position:relative;left:0;bottom:0;width:100%;max-width:280px;margin:0 auto}
   .collage .card.launch{transform:none}
   .stamp{right:8px;bottom:auto;top:8px;width:96px;height:96px}
 }
@@ -593,15 +622,20 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero h1{font-size:42px;margin:14px 0 14px}
   .hero .lede{font-size:16px;margin-bottom:0}
   .ctas{margin-top:20px;width:100%}
-  .ctas .btn,.ctas .button{flex:1;min-width:0}
+  /* Do not flex:1 the primary CTA pair — stacked full-width above */
+  .ctas .btn,.ctas .button{min-width:0}
   .stage{min-height:0;height:auto;margin-top:8px;overflow:visible}
-  .hero-scene{min-height:0}
-  .hero-scene__depth{height:360px;margin:0 -8px}
-  .hero-scene__overlay{width:auto;margin:-88px 0 0;padding:0 4px}
-  .hero-layer--rocket{left:24%;top:0;width:56%}
-  .hero-layer--sun{right:-2%;top:6%;width:82%}
-  .hero-layer--moon{right:2%;top:2%;width:22%}
-  .collage{position:relative;left:0;bottom:0;width:auto;margin:0}
+  .hero-scene{min-height:0;max-width:100%}
+  .hero-scene__depth{height:280px;margin:0}
+  .hero-scene__overlay{width:auto;max-width:100%;margin:-64px 0 0;padding:0;transform:none}
+  .hero-layer--sun{width:50%;right:16%;top:8%}
+  .hero-layer--moon{width:15%;right:4%;top:3%}
+  .hero-layer--stars{width:30%;right:20%;top:14%}
+  .hero-layer--rocket{width:22%;left:26%;top:10%}
+  .hero-layer--cloud-b{width:36%;left:5%;bottom:22%}
+  .hero-layer--cloud-a{width:28%;right:8%;bottom:16%}
+  .hero-layer--cloud-c{width:22%;left:34%;bottom:12%}
+  .collage{position:relative;left:0;bottom:0;width:auto;max-width:none;margin:0}
   .collage .card.launch{transform:none}
   .launch-checklist{gap:var(--space-3)}
   .launch-checklist__stack{gap:var(--space-3)}
