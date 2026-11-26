@@ -257,9 +257,7 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                 pnpm add @ui-rocket/rocket
               </span>
               <span className="cp" aria-hidden="true">
-                <Icon
-                  name={copied ? 'check' : copyFailed ? 'close' : 'copy'}
-                />
+                <Icon name={copied ? 'check' : copyFailed ? 'close' : 'copy'} />
               </span>
               <span className="sr-only">Copy install command</span>
               <span className="sr-only" aria-live="polite">
