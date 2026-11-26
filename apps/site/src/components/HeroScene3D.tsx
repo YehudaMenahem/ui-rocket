@@ -103,12 +103,11 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
       scene.style.setProperty('--tilt-y', `${tx * 4}deg`);
     };
 
-    const onMove = (event: Event) => {
-      const pointer = event as globalThis.PointerEvent;
+    const onMove = (event: { clientX: number; clientY: number }) => {
       const rect = scene.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) return;
-      tx = (pointer.clientX - rect.left) / rect.width - 0.5;
-      ty = (pointer.clientY - rect.top) / rect.height - 0.5;
+      tx = (event.clientX - rect.left) / rect.width - 0.5;
+      ty = (event.clientY - rect.top) / rect.height - 0.5;
       if (!raf) raf = window.requestAnimationFrame(apply);
     };
 
