@@ -197,42 +197,39 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   backface-visibility:hidden;
   -webkit-font-smoothing:antialiased;
 }
-/* Big fluffy cloud parked on the clay card's top-left / top-center */
+/* One fluffy cloud above the slab — bottom lip kisses top-left, never covers text */
 .hero-scene__card-cloud{
   position:absolute;
   z-index:3;
-  left:-18%;
-  width:88%;
-  bottom:calc(100% - 14px);
+  left:-4%;
+  width:80%;
+  /* Kiss the slab top edge only — keep lobes clear of the title */
+  bottom:calc(100% - 4px);
   pointer-events:none;
   line-height:0;
+  overflow:visible;
 }
-.hero-layer--cloud-card{
+/* Override .hero-layer { position:absolute } so the picture sizes the cloud box */
+.hero-layer.hero-layer--cloud-card{
   position:relative;
+  display:block;
   width:100%;
+  height:auto;
   margin:0;
+  inset:auto;
   z-index:2;
+  transform:none;
 }
-.hero-scene__cloud-cast{
-  position:absolute;
-  z-index:1;
-  left:22%;
-  right:8%;
-  bottom:-14px;
-  height:36px;
-  border-radius:50%;
-  background:radial-gradient(
-    ellipse 65% 55% at 40% 30%,
-    rgba(100,65,35,.28) 0%,
-    rgba(100,65,35,.12) 42%,
-    transparent 72%
-  );
-  pointer-events:none;
+.hero-layer.hero-layer--cloud-card img,
+.hero-layer.hero-layer--cloud-card picture{
+  width:100%;
+  height:auto;
+  display:block;
 }
 .hero-sparkle--card{
   top:auto;
-  bottom:78%;
-  left:48%;
+  bottom:72%;
+  left:58%;
   width:13px;
   height:13px;
   z-index:4;
@@ -616,36 +613,61 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .stage{min-height:520px;overflow:visible;padding-bottom:0}
 .hero-scene{min-height:520px}
 .collage{position:relative;z-index:1;left:0;bottom:0;width:100%;min-width:0;display:block}
-/* Thick soft clay slab — site-scoped (not promoted to library _surfaces; keeps #34 tactile hard-edge surfaces intact + size budget) */
+/* Thick opaque clay slab — site-scoped (not library _surfaces; keeps #34 tactile + size budget) */
 .collage .card.launch{
-  --clay-face:#f7efe4;
+  --clay-face:#f8f1e6;
+  --clay-face-top:#fff8ee;
   --clay-face-bottom:#efe4d4;
-  --clay-edge:#e6d6c2;
-  --clay-edge-deep:#d4c2a8;
-  /* Tilt lives on .hero-scene__card-tilt — keep the slab face crisp */
+  --clay-edge:#e0d0ba;
+  --clay-edge-deep:#d0bea4;
+  --clay-outline:rgba(150,110,70,.22);
+  position:relative;
+  z-index:1;
+  isolation:isolate;
   transform:translateZ(0);
   backface-visibility:hidden;
   width:100%;
   min-width:0;
   box-sizing:border-box;
-  padding:18px 16px 18px;
-  border:0;
+  padding:20px 16px 18px;
+  border:1px solid var(--clay-outline);
   border-radius:24px;
+  /* Solid opaque face — no backdrop-filter / no translucent washes */
   background-color:var(--clay-face);
-  background-image:
-    linear-gradient(180deg, rgba(255,255,255,.78) 0%, transparent 36%),
-    linear-gradient(180deg, #fffaf4 0%, var(--clay-face) 46%, var(--clay-face-bottom) 100%);
-  /* ~8–10px extruded thickness: bottom + left/bottom-left */
+  background-image:linear-gradient(180deg, var(--clay-face-top) 0%, var(--clay-face) 42%, var(--clay-face-bottom) 100%);
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  opacity:1;
+  /* Soft cloud cast onto the top strip (behind text via ::before) */
+  /* ~8–10px extruded thickness: bottom + right */
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.95),
-    inset 0 -4px 8px rgba(150,110,70,.14),
-    -6px 7px 0 var(--clay-edge),
+    inset 0 1.5px 0 rgba(255,255,255,.95),
+    inset 0 -3px 5px rgba(150,110,70,.1),
+    6px 7px 0 var(--clay-edge),
     0 8px 0 var(--clay-edge),
-    -8px 9px 0 var(--clay-edge-deep),
+    8px 9px 0 var(--clay-edge-deep),
     0 10px 0 var(--clay-edge-deep),
     0 16px 26px -8px rgba(140,90,50,.2),
     0 6px 12px rgba(140,90,50,.1);
 }
+.collage .card.launch::before{
+  content:'';
+  position:absolute;
+  z-index:0;
+  left:6%;
+  right:28%;
+  top:-2px;
+  height:44px;
+  border-radius:50%;
+  background:radial-gradient(
+    ellipse 70% 60% at 40% 0%,
+    rgba(100,65,35,.22) 0%,
+    rgba(100,65,35,.1) 45%,
+    transparent 72%
+  );
+  pointer-events:none;
+}
+.collage .card.launch > *{position:relative;z-index:1}
 .hero-scene__overlay .launch-checklist{gap:var(--space-3)}
 .hero-scene__overlay .launch-checklist__stack{gap:var(--space-3)}
 .hero-scene__overlay .launch-checklist__head{
@@ -684,12 +706,14 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .hero-scene__overlay .input,
 .hero-scene__overlay .input-field .input,
 .hero-scene__overlay input{
-  border:1px solid rgba(160,120,80,.14);
+  border:1.5px solid rgba(160,120,80,.2);
   border-radius:12px;
-  background:#fbf7f0;
+  background:#f3ebe0;
   box-shadow:
-    inset 2px 3px 5px rgba(120,80,40,.16),
-    inset -1px -1px 0 rgba(255,255,255,.65);
+    inset 0 3px 5px rgba(120,80,40,.18),
+    inset 0 1px 0 rgba(100,70,40,.1),
+    0 1px 0 rgba(255,255,255,.75),
+    0 0 0 1px rgba(255,255,255,.35);
 }
 .hero-scene__overlay .hint,
 .hero-scene__overlay .char-num{display:none}
@@ -699,43 +723,66 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
   font-weight:600;
   font-size:12.5px;
 }
-.hero-scene__overlay .box{
-  width:18px;
-  height:18px;
-  border:0;
-  border-radius:6px;
-  background:linear-gradient(180deg, #f3e9db 0%, #e6d8c4 100%);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.75),
-    0 2px 0 #d4c2a8,
-    0 3px 5px rgba(120,70,40,.16);
+.hero-scene__overlay .checkbox .control{
+  width:15px;
+  height:15px;
+  flex:none;
 }
-.hero-scene__overlay .box.on{
-  background:linear-gradient(180deg, #e87445 0%, var(--hero-terracotta,#c8572e) 100%);
+.hero-scene__overlay .checkbox .indicator{
+  width:15px;
+  height:15px;
   border:0;
+  border-radius:5px;
+  background-color:transparent;
+  background-image:linear-gradient(180deg, #f6eee3 0%, #e8dcc8 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.8),
+    0 2px 0 #d0bea4,
+    0 3px 5px rgba(120,70,40,.18);
+}
+.hero-scene__overlay .checkbox input[type='checkbox']:checked + .indicator{
+  border:0;
+  background-color:transparent;
+  background-image:linear-gradient(180deg, #ea7d50 0%, var(--hero-terracotta,#c8572e) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.45),
-    0 3px 0 #a8431f,
-    0 5px 8px rgba(200,87,46,.3);
-  color:#fff;
+    0 2px 0 #a8431f,
+    0 4px 7px rgba(200,87,46,.28);
+}
+.hero-scene__overlay .checkbox .indicator svg{
+  width:10px;
+  height:10px;
+}
+.hero-scene__overlay .checkbox input[type='checkbox']:checked + .indicator svg{
+  opacity:1;
+  transform:scale(1);
+  fill:#fff;
+}
+.hero-scene__overlay .checkbox input[type='checkbox']:checked + .indicator svg path{
+  fill:#fff;
 }
 .hero-scene__overlay .launch-checklist__actions{
   justify-content:center;
   margin-top:8px;
 }
 .hero-scene__overlay .launch-checklist__actions .btn,
-.hero-scene__overlay .launch-checklist__actions .button{
-  width:100%;
+.hero-scene__overlay .launch-checklist__actions .button,
+.hero-scene__overlay .launch-checklist__actions button{
+  width:60%;
+  min-width:0;
+  max-width:60%;
+  margin-inline:auto;
+  justify-content:center;
   border:0;
   border-radius:999px;
-  height:40px;
+  height:38px;
   font-weight:700;
   background:linear-gradient(180deg, #ea7d50 0%, var(--hero-terracotta,#c8572e) 52%, #b44722 100%);
   color:#fff;
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.45),
     0 5px 0 #a8431f,
-    0 14px 24px rgba(200,87,46,.36);
+    0 12px 20px rgba(200,87,46,.32);
   transition:transform .14s ease, box-shadow .14s ease;
 }
 .hero-scene__overlay .launch-checklist__actions .btn:hover,
@@ -910,20 +957,31 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
 }
 :root[data-theme='dark'] .collage .card.launch{
   --clay-face:#243049;
+  --clay-face-top:#2a3852;
   --clay-face-bottom:#1a2438;
   --clay-edge:#152033;
   --clay-edge-deep:#0f1828;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08) 0%, transparent 40%),
-    linear-gradient(180deg, #2a3852 0%, var(--clay-face) 48%, var(--clay-face-bottom) 100%);
-  border:0;
+  --clay-outline:rgba(0,0,0,.35);
+  background-color:var(--clay-face);
+  background-image:linear-gradient(180deg, var(--clay-face-top) 0%, var(--clay-face) 48%, var(--clay-face-bottom) 100%);
+  border-color:var(--clay-outline);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.12),
-    inset 0 -3px 6px rgba(0,0,0,.35),
-    0 7px 0 var(--clay-edge),
-    0 9px 0 var(--clay-edge-deep),
+    inset 0 1.5px 0 rgba(255,255,255,.12),
+    inset 0 -3px 5px rgba(0,0,0,.35),
+    6px 7px 0 var(--clay-edge),
+    0 8px 0 var(--clay-edge),
+    8px 9px 0 var(--clay-edge-deep),
+    0 10px 0 var(--clay-edge-deep),
     0 24px 40px -12px rgba(0,0,0,.5),
     0 10px 18px rgba(0,0,0,.28);
+}
+:root[data-theme='dark'] .collage .card.launch::before{
+  background:radial-gradient(
+    ellipse 70% 60% at 40% 0%,
+    rgba(0,0,0,.4) 0%,
+    rgba(0,0,0,.16) 45%,
+    transparent 72%
+  );
 }
 :root[data-theme='dark'] .hero-scene__overlay .card-kicker{color:var(--ink)}
 :root[data-theme='dark'] .hero-scene__overlay .input,
@@ -932,17 +990,19 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   background:#1a2438;
   border-color:rgba(255,255,255,.08);
   box-shadow:
-    inset 0 2px 4px rgba(0,0,0,.45),
-    inset 0 -1px 0 rgba(255,255,255,.06);
+    inset 0 3px 5px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(0,0,0,.25),
+    0 1px 0 rgba(255,255,255,.06);
 }
-:root[data-theme='dark'] .hero-scene__overlay .box{
-  background:linear-gradient(180deg, #2a3852 0%, #1e2a40 100%);
+:root[data-theme='dark'] .hero-scene__overlay .checkbox .indicator{
+  background-image:linear-gradient(180deg, #2a3852 0%, #1e2a40 100%);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.1),
-    0 2px 4px rgba(0,0,0,.35);
+    0 2px 0 #0f1828,
+    0 3px 5px rgba(0,0,0,.35);
 }
-:root[data-theme='dark'] .hero-scene__cloud-cast{
-  background:radial-gradient(ellipse at center, rgba(0,0,0,.45) 0%, rgba(0,0,0,.18) 45%, transparent 72%);
+:root[data-theme='dark'] .hero-scene__overlay .checkbox input[type='checkbox']:checked + .indicator{
+  background-image:linear-gradient(180deg, #ea7d50 0%, var(--hero-terracotta,#c8572e) 100%);
 }
 :root[data-theme='dark'] .hero-scene__card-contact{
   background:radial-gradient(
@@ -994,7 +1054,7 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
     margin:0;
     transform:none;
   }
-  .hero-scene__card-cloud{width:82%;left:2%;bottom:calc(100% - 10px)}
+  .hero-scene__card-cloud{width:78%;left:-2%;bottom:calc(100% - 4px)}
   .hero-layer--sun{width:72%;right:-2%;top:-4%}
   .hero-layer--moon{width:15%;right:4%;top:0%}
   .hero-layer--rocket{width:40%;left:28%;top:2%}
@@ -1030,7 +1090,7 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   }
   .hero-scene__card-tilt{transform:rotateY(-5deg) rotateX(2deg) translateZ(0)}
   .hero-scene__card-contact{bottom:-20px;height:28px;width:120%;left:-8%}
-  .hero-scene__card-cloud{width:84%;left:0;bottom:calc(100% - 8px)}
+  .hero-scene__card-cloud{width:76%;left:-2%;bottom:calc(100% - 3px)}
   .hero-layer--sun{width:66%;right:-6%;top:2%}
   .hero-layer--moon{width:13%;right:0%;top:4%}
   .hero-layer--rocket{width:50%;left:40%;top:0%}
@@ -1041,13 +1101,15 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
     transform:translateZ(0);
     padding:12px 12px 14px;
     border-radius:18px;
+    background-color:var(--clay-face,#f8f1e6);
+    background-image:linear-gradient(180deg, var(--clay-face-top,#fff8ee) 0%, var(--clay-face,#f8f1e6) 42%, var(--clay-face-bottom,#efe4d4) 100%);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.9),
-      inset 0 -3px 6px rgba(150,110,70,.12),
-      -4px 4px 0 var(--clay-edge,#e6d6c2),
-      0 5px 0 var(--clay-edge,#e6d6c2),
-      -5px 6px 0 var(--clay-edge-deep,#dcc9b0),
-      0 7px 0 var(--clay-edge-deep,#dcc9b0),
+      inset 0 1.5px 0 rgba(255,255,255,.95),
+      inset 0 -3px 5px rgba(150,110,70,.1),
+      4px 5px 0 var(--clay-edge,#e0d0ba),
+      0 6px 0 var(--clay-edge,#e0d0ba),
+      5px 7px 0 var(--clay-edge-deep,#d0bea4),
+      0 8px 0 var(--clay-edge-deep,#d0bea4),
       0 14px 24px -10px rgba(140,90,50,.22),
       0 6px 12px rgba(140,90,50,.1);
   }
@@ -1057,11 +1119,12 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero-scene__overlay .badge{height:18px;padding:0 6px;font-size:9.5px}
   .hero-scene__overlay .launch-checklist__actions .btn,
   .hero-scene__overlay .launch-checklist__actions .button{
+    width:62%;
     height:34px;
-    border-radius:12px;
+    border-radius:999px;
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.4),
-      0 3px 0 #a8431f,
+      0 4px 0 #a8431f,
       0 10px 18px rgba(200,87,46,.3);
   }
   .stamp{right:0;top:0;bottom:auto;width:84px;height:84px}

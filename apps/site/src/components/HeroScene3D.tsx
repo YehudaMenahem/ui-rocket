@@ -16,10 +16,6 @@ import cloudA240Avif from '../assets/hero-3d/cloud-a-240.avif';
 import cloudA480Avif from '../assets/hero-3d/cloud-a-480.avif';
 import cloudA240Webp from '../assets/hero-3d/cloud-a-240.webp';
 import cloudA480Webp from '../assets/hero-3d/cloud-a-480.webp';
-import cloudB320Avif from '../assets/hero-3d/cloud-b-320.avif';
-import cloudB640Avif from '../assets/hero-3d/cloud-b-640.avif';
-import cloudB320Webp from '../assets/hero-3d/cloud-b-320.webp';
-import cloudB640Webp from '../assets/hero-3d/cloud-b-640.webp';
 import cloudC200Avif from '../assets/hero-3d/cloud-c-200.avif';
 import cloudC400Avif from '../assets/hero-3d/cloud-c-400.avif';
 import cloudC200Webp from '../assets/hero-3d/cloud-c-200.webp';
@@ -194,20 +190,19 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
           {/* Flat ground contact ellipse — stays unrotated under the tilted slab */}
           <span className="hero-scene__card-contact" aria-hidden="true" />
           <div className="hero-scene__card-tilt">
-            {/* Fluffy cloud above the clay card — ~80% card width, casts onto the slab */}
+            {/* One fluffy cloud parked above the slab — never over title/text */}
             <div className="hero-scene__card-cloud" aria-hidden="true">
               <span className="hero-sparkle hero-sparkle--card" />
               <LayerPicture
                 className="hero-layer hero-layer--cloud-card"
-                avif1x={cloudB320Avif}
-                avif2x={cloudB640Avif}
-                webp1x={cloudB320Webp}
-                webp2x={cloudB640Webp}
-                width={320}
-                height={84}
-                sizes="(max-width: 760px) 55vw, 200px"
+                avif1x={cloudA240Avif}
+                avif2x={cloudA480Avif}
+                webp1x={cloudA240Webp}
+                webp2x={cloudA480Webp}
+                width={240}
+                height={163}
+                sizes="(max-width: 760px) 48vw, 200px"
               />
-              <span className="hero-scene__cloud-cast" />
             </div>
             {children}
           </div>
