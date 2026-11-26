@@ -57,22 +57,24 @@ function LayerPicture({
   const webpSrcSet = `${webp1x} ${width}w, ${webp2x} ${width * 2}w`;
 
   return (
-    <picture className={className} aria-hidden={priority ? undefined : true}>
-      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
-      <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
-      <img
-        src={webp1x}
-        srcSet={webpSrcSet}
-        sizes={sizes}
-        width={width}
-        height={height}
-        alt={priority ? 'Cream rocket with orange nose and fins' : ''}
-        decoding={priority ? 'sync' : 'async'}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'low'}
-        draggable={false}
-      />
-    </picture>
+    <div className={className} aria-hidden={priority ? undefined : true}>
+      <picture>
+        <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+        <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
+        <img
+          src={webp1x}
+          srcSet={webpSrcSet}
+          sizes={sizes}
+          width={width}
+          height={height}
+          alt={priority ? 'Cream rocket with orange nose and fins' : ''}
+          decoding={priority ? 'sync' : 'async'}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'low'}
+          draggable={false}
+        />
+      </picture>
+    </div>
   );
 }
 
@@ -101,11 +103,12 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
       scene.style.setProperty('--tilt-y', `${tx * 4}deg`);
     };
 
-    const onMove = (event: PointerEvent) => {
+    const onMove = (event: Event) => {
+      const pointer = event as globalThis.PointerEvent;
       const rect = scene.getBoundingClientRect();
       if (rect.width === 0 || rect.height === 0) return;
-      tx = (event.clientX - rect.left) / rect.width - 0.5;
-      ty = (event.clientY - rect.top) / rect.height - 0.5;
+      tx = (pointer.clientX - rect.left) / rect.width - 0.5;
+      ty = (pointer.clientY - rect.top) / rect.height - 0.5;
       if (!raf) raf = window.requestAnimationFrame(apply);
     };
 
