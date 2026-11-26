@@ -2,8 +2,9 @@ export function RetroScene({ launching = false }: { launching?: boolean }) {
   return (
     <svg
       className={`retro ${launching ? 'is-launching' : ''}`}
-      viewBox="0 0 640 600"
+      viewBox="-24 -16 688 652"
       preserveAspectRatio="xMidYMid meet"
+      overflow="visible"
       aria-hidden="true"
     >
       <g
