@@ -104,7 +104,7 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   --scene-pad:4%;
   position:relative;
   width:100%;
-  min-height:560px;
+  min-height:600px;
   perspective:1200px;
   transform-style:preserve-3d;
   overflow:visible;
@@ -125,9 +125,10 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   z-index:8;
   left:0;
   bottom:0;
-  width:min(240px,40%);
+  width:min(220px,38%);
   pointer-events:auto;
-  transform:scale(0.92);
+  /* Checklist is tall — scale so it only kisses the lower-left of the scene */
+  transform:scale(0.68);
   transform-origin:bottom left;
 }
 .hero-layer{
@@ -196,13 +197,12 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   filter:drop-shadow(0 2px 3px rgba(30,42,71,.18)) drop-shadow(0 0 1px rgba(30,42,71,.2));
   --parallax-y:20px;
 }
-/* Rocket height ≈ 58% of sun: width ≈ 0.58 × 45% × (360/599) ≈ 16% of stage.
-   Slightly larger so the porthole clears the scaled checklist card. */
+/* Rocket height ≈ 58–70% of sun; sits over sun lower-left, above the card */
 .hero-layer--rocket{
   z-index:7;
-  width:20%;
-  left:26%;
-  top:14%;
+  width:21%;
+  left:22%;
+  top:6%;
   --parallax-y:6px;
   animation:hero-rocket-float 5.5s ease-in-out infinite;
 }
@@ -445,8 +445,8 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
 .install .cp{border-radius:50%;background:var(--nav-on);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
 .stats{border-top:2px solid var(--line-strong);color:var(--muted)}
 .stats b{font-size:26px;color:var(--ink)}
-.stage{min-height:560px;overflow:visible}
-.hero-scene{min-height:560px}
+.stage{min-height:600px;overflow:visible}
+.hero-scene{min-height:600px}
 .collage{position:relative;z-index:2;left:0;bottom:0;width:100%;display:block}
 .collage .card.launch{transform:rotate(-2deg)}
 .stamp{position:absolute;z-index:3;right:12px;bottom:24px;width:120px;height:120px}
