@@ -162,7 +162,38 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   max-width:44%;
   min-width:0;
   pointer-events:auto;
+  perspective:1200px;
+  perspective-origin:35% 70%;
   transform:none;
+}
+/* Soft contact ellipse on the ground — wider than the card, slightly right */
+.hero-scene__card-contact{
+  position:absolute;
+  z-index:0;
+  left:-12%;
+  width:128%;
+  bottom:-26px;
+  height:34px;
+  border-radius:50%;
+  background:radial-gradient(
+    ellipse 70% 55% at 55% 45%,
+    rgba(140,90,50,.34) 0%,
+    rgba(140,90,50,.16) 38%,
+    rgba(140,90,50,.05) 62%,
+    transparent 78%
+  );
+  pointer-events:none;
+  transform:translateZ(0);
+}
+/* Static 3D tilt: right edge recedes toward the rocket, bottom comes forward */
+.hero-scene__card-tilt{
+  position:relative;
+  z-index:1;
+  transform:rotateY(-10deg) rotateX(3.5deg) translateZ(0);
+  transform-origin:50% 90%;
+  transform-style:preserve-3d;
+  backface-visibility:hidden;
+  -webkit-font-smoothing:antialiased;
 }
 /* Big fluffy cloud parked on the clay card's top-left / top-center */
 .hero-scene__card-cloud{
@@ -323,6 +354,8 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
     animation:none !important;
   }
   .hero-sparkle{opacity:.85}
+  /* Keep the static card perspective tilt; only animated motion is off */
+  .hero-scene__card-tilt{transition:none}
 }
 /* sections */
 .section{max-width:1280px;margin:0 auto;padding:88px 40px}
@@ -581,7 +614,9 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
   --clay-face-bottom:#efe4d4;
   --clay-edge:#e6d6c2;
   --clay-edge-deep:#dcc9b0;
-  transform:none;
+  /* Tilt lives on .hero-scene__card-tilt — keep the slab face crisp */
+  transform:translateZ(0);
+  backface-visibility:hidden;
   width:100%;
   min-width:0;
   box-sizing:border-box;
@@ -592,13 +627,16 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
   background-image:
     linear-gradient(180deg, rgba(255,255,255,.72) 0%, transparent 38%),
     linear-gradient(180deg, #fffaf3 0%, var(--clay-face) 48%, var(--clay-face-bottom) 100%);
+  /* Thickness on bottom + left/bottom-left edge */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.92),
     inset 0 -3px 6px rgba(150,110,70,.12),
+    -5px 6px 0 var(--clay-edge),
     0 7px 0 var(--clay-edge),
+    -6px 8px 0 var(--clay-edge-deep),
     0 9px 0 var(--clay-edge-deep),
-    0 24px 40px -12px rgba(140,90,50,.25),
-    0 10px 18px rgba(140,90,50,.12);
+    0 18px 28px -10px rgba(140,90,50,.22),
+    0 8px 14px rgba(140,90,50,.1);
 }
 .hero-scene__overlay .launch-checklist{gap:var(--space-3)}
 .hero-scene__overlay .launch-checklist__stack{gap:var(--space-3)}
@@ -897,6 +935,15 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
 :root[data-theme='dark'] .hero-scene__cloud-cast{
   background:radial-gradient(ellipse at center, rgba(0,0,0,.45) 0%, rgba(0,0,0,.18) 45%, transparent 72%);
 }
+:root[data-theme='dark'] .hero-scene__card-contact{
+  background:radial-gradient(
+    ellipse 70% 55% at 55% 45%,
+    rgba(0,0,0,.5) 0%,
+    rgba(0,0,0,.22) 38%,
+    rgba(0,0,0,.06) 62%,
+    transparent 78%
+  );
+}
 :root[data-theme='dark'] .hero .ctas .btn-secondary,
 :root[data-theme='dark'] .hero .ctas .button.outline{
   background:color-mix(in srgb, var(--surface) 90%, #000);
@@ -946,7 +993,9 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero-layer--cloud-c{width:18%;right:0%;top:40%}
   .hero-below{padding:8px 28px 32px}
   .collage{position:relative;left:0;bottom:0;width:100%;max-width:none;margin:0}
-  .collage .card.launch{transform:none;border-radius:20px}
+  .hero-scene__card-tilt{transform:rotateY(-8deg) rotateX(3deg) translateZ(0)}
+  .collage .card.launch{border-radius:20px}
+  .hero-scene__card-contact{bottom:-24px;height:32px;width:124%;left:-10%}
   .stamp{right:8px;bottom:auto;top:8px;width:96px;height:96px}
 }
 
@@ -968,7 +1017,10 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
     bottom:2%;
     width:200px;
     max-width:58%;
+    perspective:900px;
   }
+  .hero-scene__card-tilt{transform:rotateY(-5deg) rotateX(2deg) translateZ(0)}
+  .hero-scene__card-contact{bottom:-20px;height:28px;width:120%;left:-8%}
   .hero-scene__card-cloud{width:84%;left:0;bottom:calc(100% - 8px)}
   .hero-layer--sun{width:66%;right:-6%;top:2%}
   .hero-layer--moon{width:13%;right:0%;top:4%}
@@ -977,16 +1029,18 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero-layer--cloud-c{width:16%;right:-2%;top:34%}
   .collage{position:relative;left:0;bottom:0;width:auto;max-width:none;margin:0}
   .collage .card.launch{
-    transform:none;
+    transform:translateZ(0);
     padding:12px 12px 14px;
     border-radius:18px;
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,.9),
       inset 0 -3px 6px rgba(150,110,70,.12),
+      -4px 4px 0 var(--clay-edge,#e6d6c2),
       0 5px 0 var(--clay-edge,#e6d6c2),
+      -5px 6px 0 var(--clay-edge-deep,#dcc9b0),
       0 7px 0 var(--clay-edge-deep,#dcc9b0),
-      0 18px 32px -10px rgba(140,90,50,.24),
-      0 8px 14px rgba(140,90,50,.1);
+      0 14px 24px -10px rgba(140,90,50,.22),
+      0 6px 12px rgba(140,90,50,.1);
   }
   .hero-scene__overlay .launch-checklist{gap:10px}
   .hero-scene__overlay .launch-checklist__stack{gap:10px}

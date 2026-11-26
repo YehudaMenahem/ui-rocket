@@ -191,22 +191,26 @@ export function HeroScene3D({ launching = false, children }: HeroScene3DProps) {
       <div className="hero-scene__ground" aria-hidden="true" />
       {children ? (
         <div className="hero-scene__overlay">
-          {/* Fluffy cloud above the clay card — ~80% card width, casts onto the slab */}
-          <div className="hero-scene__card-cloud" aria-hidden="true">
-            <span className="hero-sparkle hero-sparkle--card" />
-            <LayerPicture
-              className="hero-layer hero-layer--cloud-card"
-              avif1x={cloudB320Avif}
-              avif2x={cloudB640Avif}
-              webp1x={cloudB320Webp}
-              webp2x={cloudB640Webp}
-              width={320}
-              height={84}
-              sizes="(max-width: 760px) 55vw, 200px"
-            />
-            <span className="hero-scene__cloud-cast" />
+          {/* Flat ground contact ellipse — stays unrotated under the tilted slab */}
+          <span className="hero-scene__card-contact" aria-hidden="true" />
+          <div className="hero-scene__card-tilt">
+            {/* Fluffy cloud above the clay card — ~80% card width, casts onto the slab */}
+            <div className="hero-scene__card-cloud" aria-hidden="true">
+              <span className="hero-sparkle hero-sparkle--card" />
+              <LayerPicture
+                className="hero-layer hero-layer--cloud-card"
+                avif1x={cloudB320Avif}
+                avif2x={cloudB640Avif}
+                webp1x={cloudB320Webp}
+                webp2x={cloudB640Webp}
+                width={320}
+                height={84}
+                sizes="(max-width: 760px) 55vw, 200px"
+              />
+              <span className="hero-scene__cloud-cast" />
+            </div>
+            {children}
           </div>
-          {children}
         </div>
       ) : null}
     </div>
