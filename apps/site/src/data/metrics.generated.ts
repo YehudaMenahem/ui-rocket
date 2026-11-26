@@ -2,14 +2,14 @@
 // Run: node apps/site/scripts/generate-metrics.mjs (also via Vite plugin / prebuild)
 
 export const METRICS = {
-  generatedAt: "2026-11-19T10:33:21.613Z",
+  generatedAt: "2026-11-26T11:59:09.303Z",
   componentCount: 13,
   exportNames: ["Button","Checkbox","Form","Icon","Img","InputField","Modal","RadioButton","SelectField","Tabs","Textbox","Toaster","ToggleButton"] as const,
   totalTests: 15,
-  bundleGzipBytes: 17010,
-  bundleGzipLabel: "16.6 kB gzip",
-  jsGzipBytes: 11303,
-  cssGzipBytes: 5707,
+  bundleGzipBytes: 17994,
+  bundleGzipLabel: "17.6 kB gzip",
+  jsGzipBytes: 11363,
+  cssGzipBytes: 6631,
   typedPct: 100,
   license: 'MIT',
   perComponent: {

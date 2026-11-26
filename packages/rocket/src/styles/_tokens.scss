@@ -49,10 +49,34 @@
   --r-check: 5px;
   --r-swatch: 50%;
 
-  --shadow-sm: 3px 3px 0 #1e2a47;
-  --shadow-md: 5px 5px 0 #1e2a47;
-  --shadow-lg: 7px 7px 0 #1e2a47;
-  --btn-shadow: 3px 3px 0 #1e2a47;
+  /* Tactile 3D surface tokens — soft contact shadows + bevel highlights */
+  --rk-elev-ink: 30, 42, 71;
+  --rk-elev-hi: 255, 255, 255;
+  --rk-elevation-1: 0 1px 2px rgba(var(--rk-elev-ink), 0.07),
+    0 3px 8px rgba(var(--rk-elev-ink), 0.08);
+  --rk-elevation-2: 0 2px 4px rgba(var(--rk-elev-ink), 0.08),
+    0 6px 14px rgba(var(--rk-elev-ink), 0.1);
+  --rk-elevation-3: 0 3px 6px rgba(var(--rk-elev-ink), 0.1),
+    0 10px 22px rgba(var(--rk-elev-ink), 0.12);
+  --rk-elevation-press: 0 1px 2px rgba(var(--rk-elev-ink), 0.12);
+  --rk-elevation-hover: 0 3px 6px rgba(var(--rk-elev-ink), 0.1),
+    0 8px 18px rgba(var(--rk-elev-ink), 0.12);
+  --rk-bevel: inset 0 1px 0 rgba(var(--rk-elev-hi), 0.55),
+    inset 0 -1px 0 rgba(var(--rk-elev-ink), 0.12);
+  --rk-bevel-strong: inset 0 1.5px 0 rgba(var(--rk-elev-hi), 0.65),
+    inset 0 -1.5px 0 rgba(var(--rk-elev-ink), 0.16);
+  --rk-bevel-press: inset 0 2px 3px rgba(var(--rk-elev-ink), 0.16),
+    inset 0 -1px 0 rgba(var(--rk-elev-hi), 0.2);
+  --rk-surface-sheen: linear-gradient(
+    180deg,
+    rgba(var(--rk-elev-hi), 0.32) 0%,
+    rgba(var(--rk-elev-hi), 0) 46%
+  );
+
+  --shadow-sm: var(--rk-elevation-1);
+  --shadow-md: var(--rk-elevation-2);
+  --shadow-lg: var(--rk-elevation-3);
+  --btn-shadow: var(--rk-elevation-1), var(--rk-bevel);
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
@@ -124,10 +148,33 @@
   --pill-bg: #fdf3e6;
   --pill-ink: #1e2a47;
 
-  --shadow-sm: 3px 3px 0 #0d1324;
-  --shadow-md: 5px 5px 0 #0d1324;
-  --shadow-lg: 7px 7px 0 #0d1324;
-  --btn-shadow: 3px 3px 0 #0d1324;
+  --rk-elev-ink: 8, 12, 24;
+  --rk-elev-hi: 255, 255, 255;
+  --rk-elevation-1: 0 1px 2px rgba(var(--rk-elev-ink), 0.35),
+    0 3px 10px rgba(var(--rk-elev-ink), 0.28);
+  --rk-elevation-2: 0 2px 4px rgba(var(--rk-elev-ink), 0.38),
+    0 8px 18px rgba(var(--rk-elev-ink), 0.32);
+  --rk-elevation-3: 0 4px 8px rgba(var(--rk-elev-ink), 0.4),
+    0 14px 28px rgba(var(--rk-elev-ink), 0.36);
+  --rk-elevation-press: 0 1px 2px rgba(var(--rk-elev-ink), 0.45);
+  --rk-elevation-hover: 0 3px 6px rgba(var(--rk-elev-ink), 0.4),
+    0 10px 22px rgba(var(--rk-elev-ink), 0.34);
+  --rk-bevel: inset 0 1px 0 rgba(var(--rk-elev-hi), 0.14),
+    inset 0 -1px 0 rgba(var(--rk-elev-ink), 0.45);
+  --rk-bevel-strong: inset 0 1.5px 0 rgba(var(--rk-elev-hi), 0.18),
+    inset 0 -1.5px 0 rgba(var(--rk-elev-ink), 0.5);
+  --rk-bevel-press: inset 0 2px 4px rgba(var(--rk-elev-ink), 0.55),
+    inset 0 -1px 0 rgba(var(--rk-elev-hi), 0.08);
+  --rk-surface-sheen: linear-gradient(
+    180deg,
+    rgba(var(--rk-elev-hi), 0.1) 0%,
+    rgba(var(--rk-elev-hi), 0) 46%
+  );
+
+  --shadow-sm: var(--rk-elevation-1);
+  --shadow-md: var(--rk-elevation-2);
+  --shadow-lg: var(--rk-elevation-3);
+  --btn-shadow: var(--rk-elevation-1), var(--rk-bevel);
 
   --code-bg: #0f1628;
   --code-ink: #fbe9d3;
@@ -141,4 +188,45 @@
   --success: #7a9140;
   --success-ink: #18223b;
   --olive: #7a9140;
+}
+
+/* Flatten bevels under high contrast / forced colors for clarity */
+@media (prefers-contrast: more) {
+  :root,
+  :root[data-theme='light'],
+  :root[data-theme='dark'] {
+    --rk-bevel: none;
+    --rk-bevel-strong: none;
+    --rk-bevel-press: none;
+    --rk-surface-sheen: none;
+    --rk-elevation-1: none;
+    --rk-elevation-2: none;
+    --rk-elevation-3: none;
+    --rk-elevation-press: none;
+    --rk-elevation-hover: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --btn-shadow: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :root,
+  :root[data-theme='light'],
+  :root[data-theme='dark'] {
+    --rk-bevel: none;
+    --rk-bevel-strong: none;
+    --rk-bevel-press: none;
+    --rk-surface-sheen: none;
+    --rk-elevation-1: none;
+    --rk-elevation-2: none;
+    --rk-elevation-3: none;
+    --rk-elevation-press: none;
+    --rk-elevation-hover: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+    --btn-shadow: none;
+  }
 }

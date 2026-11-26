@@ -14,77 +14,93 @@
   white-space: nowrap;
   cursor: pointer;
   position: relative;
-  background: var(--accent);
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--accent);
+  background-image: var(--rk-surface-sheen);
   color: var(--accent-ink);
   box-shadow: var(--btn-shadow);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
-    color 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
+    color 0.15s ease, filter 0.15s ease;
 
   .label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    z-index: 1;
   }
 
   &:hover:not(:disabled):not(.loading) {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 var(--line-strong);
+    transform: translateY(-1px);
+    box-shadow: var(--rk-elevation-hover), var(--rk-bevel-strong);
   }
 
   &:active:not(:disabled):not(.loading) {
-    transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0 var(--line-strong);
+    transform: translateY(1px);
+    box-shadow: var(--rk-elevation-press), var(--rk-bevel-press);
   }
 
   &.solid,
   &.btn-primary {
-    background: var(--accent);
+    background-color: var(--accent);
+    background-image: var(--rk-surface-sheen);
     color: var(--accent-ink);
     border-color: var(--line-strong);
   }
 
   &.soft,
   &.btn-soft {
-    background: var(--accent-soft);
+    background-color: var(--accent-soft);
+    background-image: var(--rk-surface-sheen);
     color: var(--accent-text);
     border-color: transparent;
-    box-shadow: none;
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
 
     &:hover:not(:disabled):not(.loading) {
-      box-shadow: 4px 4px 0 var(--line-strong);
+      box-shadow: var(--rk-elevation-hover), var(--rk-bevel-strong);
     }
   }
 
   &.outline,
   &.btn-outline {
-    background: transparent;
+    background-color: var(--surface);
+    background-image: var(--rk-surface-sheen);
     color: var(--accent-text);
-    border-color: var(--accent-text);
-    box-shadow: none;
+    border-color: var(--line-strong);
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
 
     &:hover:not(:disabled):not(.loading) {
-      background: var(--accent-soft);
-      box-shadow: 4px 4px 0 var(--line-strong);
+      background-color: var(--accent-soft);
+      box-shadow: var(--rk-elevation-hover), var(--rk-bevel-strong);
     }
   }
 
   &.text,
   &.ghost,
   &.btn-ghost {
-    background: transparent;
+    background-color: transparent;
+    background-image: none;
     color: var(--accent-text);
     border-color: transparent;
     box-shadow: none;
+    overflow: visible;
 
     &:hover:not(:disabled):not(.loading) {
-      background: var(--accent-soft);
+      background-color: var(--accent-soft);
+      background-image: var(--rk-surface-sheen);
       box-shadow: none;
       transform: none;
+    }
+
+    &:active:not(:disabled):not(.loading) {
+      box-shadow: var(--rk-bevel-press);
     }
   }
 
   &.btn-secondary {
-    background: var(--surface);
+    background-color: var(--surface);
+    background-image: var(--rk-surface-sheen);
     color: var(--ink);
     border-color: var(--line-strong);
     box-shadow: var(--btn-shadow);
@@ -146,22 +162,22 @@
   }
 
   &.color-olive {
-    background: var(--olive);
+    background-color: var(--olive);
     color: var(--success-ink);
   }
 
   &.color-navy {
-    background: var(--navy);
+    background-color: var(--navy);
     color: var(--cream-2);
   }
 
   &.color-mustard {
-    background: var(--mustard);
+    background-color: var(--mustard);
     color: var(--navy);
   }
 
   &.color-powder {
-    background: var(--powder);
+    background-color: var(--powder);
     color: var(--navy);
   }
 
@@ -184,6 +200,7 @@
       place-items: center;
       border-radius: inherit;
       pointer-events: none;
+      z-index: 2;
     }
 
     .spin {
@@ -216,7 +233,7 @@
     opacity: 0.45;
     cursor: not-allowed;
     transform: none;
-    box-shadow: var(--btn-shadow);
+    box-shadow: var(--rk-elevation-press), var(--rk-bevel);
   }
 }
 
@@ -237,5 +254,20 @@
     animation: none;
     border-top-color: currentColor;
     opacity: 0.85;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .button,
+  .btn {
+    background-image: none;
+    box-shadow: none;
+
+    &:hover:not(:disabled):not(.loading),
+    &:active:not(:disabled):not(.loading),
+    &:disabled,
+    &[disabled] {
+      box-shadow: none;
+    }
   }
 }

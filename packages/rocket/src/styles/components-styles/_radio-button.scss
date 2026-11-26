@@ -37,7 +37,9 @@
     height: 18px;
     border-radius: 50%;
     border: 2px solid var(--line-strong);
-    background: var(--field-bg);
+    background-color: var(--field-bg);
+    background-image: var(--rk-surface-sheen);
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
     box-sizing: border-box;
     pointer-events: none;
   }
@@ -45,6 +47,7 @@
   input[type='radio']:checked + .indicator {
     border-color: var(--accent);
     border-width: 6px;
+    box-shadow: var(--rk-elevation-press), var(--rk-bevel-press);
   }
 
   input[type='radio']:focus-visible + .indicator {
@@ -64,5 +67,16 @@
     input {
       cursor: not-allowed;
     }
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .radio-button .indicator {
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .radio-button input[type='radio']:checked + .indicator {
+    box-shadow: none;
   }
 }

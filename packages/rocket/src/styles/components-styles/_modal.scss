@@ -17,10 +17,11 @@
     flex-direction: column;
     width: min(100%, 520px);
     max-height: min(90vh, 720px);
-    background: var(--surface);
+    background-color: var(--surface);
+    background-image: var(--rk-surface-sheen);
     border: 2px solid var(--line-strong);
     border-radius: var(--r-xl);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--rk-elevation-3), var(--rk-bevel-strong);
     color: var(--ink);
     overflow: auto;
     transform: translateY(0);
@@ -68,7 +69,8 @@
     height: 34px;
     border-radius: 50%;
     border: 2px solid var(--line-strong);
-    background: var(--surface);
+    background-color: var(--surface);
+    background-image: var(--rk-surface-sheen);
     color: var(--ink);
     font-size: 22px;
     line-height: 1;
@@ -76,16 +78,17 @@
     display: grid;
     place-items: center;
     flex: none;
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 
     &:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 3px 3px 0 var(--line-strong);
+      transform: translateY(-1px);
+      box-shadow: var(--rk-elevation-hover), var(--rk-bevel-strong);
     }
 
     &:active {
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 var(--line-strong);
+      transform: translateY(1px);
+      box-shadow: var(--rk-elevation-press), var(--rk-bevel-press);
     }
 
     &:focus-visible {

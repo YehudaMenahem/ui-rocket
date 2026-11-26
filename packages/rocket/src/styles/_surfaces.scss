@@ -1,0 +1,63 @@
+/* Shared tactile panel + pill surfaces used across the library and showcase */
+
+.rk-card,
+.rk-panel,
+.card {
+  position: relative;
+  background-color: var(--surface);
+  background-image: var(--rk-surface-sheen);
+  border: 2px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  box-shadow: var(--rk-elevation-2), var(--rk-bevel);
+  color: var(--ink);
+  padding: var(--space-5, 20px);
+}
+
+.rk-panel {
+  border-radius: var(--r-xl);
+  box-shadow: var(--rk-elevation-3), var(--rk-bevel-strong);
+}
+
+.rk-badge,
+.rk-pill,
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--line-strong);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  background-color: var(--success);
+  background-image: var(--rk-surface-sheen);
+  color: var(--success-ink);
+  box-shadow: var(--rk-elevation-1), var(--rk-bevel);
+}
+
+.rk-badge.neutral,
+.rk-pill.neutral,
+.badge.neutral {
+  background-color: var(--nav-on);
+  color: var(--ink);
+}
+
+.rk-badge.soft,
+.rk-pill.soft {
+  background-color: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .rk-card,
+  .rk-panel,
+  .card,
+  .rk-badge,
+  .rk-pill,
+  .badge {
+    background-image: none;
+    box-shadow: none;
+  }
+}
