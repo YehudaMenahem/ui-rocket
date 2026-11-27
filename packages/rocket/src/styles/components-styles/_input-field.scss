@@ -42,10 +42,7 @@
       color: var(--muted);
     }
 
-    &:hover:not(:disabled):not(:focus) {
-      box-shadow: var(--rk-elevation-1), var(--rk-bevel-strong);
-    }
-
+    // No hover restyle — idle and hover must match; focus-visible/focus ring stays.
     &:focus {
       outline: none;
       border-color: var(--accent-text);
@@ -93,7 +90,6 @@
     background-image: none;
     box-shadow: none;
 
-    &:hover:not(:disabled):not(:focus),
     &:focus,
     &:disabled {
       box-shadow: none;
