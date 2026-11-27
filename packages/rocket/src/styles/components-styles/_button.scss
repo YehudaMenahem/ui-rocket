@@ -23,6 +23,16 @@
   transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease,
     color 0.15s ease, filter 0.15s ease;
 
+  .btn-addon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    line-height: 0;
+    position: relative;
+    z-index: 1;
+  }
+
   .label {
     display: inline-flex;
     align-items: center;
@@ -189,6 +199,9 @@
   &.loading {
     cursor: progress;
 
+    // Keep addon + label in normal flow (visibility only) so width/height
+    // stay identical between idle, loading, and success.
+    .btn-addon,
     .label {
       visibility: hidden;
     }
@@ -196,33 +209,42 @@
     .loading-bg {
       position: absolute;
       inset: 0;
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: inherit;
       pointer-events: none;
       z-index: 2;
+      // Avoid site-global `.spin` / line-box quirks affecting centering
+      line-height: 0;
     }
 
-    .spin {
+    // Unique class — do not reuse site `.spin` (different size/border).
+    .rk-spin {
       display: block;
-      width: 18px;
-      height: 18px;
+      flex: none;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
       border-radius: 50%;
-      border: 2.5px solid rgba(255, 246, 236, 0.35);
+      border: 2px solid rgba(255, 246, 236, 0.35);
       border-top-color: #fff6ec;
       animation: rocket-spin 0.7s linear infinite;
+      line-height: 0;
+      font-size: 0;
     }
 
-    &.outline .spin,
-    &.ghost .spin,
-    &.soft .spin,
-    &.text .spin,
-    &.btn-outline .spin,
-    &.btn-ghost .spin,
-    &.btn-soft .spin,
-    &.btn-secondary .spin {
-      border: 2.5px solid rgba(30, 42, 71, 0.25);
+    &.outline .rk-spin,
+    &.ghost .rk-spin,
+    &.soft .rk-spin,
+    &.text .rk-spin,
+    &.btn-outline .rk-spin,
+    &.btn-ghost .rk-spin,
+    &.btn-soft .rk-spin,
+    &.btn-secondary .rk-spin {
+      border: 2px solid rgba(30, 42, 71, 0.25);
       border-top-color: #1e2a47;
     }
   }
@@ -249,8 +271,8 @@
     transition: none;
   }
 
-  .button.loading .spin,
-  .btn.loading .spin {
+  .button.loading .rk-spin,
+  .btn.loading .rk-spin {
     animation: none;
     border-top-color: currentColor;
     opacity: 0.85;
