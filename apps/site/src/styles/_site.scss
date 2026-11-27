@@ -809,7 +809,6 @@ h1,h2,.logo,.card h4,.card-kicker,.feature h3,.sec-head h2,.cta-band h2,.main h1
   outline:2px solid var(--accent);
   outline-offset:3px;
 }
-.stamp{position:absolute;z-index:3;right:12px;bottom:24px;width:120px;height:120px}
 .ticker{background:var(--navy);color:var(--code-ink);border-top:2px solid var(--line-strong);border-bottom:2px solid var(--line-strong);overflow:hidden;white-space:nowrap;font-family:var(--font-display);font-weight:800;font-size:28px;padding:14px 0}
 .card-kicker{font-family:var(--font-display);font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0 0 4px;color:var(--ink)}
 /* Defer layout/paint (and image fetches) for below-fold Img demos. */
@@ -1082,7 +1081,6 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
   .hero-scene__card-tilt{transform:rotateY(-8deg) rotateX(3deg) translateZ(0)}
   .collage .card.launch{border-radius:20px}
   .hero-scene__card-contact{bottom:-24px;height:32px;width:124%;left:-10%}
-  .stamp{right:8px;bottom:auto;top:8px;width:96px;height:96px}
 }
 
 @media (max-width:760px){
@@ -1153,7 +1151,6 @@ footer.foot{border-top:2px solid var(--line-strong);color:var(--muted)}
       0 4px 0 #a8431f,
       0 10px 18px rgba(200,87,46,.3);
   }
-  .stamp{right:0;top:0;bottom:auto;width:84px;height:84px}
   .ticker{font-size:20px}
   .sec-head h2,.cta-band h2{font-size:34px}
   .section{padding-top:40px}
@@ -1220,7 +1217,7 @@ a.chip,button.chip{cursor:pointer}
 .search:focus-visible,.icon-btn:focus-visible,.gh:focus-visible,.nav-links a:focus-visible,.install:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .icon-btn,.gh,.nav-links a,.side a,.toc a,.crumbs a,.pn a,.install,a.chip,button.chip,.copy-btn,.tool,.color-picker,.codeband-copy,.cmdk-list button,.seg button,.sw button,.mobile-nav-btn,.sidebar-backdrop{cursor:pointer}
 .btn:disabled,.button:disabled,button:disabled,.icon-btn:disabled,.copy-btn:disabled{cursor:not-allowed}
-.card:not(a),.token-card,.feature:not(a),.stamp,.retro,.hero-scene,.hero-layer,.collage,.stage,.hero-wrap,.ticker{cursor:default}
+.card:not(a),.token-card,.feature:not(a),.hero-scene,.hero-layer,.collage,.stage,.hero-wrap,.ticker{cursor:default}
 .icon-btn,.gh{transition:transform .15s ease,box-shadow .15s ease}
 .icon-btn:hover,.gh:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(120,70,40,.14),0 1px 0 rgba(255,255,255,.7) inset}
 .icon-btn:active,.gh:active{transform:translateY(1px);box-shadow:0 4px 12px rgba(120,70,40,.12)}
@@ -1274,15 +1271,8 @@ a.chip,button.chip{cursor:pointer}
 .badge.held,.badge.countdown{background:var(--mustard);color:var(--navy)}
 .badge.liftoff{background:var(--accent);color:var(--accent-ink)}
 .button.is-held,.btn.is-held{background:var(--mustard)!important;color:var(--navy)!important}
-.retro .rocket-fly{transform-box:fill-box;transform-origin:center;transition:transform .8s ease}
-.retro.is-launching .rocket-fly{animation:rocket-liftoff 1.6s ease forwards}
-@keyframes rocket-liftoff{
-  0%{transform:translate(360px,300px) rotate(18deg)}
-  100%{transform:translate(420px,-220px) rotate(8deg)}
-}
 @media (prefers-reduced-motion:reduce){
-  .search,.icon-btn,.gh,.install,.simple-page .feature,.retro .rocket-fly,.img-framed,.img-frame{transition:none}
-  .retro.is-launching .rocket-fly{animation:none;opacity:.85}
+  .search,.icon-btn,.gh,.install,.simple-page .feature,.img-framed,.img-frame{transition:none}
   .ticker-track{animation:none}
 }
 .topbar,.nav-links,.top-right{position:relative;z-index:30}
