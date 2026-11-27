@@ -47,16 +47,19 @@ export function Button({
       aria-busy={loading || undefined}
       aria-label={label || undefined}
     >
-      {loading ? (
-        <span className="loading-bg" aria-hidden="true">
-          <span className="spin" />
+      {children ? (
+        <span className="btn-addon" aria-hidden={loading || undefined}>
+          {children}
         </span>
-      ) : (
-        children
-      )}
+      ) : null}
       <span className="label" aria-hidden={loading || undefined}>
         {label}
       </span>
+      {loading ? (
+        <span className="loading-bg" aria-hidden="true">
+          <span className="rk-spin" />
+        </span>
+      ) : null}
     </button>
   );
 }
