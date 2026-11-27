@@ -28,22 +28,23 @@
     padding: 0 12px;
     border-radius: var(--r-field);
     border: 2px solid var(--line-strong);
-    background: var(--field-bg);
+    background-color: var(--field-bg);
+    background-image: var(--rk-surface-sheen);
     font-size: 14px;
     color: var(--ink);
     width: 100%;
     cursor: pointer;
-    box-shadow: none;
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
 
     &:hover:not(:disabled) {
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0 var(--line-strong);
+      transform: translateY(-1px);
+      box-shadow: var(--rk-elevation-hover), var(--rk-bevel-strong);
     }
 
     &:active:not(:disabled) {
-      transform: translate(1px, 1px);
-      box-shadow: 1px 1px 0 var(--line-strong);
+      transform: translateY(1px);
+      box-shadow: var(--rk-elevation-press), var(--rk-bevel-press);
     }
 
     &:focus-visible {
@@ -80,10 +81,11 @@
     margin: 0;
     padding: 6px;
     list-style: none;
-    background: var(--surface);
+    background-color: var(--surface);
+    background-image: var(--rk-surface-sheen);
     border: 2px solid var(--line-strong);
     border-radius: var(--r-md);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--rk-elevation-2), var(--rk-bevel);
     max-height: 240px;
     overflow: auto;
   }
@@ -126,5 +128,20 @@
   .select-field .select-trigger,
   .select-wrapper .select-trigger {
     transition: none;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .select-field .select-trigger,
+  .select-wrapper .select-trigger,
+  .select-field .options,
+  .select-wrapper .options {
+    background-image: none;
+    box-shadow: none;
+
+    &:hover:not(:disabled),
+    &:active:not(:disabled) {
+      box-shadow: none;
+    }
   }
 }

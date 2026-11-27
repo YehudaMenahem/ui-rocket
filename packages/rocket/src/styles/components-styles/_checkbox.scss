@@ -38,10 +38,13 @@
     height: 18px;
     border-radius: var(--r-check);
     border: 2px solid var(--line-strong);
-    background: var(--field-bg);
+    background-color: var(--field-bg);
+    background-image: var(--rk-surface-sheen);
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
     box-sizing: border-box;
     pointer-events: none;
     overflow: hidden;
+    transition: background-color 0.12s ease, box-shadow 0.12s ease;
 
     svg {
       width: 12px;
@@ -54,8 +57,10 @@
   }
 
   input[type='checkbox']:checked + .indicator {
-    background: var(--accent);
+    background-color: var(--accent);
+    background-image: var(--rk-surface-sheen);
     border-color: var(--line-strong);
+    box-shadow: var(--rk-elevation-press), var(--rk-bevel-press);
 
     svg {
       opacity: 1;
@@ -65,7 +70,7 @@
 
   input[type='checkbox'][data-icon-type='heart']:checked + .indicator,
   input[type='checkbox'][data-icon-type='star']:checked + .indicator {
-    background: var(--accent);
+    background-color: var(--accent);
   }
 
   input[type='checkbox']:focus-visible + .indicator {
@@ -90,7 +95,20 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .checkbox .indicator,
   .checkbox .indicator svg {
     transition: none;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .checkbox .indicator {
+    background-image: none;
+    box-shadow: none;
+  }
+
+  .checkbox input[type='checkbox']:checked + .indicator {
+    background-image: none;
+    box-shadow: none;
   }
 }

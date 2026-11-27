@@ -30,11 +30,13 @@
     width: 42px;
     height: 24px;
     border-radius: 999px;
-    background: var(--switch-off);
+    background-color: var(--switch-off);
+    background-image: var(--rk-surface-sheen);
     border: 2px solid var(--line-strong);
     position: relative;
     flex-shrink: 0;
-    transition: background 0.15s ease;
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
     pointer-events: none;
 
     &::after {
@@ -45,8 +47,10 @@
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: #fff;
+      background-color: #fff;
+      background-image: var(--rk-surface-sheen);
       border: 2px solid var(--line-strong);
+      box-shadow: var(--rk-elevation-1), var(--rk-bevel);
       transition: left 0.15s ease;
     }
   }
@@ -55,7 +59,7 @@
   input:checked + .slider,
   &.checked .switch,
   &.on .switch {
-    background: var(--accent);
+    background-color: var(--accent);
 
     &::after {
       left: 20px;
@@ -88,11 +92,13 @@
   width: 42px;
   height: 24px;
   border-radius: 999px;
-  background: var(--switch-off);
+  background-color: var(--switch-off);
+  background-image: var(--rk-surface-sheen);
   border: 2px solid var(--line-strong);
   position: relative;
   display: inline-block;
   flex: none;
+  box-shadow: var(--rk-elevation-1), var(--rk-bevel);
 
   &::after {
     content: '';
@@ -102,15 +108,40 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: #fff;
+    background-color: #fff;
+    background-image: var(--rk-surface-sheen);
     border: 2px solid var(--line-strong);
+    box-shadow: var(--rk-elevation-1), var(--rk-bevel);
   }
 
   &.on {
-    background: var(--accent);
+    background-color: var(--accent);
 
     &::after {
       left: 20px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle-button .switch,
+  .toggle-button .slider,
+  .toggle-button .switch::after,
+  .toggle-button .slider::after {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .toggle-button .switch,
+  .toggle-button .slider,
+  .switch {
+    background-image: none;
+    box-shadow: none;
+
+    &::after {
+      background-image: none;
+      box-shadow: none;
     }
   }
 }
