@@ -121,8 +121,11 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   width:100%;
   min-height:520px;
   height:520px;
+  /* Perspective foreshortens the depth plane; keep the scene flat so the
+     tilting illustration does not share 3D space with the clay card overlay
+     (nested preserve-3d caused hover z-fighting + opaque alpha flashes). */
   perspective:1400px;
-  transform-style:preserve-3d;
+  transform-style:flat;
   overflow:visible;
 }
 .hero-scene__glow{
@@ -148,12 +151,15 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   position:absolute;
   inset:0;
   z-index:3;
-  transform-style:preserve-3d;
+  /* Flatten sun/moon/rocket/clouds into one plane so z-index order stays
+     stable while the whole stack tilts from pointermove. */
+  transform-style:flat;
   transform:rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transition:transform .35s ease;
   will-change:transform;
   pointer-events:none;
   overflow:visible;
+  isolation:isolate;
 }
 .hero-scene__overlay{
   position:absolute;
@@ -238,7 +244,10 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   position:absolute;
   margin:0;
   line-height:0;
-  transform:translate3d(0,0,0);
+  /* No per-layer translate3d — that promoted each asset into the parent 3D
+     space so pointer tilt reordered planes and GPU-filled alpha with cream. */
+  transform:none;
+  background-color:transparent;
   /* Avoid per-layer CSS filters on the LCP rocket — soft ground shadow covers depth */
 }
 .hero-layer img,
@@ -249,6 +258,7 @@ a.card,a.tile,.component-index a,.blog-card a,a.feature,.simple-page .feature{cu
   max-width:none;
   user-select:none;
   -webkit-user-drag:none;
+  background-color:transparent;
 }
 /* Sun: large amber orb, right-center, top near header */
 .hero-layer--sun{
