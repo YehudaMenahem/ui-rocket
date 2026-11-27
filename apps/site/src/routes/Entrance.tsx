@@ -140,6 +140,8 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
         ? '● LIFTOFF'
         : '● T-00:42:10';
 
+  const countdownOpen = phase === 'countdown' && count != null;
+
   const gzipLabel = METRICS.bundleGzipLabel.replace(' gzip', '');
 
   return (
@@ -217,11 +219,19 @@ export function Entrance({ darkMode: _darkMode }: EntranceProps) {
                           {formError}
                         </p>
                       ) : null}
-                      {phase === 'countdown' && count != null ? (
-                        <p className="countdown" aria-live="assertive">
-                          Liftoff in {count}…
-                        </p>
-                      ) : null}
+                      {/* Always mounted so the card height can animate both ways
+                          (grid 0fr <-> 1fr) instead of jumping on mount/unmount. */}
+                      <div
+                        className={`countdown-reveal ${countdownOpen ? 'is-open' : ''}`}
+                        aria-hidden="true"
+                      >
+                        <div className="countdown-reveal__inner">
+                          <p className="countdown">Liftoff in {count ?? 1}…</p>
+                        </div>
+                      </div>
+                      <p className="sr-only" aria-live="assertive">
+                        {countdownOpen ? `Liftoff in ${count}…` : ''}
+                      </p>
                       <div className="launch-checklist__actions">
                         <Button
                           label={phase === 'liftoff' ? 'Liftoff!' : 'Launch'}
