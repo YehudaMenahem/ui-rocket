@@ -1,4 +1,10 @@
-import { ReactNode, ChangeEvent, MouseEvent } from 'react';
+import {
+  ReactNode,
+  ChangeEvent,
+  ComponentPropsWithRef,
+  MouseEvent,
+  RefObject,
+} from 'react';
 
 export interface ButtonProps {
   label?: string;
@@ -90,12 +96,35 @@ export interface ImgProps {
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
 }
 
-export interface ModalProps {
+export interface ModalProps extends Omit<
+  ComponentPropsWithRef<'dialog'>,
+  'open' | 'children' | 'onCancel' | 'onClose'
+> {
+  /** Dialog title. Rendered as a heading and used as the accessible name. */
   modalTitle?: string;
+  /** Shows the illustrated hero header; the title stays screen-reader only. */
   heroImage?: boolean;
+  /** Extra class names (kept for backward compatibility; `className` also works). */
   classes?: string;
+  /** Controls visibility. */
   show: boolean;
+  /**
+   * Called when the user asks to close: Escape, backdrop click, or a close
+   * button. Set `show` to `false` in response.
+   */
   closeModal: (event?: MouseEvent) => void;
+  /** Optional `(open: boolean) => void` companion to `closeModal`; called with `false`. */
+  onOpenChange?: (open: boolean) => void;
+  /** Supporting text rendered above the children and wired to `aria-describedby`. */
+  description?: ReactNode;
+  /**
+   * Element to focus when the dialog opens: a ref or a CSS selector inside the
+   * dialog. Defaults to an `[autofocus]` / `[data-autofocus]` element, then the
+   * first focusable element.
+   */
+  initialFocus?: RefObject<HTMLElement | null> | string;
+  /** Close when the backdrop is clicked. Defaults to `true`. */
+  closeOnBackdropClick?: boolean;
   children?: ReactNode;
 }
 
