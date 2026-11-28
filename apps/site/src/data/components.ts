@@ -236,7 +236,7 @@ export const COMPONENTS: ComponentMeta[] = [
     path: '/TabsPage',
     group: 'Utilities',
     oneLiner: 'Switch between related panels without leaving the page.',
-    aria: 'WAI-ARIA Tabs',
+    aria: 'WAI-ARIA Tabs pattern',
     prev: { label: 'Img', path: '/ImgPage' },
     next: { label: 'Form', path: '/FormPage' },
     toc: [
