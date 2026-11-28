@@ -153,12 +153,39 @@ export interface SelectFieldProps {
   change?: (value: string) => void;
 }
 
-export interface TabsProps {
-  tabs: string[];
+export interface TabItem {
+  /** Tab label. */
+  label: ReactNode;
+  /** Panel content. When omitted no panel is rendered for this tab. */
+  content?: ReactNode;
+  /** Stable identifier used by `value` / `defaultValue` / `onValueChange`. Defaults to the index. */
+  value?: string;
+  /** Disabled tabs are skipped by keyboard navigation and cannot be selected. */
+  disabled?: boolean;
+}
+
+export interface TabsProps extends Omit<
+  ComponentPropsWithRef<'div'>,
+  'children' | 'onChange' | 'defaultValue'
+> {
+  /** Tab labels (legacy) or items with optional panel content. */
+  tabs: (string | TabItem)[];
+  /** Controlled selected tab value. */
+  value?: string;
+  /** Initial selected value (uncontrolled). Defaults to the first enabled tab. */
+  defaultValue?: string;
+  /** Called with the new value when the selection changes. */
+  onValueChange?: (value: string) => void;
+  /** `automatic` selects on focus (default); `manual` selects with Enter or Space. */
+  activationMode?: 'automatic' | 'manual';
+  /** Sets `aria-orientation` and switches arrow keys to Up/Down. */
+  orientation?: 'horizontal' | 'vertical';
+  /** Legacy: controlled selected index. Prefer `value`. */
   activeTab?: number;
+  /** Legacy: called with the new index. Prefer `onValueChange`. */
+  setActiveTab?: (index: number) => void;
   classes?: string;
   id?: string;
-  setActiveTab: (index: number) => void;
 }
 
 export interface TextboxProps {

@@ -1,3 +1,13 @@
+.tabs-root {
+  display: block;
+
+  &.vertical {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+}
+
 .tabs {
   display: flex;
   gap: 4px;
@@ -6,14 +16,7 @@
   list-style: none;
   padding: 0;
 
-  .tab,
-  button,
-  li {
-    list-style: none;
-  }
-
-  .tab,
-  button {
+  .tab {
     padding: 10px 14px;
     font-size: 14px;
     font-weight: 600;
@@ -24,6 +27,14 @@
     margin-bottom: -2px;
     cursor: pointer;
     border-radius: 0;
+    font-family: inherit;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+      color: var(--ink);
+    }
 
     &.active,
     &[aria-selected='true'] {
@@ -32,7 +43,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: var(--border-focus) solid var(--focus);
       outline-offset: 2px;
     }
 
@@ -42,5 +53,49 @@
       cursor: not-allowed;
       opacity: 0.45;
     }
+  }
+
+  &[aria-orientation='vertical'] {
+    flex-direction: column;
+    border-bottom: 0;
+    border-inline-end: 2px solid var(--line);
+    margin-bottom: 0;
+
+    .tab {
+      text-align: start;
+      border-bottom: 0;
+      margin-bottom: 0;
+      border-inline-end: 3px solid transparent;
+      margin-inline-end: -2px;
+
+      &.active,
+      &[aria-selected='true'] {
+        border-inline-end-color: var(--accent);
+      }
+    }
+  }
+}
+
+.tabpanel {
+  &:focus-visible {
+    outline: var(--border-focus) solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs .tab {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .tabs .tab.active,
+  .tabs .tab[aria-selected='true'] {
+    border-bottom-color: Highlight;
+  }
+
+  .tabs[aria-orientation='vertical'] .tab[aria-selected='true'] {
+    border-inline-end-color: Highlight;
   }
 }

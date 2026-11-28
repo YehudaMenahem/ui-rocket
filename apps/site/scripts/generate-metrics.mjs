@@ -24,9 +24,9 @@ const COMPONENT_IDS = {
   textbox: { file: 'Textbox.tsx', test: null, exportName: 'Textbox' },
   icon: { file: 'Icon.tsx', test: null, exportName: 'Icon' },
   img: { file: 'Img.tsx', test: 'Img.test.tsx', exportName: 'Img' },
-  tabs: { file: 'Tabs.tsx', test: null, exportName: 'Tabs' },
+  tabs: { file: 'Tabs.tsx', test: 'Tabs.test.tsx', exportName: 'Tabs' },
   form: { file: 'Form.tsx', test: null, exportName: 'Form' },
-  modal: { file: 'Modal.tsx', test: null, exportName: 'Modal' },
+  modal: { file: 'Modal.tsx', test: 'Modal.test.tsx', exportName: 'Modal' },
   toaster: { file: 'Toaster.tsx', test: null, exportName: 'Toaster' },
 };
 

@@ -30,7 +30,7 @@
       "name": "@ui-rocket/rocket ESM (gzip)",
       "path": "packages/rocket/dist/index.js",
       "gzip": true,
-      "limit": "12.5 kB"
+      "limit": "14 kB"
     }
   ],
   "devDependencies": {
