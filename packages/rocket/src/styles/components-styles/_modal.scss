@@ -1,14 +1,37 @@
+// Native <dialog> opened with showModal(): the browser renders it in the top
+// layer, traps focus, and makes everything behind it inert. The dialog element
+// itself is a transparent full-viewport grid that centres the panel, so a click
+// whose target is the dialog (not the panel) is a backdrop click.
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
   padding: 24px;
-  background: rgba(30, 42, 71, 0.48);
-  animation: modal-fade-in 0.18s ease;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  overflow: visible;
 
-  &.close {
+  &[open] {
+    display: grid;
+    place-items: center;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::backdrop {
+    background: rgba(30, 42, 71, 0.48);
+    animation: modal-fade-in 0.18s ease;
+  }
+
+  &[data-closing]::backdrop {
     animation: modal-fade-out 0.28s ease forwards;
   }
 
@@ -28,7 +51,7 @@
     animation: modal-rise 0.2s ease;
   }
 
-  &.close .modal-panel {
+  &[data-closing] .modal-panel {
     animation: modal-sink 0.28s ease forwards;
   }
 
@@ -152,10 +175,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal,
+  .modal::backdrop,
+  .modal[data-closing]::backdrop,
   .modal .modal-panel,
-  .modal.close,
-  .modal.close .modal-panel {
+  .modal[data-closing] .modal-panel {
     animation: none;
   }
 }
